@@ -1,0 +1,73 @@
+\begin{thebibliography}{10}
+
+\bibitem{HMAC}
+Mihir Bellare, Ran Canetti, and Hugo Krawczyk.
+\newblock Keying hash functions for message authentication.
+\newblock In {\em Proceedings of the 16th Annual International Cryptology
+  Conference on Advances in Cryptology}, CRYPTO '96, pages 1--15, London, UK,
+  UK, 1996. Springer-Verlag.
+
+\bibitem{Checkoway-2011}
+Stephen Checkoway, Damon McCoy, Brian Kantor, Danny Anderson, Hovav Shacham,
+  Stefan Savage, Karl Koscher, Alexei Czeskis, Franziska Roesner, Tadayoshi
+  Kohno, et~al.
+\newblock Comprehensive experimental analyses of automotive attack surfaces.
+\newblock In {\em USENIX Security Symposium}. San Francisco, 2011.
+
+\bibitem{Conte-SHA1}
+Brad Conte.
+\newblock Implementation of {SHA}-1 in {C}, 2006.
+
+\bibitem{Conte-SHA256}
+Brad Conte.
+\newblock Implementation of {SHA}-256 in {C}, 2006.
+
+\bibitem{Koscher-2010}
+K.~Koscher, A.~Czeskis, F.~Roesner, S.~Patel, T.~Kohno, S.~Checkoway, D.~McCoy,
+  B.~Kantor, D.~Anderson, H.~Shacham, and S.~Savage.
+\newblock Experimental security analysis of a modern automobile.
+\newblock In {\em Proceedings of the 2010 IEEE Symposium on Security and
+  Privacy (SP)}, pages 447--462, May 2010.
+
+\bibitem{Lin-MAC}
+Chung-Wei Lin and A.~Sangiovanni-Vincentelli.
+\newblock Cyber-security for the controller area network ({CAN}) communication
+  protocol.
+\newblock In {\em Proceedings of the 2012 International Conference on Cyber
+  Security (CyberSecurity)}, pages 1--7, Dec 2012.
+
+\bibitem{FIPS-198-1}
+{National Institute of Standards and Technology}.
+\newblock {\em {FIPS PUB 198-1}: The Keyed-Hash Message Authentication Code
+  (HMAC)}.
+\newblock July 2008.
+
+\bibitem{FIPS-180-4}
+{National Institute of Standards and Technology}.
+\newblock {\em {FIPS PUB 180-4}: Secure Hash Standard}.
+\newblock March 2012.
+
+\bibitem{Peslyak}
+Alexander Peslyak.
+\newblock A portable, fast, and free implementation of the {MD5} message-digest
+  algorithm ({RFC} 1321), 2009.
+
+\bibitem{MD5}
+Ronald Rivest.
+\newblock {IETF} {RFC}1321: The {MD5} message-digest algorithm, April 1992.
+
+\bibitem{Wang-SHA1}
+Xiaoyun Wang, YiqunLisa Yin, and Hongbo Yu.
+\newblock Finding collisions in the full sha-1.
+\newblock In Victor Shoup, editor, {\em Advances in Cryptology – CRYPTO
+  2005}, volume 3621 of {\em Lecture Notes in Computer Science}, pages 17--36.
+  Springer Berlin Heidelberg, 2005.
+
+\bibitem{Wang-MD5}
+Xiaoyun Wang and Hongbo Yu.
+\newblock How to break {MD5} and other hash functions.
+\newblock In {\em Proceedings of the 24th Annual International Conference on
+  Theory and Applications of Cryptographic Techniques}, EUROCRYPT'05, pages
+  19--35, Berlin, Heidelberg, 2005. Springer.
+
+\end{thebibliography}

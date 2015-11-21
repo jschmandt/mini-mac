@@ -1,0 +1,78 @@
+%some todos: 
+%		align decimals in tables
+%		figure axis font sizes
+%		review prev work
+%		replace [#] with author[#] in refs
+
+\documentclass[10pt,final,conference,compsoc]{IEEEtran}
+\usepackage{cite}
+\usepackage{graphicx}
+\usepackage{pdfpages}
+\usepackage{rotating}
+\usepackage{placeins}
+\usepackage{csvsimple}
+\usepackage{listings}
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\pagestyle{plain}
+
+
+\begin{document}
+
+\title{%Raising the Bar for Automotive Security: A Lightweight Message Authentication Protocol for the CAN Bus\\--------------------------\\
+%Mini-MAC: A Lightweight Message Authentication Protocol for the CAN Bus\\--------------------------\\
+Mini-MAC: Raising the Bar for Vehicular Security with a Lightweght Message Authentication Protocol}
+
+
+\author{\IEEEauthorblockN{Jackson Schmandt, Alan T. Sherman, Nilanjan Banerjee}
+\IEEEauthorblockA{CSEE Department, University of Maryland, Baltimore County\\
+\{schmandt, sherman, nilanb\}@umbc.edu}}
+\date{\today}
+
+\maketitle
+
+\input{abstract.tex}
+
+\begin{IEEEkeywords}
+	CAN bus,
+	automotive security,
+	message authentication,
+	vehicle security,
+	applied cryptography.
+\end{IEEEkeywords}
+
+\textcolor{red}{Note: Are units like B(bytes), b(bits), and ms(milliseconds) normally explicitly defined? I thought these were ubiquitous enough to not need that.}
+
+\textcolor{red}{Figure and Table numbers may be off -- I moved a few things around, but I think I caught where I had to change a reference}
+
+\input{introduction.tex}
+
+\input{background.tex}
+
+\input{problem_statement.tex}
+
+\input{previous_work.tex}
+
+\input{adversaries.tex}
+
+\input{mini-mac.tex}
+
+\input{testing.tex}
+
+\input{analysis.tex}
+	
+\input{discussion.tex}
+
+\input{conclusion.tex}
+
+\input{acknowledgements.tex}
+
+\bibliography{mybib}
+\bibliographystyle{plain}
+
+\end{document}
+
+

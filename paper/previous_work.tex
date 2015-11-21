@@ -1,0 +1,13 @@
+\section{Previous Work}
+The most complete work specifically discussing the usage of MACs in the automotive CAN network produced the Lin-MAC construction\cite{Lin-MAC}. Lin-MAC presents the idea that a MAC should be based not only on the secret key, but on a counter as well, as discussed in section 3. It also proposes a pair-wise key distribution scheme where each node shares a secret key with each other node.
+
+%Consider the scenario where there is ample time and bus resources for any MAC implementation and nodes posses valid secret keys for pairwise message exchange. Alice can easily verify that Bob created a message that comes with Bob's ID and Bob's MAC. However, these messages are broadcast. Malicious actor Eve can easily record the message from Bob to Alice, along with the ID and MAC. There is no mechanism which can prevent Eve from replaying the message. Adding a counter to the input of the MAC generation protocol means that even for the same message, the MAC would change and a replay attack would not succeed.
+
+
+There are some issues with this protocol. Consider that an entity Bob wishes to send the same message to entities Alice and Charlie. He must send the message along with two MACs -- one computed with the secret key he shares with Alice and one computed with the secret key he shares with Charlie. For every recipient, Bob must send a MAC. This will increase bus utilization, even in the case of one recipient.
+
+The other issue is that the tags must fit into 64 bits, the size of the data payload. HMAC produces a much larger output (depending on the underlying hash) and transmitting this MAC will greatly drive up bus utilization.
+
+%Furthermore, Lin-MAC presents a mechanism for resynchronizing the counter which we must assume works and is implementable. It also assumes a key distribution infrastructure, a serious problem which could not be ignored for any real commercial release of a solution. However, to prove the viability of a reduced size MAC, we will also assume this functionality.
+
+\textcolor{red}{Note to ed: I recently found a few other papers that I want to mention here but I don't have it written up yet.}
