@@ -22,24 +22,29 @@
 
 \begin{document}
 
-\title{%Raising the Bar for Automotive Security: A Lightweight Message Authentication Protocol for the CAN Bus\\--------------------------\\
-%Mini-MAC: A Lightweight Message Authentication Protocol for the CAN Bus\\--------------------------\\
-Mini-MAC: Raising the Bar for Vehicular Security with a Lightweght Message Authentication Protocol}
+\title{Mini-MAC: Raising the Bar for Vehicular Security\\
+with a Lightweght Message Authentication Protocol}
 
+%Raising the Bar for Automotive Security: A Lightweight Message Authentication Protocol for the CAN Bus\\--------------------------\\
+%Mini-MAC: A Lightweight Message Authentication Protocol for the CAN Bus\\--------------------------\\
+
+%\author{Redacted for anonymous submission}
 
 \author{\IEEEauthorblockN{Jackson Schmandt, Alan T. Sherman, Nilanjan Banerjee}
 \IEEEauthorblockA{CSEE Department, University of Maryland, Baltimore County\\
-\{schmandt, sherman, nilanb\}@umbc.edu}}
+\{schmandt, sherman, nilanb\}@umbc.edu}\\}
+
 \date{\today}
 
 \maketitle
 
-\input{abstract.tex}
+\input{sections/abstract.tex}
 
 \begin{IEEEkeywords}
 	CAN bus,
 	automotive security,
 	message authentication,
+	Mini-MAC,
 	vehicle security,
 	applied cryptography.
 \end{IEEEkeywords}
@@ -48,30 +53,33 @@ Mini-MAC: Raising the Bar for Vehicular Security with a Lightweght Message Authe
 
 \textcolor{red}{Figure and Table numbers may be off -- I moved a few things around, but I think I caught where I had to change a reference}
 
-\input{introduction.tex}
+\input{sections/introduction.tex}
 
-\input{background.tex}
+\input{sections/background.tex}
 
-\input{problem_statement.tex}
+\input{sections/problem_statement.tex}
 
-\input{previous_work.tex}
+\input{sections/previous_work.tex}
 
-\input{adversaries.tex}
+\input{sections/adversaries.tex}
 
-\input{mini-mac.tex}
+\input{sections/mini-mac.tex}
 
-\input{testing.tex}
+\input{sections/testing.tex}
 
-\input{analysis.tex}
+\input{sections/analysis.tex}
 	
-\input{discussion.tex}
+\input{sections/discussion.tex}
 
-\input{conclusion.tex}
+\input{sections/conclusion.tex}
 
-\input{acknowledgements.tex}
+\input{sections/acknowledgments.tex}
 
 \bibliography{mybib}
 \bibliographystyle{plain}
+
+\bigskip \noindent
+Preliminary draft to be submitted to {\it Cryptologia}. {\today}.
 
 \end{document}
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.2.6)  21 NOV 2015 19:05
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.2.6)  21 NOV 2015 19:24
 entering extended mode
 **C:/Users/Alan/Documents/GitHub/mini-mac/paper/top.tex
 (C:/Users/Alan/Documents/GitHub/mini-mac/paper/top.tex
@@ -688,38 +688,36 @@ File: siunitx-abbreviations.cfg 2015/10/15 v2.6m siunitx: Abbreviated units
 )
 \c__siunitx_mathsf_int=\count178
 \c__siunitx_mathtt_int=\count179
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 35.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 39.
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\ot1phv.fd"
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 35.
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 35.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 39.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 39.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/it' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 35.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 39.
 
-(C:\Users\Alan\Documents\GitHub\mini-mac\paper\abstract.tex)
-Underfull \hbox (badness 7981) in paragraph at lines 47--48
+(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/abstract.tex)
+Underfull \hbox (badness 7981) in paragraph at lines 52--53
 [][]\OT1/ptm/m/n/10 Note: Are units like B(bytes), b(bits), and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 47--48
+Underfull \hbox (badness 10000) in paragraph at lines 52--53
 \OT1/ptm/m/n/10 ms(milliseconds) nor-mally ex-plic-itly de-fined? I
  []
 
-(C:\Users\Alan\Documents\GitHub\mini-mac\paper\introduction.tex
-Underfull \vbox (badness 6125) has occurred while \output is active []
-
- [1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
+(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/introduction.tex
+[1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
 ])
-(C:\Users\Alan\Documents\GitHub\mini-mac\paper\background.tex [2]
+(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/background.tex [2]
 <figures/can_frame.png, id=13, 2007.5pt x 506.89375pt>
 File: figures/can_frame.png Graphic file (type png)
 
@@ -736,14 +734,14 @@ Underfull \hbox (badness 2134) in paragraph at lines 33--34
 []\OT1/ptm/m/n/10 The Keyed-Hash Mes-sage Au-then-ti-ca-tion Code
  []
 
-) (C:\Users\Alan\Documents\GitHub\mini-mac\paper\problem_statement.tex)
-(C:\Users\Alan\Documents\GitHub\mini-mac\paper\previous_work.tex [3 <C:/Users/A
-lan/Documents/GitHub/mini-mac/paper/figures/can_frame.png>])
-(C:\Users\Alan\Documents\GitHub\mini-mac\paper\adversaries.tex)
+) (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/problem_statement.tex
+) (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/previous_work.tex
+[3 <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/can_frame.png>])
+(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/adversaries.tex)
 Underfull \vbox (badness 1097) has occurred while \output is active []
 
  [4]
-(C:\Users\Alan\Documents\GitHub\mini-mac\paper\mini-mac.tex
+(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/mini-mac.tex
 <figures/key_distribution.png, id=25, 637.63219pt x 240.14719pt>
 File: figures/key_distribution.png Graphic file (type png)
 
@@ -756,7 +754,7 @@ Underfull \hbox (badness 1881) in paragraph at lines 69--72
 \OT1/ptm/m/n/10 this project was orig-i-nally writ-ten by Alexan-der
  []
 
-) (C:\Users\Alan\Documents\GitHub\mini-mac\paper\testing.tex [6]
+) (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/testing.tex [6]
 <figures/exec_cycles.png, id=34, 578.16pt x 433.62pt>
 File: figures/exec_cycles.png Graphic file (type png)
 
@@ -778,10 +776,11 @@ File: figures/ram_usage.png Graphic file (type png)
 Package pdftex.def Info: figures/ram_usage.png used on input line 67.
 (pdftex.def)             Requested size: 221.32687pt x 165.99475pt.
 )
-(C:\Users\Alan\Documents\GitHub\mini-mac\paper\analysis.tex [7 <C:/Users/Alan/D
-ocuments/GitHub/mini-mac/paper/figures/exec_cycles.png (PNG copy)> <C:/Users/Al
-an/Documents/GitHub/mini-mac/paper/figures/code_size.png (PNG copy)> <C:/Users/
-Alan/Documents/GitHub/mini-mac/paper/figures/ram_usage.png (PNG copy)>]
+(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/analysis.tex [7 <C:/Use
+rs/Alan/Documents/GitHub/mini-mac/paper/figures/exec_cycles.png (PNG copy)> <C:
+/Users/Alan/Documents/GitHub/mini-mac/paper/figures/code_size.png (PNG copy)> <
+C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/ram_usage.png (PNG copy)>
+]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -791,12 +790,12 @@ File: figures/pdf.png Graphic file (type png)
 Package pdftex.def Info: figures/pdf.png used on input line 52.
 (pdftex.def)             Requested size: 221.32687pt x 165.99475pt.
  [8])
-(C:\Users\Alan\Documents\GitHub\mini-mac\paper\discussion.tex
+(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/discussion.tex
 Underfull \vbox (badness 2884) has occurred while \output is active []
 
  [9 <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/pdf.png>])
-(C:\Users\Alan\Documents\GitHub\mini-mac\paper\conclusion.tex)
-(C:\Users\Alan\Documents\GitHub\mini-mac\paper\acknowledgements.tex)
+(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/conclusion.tex)
+(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/acknowledgments.tex)
 (C:\Users\Alan\Documents\GitHub\mini-mac\paper\top.bbl
 Missing character: There is no â in font ptmri7t!
 Missing character: There is no € in font ptmri7t!
@@ -815,8 +814,8 @@ Before submitting the final camera ready copy, remember to:
 
 [10] (C:\Users\Alan\Documents\GitHub\mini-mac\paper\top.aux) ) 
 Here is how much of TeX's memory you used:
- 15839 strings out of 493921
- 317201 string characters out of 3144880
+ 15841 strings out of 493921
+ 317478 string characters out of 3144880
  327209 words of memory out of 3000000
  18948 multiletter control sequences out of 15000+200000
  47257 words of font info for 92 fonts, out of 3000000 for 9000
@@ -835,7 +834,7 @@ lic/amsfonts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/he
 lvetic/uhvr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmb
 8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/
 Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on top.pdf (10 pages, 796307 bytes).
+Output written on top.pdf (10 pages, 796378 bytes).
 PDF statistics:
  94 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
