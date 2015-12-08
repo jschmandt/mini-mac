@@ -1,4 +1,4 @@
-Function,Additional Bus Traffic (b)
+function,at
 HMAC-MD5 (Group),128
 HMAC-MD5 (Pairwise),128*n
 Lin-MAC,128*n

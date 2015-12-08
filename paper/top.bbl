@@ -22,6 +22,12 @@ Brad Conte.
 Brad Conte.
 \newblock Implementation of {SHA}-256 in {C}, 2006.
 
+\bibitem{C2X}
+Anreas Festag, Roberto Baldessari, Wenhui Zhang, Long Le, Amardeo Sarma, and
+  Fukukawa Masatoshi.
+\newblock Car-2-{X} communications for safety and infotainment in europe.
+\newblock {\em NEC Technical Journal}, 3(1):21--26, 2008.
+
 \bibitem{Koscher-2010}
 K.~Koscher, A.~Czeskis, F.~Roesner, S.~Patel, T.~Kohno, S.~Checkoway, D.~McCoy,
   B.~Kantor, D.~Anderson, H.~Shacham, and S.~Savage.
@@ -45,7 +51,7 @@ Chung-Wei Lin and A.~Sangiovanni-Vincentelli.
 \bibitem{FIPS-180-4}
 {National Institute of Standards and Technology}.
 \newblock {\em {FIPS PUB 180-4}: Secure Hash Standard}.
-\newblock March 2012.
+\newblock August 2015.
 
 \bibitem{Peslyak}
 Alexander Peslyak.
@@ -69,5 +75,26 @@ Xiaoyun Wang and Hongbo Yu.
 \newblock In {\em Proceedings of the 24th Annual International Conference on
   Theory and Applications of Cryptographic Techniques}, EUROCRYPT'05, pages
   19--35, Berlin, Heidelberg, 2005. Springer.
+
+\bibitem{Woo-14}
+S.~Woo, Hyo~Jin Jo, and Dong~Hoon Lee.
+\newblock A practical wireless attack on the connected car and security
+  protocol for in-vehicle can.
+\newblock {\em Intelligent Transportation Systems, IEEE Transactions on},
+  16(2):993--1006, April 2015.
+
+\bibitem{Xie-15}
+Yong Xie, Liangjiao Liu, Renfa Li, Jianqiang Hu, Yong Han, and Xin Peng.
+\newblock Security-aware signal packing algorithm for can-based automotive
+  cyber-physical systems.
+\newblock {\em Automatica Sinica, IEEE/CAA Journal of}, 2(4):422--430, October
+  2015.
+
+\bibitem{Zalman-14}
+R.~Zalman and A.~Mayer.
+\newblock A secure but still safe and low cost automotive communication
+  technique.
+\newblock In {\em Design Automation Conference (DAC), 2014 51st ACM/EDAC/IEEE},
+  pages 1--5, June 2014.
 
 \end{thebibliography}

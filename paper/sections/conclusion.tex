@@ -1,6 +1,13 @@
 \section{Conclusion}
 %It appears that Mini-MAC could be more resilient to replay attacks than a condensed HMAC would be or than Lin-MAC is simply because it incorporates time- and history-based distortion into the MAC.
 
-Automotive computer systems are extemely limited in several ways. The computational power in nodes is limited and incapable of complex cryptography, and the bus is too slow to allow for overhead related to security protocols. Additionally, many of the messages are extremely time sensitive and must not be delayed or risk the safety of the driver or others on the road.
+We propose Mini-MAC, which is the first variable-length MAC protocol for the CAN bus that adds no bus traffic overhead. Using 4 B for a MAC is too small for many applications -- the core idea of Mini-MAC is not to make the CAN bus impenetrable, but instead to raise the bar for security in a resource-conscious way. 
 
-Mini-MAC is the first variable-length MAC protocol for the CAN bus which adds no bus traffic overhead. Using 4B for a MAC is too small for many applications -- the core idea of Mini-MAC is not to make the CAN bus impenetrable, but instead to raise the bar for security in a highly-efficient way. The world in which Mini-MAC may be useful is one in which an adversary might be another vehicle driving past you on the highway; in this scenario, being secure enough to withstand 27 minutes worth of attacks may be secure enough.
+Automotive computer systems are extremely limited in several ways. The computational power in nodes is limited and incapable of complex cryptography, and the bus is too slow to allow for overhead related to security protocols. Additionally, many of the messages are extremely time sensitive and must not be delayed or risk the safety of the driver or others on the road.
+
+Given this context, we believe Mini-MAC is reaching the limits of what is possible for securing the CAN bus, but note that even this system is still vulnerable to attacks from determined attackers or those wishing to deny service.
+
+\textcolor{red}{Note: I don't like the last sentence very much. Still thinking on it\\ \\Response to Ed's note - the fault tolerance procedure I mentioned previously is directly from spacecraft. I've been thinking about how to re-sync on a fault and that is currently where I'm leaning. I'm not very familiar with any specific authentication mechanisms they use though.}
+
+%The world in which Mini-MAC may be useful is one in which an adversary might be another vehicle driving past you on the highway; in this scenario, being secure enough to withstand 27 minutes worth of attacks may be secure enough.
+

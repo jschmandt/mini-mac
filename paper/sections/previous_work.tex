@@ -1,13 +1,18 @@
 \section{Previous Work}
-The most complete work specifically discussing the usage of MACs in the automotive CAN network produced the Lin-MAC construction\cite{Lin-MAC}. Lin-MAC presents the idea that a MAC should be based not only on the secret key, but on a counter as well, as discussed in section 3. It also proposes a pair-wise key distribution scheme where each node shares a secret key with each other node.
+The most complete work specifically discussing the usage of MACs in the automotive CAN network produced the Lin-MAC construction\cite{Lin-MAC}. Lin-MAC presents the idea that a MAC should be based not only on the secret key, but on a counter as well, as discussed in Section 3. It uses a pair-wise key distribution scheme where each node shares a secret key with each other node.
 
 %Consider the scenario where there is ample time and bus resources for any MAC implementation and nodes posses valid secret keys for pairwise message exchange. Alice can easily verify that Bob created a message that comes with Bob's ID and Bob's MAC. However, these messages are broadcast. Malicious actor Eve can easily record the message from Bob to Alice, along with the ID and MAC. There is no mechanism which can prevent Eve from replaying the message. Adding a counter to the input of the MAC generation protocol means that even for the same message, the MAC would change and a replay attack would not succeed.
 
+There are some issues with this protocol. Consider that an entity Bob wishes to send the same message to entities Alice and Charlie. He must send the message along with two MACs -- one computed with the secret key he shares with Alice and one computed with the secret key he shares with Charlie. For every recipient, Bob must send a MAC. This will increase bus utilization, even in the case of one recipient, as the MAC must be transmitted in an additional CAN frame.
 
-There are some issues with this protocol. Consider that an entity Bob wishes to send the same message to entities Alice and Charlie. He must send the message along with two MACs -- one computed with the secret key he shares with Alice and one computed with the secret key he shares with Charlie. For every recipient, Bob must send a MAC. This will increase bus utilization, even in the case of one recipient.
-
-The other issue is that the tags must fit into 64 bits, the size of the data payload. HMAC produces a much larger output (depending on the underlying hash) and transmitting this MAC will greatly drive up bus utilization.
+The other issue is that the tags must fit into 64 bits, the size of the data payload. HMAC produces a much larger output (depending on the underlying hash) and transmitting this MAC will greatly drive up bus utilization. For example, the smallest HMAC result used in this work is 128 bits, produced by HMAC-MD5. Transmitting the entire HMAC would require an additional two CAN frames per every message.
 
 %Furthermore, Lin-MAC presents a mechanism for resynchronizing the counter which we must assume works and is implementable. It also assumes a key distribution infrastructure, a serious problem which could not be ignored for any real commercial release of a solution. However, to prove the viability of a reduced size MAC, we will also assume this functionality.
 
-\textcolor{red}{Note to ed: I recently found a few other papers that I want to mention here but I don't have it written up yet.}
+Other recent CAN security projects suffer from similar problems. Proposed protocols by Woo et al \cite{Woo-14}, Zalman et al \cite{Zalman-14}, and Xie et al \cite{Xie-15} all use pair-wise key distribution which increases bus utilization for a messages sent to multiple recipients.
+
+The work by Woo et al requires re-writing of firmware or hardware redesign of CAN transceivers. It packs the MAC into an extended ID field not used by all ECUs and the CRC field in the CAN trailer. Woo also assumes a much more powerful message processor than is assumed in this work.
+
+Zalman et al uses a timestamp value to seed the MAC, but this technique is by the author's admission vulnerable to delay in the network. Zalman also uses a fixed-size MAC that may be too large to fit in one CAN frame, causing excessive bus overhead.
+
+Xie et al proposes packing multiple messages into one CAN frame with a MAC in order to add security without increasing bus utilization, but this may breach message delay requirements. It also assumes messages are small enough to fit into a CAN frame with other messages and an appropriately-sized MAC.

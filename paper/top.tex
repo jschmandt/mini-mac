@@ -4,7 +4,7 @@
 %		review prev work
 %		replace [#] with author[#] in refs
 
-\documentclass[10pt,final,conference,compsoc]{IEEEtran}
+\documentclass[10pt,twocolumn]{article}
 \usepackage{cite}
 \usepackage{graphicx}
 \usepackage{pdfpages}
@@ -14,10 +14,14 @@
 \usepackage{listings}
 \usepackage{url}
 \usepackage{amsmath}
+\usepackage{stmaryrd}
+\newcommand*\concat{\mathbin{\|}}
 \usepackage{siunitx}
 \usepackage{booktabs}
 \usepackage{xcolor}
 \pagestyle{plain}
+
+\providecommand{\keywords}[1]{\textbf{\textit{Index terms---}} #1}
 
 
 \begin{document}
@@ -30,28 +34,26 @@ with a Lightweght Message Authentication Protocol}
 
 %\author{Redacted for anonymous submission}
 
-\author{\IEEEauthorblockN{Jackson Schmandt, Alan T. Sherman, Nilanjan Banerjee}
-\IEEEauthorblockA{CSEE Department, University of Maryland, Baltimore County\\
-\{schmandt, sherman, nilanb\}@umbc.edu}\\}
+\author{Jackson Schmandt\footnotemark[1]\footnotemark[2], Alan T. Sherman\footnotemark[1], Nilanjan Banerjee\footnotemark[2]\\CSEE Department, University of Maryland, Baltimore County (UMBC)\\\{schmandt, sherman, nilanb\}@umbc.edu\\}
 
 \date{\today}
 
 \maketitle
+\textcolor{red}{Note: Do you know the syntax to get the footnote marks in the author line to display correctly?\\ \\The style file I was using was causing strange issues with figure fonts so I got rid of it. I need to look up proper style information for Cryptologia}
+
+\footnotetext[1]{Cyber Defense Lab}
+\footnotetext[2]{Mobile Pervasive Sensor System Lab}
 
 \input{sections/abstract.tex}
 
-\begin{IEEEkeywords}
+\keywords{
 	CAN bus,
 	automotive security,
 	message authentication,
 	Mini-MAC,
 	vehicle security,
 	applied cryptography.
-\end{IEEEkeywords}
-
-\textcolor{red}{Note: Are units like B(bytes), b(bits), and ms(milliseconds) normally explicitly defined? I thought these were ubiquitous enough to not need that.}
-
-\textcolor{red}{Figure and Table numbers may be off -- I moved a few things around, but I think I caught where I had to change a reference}
+}
 
 \input{sections/introduction.tex}
 
