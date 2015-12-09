@@ -22,17 +22,17 @@ The overall results are split. The memory and RAM usage numbers are very low, bu
 
 \subsection{Security}
 
-	\begin{table}	
+	\begin{table*}	
 	\centering
 	\caption{Time-to-Defeat for Various Configurations}
 	\vspace{8pt}
 	\begin{tabular}{|l|c|r|r|r|}\hline%
-	\bfseries Hash & \bfseries R (b) & \bfseries M (b) & \bfseries Msg BR & \bfseries Min BR\\\hline \csvreader[late after line=\\]%
+	\bfseries Hash & \bfseries $\text{Counter}_{\text{R}}$ (b) & \bfseries $\text{Counter}_{\text{M}}$ (b) & \bfseries Msg. Before Repeat & \bfseries Min. Before Repeat\\\hline \csvreader[late after line=\\]%
 		{tables/timetobeat.csv}{hash=\hash,rcounter=\rcounter,mcounter=\mcounter,msgbr=\msgbr,minbr=\minbr}% 
 		{\hash & \rcounter & \mcounter & \msgbr & \minbr}%
 		\hline
 	\end{tabular}
-	\end{table}
+	\end{table*}
 	
 Table 5 shows a comparision of the time-to-defeat (how long before the MACs are re-used) of the various hash bases and counter sizes. ``R" is the rollover counter size in bits, ``M" is the message counter size in bits, ``Msg BR" is the number of messages before repeat and ``Min BR" is the time in minutes before repeat at a data rate of 40 messages/second. This table (and Table 5) show the time-to-defeat for various configurations of Mini-MAC. This is the number of messages required before a MAC repeats multiplied by the maximum message rate per second.
 

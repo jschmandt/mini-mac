@@ -1,7 +1,7 @@
-This is BibTeX, Version 0.99d (TeX Live 2014/W32TeX)
+This is BibTeX, Version 0.99d (TeX Live 2014)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: top.aux
-The style file: plain.bst
+The style file: alpha.bst
 Database file #1: mybib.bib
 Warning--string name "pub-nist" is undefined
 --line 62 of file mybib.bib
@@ -20,50 +20,50 @@ Warning--entry type for "Conte-SHA1" isn't style-file defined
 Warning--entry type for "Conte-SHA256" isn't style-file defined
 --line 143 of file mybib.bib
 Name 5 in "Festag, Anreas and Baldessari, Roberto and Zhang, Wenhui and Le, Long and Sarma, Amardeo, and Fukukawa Masatoshi" has a comma at the end for entry C2X
-while executing---line 1049 of file plain.bst
+while executing---line 1185 of file alpha.bst
 Name 5 in "Festag, Anreas and Baldessari, Roberto and Zhang, Wenhui and Le, Long and Sarma, Amardeo, and Fukukawa Masatoshi" has a comma at the end for entry C2X
-while executing---line 1090 of file plain.bst
+while executing---line 1250 of file alpha.bst
 Warning--empty publisher in FIPS-198-1
 Warning--empty publisher in FIPS-180-4
 You've used 16 entries,
-            2118 wiz_defined-function locations,
-            602 strings with 6930 characters,
-and the built_in function-call counts, 5868 in all, are:
-= -- 536
-> -- 321
-< -- 7
-+ -- 130
-- -- 111
-* -- 414
-:= -- 957
+            2543 wiz_defined-function locations,
+            663 strings with 7376 characters,
+and the built_in function-call counts, 7086 in all, are:
+= -- 661
+> -- 394
+< -- 13
++ -- 142
+- -- 138
+* -- 525
+:= -- 1154
 add.period$ -- 48
 call.type$ -- 16
-change.case$ -- 100
-chr.to.int$ -- 0
+change.case$ -- 116
+chr.to.int$ -- 15
 cite$ -- 18
-duplicate$ -- 223
-empty$ -- 462
-format.name$ -- 111
-if$ -- 1253
-int.to.chr$ -- 0
-int.to.str$ -- 16
+duplicate$ -- 277
+empty$ -- 510
+format.name$ -- 156
+if$ -- 1469
+int.to.chr$ -- 2
+int.to.str$ -- 0
 missing$ -- 14
-newline$ -- 79
-num.names$ -- 34
-pop$ -- 141
+newline$ -- 80
+num.names$ -- 50
+pop$ -- 147
 preamble$ -- 1
-purify$ -- 86
+purify$ -- 134
 quote$ -- 0
-skip$ -- 165
+skip$ -- 232
 stack$ -- 0
-substring$ -- 258
+substring$ -- 290
 swap$ -- 60
-text.length$ -- 7
-text.prefix$ -- 0
+text.length$ -- 13
+text.prefix$ -- 6
 top$ -- 0
-type$ -- 60
+type$ -- 120
 warning$ -- 2
-while$ -- 50
-width$ -- 18
-write$ -- 170
+while$ -- 60
+width$ -- 20
+write$ -- 203
 (There were 2 error messages)

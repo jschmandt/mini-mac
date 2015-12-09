@@ -24,24 +24,24 @@ Table 1 shows that even for a group key protocol, traditional HMAC adds at least
 	\caption{MAC Bus Traffic Addition}
 	\vspace{8pt}
 	\begin{tabular}{|l|c|}\hline%
-	\bfseries Function & \bfseries Additional Traffic (b) \\\hline \csvreader[late after line=\\]%
+	\bfseries Function & \bfseries Add. Traffic (b) \\\hline \csvreader[late after line=\\]%
 		{tables/bus_addition.csv}{function=\function,at=\at}%
 		{\function & \at}%
 		\hline
 	\end{tabular}
 	\end{table}
 
-	\begin{table}	
+	\begin{table*}	
 	\centering	
 	\caption{Mini-MAC Overhead Relative to HMAC}
 	\vspace{8pt}
 	\begin{tabular}{|l|c|c|c|}\hline%
-	\bfseries Hash & \bfseries Code (B) & \bfseries RAM (B) & \bfseries Exec(ms)\\\hline \csvreader[late after line=\\]%
+	\bfseries Hash & \bfseries Code Size (B) & \bfseries RAM Use (B) & \bfseries Execution Time (ms)\\\hline \csvreader[late after line=\\]%
 		{tables/overhead.csv}{hash=\hash,code_size=\code_size,ram_size=\ram_size,exec_time=\exec_time}% 
 		{\hash & \code_size & \ram_size & \exec_time}%
 		\hline
 	\end{tabular}
-	\end{table}
+	\end{table*}
 	
 	\begin{table}
 	\centering

@@ -1,96 +1,97 @@
-\begin{thebibliography}{10}
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{CMK{\etalchar{+}}11}
 
-\bibitem{HMAC}
+\bibitem[BCK96]{HMAC}
 Mihir Bellare, Ran Canetti, and Hugo Krawczyk.
 \newblock Keying hash functions for message authentication.
 \newblock In {\em Proceedings of the 16th Annual International Cryptology
   Conference on Advances in Cryptology}, CRYPTO '96, pages 1--15, London, UK,
   UK, 1996. Springer-Verlag.
 
-\bibitem{Checkoway-2011}
+\bibitem[CMK{\etalchar{+}}11]{Checkoway-2011}
 Stephen Checkoway, Damon McCoy, Brian Kantor, Danny Anderson, Hovav Shacham,
   Stefan Savage, Karl Koscher, Alexei Czeskis, Franziska Roesner, Tadayoshi
   Kohno, et~al.
 \newblock Comprehensive experimental analyses of automotive attack surfaces.
 \newblock In {\em USENIX Security Symposium}. San Francisco, 2011.
 
-\bibitem{Conte-SHA1}
+\bibitem[Con06a]{Conte-SHA1}
 Brad Conte.
 \newblock Implementation of {SHA}-1 in {C}, 2006.
 
-\bibitem{Conte-SHA256}
+\bibitem[Con06b]{Conte-SHA256}
 Brad Conte.
 \newblock Implementation of {SHA}-256 in {C}, 2006.
 
-\bibitem{C2X}
+\bibitem[FBZ{\etalchar{+}}08]{C2X}
 Anreas Festag, Roberto Baldessari, Wenhui Zhang, Long Le, Amardeo Sarma, and
   Fukukawa Masatoshi.
 \newblock Car-2-{X} communications for safety and infotainment in europe.
 \newblock {\em NEC Technical Journal}, 3(1):21--26, 2008.
 
-\bibitem{Koscher-2010}
+\bibitem[KCR{\etalchar{+}}10]{Koscher-2010}
 K.~Koscher, A.~Czeskis, F.~Roesner, S.~Patel, T.~Kohno, S.~Checkoway, D.~McCoy,
   B.~Kantor, D.~Anderson, H.~Shacham, and S.~Savage.
 \newblock Experimental security analysis of a modern automobile.
 \newblock In {\em Proceedings of the 2010 IEEE Symposium on Security and
   Privacy (SP)}, pages 447--462, May 2010.
 
-\bibitem{Lin-MAC}
+\bibitem[LSV12]{Lin-MAC}
 Chung-Wei Lin and A.~Sangiovanni-Vincentelli.
 \newblock Cyber-security for the controller area network ({CAN}) communication
   protocol.
 \newblock In {\em Proceedings of the 2012 International Conference on Cyber
   Security (CyberSecurity)}, pages 1--7, Dec 2012.
 
-\bibitem{FIPS-198-1}
+\bibitem[{Nat}08]{FIPS-198-1}
 {National Institute of Standards and Technology}.
 \newblock {\em {FIPS PUB 198-1}: The Keyed-Hash Message Authentication Code
   (HMAC)}.
 \newblock July 2008.
 
-\bibitem{FIPS-180-4}
+\bibitem[{Nat}15]{FIPS-180-4}
 {National Institute of Standards and Technology}.
 \newblock {\em {FIPS PUB 180-4}: Secure Hash Standard}.
 \newblock August 2015.
 
-\bibitem{Peslyak}
+\bibitem[Pes09]{Peslyak}
 Alexander Peslyak.
 \newblock A portable, fast, and free implementation of the {MD5} message-digest
   algorithm ({RFC} 1321), 2009.
 
-\bibitem{MD5}
+\bibitem[Riv92]{MD5}
 Ronald Rivest.
 \newblock {IETF} {RFC}1321: The {MD5} message-digest algorithm, April 1992.
 
-\bibitem{Wang-SHA1}
-Xiaoyun Wang, YiqunLisa Yin, and Hongbo Yu.
-\newblock Finding collisions in the full sha-1.
-\newblock In Victor Shoup, editor, {\em Advances in Cryptology – CRYPTO
-  2005}, volume 3621 of {\em Lecture Notes in Computer Science}, pages 17--36.
-  Springer Berlin Heidelberg, 2005.
-
-\bibitem{Wang-MD5}
-Xiaoyun Wang and Hongbo Yu.
-\newblock How to break {MD5} and other hash functions.
-\newblock In {\em Proceedings of the 24th Annual International Conference on
-  Theory and Applications of Cryptographic Techniques}, EUROCRYPT'05, pages
-  19--35, Berlin, Heidelberg, 2005. Springer.
-
-\bibitem{Woo-14}
+\bibitem[WJL15]{Woo-14}
 S.~Woo, Hyo~Jin Jo, and Dong~Hoon Lee.
 \newblock A practical wireless attack on the connected car and security
   protocol for in-vehicle can.
 \newblock {\em Intelligent Transportation Systems, IEEE Transactions on},
   16(2):993--1006, April 2015.
 
-\bibitem{Xie-15}
+\bibitem[WY05]{Wang-MD5}
+Xiaoyun Wang and Hongbo Yu.
+\newblock How to break {MD5} and other hash functions.
+\newblock In {\em Proceedings of the 24th Annual International Conference on
+  Theory and Applications of Cryptographic Techniques}, EUROCRYPT'05, pages
+  19--35, Berlin, Heidelberg, 2005. Springer.
+
+\bibitem[WYY05]{Wang-SHA1}
+Xiaoyun Wang, YiqunLisa Yin, and Hongbo Yu.
+\newblock Finding collisions in the full sha-1.
+\newblock In Victor Shoup, editor, {\em Advances in Cryptology – CRYPTO
+  2005}, volume 3621 of {\em Lecture Notes in Computer Science}, pages 17--36.
+  Springer Berlin Heidelberg, 2005.
+
+\bibitem[XLL{\etalchar{+}}15]{Xie-15}
 Yong Xie, Liangjiao Liu, Renfa Li, Jianqiang Hu, Yong Han, and Xin Peng.
 \newblock Security-aware signal packing algorithm for can-based automotive
   cyber-physical systems.
 \newblock {\em Automatica Sinica, IEEE/CAA Journal of}, 2(4):422--430, October
   2015.
 
-\bibitem{Zalman-14}
+\bibitem[ZM14]{Zalman-14}
 R.~Zalman and A.~Mayer.
 \newblock A secure but still safe and low cost automotive communication
   technique.
