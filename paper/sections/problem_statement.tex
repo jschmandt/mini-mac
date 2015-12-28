@@ -3,8 +3,8 @@
 %(list requirements): time, space, securit, etc
 %rewrite the problem statement
 
-The task of this work is to create an authentication mechanism suitable for use on the CAN bus in vehicular environments. Given the context, this mechanism must provide some measurable increase in security over the standard non-secured bus. It must not increase bus traffic, and it must not violate message delay constraints.
+The task of this work is to create an authentication mechanism suitable for use on the CAN bus in vehicular environments. Given the context, this mechanism must provide some measurable increase in security over the standard non-secured bus. It must not increase bus traffic, and it must not violate message delay constraints. Additionally, the mechanism must provide protection from replay and masquerade attacks as defined in Section 5.
 
-In captured test data for a 2010 Toyota Prius, over 60\% of messages contain no more than four data bytes. This leaves four bytes of space for a MAC in the most common case. 
+In test data captured by the authors for a 2010 Toyota Prius, over 60\% of messages contain no more than four data bytes. This usually leaves four bytes of space for a MAC.
 
-Given these limitations, the problem addressed is how to add as much security as possible, rather than to make the system secure by conventional definition.
+The ECUs in a car are slow, low-power systems incapable of complex cryptographic functions. Given these limitations, the problem addressed is how to add as much security as possible without breaking the system.

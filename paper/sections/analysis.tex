@@ -1,13 +1,15 @@
 \section{Analysis}
 %The analysis must be conducted from two perspectives - Mini-MAC must be secure, but it must also be able to run on ECUs. 
 
-Not only must Mini-MAC add security, but it must be able to actually run on resource-limited ECUs operating under real-time constraints. It is from these two perspectives that the results have to be analyzed. 
+%Not only must Mini-MAC add security, but it must be able to actually run on resource-limited ECUs operating under real-time constraints. It is from these two perspectives that the results have to be analyzed. 
+
+We analyze Mini-MAC for performance and security. Mini-MAC must be able to add security without compromising the performance of the real-time, safety-critical systems found in vehicles.
 
 \subsection{Performance}
 Figure 3 shows the execution time comparison for the three HMAC constructions as well as Mini-MAC based on those HMACs. There is very little (approximately 0.68 ms) delay for Mini-MAC relative to HMAC.
 
 Figure 4 shows a comparison of the code size for the three HMACs components as well as Mini-MAC constructions based on those HMACs. The average overhead is roughly 800 B.
-\textcolor{red}{Note: Could you please clarify your comments on this paragraph?}
+%\textcolor{red}{Note: Could you please clarify your comments on this paragraph?}
 
 Figure 5 shows a RAM usage comparison for the three HMAC constructions as well as the Mini-MAC constructions based on those HMACs. For each hash, the overhead is 5B.
 
@@ -17,7 +19,7 @@ Table 3 shows the approximate execution time as calculated from a cycle counter 
 
 %Mini-MAC adds absolutely no bus overhead to normal message traffic. It does so by producing a variable-length output based on the available space in the message packet it is applied to. In captured test data for a 2010 Toyota Prius, for example, over 60\% of messages contain no more than four data bytes. Therefore it is possible to fill the remaining frame bytes (which are sent empty) with Mini-MAC data without increasing bus utilization, again fulfilling that design requirement.
 
-The overall results are split. The memory and RAM usage numbers are very low, but the execution time is outside required limits in the case of Mini-MAC-SHA-1 and Mini-MAC-SHA-256. Captured data shows that messages are sent approximately every 40 ms -- with this in mind, a node must be able to verify the authenticity of a message and respond in that window. This suggests that only the Mini-MAC-MD5 is fast enough to be used in this application.
+The overall results are split. The memory and RAM usage numbers are very low, but the execution time is outside required limits in the case of Mini-MAC-SHA-1 and Mini-MAC-SHA-256. Captured data shows that messages are sent approximately every 40 ms. With this in mind, a node must be able to verify the authenticity of a message and respond in that window. This suggests that only the Mini-MAC-MD5 is fast enough to be used in this application.
 
 
 \subsection{Security}
@@ -34,7 +36,8 @@ The overall results are split. The memory and RAM usage numbers are very low, bu
 	\end{tabular}
 	\end{table*}
 	
-Table 5 shows a comparision of the time-to-defeat (how long before the MACs are re-used) of the various hash bases and counter sizes. ``R" is the rollover counter size in bits, ``M" is the message counter size in bits, ``Msg BR" is the number of messages before repeat and ``Min BR" is the time in minutes before repeat at a data rate of 40 messages/second. This table (and Table 5) show the time-to-defeat for various configurations of Mini-MAC. This is the number of messages required before a MAC repeats multiplied by the maximum message rate per second.
+	
+Mini-MAC counters replay and masquerade attacks by forcing an attacker to wait a relatively long period of time before a MAC is repeated. Table 5 shows a comparision of the time-to-defeat (how long before the MACs are re-used) of the various hash bases and counter sizes. $R$ is the rollover counter size in bits, $M$ is the message counter size in bits, ``Msg BR" is the number of messages before repeat and ``Min BR" is the time in minutes before repeat at a data rate of 40 messages/second. This table (and Table 5) show the time-to-defeat for various configurations of Mini-MAC. This is the number of messages required before a MAC repeats multiplied by the maximum message rate per second.
 
 %The table shows that most of these values (typically for message counter greater than or equal to 16 bits long) are sufficient for the automotive environment. 
 

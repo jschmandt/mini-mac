@@ -1,23 +1,23 @@
 \section{Testing}
-We tested three Mini-MAC implementations on the Texas Instruments MSP430F5529 microcontroller. The speed and power of this device makes it an appropriate test platform for CAN security software.
+We experimented with three Mini-MAC implementations on the Texas Instruments MSP430F5529 microcontroller. The speed and power of this device makes it an appropriate test platform for CAN security software.
 
 \subsection{Purpose}
 
-The purpose of our tests is to evaluate the suitability of HMAC-based message authentication for nodes on the CAN bus. Small memory, RAM and performance overhead is ideal, on the basis that ECUs are low-resource devices. The three hash functions selected are compared for two reasons 1) Performance and security are functions of the hash function selected as a base 2) Overlaying Mini-MAC onto HMAC should incur a minimal performance penalty regardless of the hash selected.
+The purpose of our tests is to evaluate the suitability of HMAC-based message authentication for nodes on the CAN bus. Small memory, RAM and running-time performance overhead is ideal, on the basis that ECUs are low-resource devices. The three hash functions selected are compared for two reasons 1) Performance and security are functions of the hash function selected as a base 2) Overlaying Mini-MAC onto HMAC should incur a minimal performance penalty regardless of the hash selected.
 
 \subsection{Methods}
 
-The tests performed were executing the Mini-MAC construction protocol over a variety of inputs, repeated 1000 times. This test, although simple, is sufficient to characterize the performance of the protocol. The metrics recorded are code size, memory usage, execution speed, and bus utilization.
+The tests performed execute the Mini-MAC construction protocol over a variety of inputs, repeated 1000 times. This test characterizes the performance of the protocol. The metrics recorded are code size, memory usage, execution time, and bus utilization.
 
 Statistics on message traffic were collected from a 2010 Toyota Prius with a CAN-bus sniffer program  based on an Arudiuno Uno platform and connected via an OBD-II CAN transceiver shield.
 
 A counter register on the MSP430 generates execution time values. A 32kHz clock increments this counter, which provides approximate millisecond execution time values. There may be a +/-0.03ms inaccuracy in this value depending on the time it takes to read the counter.
 
-RAM and memory usage figures are generated at compile-time. Texas Instruments Code Composer v6 provides values for both after code is generated.
+RAM and memory usage figures are generated at compile-time. Texas Instruments Code Composer v6 provides values for both after code is compiled and flashed to the MSP430 hardware.
 
 \subsection{Results}
 
-Table 1 shows that even for a group key protocol, traditional HMAC adds at least two extra CAN messages for every data message sent. Lin-MAC MD5 sends an additional two messages per every user. Mini-MAC sends no additional messages. B represents a value in bytes, b is a value in bits, while ms represents a value in milliseconds.
+Table 1 shows that even for a group key protocol, traditional HMAC adds at least two extra CAN messages for every data message sent. Lin-MAC MD5 sends an additional two messages per every user. Mini-MAC sends no additional messages. For this table, $B$ represents a value in bytes, $b$ is a value in bits, while $ms$ represents a value in milliseconds.
 	
 	\begin{table}
 	\centering
