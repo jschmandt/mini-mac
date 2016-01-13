@@ -61,11 +61,17 @@ Message traffic history is used as a post-HMAC confusion step -- the previous me
 
 One of the most important aspects of HMAC is that it allows the use of a wide range of iterative hash functions as its base. Mini-MAC, being based on HMAC itself, similarly allows various hash functions as a base.
 
-The calculation of Mini-MAC is only slightly more involved than in the HMAC construction---before computing the HMAC, the input is XORed with a counter, and after the HMAC is computed the result is XORed with previous messages and trimmed.
+	\begin{figure}
+		\centering
+		\includegraphics[width=\columnwidth]{figures/minimac_diagram.png}
+		\caption{Mini-MAC Construction Diagram}
+	\end{figure}
 
-The full construction protocol is shown below in Equation 2 through Equation 5, where $n$ is the number of the message in a sequence of messages, $n=0$ being the most recent message, $h$ is the number of messages from history to be used for MAC confusion, $l$ the starting bit to select the Mini-MAC from within the full-size MAC, and $s$ being the size of the Mini-MAC in bits. 
+%The calculation of Mini-MAC is only slightly more involved than in the HMAC construction---before computing the HMAC, the input is XORed with a counter, and after the HMAC is computed the result is XORed with previous messages and trimmed.
 
-The value of $l$ is determined by a second counter designated the rollover counter, which ticks when the message counter rolls over. The result of this two-counter system is that a new MAC is generated for each value of the message counter, and from that MAC, the bits starting with the bit addressed by the rollover counter are taken as the Mini-MAC. This way, when the message counter rolls over, the bit start location shifts so the same Mini-MAC is not re-used until the rollover counter rolls over.
+%The full construction protocol is shown below in Equation 2 through Equation 5, where $n$ is the number of the message in a sequence of messages, $n=0$ being the most recent message, $h$ is the number of messages from history to be used for MAC confusion, $l$ the starting bit to select the Mini-MAC from within the full-size MAC, and $s$ being the size of the Mini-MAC in bits. 
+
+%The value of $l$ is determined by a second counter designated the rollover counter, which ticks when the message counter rolls over. The result of this two-counter system is that a new MAC is generated for each value of the message counter, and from that MAC, the bits starting with the bit addressed by the rollover counter are taken as the Mini-MAC. This way, when the message counter rolls over, the bit start location shifts so the same Mini-MAC is not re-used until the rollover counter rolls over.
 
 \begin{equation}
 \text{Input} = \text{Message}_n\oplus\text{Counter}_{\text{msg}}
@@ -83,7 +89,7 @@ The value of $l$ is determined by a second counter designated the rollover count
 \text{MAC}_{\text{mini}} = \text{MAC}_{\text{full}}[l:l+s]
 \end{equation}
 
-Equation 2 is a simple XOR operation of the message to be sent and the message counter. Equation 3 takes the result of Equation 2 and performs the HMAC on it as detailed in Equation 1. The HMAC is then XORed with previous messages, up to $h$ messages in history, as shown in Equation 4. Finally, in Equation 5, the variable size Mini-MAC is extracted from the full-size, history-based MAC computed in Equation 4.
+%Equation 2 is a simple XOR operation of the message to be sent and the message counter. Equation 3 takes the result of Equation 2 and performs the HMAC on it as detailed in Equation 1. The HMAC is then XORed with previous messages, up to $h$ messages in history, as shown in Equation 4. Finally, in Equation 5, the variable size Mini-MAC is extracted from the full-size, history-based MAC computed in Equation 4.
 
 \subsection{Implementation}
 Mini-MAC was implemented with three hash functions--MD5, SHA1, and SHA2. The varying performance and security characteristics of these hash functions provide end users with a spectrum of solutions to choose from without needing to vary the Mini-MAC computation.
