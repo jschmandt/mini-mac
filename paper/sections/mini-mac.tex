@@ -57,7 +57,9 @@ Message traffic history is used as a post-HMAC confusion step -- the previous me
 \subsection{Design}
 %\textcolor{red}{Note: I don't have a solution to dealing with faults at this time. I believe there are some good ideas in previous work that I will take another look at\\Update: The previous work tends not to mention dealing with faults. In similar systems, there is a mechanism for setting counters to specific values on a fault, which should allow re-sync between sender and recipient. In practice, end users more commonly reset counters to 0 and start from the beginning. Even though this is less secure the procedure is more simple. I'm not sure how I want to address it. Do you have any thoughts?}
 
-\textcolor{red}{Note: I don't have the figure we put together on the board in CDL the other day done. All I have is a trackpad now, when I track down a proper mouse I will put it together and add it, as well as references to it throughout the text\\ I'm going to re-write this entire subsection when I finish that diagram. It's still hard to understand.}
+%\textcolor{red}{Note: I don't have the figure we put together on the board in CDL the other day done. All I have is a trackpad now, when I track down a proper mouse I will put it together and add it, as well as references to it throughout the text\\ I'm going to re-write this entire subsection when I finish that diagram. It's still hard to understand.}
+
+\textcolor{red}{Note: Is this a better way of incorporating the equations into the text?\\ I don't like the figure -- do you have a recommendation for software to create good-looking figures? I've just been using MS Paint and would like to tidy up a few things before submitting.}
 
 One of the most important aspects of HMAC is that it allows the use of a wide range of iterative hash functions as its base. Mini-MAC, being based on HMAC itself, similarly allows various hash functions as a base.
 
@@ -69,25 +71,41 @@ One of the most important aspects of HMAC is that it allows the use of a wide ra
 
 %The calculation of Mini-MAC is only slightly more involved than in the HMAC construction---before computing the HMAC, the input is XORed with a counter, and after the HMAC is computed the result is XORed with previous messages and trimmed.
 
-%The full construction protocol is shown below in Equation 2 through Equation 5, where $n$ is the number of the message in a sequence of messages, $n=0$ being the most recent message, $h$ is the number of messages from history to be used for MAC confusion, $l$ the starting bit to select the Mini-MAC from within the full-size MAC, and $s$ being the size of the Mini-MAC in bits. 
-
-%The value of $l$ is determined by a second counter designated the rollover counter, which ticks when the message counter rolls over. The result of this two-counter system is that a new MAC is generated for each value of the message counter, and from that MAC, the bits starting with the bit addressed by the rollover counter are taken as the Mini-MAC. This way, when the message counter rolls over, the bit start location shifts so the same Mini-MAC is not re-used until the rollover counter rolls over.
+The computation of the Mini-MAC begins with the creation of an input string, 
 
 \begin{equation}
 \text{Input} = \text{Message}_n\oplus\text{Counter}_{\text{msg}}
 \end{equation}
 
+which is used to generate an HMAC value. The HMAC calculation 
+
 \begin{equation}
 \text{MAC}_{\text{full}} = \text{HMAC}(\text{Input})
 \end{equation}
 
-\begin{equation}
-\text{For }i=1:h \text{, MAC}_{\text{full}}\oplus\text{Message}_{n-i}
-\end{equation}
+results in a full-size MAC without any message history input. For $h$ = the number of messages in history to use, 
 
 \begin{equation}
-\text{MAC}_{\text{mini}} = \text{MAC}_{\text{full}}[l:l+s]
+\text{For }i=1:h\text{, MAC}_\text{hist} = \text{MAC}_{\text{full}}\oplus\text{Message}_{n-i}
 \end{equation}
+
+where $\text{MAC}_\text{hist}$ is a full-size MAC with added message history information. This value is finally truncated according to the trunc function, defined as
+
+\begin{equation}
+\text{MAC}_{\text{mini}} = \text{MAC}_{\text{full}}(l,l+s)
+\end{equation}
+
+where $l$ is the rollover counter, which ticks when the message counter rolls over, and $s$ is the available size in the CAN message for the Mini-MAC. The result of the two-counter system is that a new MAC is generated for each value of the message counter, and from that MAC, the bits starting with the bit addressed by the rollover counter are taken as the Mini-MAC. This way, when the message counter rolls over, the bit start location shifts so the same Mini-MAC is not re-used until the rollover counter rolls over.
+
+
+
+%The full construction protocol is shown below in Equation 2 through Equation 5, where $n$ is the number of the message in a sequence of messages, $n=0$ being the most recent message, $h$ is the number of messages from history to be used for MAC confusion, $l$ the starting bit to select the Mini-MAC from within the full-size MAC, and $s$ being the size of the Mini-MAC in bits. 
+
+%The value of $l$ is determined by a second counter designated the rollover counter, which ticks when the message counter rolls over. The result of this two-counter system is that a new MAC is generated for each value of the message counter, and from that MAC, the bits starting with the bit addressed by the rollover counter are taken as the Mini-MAC. This way, when the message counter rolls over, the bit start location shifts so the same Mini-MAC is not re-used until the rollover counter rolls over.
+
+%\begin{equation}
+%\text{MAC}_{\text{mini}} = \text{MAC}_{\text{full}}[l:l+s]
+%\end{equation}
 
 %Equation 2 is a simple XOR operation of the message to be sent and the message counter. Equation 3 takes the result of Equation 2 and performs the HMAC on it as detailed in Equation 1. The HMAC is then XORed with previous messages, up to $h$ messages in history, as shown in Equation 4. Finally, in Equation 5, the variable size Mini-MAC is extracted from the full-size, history-based MAC computed in Equation 4.
 
