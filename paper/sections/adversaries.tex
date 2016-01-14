@@ -21,7 +21,7 @@ Because of this attacker profile, for certain attacks it may be sufficient to de
 \textcolor{red}{Note: You left a note "DOS" on this paragraph--could you explain?}
 Attackers may be motivated for various reasons, but the most obvious are for theft of vehicle or to cause damage to the car or people in or around it. If an attacker can gain remote control of a car, he or she may be able to gain entry when the car is locked. Similarly, this remote control can give the attacker the ability to crash the car on purpose. Mischief is also a valid motivation for work like this---an attacker could simply wish to prevent a driver from using the vehicle, in which case a physical attack such as slashing a tire, cutting wiring, or draining fuel would be enough to accomplish their goal.
 
-In addition to possessing all knowledge of ECU message IDs and formats, we assume that the attackers have reliable bus access and unlimited computing power.
+In addition to possessing all knowledge of ECU message IDs and formats, we assume that the attackers have reliable bus access and unlimited computing power. The attackers also have the ability to monitor and record bus traffic and we assume they can monitor those physical states of the vehicle that are instrumented, such as tire pressure or steering wheel angle. However, the adversary cannot prevent a node from transmitting a message on the CAN bus.
 
 %Each ECU on the CAN bus is thought of as trusted, meaning that every message is treated as a legitimate message. This work considers no node trusted, and must verify the authenticity of every message. We do not consider that a legitimate message could be sent from a malcious node (such as a Type 1 attacker).
 
