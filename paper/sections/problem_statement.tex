@@ -13,7 +13,9 @@ which includes slow, low-power ECUs incapable of complex cryptographic functions
 % can you quantify, or better hint at, message delay constraints?
 
 In test data captured by the authors from a 2010 Toyota Prius, 
-over 60\% of messages contain no more than four data bytes. 
+approximately 61\% of messages contain at most four data bytes
+(20\% contain 4~bytes; 16\% contain 3~bytes; 17% contain 2~bytes; and 8% contain 1~byte).
+Approximately 35\% of messages contain a full 8~data bytes, and 4\% contain 7~bytes.
 Thus, for most messages, there are at least four bytes of space
 available for a MAC tag.
 

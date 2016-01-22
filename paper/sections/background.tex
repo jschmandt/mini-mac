@@ -11,14 +11,23 @@ The Electronic Control Units (ECUs) found in an automotive computer network are 
 
 \subsection{The CAN Bus}
 The CAN bus is a simple, low-speed bus designed to network simple nodes. In an automotive environment, 
-it typically runs at 500~kbps.\footnote{kilobits per second (kbs).} As shown in Figure~1, a message contains an 11-bit identifier field and an 8-byte data payload, as well as some control bits. The 8-byte payload is the most important element, as any MAC must fit into this frame or use a more complex multi-frame data transmission protocol that may or may not be supported on all ECUs. 
+it typically runs at 500~kbps.\footnote{kilobits per second (kbs).} As shown in Figure~\ref{fig-frame}, 
+a message contains an 11-bit identifier field and 
+a data payload, as well as some control bits. Figure~\ref{fig-frame} shows the data payload as 8~bits, but
+it is typically 8 to 64~bits [ref?].
+The payload of up to 8~bytes is the most important element, as any MAC must fit into this frame or use a more complex multi-frame data transmission protocol that may or may not be supported on all ECUs. 
 
 Ideally, and in the case of Mini-MAC, the MAC can fit into the payload with the data, thus not increasing bus utilization. Data captured by the authors from a 2010 Toyota Prius show that a large percent (61\%) of messages use no more than four bytes of data in the payload.
+
+% On the diagram, there are 55 bits including 8 data bits. In practice, the 8 bit field is 64 bits, 
+% so the total packet is 111 bits. So there are more than 64 total bits sent, but not more than 64 data bits.
 
 	\begin{figure*}
 		\centering
 		\includegraphics[width=\linewidth]{figures/can_frame.png}
-		\caption{The CAN frame.  Each message on the CAN bus is a structured sequence of 55~bits. [not 64??]}
+		\caption{The CAN frame~\cite{} [need to cite fig].  
+		Each message on the CAN bus is a structured sequence of 55--111~bits including 8--64 data~bits.}
+		\label{fig-frame}
 	\end{figure*}
 
 \subsection{Bus Access}

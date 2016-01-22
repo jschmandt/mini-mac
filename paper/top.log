@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.2.6)  22 JAN 2016 17:12
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.2.6)  22 JAN 2016 17:31
 entering extended mode
 **C:/Users/Alan/Documents/GitHub/mini-mac/paper/top.tex
 (C:/Users/Alan/Documents/GitHub/mini-mac/paper/top.tex
@@ -659,19 +659,15 @@ LaTeX Warning: Citation `Sti' on page 2 undefined on input line 6.
 File: figures/can_frame.png Graphic file (type png)
 
 <use figures/can_frame.png>
-Package pdftex.def Info: figures/can_frame.png used on input line 20.
+Package pdftex.def Info: figures/can_frame.png used on input line 27.
 (pdftex.def)             Requested size: 469.0pt x 118.42393pt.
  [2])
 (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/problem_statement.tex)
 (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/previous_work.tex
 [3 <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/can_frame.png>])
 (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/adversaries.tex
-[4])
-Underfull \vbox (badness 2698) has occurred while \output is active []
-
-
-(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/mini-mac.tex [5]
-<figures/key_distribution.png, id=33, 637.63219pt x 240.14719pt>
+[4]) (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/mini-mac.tex
+[5] <figures/key_distribution.png, id=33, 637.63219pt x 240.14719pt>
 File: figures/key_distribution.png Graphic file (type png)
 
 <use figures/key_distribution.png>
@@ -690,8 +686,8 @@ Underfull \hbox (badness 5726) in paragraph at lines 116--117
 \OT1/cmr/m/n/10 Mini-MAC was im-ple-mented with three hash
  []
 
-) [7 <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/minimac_diagram.png
->] (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/testing.tex
+[7 <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/minimac_diagram.png>]
+) (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/testing.tex
 <figures/exec_cycles.png, id=45, 578.16pt x 433.62pt>
 File: figures/exec_cycles.png Graphic file (type png)
 
@@ -713,7 +709,10 @@ File: figures/ram_usage.png Graphic file (type png)
 Package pdftex.def Info: figures/ram_usage.png used on input line 77.
 (pdftex.def)             Requested size: 229.5pt x 172.12163pt.
 )
-(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/analysis.tex [8]
+(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/analysis.tex
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [8]
 [9 <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/exec_cycles.png (PNG 
 copy)> <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/code_size.png (PN
 G copy)> <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/ram_usage.png (
@@ -727,16 +726,12 @@ File: figures/pdf.png Graphic file (type png)
  <use figures/pdf.png>
 Package pdftex.def Info: figures/pdf.png used on input line 60.
 (pdftex.def)             Requested size: 229.5pt x 172.12163pt.
-)
+) [10]
 (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/discussion.tex
-Underfull \vbox (badness 6396) has occurred while \output is active []
+Underfull \vbox (badness 3240) has occurred while \output is active []
 
- [10]
-[11 <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/pdf.png (PNG copy)>]
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [12])
+ [11 <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/pdf.png (PNG copy)>
+] [12])
 (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/conclusion.tex)
 (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/acknowledgments.tex)
 (C:\Users\Alan\Documents\GitHub\mini-mac\paper\top.bbl
@@ -801,10 +796,10 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 15325 strings out of 493921
- 306011 string characters out of 3144880
- 314187 words of memory out of 3000000
- 18421 multiletter control sequences out of 15000+200000
+ 15326 strings out of 493921
+ 306022 string characters out of 3144880
+ 314195 words of memory out of 3000000
+ 18422 multiletter control sequences out of 15000+200000
  17661 words of font info for 59 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  40i,15n,46p,10421b,494s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -827,7 +822,7 @@ ublic/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publ
 ic/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/ti
 mes/utmr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a
 .pfb>
-Output written on top.pdf (14 pages, 908423 bytes).
+Output written on top.pdf (14 pages, 908695 bytes).
 PDF statistics:
  131 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
