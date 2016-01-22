@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.2.6)  21 JAN 2016 19:46
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.2.6)  21 JAN 2016 21:08
 entering extended mode
 **C:/Users/Alan/Documents/GitHub/mini-mac/paper/top.tex
 (C:/Users/Alan/Documents/GitHub/mini-mac/paper/top.tex
@@ -637,17 +637,21 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 
 (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/abstract.tex)
 (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/introduction.tex
+Underfull \hbox (badness 1590) in paragraph at lines 3--8
+\OT1/cmr/m/n/10 At the 2015 Black Hat con-fer-ence, Miller and
+ []
+
 [1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
 ]
+Underfull \hbox (badness 2245) in paragraph at lines 23--27
+[]\OT1/cmr/m/n/10 Traditional au-then-ti-ca-tion pro-to-cols (in-clud-ing
+ []
+
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 38.
-)
-(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/background.tex
-Underfull \vbox (badness 2326) has occurred while \output is active []
-
-
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 43.
+) (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/background.tex
 <figures/can_frame.png, id=14, 2007.5pt x 506.89375pt>
 File: figures/can_frame.png Graphic file (type png)
 
@@ -831,7 +835,7 @@ ts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts
 /cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
 ti10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C
 :/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on top.pdf (14 pages, 907769 bytes).
+Output written on top.pdf (14 pages, 907617 bytes).
 PDF statistics:
  131 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
