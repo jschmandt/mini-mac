@@ -6,11 +6,6 @@ computer network and WiFi implementation and by rewriting firmware on a controll
 This demonstration highlights the egregious state of vehicular security, including the lack of 
 authentication of messages sent on the Controller Area Network (CAN).   
 
-%% Did they exploit authentication on CAN bus? -- if so, say so
-% I would say they took advantage of the fact that there is none by spoofing messages. I don't believe that spoofing authentication specifically was a concern in their work.
-
-% a vulnerability in Sprint's cellular network, 
-
 To strengthen vehicular security in a simple and practical 
 yet meaningful way---without replacing the CAN bus---we propose Mini-MAC, 
 a new variable-length Message Authentication Code (MAC)
@@ -31,10 +26,6 @@ Mini-MAC improves on previous proposals, including Lin-MAC \cite{Lin-MAC}, by no
 Furthermore, Mini-MAC is easy to implement,
 requires no fundamental change to the underlying functionality of the ECUs, and 
 requires no special hardware.
-
-%% I do not understand the claim that it requires no firmware update.  Of course it requires the
-%% ECUs to modify what they are doing.  Explain.
-% What I mean is that the behavior of the ECU does not need to change, the message tranceiver just wraps the message with the Mini-MAC. A change in some of the code would be necessary.
 
 Our work includes a protoype implementation of Mini-MAC and preliminary timing studies 
 of Mini-MAC for three component hash functions (MD5, SHA-1, SHA-2).  For fastest speeds, 
