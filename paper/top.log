@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.2.6)  21 JAN 2016 21:08
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.2.6)  22 JAN 2016 12:28
 entering extended mode
 **C:/Users/Alan/Documents/GitHub/mini-mac/paper/top.tex
 (C:/Users/Alan/Documents/GitHub/mini-mac/paper/top.tex
@@ -627,13 +627,13 @@ File: siunitx-abbreviations.cfg 2015/10/15 v2.6m siunitx: Abbreviated units
 LaTeX Font Info:    Try loading font information for U+stmry on input line 27.
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\stmaryrd\ustmry.fd")
 \c__siunitx_mathtt_int=\count174
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 45.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 48.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 45.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 48.
 
 (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/abstract.tex)
 (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/introduction.tex
@@ -645,30 +645,29 @@ Underfull \hbox (badness 1590) in paragraph at lines 3--8
 
 
 ]
-Underfull \hbox (badness 2245) in paragraph at lines 23--27
+Underfull \hbox (badness 2245) in paragraph at lines 20--24
 []\OT1/cmr/m/n/10 Traditional au-then-ti-ca-tion pro-to-cols (in-clud-ing
  []
 
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 43.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 37.
 ) (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/background.tex
+
+LaTeX Warning: Citation `Sti' on page 2 undefined on input line 4.
+
 <figures/can_frame.png, id=14, 2007.5pt x 506.89375pt>
 File: figures/can_frame.png Graphic file (type png)
 
 <use figures/can_frame.png>
-Package pdftex.def Info: figures/can_frame.png used on input line 15.
+Package pdftex.def Info: figures/can_frame.png used on input line 18.
 (pdftex.def)             Requested size: 469.0pt x 118.42393pt.
- [2]
-Underfull \hbox (badness 2376) in paragraph at lines 29--30
-\OT1/cmr/m/n/10 Message Au-then-ti-ca-tion Codes (MACs) are bit
- []
-
-) (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/problem_statement.tex
+ [2])
+(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/problem_statement.tex
 [3 <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/can_frame.png>])
 (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/previous_work.tex)
 (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/adversaries.tex
 [4]) (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/mini-mac.tex
-[5] <figures/key_distribution.png, id=32, 637.63219pt x 240.14719pt>
+[5] <figures/key_distribution.png, id=33, 637.63219pt x 240.14719pt>
 File: figures/key_distribution.png Graphic file (type png)
 
 <use figures/key_distribution.png>
@@ -678,7 +677,7 @@ Package pdftex.def Info: figures/key_distribution.png used on input line 52.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [6]
-<figures/minimac_diagram.png, id=36, 362.85562pt x 409.02812pt>
+<figures/minimac_diagram.png, id=37, 362.85562pt x 409.02812pt>
 File: figures/minimac_diagram.png Graphic file (type png)
 
 <use figures/minimac_diagram.png>
@@ -742,8 +741,8 @@ Underfull \vbox (badness 4429) has occurred while \output is active []
 ]
 (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/discussion.tex [12])
 (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/conclusion.tex)
-(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/acknowledgments.tex)
-(C:\Users\Alan\Documents\GitHub\mini-mac\paper\top.bbl [13]
+(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/acknowledgments.tex
+[13]) (C:\Users\Alan\Documents\GitHub\mini-mac\paper\top.bbl
 Underfull \hbox (badness 3735) in paragraph at lines 5--10
 []\OT1/ptm/m/n/10 Mihir Bel-lare, Ran Canetti, and Hugo
  []
@@ -807,35 +806,39 @@ Underfull \hbox (badness 1424) in paragraph at lines 76--81
 \OT1/ptm/m/n/10 based au-to-mo-tive cyber-physical sys-tems.
  []
 
-) [14] (C:\Users\Alan\Documents\GitHub\mini-mac\paper\top.aux) ) 
+) [14] (C:\Users\Alan\Documents\GitHub\mini-mac\paper\top.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 15318 strings out of 493921
- 305945 string characters out of 3144880
+ 15319 strings out of 493921
+ 305950 string characters out of 3144880
  312140 words of memory out of 3000000
- 18414 multiletter control sequences out of 15000+200000
+ 18415 multiletter control sequences out of 15000+200000
  17661 words of font info for 59 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  40i,15n,46p,10421b,494s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Fil
-es (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program Files (x86)/MiK
-TeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files (x86)/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files (x86)/MiKTeX 
-2.9/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/Program Files (x86)/MiKTeX 2.9
-/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Program Files (x86)/MiKTeX 2.9
-/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files (x86)/MiKTeX 2.9/f
-onts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files (x86)/MiKTeX 2.9/font
-s/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/t
-ype1/public/amsfonts/cm/cmr12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type
-1/public/amsfonts/cm/cmr17.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/p
-ublic/amsfonts/cm/cmr6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publi
-c/amsfonts/cm/cmr7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/am
-sfonts/cm/cmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfon
-ts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts
-/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
-/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
-ti10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C
-:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on top.pdf (14 pages, 907617 bytes).
+{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Progra
+m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program 
+Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Fi
+les (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/Program Files
+ (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Program Files
+ (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files (
+x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files (x86
+)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (x86)/M
+iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files (x86)/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files (x86)/MiKTeX 
+2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x86)/MiKTeX 2.9/
+fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x86)/MiKTeX 2.9/font
+s/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/ty
+pe1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type
+1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/p
+ublic/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publ
+ic/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/ti
+mes/utmr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a
+.pfb>
+Output written on top.pdf (14 pages, 910682 bytes).
 PDF statistics:
  131 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
