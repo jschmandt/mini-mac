@@ -1,4 +1,7 @@
 \section{Mini-MAC}
+\label{mini-mac}
+
+
 %The best solution, in that it is implementable and does not change the network infrastructure, to preventing replay and masquerade attacks on the CAN bus to this point is the work presented in Lin-MAC. The underlying MAC protocol was not described, however, and as the ECUs on this node are time-, memory-, and processing power-constrained, some testing must be done to determine which construction is the most suitable for the environment. HMAC is by far the most famous and most popular MAC construction, so three variants of HMAC (that is, HMAC with three underlying keyed-hash functions) were selected for consideration for this project. HMAC is widely used for two key reasons. 1) The security of HMAC is mathematically related to the security of the underlying hash function, which makes it relatively easy to trust and 2) it is extremely easy to plug in various hash functions, making it easy to update to a new implementation if issues are found in the currently used hash\cite{HMAC}\cite{FIPS-198-1}. They are implemented in C on the MSP430.
 
 %The equation for calculating the HMAC is as follows: 

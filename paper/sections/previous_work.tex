@@ -1,20 +1,36 @@
 \section{Previous Work}
-The most complete work specifically discussing the usage of MACs in the automotive CAN network produced the Lin-MAC construction\cite{Lin-MAC}. Lin-MAC presents the idea that a MAC should be based not only on the secret key, but on a counter as well, as discussed in Section 3. It uses a pair wise key distribution scheme where each node shares a secret key with each other node.
+\label{previous}
 
-%Consider the scenario where there is ample time and bus resources for any MAC implementation and nodes posses valid secret keys for pairwise message exchange. Alice can easily verify that Bob created a message that comes with Bob's ID and Bob's MAC. However, these messages are broadcast. Malicious actor Eve can easily record the message from Bob to Alice, along with the ID and MAC. There is no mechanism which can prevent Eve from replaying the message. Adding a counter to the input of the MAC generation protocol means that even for the same message, the MAC would change and a replay attack would not succeed.
+Previous proposals to add authentication to the CAN bus violate the engineering constraints described
+in Section~\ref{problem}, increasing bus utilization and delaying messages.  For example, pairwise
+key distribution among the ECUs and data that overflow CAN frame boundaries cause additional messages to be sent,
+delaying messages.
 
-There are some issues with this protocol. Consider that an entity Bob wishes to send the same message to entities Alice and Charlie. He must send the message along with two MACs -- one computed with the secret key he shares with Alice and one computed with the secret key he shares with Charlie. For every recipient, Bob must send a MAC. This will increase bus utilization, even in the case of one recipient, as the MAC must be transmitted in an additional CAN frame.
+For example, Lin and Sangiovanni~\cite{Lin-MAC} propose Lin-MAC, a keyed MAC with counter based on
+pairwise key distribution.  Encrypting the same message to $n$ different ECUs requires $n$
+messages to be sent.   Using the full HMAC-MD5 requires 128~bits to be sent, requring two CAN frames per message.
 
-Another issue is that the tags must fit into 64 bits, the size of the data payload, along with the transmitted data. HMAC produces a much larger output (depending on the underlying hash) and transmitting this MAC will greatly drive up bus utilization. For example, the smallest HMAC result used in this work is 128 bits, produced by HMAC-MD5. Transmitting the entire HMAC would require an additional two CAN frames per every message.
+Other recent CAN security projects suffer from similar limitations. 
+Woo et al.\ propose a keyed MAC based on pairwise key distribution,
+packing the tag into the extended ID field (not used by all ECUs) and the CRC field in the CAN trailer. 
+[does it fit? how many bits?]  Their proposal requires 
+rewriting of firmware [really? anything hard? more than we do?] or hardware redesign of CAN transceivers, and 
+they assume a much more powerful message processor than we do. [how so?]
 
-%Furthermore, Lin-MAC presents a mechanism for resynchronizing the counter which we must assume works and is implementable. It also assumes a key distribution infrastructure, a serious problem which could not be ignored for any real commercial release of a solution. However, to prove the viability of a reduced size MAC, we will also assume this functionality.
+Zalman et al.\ propose a fixed-size, time-stamped MAC based on pairwise key distribution.
+Their tag overflows the CAN frame, increasing bus utilization.  Also, as the authors acknowledge,
+their method delays messages [why?].
 
-Other recent CAN security projects suffer from similar problems. Proposed protocols by Woo et al. \cite{Woo-14}, Zalman et al. \cite{Zalman-14}, and Xie et al. \cite{Xie-15} all use pair wise key distribution which increases bus utilization for a messages sent to multiple recipients.
+Xie et al.\ propose packing multiple messages into one CAN frame using a keyed MAC with 
+based on pairwise key distribution.   They unrealistically assume that messages and MAC tag are short
+enough to fit into one frame.  Also, their system delays messages [why?].
 
-The work by Woo et al. requires re-writing of firmware or hardware redesign of CAN transceivers. It packs the MAC into an extended ID field not used by all ECUs and the CRC field in the CAN trailer. Woo also assumes a much more powerful message processor than this work.
+%% Do we want here to list other less related works on car insecurity and proposals
+%% for increasing car security?   We do need to list any important previous work
+%% somewhere.  I think insecurity can go to intro and background.  Any decent security proposal
+%% can go in this previous work section here.
 
-Zalman et al. uses a timestamp to seed the MAC, but this technique is by the author's admission vulnerable to delay in the network. Zalman also uses a fixed-size MAC that may be too large to fit in one CAN frame, causing excessive bus overhead.
-
-Xie et al. propose packing multiple messages into one CAN frame with a MAC in order to add security without increasing bus utilization, but this may breach message delay requirements. It also assumes messages are small enough to fit into a CAN frame with other messages and an appropriately-sized MAC.
-
-While no manufacturer publicly shares information about the security of their vehicle networks, many published works have demonstrated the problems present in current vehicles. Many automakers and parts manufacturers are now members of the Open Alliance, a non-profit group researching and encouraging the use of an Ethernet-based high speed physical layer for use in vehicles that would enable the use of established secure network stack elements in vehicle networks.
+Many automakers and parts manufacturers are now members of the Open Alliance [need ref or URL], 
+a non-profit group researching and encouraging the use of an Ethernet-based high-speed physical layer 
+for use in vehicles.  This approach would enable the use of 
+established network security mechanisms in vehicle networks.

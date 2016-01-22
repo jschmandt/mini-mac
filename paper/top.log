@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.2.6)  22 JAN 2016 14:57
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.2.6)  22 JAN 2016 17:12
 entering extended mode
 **C:/Users/Alan/Documents/GitHub/mini-mac/paper/top.tex
 (C:/Users/Alan/Documents/GitHub/mini-mac/paper/top.tex
@@ -637,7 +637,7 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 
 (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/abstract.tex)
 (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/introduction.tex
-Underfull \hbox (badness 1590) in paragraph at lines 3--8
+Underfull \hbox (badness 1590) in paragraph at lines 4--10
 \OT1/cmr/m/n/10 At the 2015 Black Hat con-fer-ence, Miller and
  []
 
@@ -645,44 +645,48 @@ Underfull \hbox (badness 1590) in paragraph at lines 3--8
 
 
 ]
-Underfull \hbox (badness 2245) in paragraph at lines 20--24
+Underfull \hbox (badness 2245) in paragraph at lines 22--26
 []\OT1/cmr/m/n/10 Traditional au-then-ti-ca-tion pro-to-cols (in-clud-ing
  []
 
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 37.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 39.
 ) (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/background.tex
 
-LaTeX Warning: Citation `Sti' on page 2 undefined on input line 4.
+LaTeX Warning: Citation `Sti' on page 2 undefined on input line 6.
 
 <figures/can_frame.png, id=14, 2007.5pt x 506.89375pt>
 File: figures/can_frame.png Graphic file (type png)
 
 <use figures/can_frame.png>
-Package pdftex.def Info: figures/can_frame.png used on input line 18.
+Package pdftex.def Info: figures/can_frame.png used on input line 20.
 (pdftex.def)             Requested size: 469.0pt x 118.42393pt.
  [2])
 (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/problem_statement.tex)
 (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/previous_work.tex
 [3 <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/can_frame.png>])
 (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/adversaries.tex
-[4]) (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/mini-mac.tex
-[5] <figures/key_distribution.png, id=33, 637.63219pt x 240.14719pt>
+[4])
+Underfull \vbox (badness 2698) has occurred while \output is active []
+
+
+(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/mini-mac.tex [5]
+<figures/key_distribution.png, id=33, 637.63219pt x 240.14719pt>
 File: figures/key_distribution.png Graphic file (type png)
 
 <use figures/key_distribution.png>
-Package pdftex.def Info: figures/key_distribution.png used on input line 52.
+Package pdftex.def Info: figures/key_distribution.png used on input line 55.
 (pdftex.def)             Requested size: 229.5pt x 86.43459pt.
- [6 <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/key_distribution.png
->]
-<figures/minimac_diagram.png, id=38, 362.85562pt x 409.02812pt>
+
+<figures/minimac_diagram.png, id=34, 362.85562pt x 409.02812pt>
 File: figures/minimac_diagram.png Graphic file (type png)
 
 <use figures/minimac_diagram.png>
-Package pdftex.def Info: figures/minimac_diagram.png used on input line 68.
+Package pdftex.def Info: figures/minimac_diagram.png used on input line 71.
 (pdftex.def)             Requested size: 229.5pt x 258.70639pt.
-
-Underfull \hbox (badness 5726) in paragraph at lines 113--114
+ [6 <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/key_distribution.png
+>]
+Underfull \hbox (badness 5726) in paragraph at lines 116--117
 \OT1/cmr/m/n/10 Mini-MAC was im-ple-mented with three hash
  []
 
@@ -714,18 +718,18 @@ Package pdftex.def Info: figures/ram_usage.png used on input line 77.
 copy)> <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/code_size.png (PN
 G copy)> <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/ram_usage.png (
 PNG copy)>]
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 55.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 57.
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 <figures/pdf.png, id=54, 578.16pt x 433.62pt>
 File: figures/pdf.png Graphic file (type png)
  <use figures/pdf.png>
-Package pdftex.def Info: figures/pdf.png used on input line 58.
+Package pdftex.def Info: figures/pdf.png used on input line 60.
 (pdftex.def)             Requested size: 229.5pt x 172.12163pt.
 )
 (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/discussion.tex
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 6396) has occurred while \output is active []
 
  [10]
 [11 <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/pdf.png (PNG copy)>]
@@ -782,33 +786,25 @@ Underfull \hbox (badness 10000) in paragraph at lines 33--38
  []
 
 
-Underfull \hbox (badness 2418) in paragraph at lines 55--60
-[]\OT1/ptm/m/n/10 S. Woo, Hyo Jin Jo, and Dong Hoon
- []
-
-
-Underfull \hbox (badness 1147) in paragraph at lines 62--67
+Underfull \hbox (badness 1147) in paragraph at lines 55--60
 \OT1/ptm/m/it/10 Pro-ceed-ings of the 24th An-nual In-ter-na-
  []
 
 Missing character: There is no â in font ptmri7t!
 Missing character: There is no € in font ptmri7t!
 Missing character: There is no “ in font ptmri7t!
+) [14
 
-Underfull \hbox (badness 1424) in paragraph at lines 76--81
-\OT1/ptm/m/n/10 based au-to-mo-tive cyber-physical sys-tems.
- []
-
-) [14] (C:\Users\Alan\Documents\GitHub\mini-mac\paper\top.aux)
+] (C:\Users\Alan\Documents\GitHub\mini-mac\paper\top.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 15319 strings out of 493921
- 305950 string characters out of 3144880
- 314140 words of memory out of 3000000
- 18415 multiletter control sequences out of 15000+200000
+ 15325 strings out of 493921
+ 306011 string characters out of 3144880
+ 314187 words of memory out of 3000000
+ 18421 multiletter control sequences out of 15000+200000
  17661 words of font info for 59 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  40i,15n,46p,10421b,494s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -831,7 +827,7 @@ ublic/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publ
 ic/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/ti
 mes/utmr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a
 .pfb>
-Output written on top.pdf (14 pages, 909882 bytes).
+Output written on top.pdf (14 pages, 908423 bytes).
 PDF statistics:
  131 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
