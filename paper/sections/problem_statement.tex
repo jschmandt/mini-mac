@@ -1,10 +1,19 @@
 \section{Problem Statement}
-%Say the task is to create an authentication mechanism that
-%(list requirements): time, space, securit, etc
-%rewrite the problem statement
 
-The task of this work is to create an authentication mechanism suitable for use on the CAN bus in vehicular environments. Given the context, this mechanism must provide some measurable increase in security over the standard non-secured bus. It must not increase bus traffic, and it must not violate message delay constraints. Additionally, the mechanism must provide protection from replay and masquerade attacks as defined in Section 5.
+Our task is to create an authentication mechanism suitable for use on the CAN bus in vehicular environments. 
+The mechanism must improve security over the standard non-secured bus, while 
+not increasing bus traffic nor delaying messages.
+The mechanism must protect against replay and masquerade attacks as defined in Section 5.
+It must function in the highly constrained vehicular environment,
+which includes slow, low-power ECUs incapable of complex cryptographic functions.
 
-In test data captured by the authors for a 2010 Toyota Prius, over 60\% of messages contain no more than four data bytes. This usually leaves four bytes of space for a MAC.
+%nd it must not violate message delay constraints. 
+%nor unduely delaying important messages.
+% can you quantify, or better hint at, message delay constraints?
 
-The ECUs in a car are slow, low-power systems incapable of complex cryptographic functions. Given these limitations, the problem addressed is how to add as much security as possible without breaking the system.
+In test data captured by the authors from a 2010 Toyota Prius, 
+over 60\% of messages contain no more than four data bytes. 
+Thus, for most messages, there are at least four bytes of space
+available for a MAC tag.
+
+% can you describe the distribution of available space more thoroughly?

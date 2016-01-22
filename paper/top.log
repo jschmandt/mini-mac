@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.2.6)  22 JAN 2016 12:28
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.2.6)  22 JAN 2016 14:57
 entering extended mode
 **C:/Users/Alan/Documents/GitHub/mini-mac/paper/top.tex
 (C:/Users/Alan/Documents/GitHub/mini-mac/paper/top.tex
@@ -662,9 +662,9 @@ File: figures/can_frame.png Graphic file (type png)
 Package pdftex.def Info: figures/can_frame.png used on input line 18.
 (pdftex.def)             Requested size: 469.0pt x 118.42393pt.
  [2])
-(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/problem_statement.tex
+(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/problem_statement.tex)
+(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/previous_work.tex
 [3 <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/can_frame.png>])
-(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/previous_work.tex)
 (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/adversaries.tex
 [4]) (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/mini-mac.tex
 [5] <figures/key_distribution.png, id=33, 637.63219pt x 240.14719pt>
@@ -673,76 +673,69 @@ File: figures/key_distribution.png Graphic file (type png)
 <use figures/key_distribution.png>
 Package pdftex.def Info: figures/key_distribution.png used on input line 52.
 (pdftex.def)             Requested size: 229.5pt x 86.43459pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [6]
-<figures/minimac_diagram.png, id=37, 362.85562pt x 409.02812pt>
+ [6 <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/key_distribution.png
+>]
+<figures/minimac_diagram.png, id=38, 362.85562pt x 409.02812pt>
 File: figures/minimac_diagram.png Graphic file (type png)
 
 <use figures/minimac_diagram.png>
 Package pdftex.def Info: figures/minimac_diagram.png used on input line 68.
 (pdftex.def)             Requested size: 229.5pt x 258.70639pt.
- [7 <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/key_distribution.png
-> <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/minimac_diagram.png>]
+
 Underfull \hbox (badness 5726) in paragraph at lines 113--114
 \OT1/cmr/m/n/10 Mini-MAC was im-ple-mented with three hash
  []
 
-) (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/testing.tex
-Underfull \vbox (badness 5022) has occurred while \output is active []
-
-
-Underfull \vbox (badness 2126) has occurred while \output is active []
-
- [8]
-<figures/exec_cycles.png, id=48, 578.16pt x 433.62pt>
+) [7 <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/minimac_diagram.png
+>] (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/testing.tex
+<figures/exec_cycles.png, id=45, 578.16pt x 433.62pt>
 File: figures/exec_cycles.png Graphic file (type png)
 
 <use figures/exec_cycles.png>
 Package pdftex.def Info: figures/exec_cycles.png used on input line 65.
 (pdftex.def)             Requested size: 229.5pt x 172.12163pt.
 
-<figures/code_size.png, id=49, 578.16pt x 433.62pt>
+<figures/code_size.png, id=46, 578.16pt x 433.62pt>
 File: figures/code_size.png Graphic file (type png)
 
 <use figures/code_size.png>
 Package pdftex.def Info: figures/code_size.png used on input line 71.
 (pdftex.def)             Requested size: 229.5pt x 172.12163pt.
 
-<figures/ram_usage.png, id=50, 578.16pt x 433.62pt>
+<figures/ram_usage.png, id=47, 578.16pt x 433.62pt>
 File: figures/ram_usage.png Graphic file (type png)
 
 <use figures/ram_usage.png>
 Package pdftex.def Info: figures/ram_usage.png used on input line 77.
 (pdftex.def)             Requested size: 229.5pt x 172.12163pt.
 )
-(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/analysis.tex [9 <C:/Use
-rs/Alan/Documents/GitHub/mini-mac/paper/figures/exec_cycles.png (PNG copy)> <C:
-/Users/Alan/Documents/GitHub/mini-mac/paper/figures/code_size.png (PNG copy)>]
-[10 <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/ram_usage.png (PNG c
-opy)>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
+(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/analysis.tex [8]
+[9 <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/exec_cycles.png (PNG 
+copy)> <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/code_size.png (PN
+G copy)> <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/ram_usage.png (
+PNG copy)>]
 LaTeX Font Info:    Try loading font information for OT1+ptm on input line 55.
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
+ ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
-<figures/pdf.png, id=57, 578.16pt x 433.62pt>
+<figures/pdf.png, id=54, 578.16pt x 433.62pt>
 File: figures/pdf.png Graphic file (type png)
  <use figures/pdf.png>
 Package pdftex.def Info: figures/pdf.png used on input line 58.
 (pdftex.def)             Requested size: 229.5pt x 172.12163pt.
 )
-Underfull \vbox (badness 4429) has occurred while \output is active []
+(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/discussion.tex
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [11 <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/pdf.png (PNG copy)>
-]
-(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/discussion.tex [12])
+ [10]
+[11 <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/pdf.png (PNG copy)>]
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [12])
 (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/conclusion.tex)
-(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/acknowledgments.tex
-[13]) (C:\Users\Alan\Documents\GitHub\mini-mac\paper\top.bbl
+(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/acknowledgments.tex)
+(C:\Users\Alan\Documents\GitHub\mini-mac\paper\top.bbl
 Underfull \hbox (badness 3735) in paragraph at lines 5--10
 []\OT1/ptm/m/n/10 Mihir Bel-lare, Ran Canetti, and Hugo
  []
@@ -783,7 +776,7 @@ Underfull \hbox (badness 2302) in paragraph at lines 12--17
 \OT1/ptm/m/n/10 dayoshi Kohno, et al.  Com-pre-hen-sive
  []
 
-
+[13]
 Underfull \hbox (badness 10000) in paragraph at lines 33--38
 []\OT1/ptm/m/n/10 Chung-Wei Lin and A. Sangiovanni-
  []
@@ -814,7 +807,7 @@ LaTeX Warning: There were undefined references.
 Here is how much of TeX's memory you used:
  15319 strings out of 493921
  305950 string characters out of 3144880
- 312140 words of memory out of 3000000
+ 314140 words of memory out of 3000000
  18415 multiletter control sequences out of 15000+200000
  17661 words of font info for 59 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
@@ -838,7 +831,7 @@ ublic/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publ
 ic/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/ti
 mes/utmr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a
 .pfb>
-Output written on top.pdf (14 pages, 910682 bytes).
+Output written on top.pdf (14 pages, 909882 bytes).
 PDF statistics:
  131 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
