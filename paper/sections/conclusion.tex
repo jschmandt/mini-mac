@@ -1,11 +1,13 @@
 \section{Conclusion}
-%It appears that Mini-MAC could be more resilient to replay attacks than a condensed HMAC would be or than Lin-MAC is simply because it incorporates time- and history-based distortion into the MAC.
 
-We propose Mini-MAC, the first variable-length MAC protocol for the CAN bus that adds no bus traffic overhead. Using four bytes for a MAC is too small for many applications, but the core idea of Mini-MAC is not to make the CAN bus impenetrable -- it is instead to raise the bar for security in a resource-conscious way. 
+We propose Mini-MAC, the first variable-length MAC protocol for the CAN bus that adds no bus traffic overhead, 
+allowing it to be used in vehicular systems with time-sensitive messages.  The truncated HMAC protects against
+message injection by adversaries who do not know the ECU keys.  The counter and message history protect
+against replay attacks.  
 
-Automotive computer systems are extremely limited in several ways. The computational power in nodes is limited and incapable of complex cryptography, and the bus is too slow to allow for overhead related to security protocols. Additionally, many of the messages are extremely time sensitive and must not be delayed or risk the safety of the driver or others on the road.
-
-Mini-MAC is a significant upgrade in message authentication for the CAN bus. Equally important is the low-overhead design and operation of Mini-MAC that allow it to run on real systems without modification.
-
-%The world in which Mini-MAC may be useful is one in which an adversary might be another vehicle driving past you on the highway; in this scenario, being secure enough to withstand 27 minutes worth of attacks may be secure enough.
+Limited message size, the need not to delay messages, the limited computational power of the ECUs,
+and the relative ease of gaining access to the bus 
+severely restrict how well the CAN bus can be protected.  Mini-MAC meaningfully raises the bar on vehicular security,
+approaching (we conjecture) the limits of what is possible for authentication strength in this highly
+constrained environment.
 
