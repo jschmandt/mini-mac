@@ -11,6 +11,8 @@ and variants prevent message replay attacks; however,
 standard or time-seeded MACs are unsuitable for use on the CAN bus because of small payload sizes. 
 Restrictions of the CAN bus, including the need not to delay messages,  
 severely limit how well this network can be protected.
+%Do we need to clarify  why the CAN bus is vulnerable here?
+%I don't think time-seeding has an impact on the suitability of a MAC for the CAN bus
 
 Mini-MAC is based on a time-seeded HMAC, augmented with message history and truncated to fit available message space. 
 It causes no increase in bus traffic and incurs a very small performance penalty relative to the provably secure HMAC. 
