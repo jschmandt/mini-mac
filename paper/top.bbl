@@ -51,6 +51,13 @@ Chung-Wei Lin and A.~Sangiovanni-Vincentelli.
 Ronald Rivest.
 \newblock {IETF} {RFC} 1321: The {MD5} message-digest algorithm, April 1992.
 
+\bibitem[WJL15]{Woo-14}
+S.~Woo, Hyo~Jin Jo, and Dong~Hoon Lee.
+\newblock A practical wireless attack on the connected car and security
+  protocol for in-vehicle {CAN}.
+\newblock {\em IEEE Transactions on Intelligent Transportation Systems},
+  16(2):993--1006, April 2015.
+
 \bibitem[WY05]{Wang-MD5}
 Xiaoyun Wang and Hongbo Yu.
 \newblock How to break {MD5} and other hash functions.
@@ -64,5 +71,19 @@ Xiaoyun Wang, YiqunLisa Yin, and Hongbo Yu.
 \newblock In Victor Shoup, editor, {\em Advances in Cryptology – CRYPTO
   2005}, volume 3621 of {\em Lecture Notes in Computer Science}, pages 17--36.
   Springer Berlin Heidelberg, 2005.
+
+\bibitem[XLL{\etalchar{+}}15]{Xie-15}
+Yong Xie, Liangjiao Liu, Renfa Li, Jianqiang Hu, Yong Han, and Xin Peng.
+\newblock Security-aware signal packing algorithm for {CAN}-based automotive
+  cyber-physical systems.
+\newblock {\em Automatica Sinica, IEEE/CAA Journal of}, 2(4):422--430, October
+  2015.
+
+\bibitem[ZM14]{Zalman-14}
+R.~Zalman and A.~Mayer.
+\newblock A secure but still safe and low cost automotive communication
+  technique.
+\newblock In {\em Design Automation Conference (DAC), 2014 51st ACM/EDAC/IEEE},
+  pages 1--5, June 2014.
 
 \end{thebibliography}

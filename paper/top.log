@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.2.6)  23 JAN 2016 13:46
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.2.6)  23 JAN 2016 18:01
 entering extended mode
 **C:/Users/Alan/Documents/GitHub/mini-mac/paper/top.tex
 (C:/Users/Alan/Documents/GitHub/mini-mac/paper/top.tex
@@ -737,10 +737,7 @@ Underfull \vbox (badness 4429) has occurred while \output is active []
 ]
 (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/discussion.tex [11])
 (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/conclusion.tex)
-(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/acknowledgments.tex
-Underfull \vbox (badness 1924) has occurred while \output is active []
-
- [12])
+(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/acknowledgments.tex)
 (C:\Users\Alan\Documents\GitHub\mini-mac\paper\top.bbl
 Underfull \hbox (badness 3735) in paragraph at lines 5--10
 []\OT1/ptm/m/n/10 Mihir Bel-lare, Ran Canetti, and Hugo
@@ -788,23 +785,36 @@ Underfull \hbox (badness 10000) in paragraph at lines 33--38
  []
 
 
-Underfull \hbox (badness 1147) in paragraph at lines 55--60
+Underfull \hbox (badness 2418) in paragraph at lines 55--60
+[]\OT1/ptm/m/n/10 S. Woo, Hyo Jin Jo, and Dong Hoon
+ []
+
+
+Underfull \hbox (badness 1147) in paragraph at lines 62--67
 \OT1/ptm/m/it/10 Pro-ceed-ings of the 24th An-nual In-ter-na-
  []
 
+[12]
 Missing character: There is no â in font ptmri7t!
 Missing character: There is no € in font ptmri7t!
 Missing character: There is no “ in font ptmri7t!
-) [13] (C:\Users\Alan\Documents\GitHub\mini-mac\paper\top.aux)
+
+Underfull \hbox (badness 1424) in paragraph at lines 76--81
+\OT1/ptm/m/n/10 based au-to-mo-tive cyber-physical sys-tems.
+ []
+
+) [13
+
+] (C:\Users\Alan\Documents\GitHub\mini-mac\paper\top.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 15327 strings out of 493921
- 306034 string characters out of 3144880
- 312206 words of memory out of 3000000
- 18423 multiletter control sequences out of 15000+200000
+ 15333 strings out of 493921
+ 306091 string characters out of 3144880
+ 312265 words of memory out of 3000000
+ 18429 multiletter control sequences out of 15000+200000
  17661 words of font info for 59 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  40i,15n,46p,10421b,494s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -827,7 +837,7 @@ ublic/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publ
 ic/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/ti
 mes/utmr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a
 .pfb>
-Output written on top.pdf (13 pages, 906962 bytes).
+Output written on top.pdf (13 pages, 905043 bytes).
 PDF statistics:
  128 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

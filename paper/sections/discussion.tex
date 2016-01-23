@@ -3,23 +3,24 @@
 
 In this section we discuss how to resynchronize ECUs, 
 how to lengthen the mini-MAC tag, 
-a radical design alternative, 
-and open problems.
+and we list some open problems.
+
+%a radical design alternative, 
 
 \subsection{Resynchronization}
 \label{resynch}
 
-Our mini-MAC proposal requires the ECUs to have synchronized counters and message-history state.
+Our mini-MAC proposal requires the ECUs to have synchronized counters and message-history states.
 Therefore, a mechanism is needed to resynchronize the ECUs in case they ever lose synchronization,
-as might happen, for example, by a fault in the ECU or message transmission.
+as might happen, for example, by a fault in the ECU or a disruption in message transmission.
 [how do ECUs know that they are out of synch?]
 
 Two common solutions are to reset the state to a specified initial state, or for one ECU to select
 a new state and communicate that state to the other ECUs (encrypted by a shared secondary communication
 encryption key).  [do you have a ref?]
 
-Instead, we propose that each ECU periodically save its state in persistent memory.  In the initial attempt
-to resynchronize, each ECU loads its most recent state.  If that fails, then the aforementioned
+Instead, for enhanced security we propose that each ECU periodically save its state in persistent memory.  
+In the initial attempt to resynchronize, each ECU loads its most recent state.  If that fails, then the aforementioned
 mechanisms could be applied.
 
 %% this section is rather weak--nothing new.  No anlysis of proposal.
@@ -30,7 +31,7 @@ mechanisms could be applied.
 
 It is possible to lengthen the Mini-MAC tag by 
 using the two bytes of space allocated for the CRC field in the CAM frame (see Figure~\ref{fig-frame}),
-as suggested by Woo et al.~\cite{Woo-14}.
+as suggested by Woo et al.~\cite{Woo-14} in a related proposal.
 Because a MAC detects transmission errors (in fact, better than a simpler CRC), there is no need for
 a CRC in addition to a MAC.  
 
@@ -54,39 +55,46 @@ or to open the CRC field to the application level to calculate the MAC.
 
 	\begin{table}	
 	\centering
-	\caption{Time to find collision for various tag lengths}\label{tab-taglength}
+	\caption{Time to find collision for various tag lengths [explain]}\label{tab-taglength}
 	\vspace{8pt}
-	\begin{tabular}{|c|r|}\hline%
+	\begin{tabular}{c|r}%
 	\bfseries Tag Length (b) & \bfseries Time to Find Collision\\\hline \csvreader[late after line=\\]%
 		{tables/maclen_bfttb.csv}{mac_len=\mac_len,ttb=\ttb}% 
 		{\mac_len & \ttb}%
-		\hline
 	\end{tabular}
 	\end{table}
 	
 	%% I don't know this mechanism. need to add space between number and unit in each line
 	%% headers should be done in latex directly
 
-\subsection{Design Alternative}
-\label{alternatives}
+%\subsection{Design Alternative}
+%\label{alternatives}
 
-The capabilities of the CAN bus and the ECUs on it are limiting factors in security. There are two major design changes to automotive computer networks that would significantly increase security: 1) Replace CAN with high-speed, well defined network stack elements such as 802.3 Ethernet and IP 2) Segregate nodes on the CAN bus into task-defined groups.
-
-As info-tainment becomes a major task of the modern automotive computer network, the networks used in vehciles must be able to support not only control information but high rate audio and video content. The same type of network can be used for ECU-to-ECU communication, and the Ethernet/IP stack found in many home networks is a natural fit for this task. These networks can utilize IPsec, which can handle data encryption and authentication.
-
-That a car radio could potentially send a message to a brake control unit is a tremendous oversight in design. Although some vehicles do a better job of segregating vehicle control units from entertainment or environment control units than others, there is no standardization and these design decisions seem to stem more from spatial arrangment or bus availablilty than they do for any security-conscious reason. The solution should be to place high responsibility nodes (ECUs that control, for example, brakes and acceleration) on physically separate networks from low-responsibility nodes (the radio, blinkers, etc) and nodes designed to communicate to the Car-to-X network (navigation systems, in-car Internet).
+%% would be nice to discuss our enigneering decisions and alternatives, but we don't have anything interesting to say
 
 \subsection{Open Problems}
 \label{open}
 
-A relevant question to this work is the effectiveness of hash functions over small inputs. As previously noted, the messages on the CAN bus are 8 B, and before any practical use of a solution like Mini-MAC could be made, this question must be answered to a satisfying degree. Many hash implementations require padding of inputs to fit fixed size inputs, but what ratio of padding to message is acceptable before the hash loses effectiveness? These are not questions unique to Mini-MAC, but it is a protocol which could be severely compromised from a hash which is weak under heavy padding as the message is so small compared to the input block size. \textcolor{red}{Note: You marked this paragraph unclear -- could you elaborate?}
+Our engineering decisions are driven by a desire to improve vehicular security by adding authentication
+to the CAN bus, without increasing bus traffic or delaying messages, and without making any
+disruptive changes.  The egregious state of vehicular security, however, demands a radical disruptive
+redesign of vehicular computer networks carried out including security as a foundational design
+requirement. [refs?]
 
-An important open problem is that of securing remote bus access. Auto manufacturers do not publicly acknowledge the issues present in modern automobiles, but do participate in groups such as the Open Alliance designed to change the paradigm of vehicle computer networks. As long as networked nodes such as the entertainment system are connected to both CAN nodes and the larger Internet there will be vulnerabilities allowing attackers to remotely gain access to the CAN bus.
+Design ideas for a replacement network to the CAN bus include the following:  
+(1)~Use a well-established high-speed network (such as 802.3 Ethernet) on which
+standard security mechanisms (such as IPsec) can be deployed.
+(2)~Segegrate nodes on the bus into task-defined groups.
+(3)~Protect access to the bus by physically separating critcal and non-critical systems.
+In particular, it should not be possible for maleware or faults in entertainment or 
+Bluetooth systems to affect braking, steering, or acceleration.  
 
-A separate but related problem in vehicle security is the detection of network intrusions. This work deals with the prevention of attacks on the CAN bus, whereas detection mechanisms serve to alert the driver when an attack is taking place, in the event that protection mechanisms fail. The problem with current attack detection work is that upon detection, there is no procedure to mitigate and recover from the attack apart from stopping the vehicle (or similar real-time system).
+A separate related problem is to detect vehicular network intrusions. [ref?]  A challenge of such work is that
+there is no good reponse of what to do if an intrusion is detected other than to shut down the vehicle safely.
 
-The Car-to-X network is an emerging interconnected collection of vehicles, buildings, signs, and road infrastructure 
-to reduce congestion and enable more efficient traffic control~\cite{C2X}. Cars of the future will have to be able to communicate
-securely with objects on such networks, requiring authentication and key management beyond mini-MAC.
+The Car-to-X network~\cite{C2X} is an emerging interconnected collection of vehicles, buildings, signs, and road infrastructure 
+to reduce congestion and enable more efficient traffic control. Cars of the future will have to be able to communicate
+securely with objects on such networks, requiring authentication and key management beyond Mini-MAC.
 
-%Lin-MAC claims to implement a suitable key distribution infrastructure and counter resynchronization mechanism that is suitable for implementation on ECUs on the CAN bus. Before any system becomes practically implementable, these claims must be verified.
+%% I don't think the draft question about padding or security of truncated MACs is in a state worthy of mention here.
+
