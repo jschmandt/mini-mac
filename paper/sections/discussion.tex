@@ -9,11 +9,15 @@ An issue in many similar systems, such as communication links between ground sta
 A fault in a message transmission on a CAN bus using Mini-MAC could cause the counters in a sender-receiver pair to lose synchronization. If this occurs, there are several options for recovery. A common solution is to send a new, randomly selected counter value from one node to the other, encrypted using a backup key not used for regular data transmission. This requires the nodes to support encryption and decryption, which we have not previously specified for Mini-MAC. Another solution is to simply reset the nodes to a zero counter and have them restart transmission, but this could cause re-use of previously seen MAC values sooner than necessary. A more secure, implementable solution, would be to have nodes save their state to their persistent memory periodically. How frequently this is done is a matter of persistent memory usage lifetime vs security--the memory must last through the lifetime of the vehicle, which can be 20-plus years in many cases, but the more frequently the state is written, the fewer repeated MACs are used. This solution suffers from the same problem as a zero-reset solution, because the counter will be reset to the value at the last state write, but the number of repeated MACs will be much smaller than in the zero-reset.
 
 \subsection{Adding Bits to Mini-MAC}
+\label{addingbits)
+
 By enlarging the Mini-MAC, it is possible to drastically increase the security provided on the CAN bus. Although 27.3 minutes average time-to-defeat for an exhaustive-search attack may be sufficient for the context of a moving automobile, it is worth exploring raising that number. Against a brute force attack the solution is simply more bits in the MAC, which as discussed, is not possible without adding bus overhead at the application level. 
 
 It is possible to add two more bytes to the transmitted MAC by replacing the CRC field (2 B, Figure 1) with MAC bits. The MAC will provide the feature of checking for message error (so long as the underlying hash is collision-free) in addition to authentication.
 	
 The difficulty here is in rewriting lower-level code in the network stack to either perform the entire MAC calculation or to open the CRC field up to the application level which calculates the MAC. The defense time gains from the additional two bytes can be extremely significant. Table 5 shows how the time-to-defeat changes for different lengths of the MAC. Any MAC smaller than 4B is probably useless, but in the case of a 5B or 6B MAC, the brute force attacker will very likely run out of time. The 6B MAC, which accounts for the original 4B plus the 2B from the CRC field, is capable of holding out against even an attacker with an extended time budget (for example, if you leave your car on the street and leave for the weekend).
+
+%% compare with Woo (see previous work)
 
 	\begin{table}	
 	\centering

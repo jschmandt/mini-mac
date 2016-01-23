@@ -12,25 +12,27 @@ messages to be sent.   Using the full HMAC-MD5 requires 128~bits to be sent, req
 
 Other recent CAN security projects suffer from similar limitations. 
 Woo et al.\ propose a keyed MAC based on pairwise key distribution,
-packing the tag into the extended ID field (not used by all ECUs) and the CRC field in the CAN trailer. 
-[does it fit? how many bits?]  Their proposal requires 
-rewriting of firmware [really? anything hard? more than we do?] or hardware redesign of CAN transceivers, and 
-they assume a much more powerful message processor than we do. [how so?]
+packing the tag into the extended ID field (not used by all ECUs) and the CRC field in the CAN trailer
+(for a related proposal of ours, see Section~\ref{addingbits}). 
+These bits fit only if the ECUs use the extended ID field. 
+Their proposal requires a hardware redesign of CAN transceivers or rewriting a layer of message transmission firmware.
+Care should be taken when comparing their computation times because
+they assume a much more powerful message processor than we do. 
+
+%It fits if the ECUs use the extended ID field which as noted is not the case most of the time. Using the CRC is something we mention as well in section 9. Their proposal is different than ours because it requires rewriting a lower layer of message transmission firmware -- ours only requires that a different message be sent. This may be hard to illustrate without a netstack diagram. They specify much faster hardware in their paper than we use as well, and so the results on computation time are not comparable to ours.
 
 Zalman et al.\ propose a fixed-size, time-stamped MAC based on pairwise key distribution.
-Their tag overflows the CAN frame, increasing bus utilization.  Also, as the authors acknowledge,
-their method delays messages [why?].
+Their tag overflows the CAN frame, increasing bus utilization, and as the authors acknowledge,
+delaying messages.
 
 Xie et al.\ propose packing multiple messages into one CAN frame using a keyed MAC with 
-based on pairwise key distribution.   They unrealistically assume that messages and MAC tag are short
-enough to fit into one frame.  Also, their system delays messages [why?].
+based on pairwise key distribution.   They unrealistically assume that the messages and MAC tag are short
+enough to fit into one frame.  By queing messages into batches, their system delays messages.
 
-%% Do we want here to list other less related works on car insecurity and proposals
-%% for increasing car security?   We do need to list any important previous work
-%% somewhere.  I think insecurity can go to intro and background.  Any decent security proposal
-%% can go in this previous work section here.
+[do we want to cite any other works on improving car security? If so, do it here.]
 
 Many automakers and parts manufacturers are now members of the Open Alliance [need ref or URL], 
 a non-profit group researching and encouraging the use of an Ethernet-based high-speed physical layer 
 for use in vehicles.  This approach would enable the use of 
 established network security mechanisms in vehicle networks.
+
