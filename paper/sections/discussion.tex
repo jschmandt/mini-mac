@@ -1,45 +1,84 @@
 \section{Discussion}
 \label{discuss}
 
-While Mini-MAC succeeds in securing the CAN bus against replay and masquerade attacks from time-limited attackers, it is possible to improve automotive security further through more involved protocol and network architecture changes. These changes are more difficult and more costly to implement but offer better protection. 
+In this section we discuss how to resynchronize ECUs, 
+how to lengthen the mini-MAC tag, 
+a radical design alternative, 
+and open problems.
 
-An issue in many similar systems, such as communication links between ground stations and satellites, is how to handle faults. Section 9.1 describes at a high-level a fault recovery mechanism for use with Mini-MAC. Section 9.2 describes a easy-to-implement proposed change to the network stack used in the CAN bus that will allow Mini-MAC to use more bits in the CAN frame. Section 9.3 describes a new network architecture that is inherently more secure than CAN is now, and Section 9.4 describes some open problems in the field of automotive security.
+\subsection{Resynchronization}
+\label{resynch}
 
-\subsection{Fault Handling}
-A fault in a message transmission on a CAN bus using Mini-MAC could cause the counters in a sender-receiver pair to lose synchronization. If this occurs, there are several options for recovery. A common solution is to send a new, randomly selected counter value from one node to the other, encrypted using a backup key not used for regular data transmission. This requires the nodes to support encryption and decryption, which we have not previously specified for Mini-MAC. Another solution is to simply reset the nodes to a zero counter and have them restart transmission, but this could cause re-use of previously seen MAC values sooner than necessary. A more secure, implementable solution, would be to have nodes save their state to their persistent memory periodically. How frequently this is done is a matter of persistent memory usage lifetime vs security--the memory must last through the lifetime of the vehicle, which can be 20-plus years in many cases, but the more frequently the state is written, the fewer repeated MACs are used. This solution suffers from the same problem as a zero-reset solution, because the counter will be reset to the value at the last state write, but the number of repeated MACs will be much smaller than in the zero-reset.
+Our mini-MAC proposal requires the ECUs to have synchronized counters and message-history state.
+Therefore, a mechanism is needed to resynchronize the ECUs in case they ever lose synchronization,
+as might happen, for example, by a fault in the ECU or message transmission.
+[how do ECUs know that they are out of synch?]
 
-\subsection{Adding Bits to Mini-MAC}
+Two common solutions are to reset the state to a specified initial state, or for one ECU to select
+a new state and communicate that state to the other ECUs (encrypted by a shared secondary communication
+encryption key).  [do you have a ref?]
+
+Instead, we propose that each ECU periodically save its state in persistent memory.  In the initial attempt
+to resynchronize, each ECU loads its most recent state.  If that fails, then the aforementioned
+mechanisms could be applied.
+
+%% this section is rather weak--nothing new.  No anlysis of proposal.
+%% It is good to mention need for resynch.  We should not claim any contribution here.
+
+\subsection{Lengthening the Mini-MAC Tag}
 \label{addingbits}
 
-By enlarging the Mini-MAC, it is possible to drastically increase the security provided on the CAN bus. Although 27.3 minutes average time-to-defeat for an exhaustive-search attack may be sufficient for the context of a moving automobile, it is worth exploring raising that number. Against a brute force attack the solution is simply more bits in the MAC, which as discussed, is not possible without adding bus overhead at the application level. 
+It is possible to lengthen the Mini-MAC tag by 
+using the two bytes of space allocated for the CRC field in the CAM frame (see Figure~\ref{fig-frame}),
+as suggested by Woo et al.~\cite{Woo-14}.
+Because a MAC detects transmission errors (in fact, better than a simpler CRC), there is no need for
+a CRC in addition to a MAC.  
 
-It is possible to add two more bytes to the transmitted MAC by replacing the CRC field (2 B, Figure 1) with MAC bits. The MAC will provide the feature of checking for message error (so long as the underlying hash is collision-free) in addition to authentication.
-	
-The difficulty here is in rewriting lower-level code in the network stack to either perform the entire MAC calculation or to open the CRC field up to the application level which calculates the MAC. The defense time gains from the additional two bytes can be extremely significant. Table 5 shows how the time-to-defeat changes for different lengths of the MAC. Any MAC smaller than 4B is probably useless, but in the case of a 5B or 6B MAC, the brute force attacker will very likely run out of time. The 6B MAC, which accounts for the original 4B plus the 2B from the CRC field, is capable of holding out against even an attacker with an extended time budget (for example, if you leave your car on the street and leave for the weekend).
+Increasing the tag length greatly increases the time required for an adversary to forge a valid tag by
+finding a collision in the Mini-MAC by exhaustive search.  Table~\ref{tab-taglength} gives the
+time to find a Mini-MAC collision for various tag lengths. [under what assuptions?? algorithm, machine, etc?]
+For example, increasing the tag from 32 to 48 bits increases this time from
+approximately 27.3~minutes to over four days.
 
-%% compare with Woo (see previous work)
+%% as we will point out in the security section, exchaustive search attacks to finds collisions are
+%% not so useful because there is no way for the adversary to check candidate values.
+%% perhaps the best attack is just to inject many messages, hoping one will work, an attack
+%% which could be easily detected
+
+To implement this strategy one could modify the lower-level code in the CAN network stack, 
+either to perform the MAC calculation there 
+or to open the CRC field to the application level to calculate the MAC.
+
+%% compare with Woo (see previous work).
+%% we are not first to suggest.  How do we differ?
 
 	\begin{table}	
 	\centering
-	\caption{Time-to-Defeat for Various MAC Lengths}
+	\caption{Time to find collision for various tag lengths}\label{tab-taglength}
 	\vspace{8pt}
 	\begin{tabular}{|c|r|}\hline%
-	\bfseries MAC Length(b) & \bfseries Time-to-Defeat\\\hline \csvreader[late after line=\\]%
+	\bfseries Tag Length (b) & \bfseries Time to Find Collision\\\hline \csvreader[late after line=\\]%
 		{tables/maclen_bfttb.csv}{mac_len=\mac_len,ttb=\ttb}% 
 		{\mac_len & \ttb}%
 		\hline
 	\end{tabular}
 	\end{table}
+	
+	%% I don't know this mechanism. need to add space between number and unit in each line
+	%% headers should be done in latex directly
 
-\subsection{Design Alternatives}
+\subsection{Design Alternative}
+\label{alternatives}
+
 The capabilities of the CAN bus and the ECUs on it are limiting factors in security. There are two major design changes to automotive computer networks that would significantly increase security: 1) Replace CAN with high-speed, well defined network stack elements such as 802.3 Ethernet and IP 2) Segregate nodes on the CAN bus into task-defined groups.
 
 As info-tainment becomes a major task of the modern automotive computer network, the networks used in vehciles must be able to support not only control information but high rate audio and video content. The same type of network can be used for ECU-to-ECU communication, and the Ethernet/IP stack found in many home networks is a natural fit for this task. These networks can utilize IPsec, which can handle data encryption and authentication.
 
 That a car radio could potentially send a message to a brake control unit is a tremendous oversight in design. Although some vehicles do a better job of segregating vehicle control units from entertainment or environment control units than others, there is no standardization and these design decisions seem to stem more from spatial arrangment or bus availablilty than they do for any security-conscious reason. The solution should be to place high responsibility nodes (ECUs that control, for example, brakes and acceleration) on physically separate networks from low-responsibility nodes (the radio, blinkers, etc) and nodes designed to communicate to the Car-to-X network (navigation systems, in-car Internet).
 
-
 \subsection{Open Problems}
+\label{open}
+
 A relevant question to this work is the effectiveness of hash functions over small inputs. As previously noted, the messages on the CAN bus are 8 B, and before any practical use of a solution like Mini-MAC could be made, this question must be answered to a satisfying degree. Many hash implementations require padding of inputs to fit fixed size inputs, but what ratio of padding to message is acceptable before the hash loses effectiveness? These are not questions unique to Mini-MAC, but it is a protocol which could be severely compromised from a hash which is weak under heavy padding as the message is so small compared to the input block size. \textcolor{red}{Note: You marked this paragraph unclear -- could you elaborate?}
 
 An important open problem is that of securing remote bus access. Auto manufacturers do not publicly acknowledge the issues present in modern automobiles, but do participate in groups such as the Open Alliance designed to change the paradigm of vehicle computer networks. As long as networked nodes such as the entertainment system are connected to both CAN nodes and the larger Internet there will be vulnerabilities allowing attackers to remotely gain access to the CAN bus.
