@@ -1,32 +1,45 @@
 \section{Adversarial Model}
 \label{adversary}
 
-We consider three classes of adversaries for this problem.
+We consider three classes of adversaries:
 
-\begin{itemize}
-	\item Type 1 (\textit{Strongest adversary}): An permanent entity on the CAN bus with a valid key for the MAC it wishes to generate.
-	\item Type 2 (\textit{Strong adversary}): A permanent entity on the CAN bus without a valid key for the MAC it wishes to generate.
-	\item Type 3 (\textit{Weak adversary}): A transient entity on the CAN bus without a valid key for the MAC it wishes to generate.
-\end{itemize}
+\begin{description}
 
-The three types of adversaries represent three groups of attackers. The Type 1 adversary would be a compromised ECU on the CAN bus, for example, an engine control module that has a hardware trojan and is designed to inject an attack at preprogrammed times. A Type 2 adversary may be a properly functioning ECU on the CAN bus that an attacker can manipulate remotely as described in Section 2, and a Type 3 adversary may be a criminal who has gained temporary access to the bus via exploiting remote access vulnerabilities such as those described by \textcolor{red}{BLACKHAT REF}. This project aims to defend against adversaries of Type 2 and Type 3. A Type 1 adversary with group keys would be able to spoof any message. The existence of this strongest class of adversary is dependent upon some kind of external command interface which would allow firmware updates, or some kind of modified hardware (e.g., hardware trojan, counterfeit IC).
+	\item [Type 1]
+	(\textit{Strongest adversary}): A permanent entity on the CAN bus with a valid key for the MAC it wishes to generate.
+	
+	\item [Type 2]
+	(\textit{Strong adversary}): A permanent entity on the CAN bus without a valid key for the MAC it wishes to generate.
+	
+	\item [Type 3]
+	(\textit{Weak adversary}): A transient entity on the CAN bus without a valid key for the MAC it wishes to generate.
+	
+\end{description}
 
-Adversaries are not without some difficulties - there are more ECUs in vehicles every year, and each ECU has a unique message ID and data format, which manufacturers share with automakers but not the public. These details must be known to orchestrate a targeted attack, and aside from getting the information from the ECU manufacturer or automaker, they can be discovered only with time-consuming bus analysis or the costly measure of taking a vehicle apart and inspecting individual ECUs. For this work, however, we assume that adversaries have full knowledge of all bus messages and the relevant transmission protocols.
+For example, a Type~1 adversary might be a compromised ECU on the CAN bus.  A Type~2 adversary might be a malicious piece of hardware attached
+to the CAN bus.  A Type~3 adversary might be a criminal who has gained temporary access to the CAN bus, perhaps via a wireless channel from
+another nearby car.  For a Type~3 attacker, we assume the adversary's access to the CAN bus is limited to minutes (not hours).  
+The differences among these attackers are what keys they know and for how long they have access to the CAN bus.
+This project aims to defend against Type~2 and Type~3 adversaries.   Our techniques do not protect against 
+a Type~1 adversary, who can spoof any message. 
 
-Specifically, the adversaries we aim to defend against include those a driver may encounter on the road which may present an immediate threat. These attackers may be pieces of software in other automobiles that attempt to gain remote access via WiFi or Bluetooth, corrupted smart roadside technology with similar attack vectors, or, more generally, any malicious member of the Car-to-X network. A key feature of the attack vectors concerned is the range -- typically, these attacks require close proximity, which for a moving vehicle, may not be possible for more than a short period of time. 
+Motivation of the attacker includes criminal mischief (e.g., crashing car, destroying property) and theft.  
+For example, spoofing messages on the CAN bus can unlock doors, disable brakes, and accerate the car.
+Goals of the attacker include spoofing or replaying messages on the CAN bus that will be accepted by an ECU
+as valid.
 
-Because of this attacker profile, for certain attacks it may be sufficient to defend the CAN network for a much shorter period of time than for traditional networks. While there are no data to suggest a hard number, it should be safe to say this attack time window is measured in minutes instead of hours or days, as an attack on a traditional network would be. 
+We assume the attacker posses complete knowledge of the CAN bus and ECUs, including all protocols, message IDs, and formats.
+We assume the attacker has substantial computing power, reliable access to the CAN bus, and is able to 
+monitor and inject messages on the bus.
 
-% Motivation, access, resources, trust assumptions, capabilities
+We assume the ECUs are trustworthy and that the adversary cannot break standard cryptographic functions 
+including encryption and hash functions.
+
+This work does not address Denial-of-Service (DOS) attacks aimed at preventing a driver from using her vehicle.  
+For example, our techniques do not prevent an attacker from flooding the CAN bus with messages.  There are many
+simple physical DOS attacks, such as slashing a tire, cutting wiring, or draining fuel.
+
+Although we assume the adversary has complete knowledge of the target technology, in practice the adversary must
+deal with the straightforward yet cumbersome task of learning this technology, which may include new ECUs and message formats.
 
 
-\textcolor{red}{Note: You left a note "DOS" on this paragraph--could you explain?}
-Attackers may be motivated for various reasons, but the most obvious are for theft of vehicle or to cause damage to the car or people in or around it. If an attacker can gain remote control of a car, he or she may be able to gain entry when the car is locked. Similarly, this remote control can give the attacker the ability to crash the car on purpose. Mischief is also a valid motivation for work like this---an attacker could simply wish to prevent a driver from using the vehicle, in which case a physical attack such as slashing a tire, cutting wiring, or draining fuel would be enough to accomplish their goal.
-
-In addition to possessing all knowledge of ECU message IDs and formats, we assume that the attackers have reliable bus access and unlimited computing power. The attackers also have the ability to monitor and record bus traffic and we assume they can monitor those physical states of the vehicle that are instrumented, such as tire pressure or steering wheel angle. However, the adversary cannot prevent a node from transmitting a message on the CAN bus.
-
-%Each ECU on the CAN bus is thought of as trusted, meaning that every message is treated as a legitimate message. This work considers no node trusted, and must verify the authenticity of every message. We do not consider that a legitimate message could be sent from a malcious node (such as a Type 1 attacker).
-
-In a typical CAN bus, each ECU is implicitly trusted, in that there are no explicit protocols or rules governing authentication or verification. In contrast, our system assumes every message may potentially be from an illegitimate source and must authenticate the sender before acting. 
-
-We assume attackers are capable of monitoring all bus traffic at any time and are also capable of injecting a message onto the bus at any time and with any frequency.
