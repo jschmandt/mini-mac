@@ -8,6 +8,14 @@
 We analyze Mini-MAC for performance and security. Mini-MAC must be able to add security without compromising the performance of the real-time, safety-critical systems found in vehicles.
 
 \subsection{Performance}
+\label{performance}
+
+[from results:]
+Table~\ref{tab-traffic} shows that even for a group key protocol, 
+traditional HMAC adds at least two extra CAN messages for every data message sent. 
+Lin-MAC MD5 sends an additional two messages per every user. 
+Mini-MAC sends no additional messages. 
+
 Figure 3 shows the execution time comparison for the three HMAC constructions as well as Mini-MAC based on those HMACs. There is very little (approximately 0.68 ms) delay for Mini-MAC relative to HMAC.
 
 Figure 4 shows a comparison of the code size for the three HMACs components as well as Mini-MAC constructions based on those HMACs. The average overhead is roughly 800 B.
@@ -25,10 +33,12 @@ The overall results are split. The memory and RAM usage numbers are very low, bu
 
 
 \subsection{Security}
+\label{security}
 
 	\begin{table*}	
 	\centering
 	\caption{Time-to-Defeat for Various Configurations}
+	\label{tab-repeat}
 	\vspace{8pt}
 	\begin{tabular}{|l|c|r|r|r|}\hline%
 	\bfseries Hash & \bfseries $\text{Counter}_{\text{R}}$ (b) & \bfseries $\text{Counter}_{\text{M}}$ (b) & \bfseries Msg. Before Repeat & \bfseries Min. Before Repeat\\\hline \csvreader[late after line=\\]%
