@@ -15,25 +15,19 @@ to evaluate the performance suitability of Mini-MAC for authenticating messages 
 \label{methods}
 
 For each implementation we measured code size, memory usage, execution time, and bus utilization,
-collecting for each implementation metrics from 1000 inputs of various typical sizes.  
+collecting for each implementation metrics from 1000 inputs of various typical sizes (1~byte, 2~bytes, 4~bytes).  
 
-%["various sizes" is rather vague]
-
-We measured code size and RAM usage at complile time using 
+We measured code size and RAM usage at compile time using 
 the Texas Instruments Code Composer v6.
-
-%% is there a difference between compiled metrics and flashed metrics? If not, I don't understand your comment:
-%% provides values for both after code is compiled and flashed to the MSP430 hardware.
-%% Are you correct to assume execution RAM pace is same as compiled RAM space?
+The RAM usage is know at compile time because there is no
+dynamic memory allocation.
 
 We measured execution time using a counter register on the MSP430, 
 whose 32kHz clock provides timing values to approximate millisecond accuracy. 
-There may be a +/-0.03~ms inaccuracy in each reading due to the
+As a very minor point we note that, due to a limitation in the hardware's
+support for timing measurements, 
+there may be a +/-0.03~ms inaccuracy in each reading due to the
 time it takes to read the counter.
-
-%% ?! if the clock is accurate to 1 ms, why are you talking about secondary 0.03 ms errors?
-%% How can you know the error is only 0.03 ms if the timing accurance is 1 ms?
-%% Maybe delete the last sentence.
 
 We collected statistics on message traffic from a 2010 Toyota Prius with a CAN-bus sniffer program 
 based on an Arudiuno Uno platform and connected via an OBD-II CAN transceiver shield.

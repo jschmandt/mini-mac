@@ -2,7 +2,7 @@
 \label{discuss}
 
 In this section we discuss how to resynchronize ECUs, 
-how to lengthen the mini-MAC tag, 
+how to lengthen the mini-MAC tag as an optional improvement, 
 and we list some open problems.
 
 %a radical design alternative, 
@@ -13,7 +13,6 @@ and we list some open problems.
 Our mini-MAC proposal requires the ECUs to have synchronized counters and message-history states.
 Therefore, a mechanism is needed to resynchronize the ECUs in case they ever lose synchronization,
 as might happen, for example, by a fault in the ECU or a disruption in message transmission.
-[how do ECUs know that they are out of synch?]
 
 Two common solutions are to reset the state to a specified initial state, or for one ECU to select
 a new state and communicate that state to the other ECUs (encrypted by a shared secondary communication
@@ -23,21 +22,30 @@ Instead, for enhanced security we propose that each ECU periodically save its st
 In the initial attempt to resynchronize, each ECU loads its most recent state.  If that fails, then the aforementioned
 mechanisms could be applied.
 
+A limitation of the CAN bus is that it provides no mechanism for detecting when ECUs are out
+of synchronization.  In some cases, by monitoring observable conditions on the bus, 
+an ECU might detect that another ECU is not responding to a message, which might be
+the result of a synchronization failure.  A limitation of mini-MAC is that, by using
+counters and message history, it increases the opportunities for possible synchronization failures.
+
 %% this section is rather weak--nothing new.  No anlysis of proposal.
 %% It is good to mention need for resynch.  We should not claim any contribution here.
 
 \subsection{Lengthening the Mini-MAC Tag}
 \label{addingbits}
 
-It is possible to lengthen the Mini-MAC tag by 
+Optionally, it is possible to lengthen the Mini-MAC tag by 
 using the two bytes of space allocated for the CRC field in the CAM frame (see Figure~\ref{fig-frame}),
 as suggested by Woo et al.~\cite{Woo-14} in a related proposal.
 Because a MAC detects transmission errors (in fact, better than a simpler CRC), there is no need for
 a CRC in addition to a MAC.  
 
 Increasing the tag length greatly increases the time required for an adversary to forge a valid tag by
-finding a collision in the Mini-MAC by exhaustive search.  Table~\ref{tab-taglength} gives the
-time to find a Mini-MAC collision for various tag lengths. [under what assuptions?? algorithm, machine, etc?]
+finding a collision in the Mini-MAC by exhaustive search.  
+Table~\ref{tab-taglength} gives the expected time for an adversary to send a forged message 
+that will be accepted by another ECU, for various tag lengths.  Here, the main limiting assumption is 
+the frequency with which messages can be sent on the CAN bus [what is this frequency?  It is derived from
+the 500 kbs stated earlier.  in table, change b to bits]
 For example, increasing the tag from 32 to 48 bits increases this time from
 approximately 27.3~minutes to over four days.
 
@@ -52,10 +60,13 @@ or to open the CRC field to the application level to calculate the MAC.
 
 %% compare with Woo (see previous work).
 %% we are not first to suggest.  How do we differ?
+%% it is a bit lame to emphasize that we are optional and woo is not.
 
 	\begin{table}	
 	\centering
-	\caption{Time to find collision for various tag lengths [explain]}\label{tab-taglength}
+	\caption{Expected time for some spoofed message to be accepted by an ECU for various tag lengths, 
+	assuming the adversary injects $X$ forged messages per minute.}
+	\label{tab-taglength}
 	\vspace{8pt}
 	\begin{tabular}{c|r}%
 	\bfseries Tag Length (b) & \bfseries Time to Find Collision\\\hline \csvreader[late after line=\\]%
@@ -79,7 +90,7 @@ Our engineering decisions are driven by a desire to improve vehicular security b
 to the CAN bus, without increasing bus traffic or delaying messages, and without making any
 disruptive changes.  The egregious state of vehicular security, however, demands a radical disruptive
 redesign of vehicular computer networks carried out including security as a foundational design
-requirement. [refs?]
+requirement. [should we cite any discussion like this from someone else?  are we the first to say so?]
 
 Design ideas for a replacement network to the CAN bus include the following:  
 (1)~Use a well-established high-speed network (such as 802.3 Ethernet) on which
