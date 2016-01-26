@@ -6,26 +6,18 @@ depends on a counter and on recent message history.  It does not increase
 bus traffic or delay messages.  We explain Mini-MAC in three layers
 of abstraction: architecture, design, and  implementation.
 
-[I think we should redesign mini-MAC without counter truncation,
-and putting XOR of counter and history before HMAC.]
-
 \subsection{Architecture}
 \label{arch}
 
 Four core architectural elements characterize Mini-MAC:
 (1)~Variable-size output to fit available space in the CAN packet.
 (2)~Shared keys among groups of ECUs to avoid increasing bus traffic.
-(3)~A counter to mitigate replay attacks;  also used [for no good reason]
-to truncate HMAC outputs.
-(4)~Message history to serve as "salt" against possible unknown precomputation attacks. 
-[I dislike justifying history on basis of replay because it adds nothing over counter
-in that regard.]
+(3)~A counter to mitigate replay attacks.
+(4)~Message history to defeat transient attackers, 
+to mitigate replay attacks after counter resynchronization, 
+and to serve as "salt" against possible unknown precomputation attacks.
 Elements (1) and (2) trade authentication strength for performance;  see
 Section~\ref{security} for a discussion of this tradeoff.
-
-[even if we keep the "split counter" (which I dislike), there is no need to 
-refer to it as such. Simpler is to call it a counter and to derive various
-bits from it.]
 
 To avoid sending long tags using additional messages, Mini-MAC truncates the
 HMAC to fit available space in the CAN frame (typically the resulting tag is
@@ -36,19 +28,34 @@ Mini-MAC uses long-term shared group keys instead of pairwise keys.  For example
 2, 3, and 4 share the group key~$k_3$.
 Group key distribution is possible because, at system design, the designer knows which ECUs communicate with which others. 
 There is no need for a dynamic group key update capability because group membership will never change.
-[Keys can be updated by a security manager as needed or desired.(?)]
+Details about how these keys are initially set, and possibly later updated, 
+are beyond the scope of this paper.
+
+%[Keys can be updated by a security manager as needed or desired.(?)]
 
 Using a counter is a simple, standard, and effective way to mitigate replay attacks.  
 
 Each ECU saves recent messages sent on the bus and XORs them into the HMAC input. 
-[is this done uniformly by all, or per key group?] 
-There are two reasons for this architectual element:  First, 
-the history adds an unpredictable ``salt'' that might mitigate some possible
-precomputation attacks.  Second, it adds protection against any transient
+More specifically, each ECU saves a separate message history for the 
+successfully authenticated messages received for each group key.  Thus, the
+adversary cannot insert messages into any message history without 
+successfully forging messages.
+
+There are three reasons for the message history architectual element:  
+First, it adds protection against any transient
 attacker (even one who knows the group keys) who cannot deduce enough of the 
-message history.  It also adds an additional layer of protection 
-beyond the counter against replay attacks [this reason is weak and perhaps should therefore be dropped].
-	
+message history.  
+Second, it adds an additional layer of protection against replay attacks.
+This layer is useful if the counters need to be resychronized (see Section~\ref{resynch}).
+Consider what happens if a group of ECUs reset their counters and message history to
+a previously stored synchronized state.  Without message history, the network
+is potentially vulnerable to a replay attack of messages sent from a time 
+the reset counter state was previously used.  With message history, it is extremely
+likely that the unfolding message history will rapidly differ.
+Third, the history adds an unpredictable ``salt'' that might mitigate some possible
+precomputation attacks.  Whereas counter values are predicable, message history
+is not.
+
 	\begin{figure}
 		\centering
 		\includegraphics[width=\columnwidth]{figures/key_distribution.png}
@@ -103,8 +110,8 @@ extracts $s$ bits from its input.  The input to HMAC is computed as
 \label{implementation}
 
 We implemented Mini-MAC using three different component hash functions (MD5, SHA-1, and SHA-2) to compare the resulting running times.  
-Each group key is 128~bits.  The $\hbox{trunc}(s,\cdot)$ function extracts the first $s$ bits of its input. [or explain the obfuscated way]
-We used a X-bit counter, which ensures no repeated counter value wihtin twenty years.
+Each group key is 128~bits.  The $\hbox{trunc}(s,\cdot)$ function extracts the first $s$ bits of its input.
+We used an [X]-bit counter, which (assuming at most 40 message per second) ensures no repeated counter state for 20 years.
 
 For \textbf{HMAC-MD5},
 we adapted Peslyak's~\cite{Peslyak} implementation of MD5~\cite{MD5} for the MSP430 platform, producing a 128-bit output. 
@@ -120,5 +127,5 @@ we consider SHA1 as a potential candidate.
 For \textbf{HMAC-SHA-2},
 we also adapted Conte's~\cite{Conte-SHA256} SHA-2-256 implementation for the MSP430 platform, producing a 256-bit output. 
 A member of the SHA-2 family of hash functions, SHA-2 is still in use and is recommended by NIST as a cryptographic hash function, 
-though SHA-3 will soon replace it\cite{FIPS-180-4}. [check current status of NIST on SHA-2]
-[why did we not test SHA-3?]
+though SHA-3 will soon replace it\cite{FIPS-180-4}. We did not use SHA-3 because we did not find an implementation of it
+for the MSP430.

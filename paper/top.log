@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.2.6)  25 JAN 2016 22:39
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.2.6)  26 JAN 2016 16:44
 entering extended mode
 **C:/Users/Alan/Documents/GitHub/mini-mac/paper/top.tex
 (C:/Users/Alan/Documents/GitHub/mini-mac/paper/top.tex
@@ -676,50 +676,55 @@ Underfull \hbox (badness 1931) in paragraph at lines 39--42
 File: figures/key_distribution.png Graphic file (type png)
 
 <use figures/key_distribution.png>
-Package pdftex.def Info: figures/key_distribution.png used on input line 54.
+Package pdftex.def Info: figures/key_distribution.png used on input line 61.
 (pdftex.def)             Requested size: 229.5pt x 86.43459pt.
 
 <figures/minimac_diagram.png, id=31, 362.85562pt x 409.02812pt>
 File: figures/minimac_diagram.png Graphic file (type png)
 
 <use figures/minimac_diagram.png>
-Package pdftex.def Info: figures/minimac_diagram.png used on input line 64.
+Package pdftex.def Info: figures/minimac_diagram.png used on input line 71.
 (pdftex.def)             Requested size: 229.5pt x 258.70639pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 70--78
+Underfull \hbox (badness 10000) in paragraph at lines 77--85
 \OT1/cmr/m/n/10 Figure 3[] shows how to com-pute
  []
 
 
-Underfull \hbox (badness 1629) in paragraph at lines 70--78
+Underfull \hbox (badness 1629) in paragraph at lines 77--85
 $\OML/cmm/m/it/10 Mini[]MAC\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 k; M[]; s; C; []\O
 T1/cmr/m/n/10 )$, where $\OML/cmm/m/it/10 k$ \OT1/cmr/m/n/10 is the
  []
 
 [5]
-Underfull \hbox (badness 5726) in paragraph at lines 85--87
+Underfull \hbox (badness 5726) in paragraph at lines 92--94
 \OT1/cmr/m/n/10 where HMAC is the un-der-ly-ing HMAC and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 114--118
+Underfull \hbox (badness 10000) in paragraph at lines 122--126
 []\OT1/cmr/m/n/10 For \OT1/cmr/bx/n/10 HMAC-SHA-1\OT1/cmr/m/n/10 , we adapted
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 114--118
+Underfull \hbox (badness 10000) in paragraph at lines 122--126
 \OT1/cmr/m/n/10 Conte's [Con06a] SHA-1 [Nat15] im-ple-men-ta-
  []
 
 )
-Underfull \hbox (badness 10000) in paragraph at lines 119--76
+Underfull \hbox (badness 10000) in paragraph at lines 127--76
 []\OT1/cmr/m/n/10 For \OT1/cmr/bx/n/10 HMAC-SHA-2\OT1/cmr/m/n/10 , we also adap
 ted
  []
 
 
-Underfull \hbox (badness 1796) in paragraph at lines 119--76
-\OT1/cmr/m/n/10 Conte's [Con06b] SHA-2-256 im-ple-men-ta-tion for
+Underfull \hbox (badness 10000) in paragraph at lines 127--76
+\OT1/cmr/m/n/10 Conte's [Con06b] SHA-2-256 im-ple-men-ta-tion
+ []
+
+
+Underfull \hbox (badness 1859) in paragraph at lines 127--76
+\OT1/cmr/m/n/10 for the MSP430 plat-form, pro-duc-ing a 256-bit
  []
 
 (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/testing.tex [6 <C:/User
@@ -747,10 +752,10 @@ Package pdftex.def Info: figures/ram_usage.png used on input line 103.
 (pdftex.def)             Requested size: 229.5pt x 172.12163pt.
 )
 (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/analysis.tex [7 <C:/Use
-rs/Alan/Documents/GitHub/mini-mac/paper/figures/exec_cycles.png (PNG copy)> <C:
-/Users/Alan/Documents/GitHub/mini-mac/paper/figures/code_size.png (PNG copy)>]
-[8 <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/ram_usage.png (PNG co
-py)>]
+rs/Alan/Documents/GitHub/mini-mac/paper/figures/exec_cycles.png (PNG copy)>]
+[8 <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/code_size.png (PNG co
+py)> <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/ram_usage.png (PNG 
+copy)>]
 LaTeX Font Info:    Try loading font information for OT1+ptm on input line 70.
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
@@ -764,11 +769,11 @@ Package pdftex.def Info: figures/pdf.png used on input line 73.
 (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/discussion.tex
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [9 <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/pdf.png (PNG copy)>]
- [10])
-(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/conclusion.tex)
-(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/acknowledgments.tex)
-(C:\Users\Alan\Documents\GitHub\mini-mac\paper\top.bbl
+ [9]
+[10 <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/pdf.png (PNG copy)>]
+) (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/conclusion.tex)
+(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/acknowledgments.tex
+[11]) (C:\Users\Alan\Documents\GitHub\mini-mac\paper\top.bbl
 Underfull \hbox (badness 3735) in paragraph at lines 5--10
 []\OT1/ptm/m/n/10 Mihir Bel-lare, Ran Canetti, and Hugo
  []
@@ -809,7 +814,7 @@ Underfull \hbox (badness 2302) in paragraph at lines 12--17
 \OT1/ptm/m/n/10 dayoshi Kohno, et al.  Com-pre-hen-sive
  []
 
-[11]
+
 Underfull \hbox (badness 10000) in paragraph at lines 33--38
 []\OT1/ptm/m/n/10 Chung-Wei Lin and A. Sangiovanni-
  []
@@ -832,7 +837,9 @@ Underfull \hbox (badness 1424) in paragraph at lines 81--86
 \OT1/ptm/m/n/10 based au-to-mo-tive cyber-physical sys-tems.
  []
 
-) [12] (C:\Users\Alan\Documents\GitHub\mini-mac\paper\top.aux)
+) [12] [13
+
+] (C:\Users\Alan\Documents\GitHub\mini-mac\paper\top.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -840,7 +847,7 @@ LaTeX Warning: There were undefined references.
 Here is how much of TeX's memory you used:
  15352 strings out of 493921
  306294 string characters out of 3144880
- 312433 words of memory out of 3000000
+ 313433 words of memory out of 3000000
  18448 multiletter control sequences out of 15000+200000
  17661 words of font info for 59 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
@@ -864,9 +871,9 @@ ublic/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publ
 ic/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/ti
 mes/utmr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a
 .pfb>
-Output written on top.pdf (12 pages, 901276 bytes).
+Output written on top.pdf (13 pages, 901888 bytes).
 PDF statistics:
- 124 PDF objects out of 1000 (max. 8388607)
+ 128 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  36 words of extra memory for PDF output out of 10000 (max. 10000000)
 

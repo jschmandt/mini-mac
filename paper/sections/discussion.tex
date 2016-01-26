@@ -20,13 +20,15 @@ encryption key).  [do you have a ref?]
 
 Instead, for enhanced security we propose that each ECU periodically save its state in persistent memory.  
 In the initial attempt to resynchronize, each ECU loads its most recent state.  If that fails, then the aforementioned
-mechanisms could be applied.
+mechanisms could be applied.  Section~\ref{arch} explains how message history helps guard against
+replay attacks upon resynchronization.
 
 A limitation of the CAN bus is that it provides no mechanism for detecting when ECUs are out
 of synchronization.  In some cases, by monitoring observable conditions on the bus, 
 an ECU might detect that another ECU is not responding to a message, which might be
-the result of a synchronization failure.  A limitation of mini-MAC is that, by using
-counters and message history, it increases the opportunities for possible synchronization failures.
+the result of a synchronization failure.  A tradeoff in our design is that, by using
+counters and message history to athenticate messages, 
+mini-MAC increases the opportunities for possible synchronization failures.
 
 %% this section is rather weak--nothing new.  No anlysis of proposal.
 %% It is good to mention need for resynch.  We should not claim any contribution here.
