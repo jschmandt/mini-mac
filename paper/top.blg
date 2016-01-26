@@ -11,6 +11,8 @@ Warning--string name "pub-nist:adr" is undefined
 --line 72 of file mybib.bib
 Warning--entry type for "MD5" isn't style-file defined
 --line 101 of file mybib.bib
+Warning--entry type for "Peslyak" isn't style-file defined
+--line 127 of file mybib.bib
 Warning--entry type for "Conte-SHA1" isn't style-file defined
 --line 135 of file mybib.bib
 Warning--entry type for "Conte-SHA256" isn't style-file defined

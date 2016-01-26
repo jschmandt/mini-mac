@@ -47,6 +47,11 @@ Chung-Wei Lin and A.~Sangiovanni-Vincentelli.
 \newblock {\em {FIPS PUB 180-4}: Secure Hash Standard}.
 \newblock August 2015.
 
+\bibitem[Pes09]{Peslyak}
+Alexander Peslyak.
+\newblock A portable, fast, and free implementation of the {MD5} message-digest
+  algorithm ({RFC} 1321), 2009.
+
 \bibitem[Riv92]{MD5}
 Ronald Rivest.
 \newblock {IETF} {RFC} 1321: The {MD5} message-digest algorithm, April 1992.
