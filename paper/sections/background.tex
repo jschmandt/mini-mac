@@ -18,7 +18,7 @@ it is typically 8 to 64~bits [ref?].
 The payload of up to 8~bytes is the most important element, as any MAC must fit into this frame or use a more complex multi-frame data transmission protocol that may or may not be supported on all ECUs. 
 
 Ideally, and in the case of Mini-MAC, the MAC can fit into the payload with the data, thus not increasing bus utilization. Data captured by the authors from a 2010 Toyota Prius show that a large percent (61\%) of messages use no more than four bytes of data in the payload.
-We observed approximately 25 messages sent per second on average (40 maximum).
+We observed approximately 25 messages sent per second on average (40 maximum per second).
 
 % On the diagram, there are 55 bits including 8 data bits. In practice, the 8 bit field is 64 bits, 
 % so the total packet is 111 bits. So there are more than 64 total bits sent, but not more than 64 data bits.
@@ -64,11 +64,11 @@ Breaking it is as hard as breaking the component hash function.
 HMAC is computed as
 
 \begin{equation}
-H((K_0\oplus \text{opad})\concat H((K_0\oplus \text{ipad})\concat \text{message}) ,
+H((k\oplus \text{opad})\concat H((k\oplus \text{ipad})\concat \text{message}) ,
 \end{equation}
 
 \noindent
-where $K_0$ is the key, and opad and ipad are the outer and inner hash padding strings, respectively. 
+where $k$ is the key, and opad and ipad are the outer and inner hash padding strings, respectively. 
 These strings are constant strings defined by 0x5C and 0x36, repeated until the hash input is of the appropriate length. 
 $H$ is the component hash function used. 
 The symbols $\oplus$ and $\concat$ represent XOR and concatenation, respectively.\footnote{Exclusive-or (XOR).}

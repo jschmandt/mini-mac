@@ -73,8 +73,8 @@ where $k$ is the group key,
 $M_n$ is the current message, 
 $s$ is the number of available bits in the current CAN frame, 
 $C$ is the message counter, 
-and $\hbox{History} = (M_{n-i}, \ldots, M_{n-1})$ is the sequence of the most recent
-$i$ messages.
+and $\hbox{History} = (M_{n-{\lambda}}, \ldots, M_{n-1})$ is the sequence of the most recent
+$\lambda$ messages.
 
 The Mini-MAC tag is computed as
 
@@ -86,7 +86,7 @@ The Mini-MAC tag is computed as
 extracts $s$ bits from its input.  The input to HMAC is computed as
 
 \begin{equation}
-\text{Input} = M_n \oplus C \oplus (M_{n-i} \oplus \cdots \oplus M_{n-1}) .
+\text{Input} = M_n \oplus C \oplus (M_{n-{\lambda}} \oplus \cdots \oplus M_{n-1}) .
 \end{equation}
 
 
@@ -104,6 +104,7 @@ extracts $s$ bits from its input.  The input to HMAC is computed as
 
 We implemented Mini-MAC using three different component hash functions (MD5, SHA-1, and SHA-2) to compare the resulting running times.  
 Each group key is 128~bits.  The $\hbox{trunc}(s,\cdot)$ function extracts the first $s$ bits of its input. [or explain the obfuscated way]
+We used a X-bit counter, which ensures no repeated counter value wihtin twenty years.
 
 For \textbf{HMAC-MD5},
 we adapted Peslyak's~\cite{Peslyak} implementation of MD5~\cite{MD5} for the MSP430 platform, producing a 128-bit output. 
