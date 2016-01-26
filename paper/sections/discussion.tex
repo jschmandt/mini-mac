@@ -44,8 +44,8 @@ Increasing the tag length greatly increases the time required for an adversary t
 finding a collision in the Mini-MAC by exhaustive search.  
 Table~\ref{tab-taglength} gives the expected time for an adversary to send a forged message 
 that will be accepted by another ECU, for various tag lengths.  Here, the main limiting assumption is 
-the frequency with which messages can be sent on the CAN bus [what is this frequency?  It is derived from
-the 500 kbs stated earlier.  in table, change b to bits]
+the frequency with which messages can be sent on the CAN bus 
+(approximately 25 messages per second. [in table, change b to bits]
 For example, increasing the tag from 32 to 48 bits increases this time from
 approximately 27.3~minutes to over four days.
 
@@ -65,7 +65,7 @@ or to open the CRC field to the application level to calculate the MAC.
 	\begin{table}	
 	\centering
 	\caption{Expected time for some spoofed message to be accepted by an ECU for various tag lengths, 
-	assuming the adversary injects $X$ forged messages per minute.}
+	assuming the adversary injects 25 forged messages per second.}
 	\label{tab-taglength}
 	\vspace{8pt}
 	\begin{tabular}{c|r}%
