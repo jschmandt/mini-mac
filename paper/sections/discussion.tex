@@ -40,7 +40,8 @@ Optionally, it is possible to lengthen the Mini-MAC tag by
 using the two bytes of space allocated for the CRC field in the CAM frame (see Figure~\ref{fig-frame}),
 as suggested by Woo et al.~\cite{Woo-14} in a related proposal.
 Because a MAC detects transmission errors (in fact, better than a simpler CRC), there is no need for
-a CRC in addition to a MAC.  
+a CRC in addition to a MAC.  [explain fig. note that it is based on birthday calcs, which is not
+exactly right]
 
 Increasing the tag length greatly increases the time required for an adversary to forge a valid tag by
 finding a collision in the Mini-MAC by exhaustive search.  
@@ -67,7 +68,7 @@ or to open the CRC field to the application level to calculate the MAC.
 	\begin{table}	
 	\centering
 	\caption{Expected time for some spoofed message to be accepted by an ECU for various tag lengths, 
-	assuming the adversary injects 40 forged messages per second.}
+	assuming the adversary injects 40 forged messages per second.[add col for linear search]}
 	\label{tab-taglength}
 	\vspace{8pt}
 	\begin{tabular}{c|r}%

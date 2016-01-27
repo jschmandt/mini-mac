@@ -32,6 +32,7 @@ requirement of authenticating at least 40 messages per second (approximately
 this spec]
 While highly optimized code might run faster, on the
 basis of our timing measurements, we recommend implementing Mini-MAC using MD5.
+[Fig 6 shows some messages having less than 40 ms between messages, so why is 40 ms sufficient?]
 
 Figure~\ref{fig-code} shows the code size of our Mini-MAC implementations.
 As shown in Table~\ref{tab-overhead}, the additional code size for Mini-MAC beyond
@@ -45,43 +46,69 @@ beyond HMAC is very low (about 5~bytes).
 %%% notes to me (ats)
 %% be sure to comment on each of the issues from Section 6 (group keys, truncation, etc)
 
+%Expected time to find a collision for tags of various lengths, 
+%based on trying 40 hash computations per second. [this table based on birthday calc]
+	
 \subsection{Security}
 \label{security}
 
-	\begin{table*}	
-	\centering
-	\caption{Time-to-Defeat for Various Configurations}
-	\label{tab-repeat}
-	\vspace{8pt}
-	\begin{tabular}{|l|c|r|r|r|}\hline%
-	\bfseries Hash & \bfseries $\text{Counter}_{\text{R}}$ (b) & \bfseries $\text{Counter}_{\text{M}}$ (b) & \bfseries Msg. Before Repeat & \bfseries Min. Before Repeat\\\hline \csvreader[late after line=\\]%
-		{tables/timetobeat.csv}{hash=\hash,rcounter=\rcounter,mcounter=\mcounter,msgbr=\msgbr,minbr=\minbr}% 
-		{\hash & \rcounter & \mcounter & \msgbr & \minbr}%
-		\hline
-	\end{tabular}
-	\end{table*}
-	
-Mini-MAC counters replay and masquerade attacks by forcing an attacker to wait a relatively long period of time before a MAC is repeated. Table 5 shows a comparision of the time-to-defeat (how long before the MACs are re-used) of the various hash bases and counter sizes. $R$ is the rollover counter size in bits, $M$ is the message counter size in bits, ``Msg BR" is the number of messages before repeat and ``Min BR" is the time in minutes before repeat at a data rate of 40 messages/second. This table (and Table 5) show the time-to-defeat for various configurations of Mini-MAC. This is the number of messages required before a MAC repeats multiplied by the maximum message rate per second.
+Mini-MAC detects spoofed messages by using a keyed HMAC.  It detects replay attacks
+by incorporating a counter and recent message history into the HMAC input.  Using message
+history also complicates a transcient attacker who may be unable to observe a sufficient
+number of recent messages.  The 128-bit keys are sufficiently long to withstand 
+exhaustive key-search attacks.  The 64-bit counter is sufficient to prevent counter
+rollover within the lifetime of the car.
 
-%The table shows that most of these values (typically for message counter greater than or equal to 16 bits long) are sufficient for the automotive environment. 
+A security-enhancing feature of the CAN bus is, ironically, its slow speed of at most
+approximately 40 messages per second.  Figure~\ref{fig-msgdelay} shows a histogram of
+message interarrival times that we collected from a 2010 Toyota Prius.
+The slow speed of the CAN bus limits the rate at which an attacker can
+inject messages into the bus.
 
-The time to guess a 32-bit MAC correctly is much shorter than the time to repeat for most cases---only 27.3 minutes, on average, for an exhaustive search (brute force) guessing attack. This means that the most efficient use of resources is the smallest counter combination that withstands the time of a brute force attack. Therefore the 16-bit message counter is the best choice from the above because it will ensure a replay attack takes at least longer than the average time to execute a brute force attack on the MAC but will not consume more resources than is necessary.
+Another defensive feature is that there is no simple fast way for an adversary to
+test if a candidate tag is valid.   The only way we are aware of is to inject a message into the bus
+and observe if the receiving ECU accepted the message.
 
-The message data captured suggests an average message rate of approximately 25 messages/second. Some messages occur, however, at up to 40 messages/second, although this is unlikely. In the event that an attacker floods the system with a higher rate to cycle through the counters more quickly, ECUs on the bus could easily identify an illegitimate user. Figure 5 shows the probability density function of the time between messages. This relates the number of messages to defeat to a time-to-defeat figure by approximating how many messages per second an attacker can send.
+Limitations imposed by Mini-MAC include its use of group keys and truncated HMAC tags.  
+Using group keys means that a single compromised ECU learns all of the keys
+to which groups it belongs.  We consider this limitation an acceptable design tradeoff
+given that Mini-MAC does not increase bus utilization and the compromise of any critical
+ECU is a devastating security failure.
 
-%Mini-MAC also uses bus traffic history as well as a message counter and rollover counter to fend off replay attacks. The past five messages are stored by each ECU that has the authentication key for the message ID and these are used to transform the raw HMAC of the message. This transformation is then XORed with the message counter and processed through the HMAC algorithm. The rollover counter selects a starting bit in the resulting bit string and extracts the variable length MAC from this starting position. The message counter and rollover counters are both variable-length counters used to transform and select portions of the HMAC to be used as the transmitted MAC. The message counter ticks on every new message, and the rollover counter ticks on rollover of the message counter.
+One potential attack is for the adversary to inject messages into the bus with the hopes
+of trying a tag that verifies correctly.  We shall call this attack the ``trial injection attack.''
+A downside of this attack is that it would be easy to detect such an attack involving
+many messages.
 
-%While the length of the MAC is very short, it is more difficult to defeat with a replay attack than the length alone would suggest due to the use of the counter and message history. The counters ensure that the selected bits are not re-used, but the message history adds a non-deterministic amount of confusion to the message before the HMAC is even generated. To execute a replay attack, an attacker would have to wait for both counters to roll over  while at the same time the recent message history would have to perfectly align with a previously recorded value.
+Table~\ref{tab-taglength} lists for various tag lengths~$L$
+two reference times that are useful in assessing the effectiveness of this attack.
+Column~X gives the expected time to find a particular tag of length~$L$ by
+randomly guessing tags.
+Column~Y gives the expected time to find a collision in Mini-MAC with tag length~$L$,
+exploiting the Birthday Paradox.  
+The times are computed assuming that the enemy is limited to trying 40 tags per second.
 
-A key to Mini-MAC is that it uses the slow message rate of the CAN bus as an advantage. Malicious attackers must wait a long time (Table 4) to gain enough information to repeat a MAC. The use of message history in Mini-MAC ensures that even if an attacker has a long time to watch the bus, they will not be able to simply replay a message. It is worth noting as well that Table 4 shows the times for a stream of repeated messages, a case which is unlikely to repeat for the duration required to gain enough bits to repeat a MAC. Attackers cannot simply flood the network with messages designed to acquire responses more quickly because ECUs should be able to easily identify this behavior based on message delay statistics.
+In Table~\ref{tab-taglength}, Column~X is the expected time for a straight-forward 
+implementation of a trial injection attack to succeed.  We do not see how an adversary
+could mount a more clever version of this, or any other, attack to achieve
+the optimistic times given in Column~Y.  We include Column~Y simply as a
+conservative reference.
+
+Another potential attack is to observe bus traffic with the hopes of finding statistical
+regularities that would significantly improve the chances of success of the aforementioned attack.
+We conjecture that this attempt is unlikely to yield significant advantage, given the
+strong properties of HMAC and some
+desirable (albeit imperfect) characteristics of the component hash functions.
+
+Given that the CAN bus does not authenticate messages, we conclude that Mini-MAC
+meaningfully raises the bar of vehicular security.
 
 	\fontfamily{ptm}\selectfont
 	\begin{figure}
 		\centering
 		\includegraphics[width=\columnwidth]{figures/pdf.png}
-		\caption{{\fontfamily{ptm}\selectfont Probability Density Function of Message Delay -- 
-		ECUs can easily be able to identify nodes spamming messages}}
+		\caption{{\fontfamily{ptm}\selectfont Histogram 
+		of observed message interarrival times from a 2010 Toyota Prius. [not sure where this fig should go.]}}
 		\label{fig-msgdelay}
 	\end{figure}
 	
-There are some attacks that will defeat Mini-MAC. Perhaps the easiest way to defeat any CAN security mechanism is by flooding the bus. The attacker does not need to try and break any security, but by preventing ECUs from talking to each other, the attack succeeds as the car will not be able to function properly. Similarly, if an ECU is flashed with corrupted firmware, it does not need the correct group keys to launch an attack. It needs only to wait long enough to see the counters roll over. Most people keep the same automobile for many years, so even if this attack requires several years to gather enough information, it will still eventually succeed. Mini-MAC is useful against a resourceful attacker, but not a patient one.
