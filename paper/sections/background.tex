@@ -12,16 +12,26 @@ The Electronic Control Units (ECUs) found in an automotive computer network are 
 \subsection{The CAN Bus}
 The CAN bus is a simple, low-speed bus designed to network simple nodes. In an automotive environment, 
 it typically runs at 500~kbps.\footnote{kilobits per second (kbs).} As shown in Figure~\ref{fig-frame}, 
-a message contains an 11-bit identifier field and 
+a frame contains an 11-bit identifier field and 
 a data payload, as well as some control bits. Figure~\ref{fig-frame} shows the data payload as 8~bits, but
-it is typically 8 to 64~bits [ref?].
+it can be 8 to 64~bits and is typically 64~bits. [ref?]
 The payload of up to 8~bytes is the most important element, as any MAC must fit into this frame or use a more complex multi-frame data transmission protocol that may or may not be supported on all ECUs. 
+
+We use the term ``message'' to refer to the data payload (of up to 64~bits) in one frame.
+Any payload longer than 64~bits must be sent as a multi-frame transmission.
+[do we want multi-frame message, or multi-frame/multi-message transmission?]
+
+% we need agreement on terminology.  Do we instead want to use "multi-frame message" ?
+% is there an industry convention?
 
 Ideally, and in the case of Mini-MAC, the MAC can fit into the payload with the data, thus not increasing bus utilization. Data captured by the authors from a 2010 Toyota Prius show that a large percent (61\%) of messages use no more than four bytes of data in the payload.
 We observed approximately 25 messages sent per second on average (40 maximum per second).
 
 % On the diagram, there are 55 bits including 8 data bits. In practice, the 8 bit field is 64 bits, 
 % so the total packet is 111 bits. So there are more than 64 total bits sent, but not more than 64 data bits.
+
+%The "frame" is the entire transmission put onto the CAN bus -- this includes 47b of wrapper (ID, CRC and some control bits) and up to 64b of data (observed %packets are all 64b). Some of the control bits are used to indicate the size of the data field -- in the diagram used, the data field is only 8 bits, but %the size of this is variable (up to 64 bits) and indicated in the header of the frame.
+%A "message," as I have used it, is the contents of the data field being send from one ECU to another. I think of it as what an application layer would %generate on one ECU and what the application layer in another ECU would receive.
 
 	\begin{figure*}
 		\centering

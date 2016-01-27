@@ -111,7 +111,11 @@ extracts $s$ bits from its input.  The input to HMAC is computed as
 
 We implemented Mini-MAC using three different component hash functions (MD5, SHA-1, and SHA-2) to compare the resulting running times.  
 Each group key is 128~bits.  The $\hbox{trunc}(s,\cdot)$ function extracts the first $s$ bits of its input.
-We used an [X]-bit counter, which (assuming at most 40 message per second) ensures no repeated counter state for 20 years.
+
+We recommend a 64-bit counter, which (assuming at most 40 message per second) ensures no repeated counter state for 20 years
+of continuous operation (32 bits would prevent counter roll-over for 20 years with four hours of driving a day).
+
+%Assuming continuous operation (that is every second for 20 years) at 40 messages / second, roughly 25 billion messages will be exchanged. A 35-bit counter %will cover roughly 35 billion messages, but to cover that extreme use pattern, a 64-bit counter would be the smallest "standard" size counter. However, a %32-bit counter would cover 4 hours of driving a day, every day, for 20 years. 
 
 For \textbf{HMAC-MD5},
 we adapted Peslyak's~\cite{Peslyak} implementation of MD5~\cite{MD5} for the MSP430 platform, producing a 128-bit output. 
@@ -128,4 +132,4 @@ For \textbf{HMAC-SHA-2},
 we also adapted Conte's~\cite{Conte-SHA256} SHA-2-256 implementation for the MSP430 platform, producing a 256-bit output. 
 A member of the SHA-2 family of hash functions, SHA-2 is still in use and is recommended by NIST as a cryptographic hash function, 
 though SHA-3 will soon replace it\cite{FIPS-180-4}. We did not use SHA-3 because we did not find an implementation of it
-for the MSP430.
+for the MSP430.  Throughout, we shall refer to SHA-2-256 as SHA-2.
