@@ -118,6 +118,11 @@ Each group key is 128~bits.  The $\hbox{trunc}(s,\cdot)$ function extracts the f
 We recommend a 64-bit counter, which (assuming at most 40 message per second) ensures no repeated counter state for 20 years
 of continuous operation (32 bits would prevent counter roll-over for 20 years with four hours of driving a day).
 
+We recommend setting the number of messages $\lambda$ in the message history such that
+the time to collect the history exceeds the time available to a transient attacker.
+For example, $\lambda = \hbox{?}$, requires the attacker to observe messages
+for over 30~minutes.
+
 %Assuming continuous operation (that is every second for 20 years) at 40 messages / second, roughly 25 billion messages will be exchanged. A 35-bit counter %will cover roughly 35 billion messages, but to cover that extreme use pattern, a 64-bit counter would be the smallest "standard" size counter. However, a %32-bit counter would cover 4 hours of driving a day, every day, for 20 years. 
 
 For \textbf{HMAC-MD5},
