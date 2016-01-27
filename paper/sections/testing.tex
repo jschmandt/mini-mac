@@ -49,9 +49,12 @@ based on an Arudiuno Uno platform and connected via an OBD-II CAN transceiver sh
 	\label{tab-traffic}
 	\vspace{8pt}
 	\begin{tabular}{l|c}%
-	\bfseries Algorithm & \bfseries Add. Traffic (b) \\\hline \csvreader[late after line=\\]%
-		{tables/bus_addition.csv}{function=\function,at=\at}%
-		{\function & \at}%
+	\bfseries Algorithm & \bfseries Add. Traffic (b) \\\hline 
+	HMAC-MD5 (Group) & 128 \\
+	HMAC-MD5 (Pairwise) & 128*n \\
+	Lin-MAC & 128*n \\
+	Mini-MAC & 0 \\
+	\hline
 	\end{tabular}
 	\end{table}
 
@@ -61,9 +64,11 @@ based on an Arudiuno Uno platform and connected via an OBD-II CAN transceiver sh
 	\label{tab-overhead}
 	\vspace{8pt}
 	\begin{tabular}{l|c|c|c}%
-	\bfseries Hash & \bfseries Code Size (B) & \bfseries RAM Use (B) & \bfseries Execution Time (ms)\\\hline \csvreader[late after line=\\]%
-		{tables/overhead.csv}{hash=\hash,code_size=\code_size,ram_size=\ram_size,exec_time=\exec_time}% 
-		{\hash & \code_size & \ram_size & \exec_time}%
+	\bfseries Hash & \bfseries Code Size (B) & \bfseries RAM Use (B) & \bfseries Execution Time (ms)\\\hline 
+	MD5 & 835 & 5 & 0.38 \\
+	SHA-1 & 850 & 5 & 0.42 \\
+	SHA-2 256 & 766 & 5 & 0.68 \\
+	\hline
 	\end{tabular}
 	\end{table*}
 	
