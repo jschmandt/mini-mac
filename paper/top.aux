@@ -2,19 +2,19 @@
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}}
 \newlabel{intro}{{1}{1}}
 \citation{Lin-MAC}
-\citation{Sti}
+\citation{Stinson}
 \citation{FIPS-180-4}
-\citation{}
-\citation{}
+\citation{?}
+\citation{?}
 \citation{Checkoway-2011}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Background}{2}}
 \newlabel{background}{{2}{2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1}ECUs}{2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2}The CAN Bus}{2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Bus Access}{2}}
 \citation{HMAC,FIPS-198-1}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The CAN frame\nobreakspace  {}\cite  {} [need to cite fig]. Each message on the CAN bus is a structured sequence of 55--111\nobreakspace  {}bits including 8--64 data\nobreakspace  {}bits.}}{3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The CAN frame\nobreakspace  {}\cite  {?} [need to cite fig]. Each transmission on the CAN bus is a structured sequence of 55--111\nobreakspace  {}bits including 8--64 data\nobreakspace  {}bits.}}{3}}
 \newlabel{fig-frame}{{1}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Bus Access}{3}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Message Authentication Codes}{3}}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Problem Statement}{3}}
 \newlabel{problem}{{3}{3}}
@@ -30,57 +30,59 @@
 \newlabel{mini-mac}{{6}{5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Architecture}{5}}
 \newlabel{arch}{{6.1}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Design}{5}}
+\newlabel{design}{{6.2}{5}}
 \citation{Peslyak}
 \citation{MD5}
 \citation{Wang-MD5}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Mini-MAC key distribution. Each group of ECUs shares an authentication key.}}{6}}
-\newlabel{fig-key}{{2}{6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Design}{6}}
-\newlabel{design}{{6.2}{6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Implementation}{6}}
-\newlabel{implementation}{{6.3}{6}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Mini-MAC. The Mini-MAC of a message $M_n$ is a truncated HMAC of the XOR of $M_n$, a counter, and the most recent $i$ messages.}}{6}}
-\newlabel{fig-minimac}{{3}{6}}
 \citation{Conte-SHA1}
 \citation{FIPS-180-4}
 \citation{Wang-SHA1}
 \citation{Conte-SHA256}
 \citation{FIPS-180-4}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Mini-MAC key distribution. Each group of ECUs shares an authentication key.}}{6}}
+\newlabel{fig-key}{{2}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Mini-MAC. The Mini-MAC tag of a message $M_n$ is a truncated keyed HMAC of the XOR of $M_n$, a counter\nobreakspace  {}$C$, and the most recent $\lambda $ messages.}}{6}}
+\newlabel{fig-minimac}{{3}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Implementation}{6}}
+\newlabel{implementation}{{6.3}{6}}
 \@writefile{toc}{\contentsline {section}{\numberline {7}Testing}{7}}
 \newlabel{testing}{{7}{7}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Purpose}{7}}
 \newlabel{purpose}{{7.1}{7}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Methods}{7}}
 \newlabel{methods}{{7.2}{7}}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Additional bus traffic for various authentication mechanisms, for one key group with $n$ recipients [somewhat unuseful assumption].}}{7}}
-\newlabel{tab-traffic}{{1}{7}}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Mean execution time of Mini-MAC implementations.}}{7}}
-\newlabel{tab-time}{{3}{7}}
 \@writefile{toc}{\contentsline {section}{\numberline {8}Results and Analysis}{7}}
 \newlabel{analysis}{{8}{7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Performance}{7}}
-\newlabel{performance}{{8.1}{7}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Mean additional time to compute Mini-MAC implementations over HMAC.}}{8}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Additional bus traffic for various authentication mechanisms, for one key group with $n$ recipients. Mini-MAC adds no additional bus traffic}}{7}}
+\newlabel{tab-traffic}{{1}{7}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Mean execution time of Mini-MAC implementations. Only the MD5 implementation meets our engineering requirement of at most 25\nobreakspace  {}ms per message.[ add STDs]}}{7}}
+\newlabel{tab-time}{{3}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Mean execution time for our Mini-MAC implementations, in cycles on a 32\nobreakspace  {}kHz clock.}}{7}}
+\newlabel{fig-execution}{{4}{7}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Mean additional time and RAM to compute Mini-MAC implementations over HMAC.}}{8}}
 \newlabel{tab-overhead}{{2}{8}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Mean execution time of Mini-MAC implementations, in cycles on a 32\nobreakspace  {}kHz clock.}}{8}}
-\newlabel{fig-execution}{{4}{8}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Code size of Mini-MAC implementations.}}{8}}
-\newlabel{fig-code}{{5}{8}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces RAM usage for Mini-MAC implementations.}}{8}}
-\newlabel{fig-ram}{{6}{8}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}Security}{9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces RAM usage for our Mini-MAC implementations.}}{8}}
+\newlabel{fig-ram}{{5}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Code size of our Mini-MAC implementations.}}{8}}
+\newlabel{fig-code}{{6}{8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Performance}{8}}
+\newlabel{performance}{{8.1}{8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}Authentication Strength}{9}}
 \newlabel{security}{{8.2}{9}}
-\@writefile{toc}{\contentsline {section}{\numberline {9}Discussion}{9}}
-\newlabel{discuss}{{9}{9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces {\fontfamily  {ptm}\selectfont  Histogram of message interarrival times observed by the authors from a 2010 Toyota Prius. }}}{9}}
+\newlabel{fig-msgdelay}{{7}{9}}
 \citation{Woo-14}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces {\fontfamily  {ptm}\selectfont  Histogram of observed message interarrival times from a 2010 Toyota Prius. [not sure where this fig should go.]}}}{10}}
-\newlabel{fig-msgdelay}{{7}{10}}
+\@writefile{toc}{\contentsline {section}{\numberline {9}Discussion}{10}}
+\newlabel{discuss}{{9}{10}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {9.1}Resynchronization}{10}}
 \newlabel{resynch}{{9.1}{10}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Expected time for some spoofed message to be accepted by an ECU for various tag lengths, assuming the adversary injects 40 forged messages per second.[add col for linear search]}}{10}}
-\newlabel{tab-taglength}{{4}{10}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {9.2}Lengthening the Mini-MAC Tag}{10}}
 \newlabel{addingbits}{{9.2}{10}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Expected time for some spoofed message to be accepted by an ECU for various tag lengths, assuming the adversary injects 40 forged messages per second.[add col for linear search]}}{10}}
+\newlabel{tab-taglength}{{4}{10}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.3}Open Problems}{10}}
+\newlabel{open}{{9.3}{10}}
 \citation{C2X}
 \bibdata{mybib}
 \bibcite{HMAC}{BCK96}
@@ -89,15 +91,14 @@
 \bibcite{Conte-SHA256}{Con06b}
 \bibcite{C2X}{FBZ{$^{+}$}08}
 \bibcite{Lin-MAC}{LSV12}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.3}Open Problems}{11}}
-\newlabel{open}{{9.3}{11}}
-\@writefile{toc}{\contentsline {section}{\numberline {10}Conclusion}{11}}
-\newlabel{conclude}{{10}{11}}
-\@writefile{toc}{\contentsline {section}{\numberline {11}Acknowledgments}{11}}
 \bibcite{FIPS-198-1}{{Nat}08}
 \bibcite{FIPS-180-4}{{Nat}15}
 \bibcite{Peslyak}{Pes09}
 \bibcite{MD5}{Riv92}
+\bibcite{Stinson}{{Sti}06}
+\@writefile{toc}{\contentsline {section}{\numberline {10}Conclusion}{11}}
+\newlabel{conclude}{{10}{11}}
+\@writefile{toc}{\contentsline {section}{\numberline {11}Acknowledgments}{11}}
 \bibcite{Woo-14}{WJL15}
 \bibcite{Wang-MD5}{WY05}
 \bibcite{Wang-SHA1}{WYY05}

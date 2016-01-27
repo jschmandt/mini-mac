@@ -17,8 +17,7 @@ Warning--entry type for "Conte-SHA1" isn't style-file defined
 --line 135 of file mybib.bib
 Warning--entry type for "Conte-SHA256" isn't style-file defined
 --line 143 of file mybib.bib
-Warning--I didn't find a database entry for "Sti"
-Warning--I didn't find a database entry for ""
+Warning--I didn't find a database entry for "?"
 Name 5 in "Festag, Anreas and Baldessari, Roberto and Zhang, Wenhui and Le, Long and Sarma, Amardeo, and Fukukawa Masatoshi" has a comma at the end for entry C2X
 while executing---line 1185 of file alpha.bst
 Name 5 in "Festag, Anreas and Baldessari, Roberto and Zhang, Wenhui and Le, Long and Sarma, Amardeo, and Fukukawa Masatoshi" has a comma at the end for entry C2X

@@ -56,6 +56,11 @@ Alexander Peslyak.
 Ronald Rivest.
 \newblock {IETF} {RFC} 1321: The {MD5} message-digest algorithm, April 1992.
 
+\bibitem[{Sti}06]{Stinson}
+{Stinson, Douglas R.}
+\newblock {\em {Cryptography: Theory and Practice}}.
+\newblock Chapman \& Hall/CRC, Boca Raton, FL, third edition, 2006.
+
 \bibitem[WJL15]{Woo-14}
 S.~Woo, Hyo~Jin Jo, and Dong~Hoon Lee.
 \newblock A practical wireless attack on the connected car and security

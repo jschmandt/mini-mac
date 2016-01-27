@@ -3,41 +3,46 @@
 
 This section briefly reviews essential background on vehicular security and message authentication codes. 
 The experienced reader may wish to skip to Section~\ref{problem}. 
-We assume the reader is familiar with cryptographic hash functions as explained, for example, by Stinson~\cite{Sti} and NIST~\cite{FIPS-180-4}.
-\textcolor{red}{Note: You mentioned Stinson on the last draft notes -- this is the book Cryptography - Theory and Practice?---YES}.
+We assume the reader is familiar with cryptographic hash functions as explained, for example, 
+by Stinson~\cite{Stinson} and NIST~\cite{FIPS-180-4}.
 
 \subsection{ECUs}
-The Electronic Control Units (ECUs) found in an automotive computer network are low-power, single-purpose devices. ECUs on the CAN bus control many components in a modern automobile, from headlights and window controls, to brakes and engine. They are not typically designed with security in mind and frequently comprise a basic CAN bus transceiver, basic message processor, and an actuator. The message processor identifies whether or not a message being broadcast is interesting to the ECU and arbitrates bus rights with the other ECUs. 
+Electronic Control Units (ECUs) found in an automotive computer network are low-power, single-purpose devices. ECUs on the CAN bus control many components in a modern automobile, from headlights and window controls, to brakes and engine. They are not typically designed with security in mind and frequently comprise a basic CAN bus transceiver, basic message processor, and an actuator. The message processor identifies whether or not a message being broadcast is interesting to the ECU and arbitrates bus rights with the other ECUs. 
 
 \subsection{The CAN Bus}
 The CAN bus is a simple, low-speed bus designed to network simple nodes. In an automotive environment, 
-it typically runs at 500~kbps.\footnote{kilobits per second (kbs).} As shown in Figure~\ref{fig-frame}, 
+it typically runs at 500~kbps.\footnote{kilobits per second (kbps).} As shown in Figure~\ref{fig-frame}, 
 a frame contains an 11-bit identifier field and 
 a data payload, as well as some control bits. Figure~\ref{fig-frame} shows the data payload as 8~bits, but
 it can be 8 to 64~bits and is typically 64~bits. [ref?]
 The payload of up to 8~bytes is the most important element, as any MAC must fit into this frame or use a more complex multi-frame data transmission protocol that may or may not be supported on all ECUs. 
 
-We use the term ``message'' to refer to the data payload (of up to 64~bits) in one frame.
+We use the term ``message'' to refer to the data payload of one logical transmission.
 Any payload longer than 64~bits must be sent as a multi-frame transmission.
-[do we want multi-frame message, or multi-frame/multi-message transmission?]
 
 % we need agreement on terminology.  Do we instead want to use "multi-frame message" ?
 % is there an industry convention?
 
-Ideally, and in the case of Mini-MAC, the MAC can fit into the payload with the data, thus not increasing bus utilization. Data captured by the authors from a 2010 Toyota Prius show that a large percent (61\%) of messages use no more than four bytes of data in the payload.
+Ideally, and in the case of Mini-MAC, the MAC tag
+can fit into the payload together with the data, thus not increasing bus utilization. 
+In test data captured by the authors from a 2010 Toyota Prius, 
+approximately 61\% of messages contain at most four data bytes
+(20\% contain 4~bytes; 16\% contain 3~bytes; 17\% contain 2~bytes; and 8\% contain 1~byte).
+Approximately 35\% of messages contain a full 8~data bytes, and 4\% contain 7~bytes.
+Thus, for most messages, there are at least four bytes of space available for a MAC tag.
+
 We observed approximately 25 messages sent per second on average (40 maximum per second).
 
-% On the diagram, there are 55 bits including 8 data bits. In practice, the 8 bit field is 64 bits, 
-% so the total packet is 111 bits. So there are more than 64 total bits sent, but not more than 64 data bits.
-
-%The "frame" is the entire transmission put onto the CAN bus -- this includes 47b of wrapper (ID, CRC and some control bits) and up to 64b of data (observed %packets are all 64b). Some of the control bits are used to indicate the size of the data field -- in the diagram used, the data field is only 8 bits, but %the size of this is variable (up to 64 bits) and indicated in the header of the frame.
-%A "message," as I have used it, is the contents of the data field being send from one ECU to another. I think of it as what an application layer would %generate on one ECU and what the application layer in another ECU would receive.
+% 25 ms between msgs
+% can you describe the distribution of available space more thoroughly?
+% 35% percent of messages were the full 8 bytes. 4% were 7 bytes, 
+% and the remaining 61% that are 4B or less are 20% 4 bytes, 16% 3 bytes, 17% 2 bytes and 8% 1 byte.
 
 	\begin{figure*}
 		\centering
 		\includegraphics[width=\linewidth]{figures/can_frame.png}
-		\caption{The CAN frame~\cite{} [need to cite fig].  
-		Each message on the CAN bus is a structured sequence of 55--111~bits including 8--64 data~bits.}
+		\caption{The CAN frame~\cite{?} [need to cite fig].  
+		Each transmission on the CAN bus is a structured sequence of 55--111~bits including 8--64 data~bits.}
 		\label{fig-frame}
 	\end{figure*}
 
@@ -58,8 +63,10 @@ of wireless access from drive-by attacker]
 
 Despite many demonstrated security flaws, automotive 
 manufacturers have been unreasomnably hesitant to acknowledge the vulnerabilities inherent to the CAN bus,
-sometimes wishfully claiming that undetected bus access is difficult. [do you have a cite? for example,
-a quote from a car manufacturer saying something ridiculous?]
+sometimes wishfully claiming that undetected bus access is difficult. 
+
+%[do you have a cite? for example,
+%a quote from a car manufacturer saying something ridiculous?]
 
 \subsection{Message Authentication Codes}
 
@@ -74,14 +81,14 @@ Breaking it is as hard as breaking the component hash function.
 HMAC is computed as
 
 \begin{equation}
-H((k\oplus \text{opad})\concat H((k\oplus \text{ipad})\concat \text{message}) ,
+H((k\oplus \text{opad})\concat H((k\oplus \text{ipad})\concat \text{message})) ,
 \end{equation}
 
 \noindent
 where $k$ is the key, and opad and ipad are the outer and inner hash padding strings, respectively. 
 These strings are constant strings defined by 0x5C and 0x36, repeated until the hash input is of the appropriate length. 
 $H$ is the component hash function used. 
-The symbols $\oplus$ and $\concat$ represent XOR and concatenation, respectively.\footnote{Exclusive-or (XOR).}
+The symbols $\oplus$ and $\concat$ represent exclusive-or (XOR) and concatenation, respectively.
 
 %\subsection{Car-to-X}
 

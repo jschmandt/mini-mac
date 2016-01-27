@@ -11,14 +11,6 @@ which includes slow, low-power ECUs incapable of complex cryptographic functions
 %nd it must not violate message delay constraints. 
 %nor unduely delaying important messages.
 % can you quantify, or better hint at, message delay constraints?
+% see background
 
-In test data captured by the authors from a 2010 Toyota Prius, 
-approximately 61\% of messages contain at most four data bytes
-(20\% contain 4~bytes; 16\% contain 3~bytes; 17% contain 2~bytes; and 8% contain 1~byte).
-Approximately 35\% of messages contain a full 8~data bytes, and 4\% contain 7~bytes.
-Thus, for most messages, there are at least four bytes of space
-available for a MAC tag.
 
-% can you describe the distribution of available space more thoroughly?
-% 35% percent of messages were the full 8 bytes. 4% were 7 bytes, 
-% and the remaining 61% that are 4B or less are 20% 4 bytes, 16% 3 bytes, 17% 2 bytes and 8% 1 byte.

@@ -15,13 +15,13 @@ Four core architectural elements characterize Mini-MAC:
 (3)~A counter to mitigate replay attacks.
 (4)~Message history to defeat transient attackers, 
 to mitigate replay attacks after counter resynchronization, 
-and to serve as "salt" against possible unknown precomputation attacks.
+and to serve as ``salt'' against possible unknown precomputation attacks.
 Elements (1) and (2) trade authentication strength for performance;  see
 Section~\ref{security} for a discussion of this tradeoff.
 
 To avoid sending long tags using additional messages, Mini-MAC truncates the
-HMAC to fit available space in the CAN frame (typically the resulting tag is
-approximately four bytes).  
+HMAC tag to fit available space in the CAN frame 
+(typically the resulting truncated tag is approximately four bytes).  
 
 To avoid increasing bus traffic by separately authenticating the same message to different recipients, 
 Mini-MAC uses long-term shared group keys instead of pairwise keys.  For example, in Figure~\ref{fig-key}, ECUs
@@ -38,8 +38,8 @@ Using a counter is a simple, standard, and effective way to mitigate replay atta
 Each ECU saves recent messages sent on the bus and XORs them into the HMAC input. 
 More specifically, each ECU saves a separate message history for the 
 successfully authenticated messages received for each group key.  Thus, the
-adversary cannot insert messages into any message history without 
-successfully forging messages.
+adversary cannot insert a message into any message history without 
+successfully forging message.
 
 There are three reasons for the message history architectual element:  
 First, it adds protection against any transient
@@ -69,25 +69,28 @@ is not.
 	\begin{figure}
 		\centering
 		\includegraphics[width=\columnwidth]{figures/minimac_diagram.png}
-		\caption{Mini-MAC. The Mini-MAC of a message $M_n$ is a truncated HMAC of 
-		the XOR of $M_n$, a counter, and the most recent $i$ messages.}
+		\caption{Mini-MAC. The Mini-MAC tag of a message $M_n$ is a truncated keyed HMAC of 
+		the XOR of $M_n$, a counter~$C$, and the most recent $\lambda$ messages.}
 		\label{fig-minimac}
 	\end{figure}
 
 Figure~\ref{fig-minimac} shows how to compute 
-$Mini\hbox{-}MAC(k,M_n,s,C,\hbox{History})$, 
+$\hbox{Mini-MAC}(k,M_n,s,C,\hbox{History})$, 
 where $k$ is the group key, 
 $M_n$ is the current message, 
 $s$ is the number of available bits in the current CAN frame, 
 $C$ is the message counter, 
-and $\hbox{History} = (M_{n-{\lambda}}, \ldots, M_{n-1})$ is the sequence of the most recent
-$\lambda$ messages.
+and $\hbox{History} = (M_{n-{\lambda}}, \ldots, M_{n-1})$ 
+is the sequence of the most recent
+valid $\lambda$ messages for key~$k$.
 
 The Mini-MAC tag is computed as
 
 \begin{equation}
-\text{MAC}_{\text{mini}} = \hbox{trunc(}s,\text{HMAC}(k,\text{Input})),
+\hbox{trunc(}s,\text{HMAC}(k,\text{Input})),
 \end{equation}
+
+%\text{MAC}_{\text{mini}} = 
 
 \noindent where HMAC is the underlying HMAC and $\hbox{trunc}(s,\cdot)$
 extracts $s$ bits from its input.  The input to HMAC is computed as
@@ -120,8 +123,7 @@ of continuous operation (32 bits would prevent counter roll-over for 20 years wi
 For \textbf{HMAC-MD5},
 we adapted Peslyak's~\cite{Peslyak} implementation of MD5~\cite{MD5} for the MSP430 platform, producing a 128-bit output. 
 Despite known collision attacks on MD5~\cite{Wang-MD5}, we consider
-MD5 for Mini-MAC for its very fast speed.  [the relevant attack here is known pre-image, not
-collision finding.  more in security section]
+MD5 for Mini-MAC for its very fast speed.  
 
 For \textbf{HMAC-SHA-1},
 we adapted Conte's~\cite{Conte-SHA1} SHA-1~\cite{FIPS-180-4} implementation for the MSP430 platform, producing a 160-bit output. 

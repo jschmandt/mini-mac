@@ -10,13 +10,13 @@ and we list some open problems.
 \subsection{Resynchronization}
 \label{resynch}
 
-Our mini-MAC proposal requires the ECUs to have synchronized counters and message-history states.
+Our mini-MAC proposal requires the ECUs to have synchronized counters and synchronized message-history states.
 Therefore, a mechanism is needed to resynchronize the ECUs in case they ever lose synchronization,
 as might happen, for example, by a fault in the ECU or a disruption in message transmission.
 
 Two common solutions are to reset the state to a specified initial state, or for one ECU to select
 a new state and communicate that state to the other ECUs (encrypted by a shared secondary communication
-encryption key).  [do you have a ref?]
+encryption key).  
 
 Instead, for enhanced security we propose that each ECU periodically save its state in persistent memory.  
 In the initial attempt to resynchronize, each ECU loads its most recent state.  If that fails, then the aforementioned
@@ -40,15 +40,14 @@ Optionally, it is possible to lengthen the Mini-MAC tag by
 using the two bytes of space allocated for the CRC field in the CAM frame (see Figure~\ref{fig-frame}),
 as suggested by Woo et al.~\cite{Woo-14} in a related proposal.
 Because a MAC detects transmission errors (in fact, better than a simpler CRC), there is no need for
-a CRC in addition to a MAC.  [explain fig. note that it is based on birthday calcs, which is not
-exactly right]
+a CRC in addition to a MAC.  
 
 Increasing the tag length greatly increases the time required for an adversary to forge a valid tag by
 finding a collision in the Mini-MAC by exhaustive search.  
 Table~\ref{tab-taglength} gives the expected time for an adversary to send a forged message 
 that will be accepted by another ECU, for various tag lengths.  Here, the main limiting assumption is 
 the frequency with which messages can be sent on the CAN bus 
-(approximately 25 messages per second. [in table, change b to bits]
+(approximately 40 messages per second. [in table, change b to bits]
 For example, increasing the tag from 32 to 48 bits increases this time from
 approximately 27.3~minutes to over four days.
 
@@ -98,9 +97,9 @@ requirement. [should we cite any discussion like this from someone else?  are we
 Design ideas for a replacement network to the CAN bus include the following:  
 (1)~Use a well-established high-speed network (such as 802.3 Ethernet) on which
 standard security mechanisms (such as IPsec) can be deployed.
-(2)~Segegrate nodes on the bus into task-defined groups.
+(2)~Segregate nodes on the bus into task-defined groups.
 (3)~Protect access to the bus by physically separating critcal and non-critical systems.
-In particular, it should not be possible for maleware or faults in entertainment or 
+In particular, it should not be physically possible for malware or faults in entertainment or 
 Bluetooth systems to affect braking, steering, or acceleration.  
 
 A separate related problem is to detect vehicular network intrusions. [ref?]  A challenge of such work is that

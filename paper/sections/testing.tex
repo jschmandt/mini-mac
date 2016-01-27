@@ -8,7 +8,7 @@ In speed and power this device is representative of vehicular ECUs.
 \subsection{Purpose}
 \label{purpose}
 
-The purpose of our tests is to measure the time and space usage of our Mini-MAC, and more generally,
+The purpose of our tests is to measure the time and space usage of our Mini-MAC implementations, and more generally,
 to evaluate the performance suitability of Mini-MAC for authenticating messages on the CAN bus.
 
 \subsection{Methods}
@@ -23,10 +23,10 @@ The RAM usage is know at compile time because there is no
 dynamic memory allocation.
 
 We measured execution time using a counter register on the MSP430, 
-whose 32~kHz clock provides timing values to approximate millisecond accuracy. 
+whose 32~kHz clock provides timing values to approximate millisecond~(ms) accuracy. 
 As a very minor point we note that, due to a limitation in the hardware's
 support for timing measurements, 
-there may be a +/-0.03~ms inaccuracy in each reading due to the
+there may be a +/$-$0.03~ms inaccuracy in each reading due to the
 time it takes to read the counter.
 
 We collected statistics on message traffic from a 2010 Toyota Prius with a CAN-bus sniffer program 
@@ -40,14 +40,12 @@ based on an Arudiuno Uno platform and connected via an OBD-II CAN transceiver sh
 %summarize our results.
 %Throughout, ``B''~denotes bytes, ``b''~denotes bits, and ``ms''~denotes milliseconds.
 
-[need to enhance fig captions]
-
 % there was an analysis par here that I moved to analysis section
 	
 	\begin{table}
 	\centering
 	\caption{Additional bus traffic for various authentication mechanisms, 
-	for one key group with $n$ recipients [somewhat unuseful assumption].}
+	for one key group with $n$ recipients.  Mini-MAC adds no additional bus traffic}
 	\label{tab-traffic}
 	\vspace{8pt}
 	\begin{tabular}{l|c}%
@@ -59,7 +57,7 @@ based on an Arudiuno Uno platform and connected via an OBD-II CAN transceiver sh
 
 	\begin{table*}	
 	\centering	
-	\caption{Mean additional time to compute Mini-MAC implementations over HMAC.}
+	\caption{Mean additional time and RAM to compute Mini-MAC implementations over HMAC.}
 	\label{tab-overhead}
 	\vspace{8pt}
 	\begin{tabular}{l|c|c|c}%
@@ -71,7 +69,8 @@ based on an Arudiuno Uno platform and connected via an OBD-II CAN transceiver sh
 	
 	\begin{table}
 	\centering
-	\caption{Mean execution time of Mini-MAC implementations.}
+	\caption{Mean execution time of Mini-MAC implementations.
+	Only the MD5 implementation meets our engineering requirement of at most 25~ms per message.[ add STDs]}
 	\label{tab-time}
 	\vspace{8pt}
 	\begin{tabular}{ @{}l | S[table-format=2.1]  @{}}
@@ -88,21 +87,23 @@ based on an Arudiuno Uno platform and connected via an OBD-II CAN transceiver sh
 	\begin{figure}
 		\centering
 		\includegraphics[width=\columnwidth]{figures/exec_cycles.png}
-		\caption{Mean execution time of Mini-MAC implementations, in cycles on a 32~kHz clock.}
+		\caption{Mean execution time for our Mini-MAC implementations, in cycles on a 32~kHz clock.}
 		\label{fig-execution}
 	\end{figure}
 	
 	\begin{figure}
 		\centering
-		\includegraphics[width=\columnwidth]{figures/code_size.png}
-		\caption{Code size of Mini-MAC implementations.}
-		\label{fig-code}
+		\includegraphics[width=\columnwidth]{figures/ram_usage.png}
+		\caption{RAM usage for our Mini-MAC implementations.}
+		\label{fig-ram}
 	\end{figure}
 	
 	\begin{figure}
 		\centering
-		\includegraphics[width=\columnwidth]{figures/ram_usage.png}
-		\caption{RAM usage for Mini-MAC implementations.}
-		\label{fig-ram}
+		\includegraphics[width=\columnwidth]{figures/code_size.png}
+		\caption{Code size of our Mini-MAC implementations.}
+		\label{fig-code}
 	\end{figure}
+	
+	
 	

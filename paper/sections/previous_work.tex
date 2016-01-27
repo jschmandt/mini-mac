@@ -8,7 +8,7 @@ delaying messages.
 
 For example, Lin and Sangiovanni~\cite{Lin-MAC} propose Lin-MAC, a keyed MAC with counter based on
 pairwise key distribution.  Encrypting the same message to $n$ different ECUs requires $n$
-messages to be sent.   Using the full HMAC-MD5 requires 128~bits to be sent, requring two CAN frames per message.
+messages to be sent.   Using the full HMAC-MD5 requires 128~bits to be sent per message, requring two CAN frames per message.
 
 Other recent CAN security projects suffer from similar limitations. 
 Woo et al.~\cite{Woo-14} propose a keyed MAC based on pairwise key distribution,
@@ -26,8 +26,8 @@ Their tag overflows the CAN frame, increasing bus utilization, and as the author
 delaying messages.
 
 Xie et al.~\cite{Xie-15} propose packing multiple messages into one CAN frame using a keyed MAC with 
-based on pairwise key distribution.   They unrealistically assume that the messages and MAC tag are short
-enough to fit into one frame.  By queing messages into batches, their system delays messages.
+pairwise key distribution.   They unrealistically assume that the messages and MAC tag are short
+enough to fit into one frame.  Also, by queing messages into batches, their system delays messages.
 
 [do we want to cite any other works on improving car security? If so, do it here.]
 

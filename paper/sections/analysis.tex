@@ -8,10 +8,11 @@ without compromising the performance of the real-time, safety-critical systems.
 \subsection{Performance}
 \label{performance}
 
-Tables~\ref{tab-traffic}--\ref{tab-time} and Figures~\ref{fig-execution}--\ref{fig-ram}
+Tables~\ref{tab-traffic}--\ref{tab-time} and Figures~\ref{fig-execution}--\ref{fig-code}
 show the message traffic, execution time, code size, and RAM usage of our unoptimized implementations
 of Mini-MAC and their underlying HMACs.  Time and space are dominated by the HMAC computation.
-Throughout, ``B''~denotes bytes, ``b''~denotes bits, and ``ms''~denotes milliseconds.
+
+%Throughout, ``B''~denotes bytes, ``b''~denotes bits, and ``ms''~denotes milliseconds.
 
 Table~\ref{tab-traffic} shows that Mini-MAC adds no additional bus traffic.
 By contrast, HMAC-MD5 adds 128~bits (two CAN frames) per authentication,
@@ -19,7 +20,7 @@ due to the 128-bit tag.  Similarly, the pairwise-keyed Lin-MAC generates
 two additional CAN frames per recipient ECU in each group communication.
 
 Table~\ref{tab-time} shows the mean execution time
-[what about standard deviation?] for each of our implementations of Mini-MAC.
+[add standard deviations] for each of our implementations of Mini-MAC.
 Using MD5 is much faster than using SHA-1 or SHA-2.  As shown in Table~\ref{tab-overhead},
 the overhead in time to compute Mini-MAC beyond HMAC is very little (approximately 0.38--0.68~ms).
 Similarly, Figure~\ref{fig-execution} shows the mean execution times for Mini-MAC measured
@@ -27,20 +28,19 @@ in number of cycles on a 32~kHz clock.
 
 Importantly, Table~\ref{tab-time} shows that only our MD5 implementtion of Mini-MAC runs fast enough to satisfy our
 requirement of authenticating at least 40 messages per second (approximately
-40~ms between messages).   
-[check consistency of this calculation][also, explain why 28~ms for SHA-1 doesn't meet
-this spec]
+25~ms between messages).   
 While highly optimized code might run faster, on the
 basis of our timing measurements, we recommend implementing Mini-MAC using MD5.
-[Fig 6 shows some messages having less than 40 ms between messages, so why is 40 ms sufficient?]
+
+Figure~\ref{fig-ram} shows the RAM usage for our implementations of Mini-MAC.
+As shown in Table~\ref{tab-overhead}, the overehead in RAM usage to compute Mini-MAC
+beyond HMAC is very low (about 5~bytes).
 
 Figure~\ref{fig-code} shows the code size of our Mini-MAC implementations.
 As shown in Table~\ref{tab-overhead}, the additional code size for Mini-MAC beyond
 HMAC is very small (approximately 800~bytes).
 
-Figure~\ref{fig-ram} shows the RAM usage for our implementations of Mini-MAC.
-As shown in Table~\ref{tab-overhead}, the overehead in RAM usage to compute Mini-MAC
-beyond HMAC is very low (about 5~bytes).
+
 
 
 %%% notes to me (ats)
@@ -49,7 +49,7 @@ beyond HMAC is very low (about 5~bytes).
 %Expected time to find a collision for tags of various lengths, 
 %based on trying 40 hash computations per second. [this table based on birthday calc]
 	
-\subsection{Security}
+\subsection{Authentication Strength}
 \label{security}
 
 Mini-MAC detects spoofed messages by using a keyed HMAC.  It detects replay attacks
@@ -84,7 +84,9 @@ Table~\ref{tab-taglength} lists for various tag lengths~$L$
 two reference times that are useful in assessing the effectiveness of this attack.
 Column~X gives the expected time to find a particular tag of length~$L$ by
 randomly guessing tags.
-Column~Y gives the expected time to find a collision in Mini-MAC with tag length~$L$,
+Column~Y gives the expected time to find a collision\footnote{A collision is any pair of 
+different inputs that produces the same output.}
+in Mini-MAC with tag length~$L$,
 exploiting the Birthday Paradox.  
 The times are computed assuming that the enemy is limited to trying 40 tags per second.
 
@@ -93,6 +95,10 @@ implementation of a trial injection attack to succeed.  We do not see how an adv
 could mount a more clever version of this, or any other, attack to achieve
 the optimistic times given in Column~Y.  We include Column~Y simply as a
 conservative reference.
+
+For example, with a four-byte tag, the expected time for a straight-forward 
+message injection attack to succeed is approximately 27.3~mins.  For this reason
+we suggest that the message history window be set for at least 30~mins.
 
 Another potential attack is to observe bus traffic with the hopes of finding statistical
 regularities that would significantly improve the chances of success of the aforementioned attack.
@@ -108,7 +114,7 @@ meaningfully raises the bar of vehicular security.
 		\centering
 		\includegraphics[width=\columnwidth]{figures/pdf.png}
 		\caption{{\fontfamily{ptm}\selectfont Histogram 
-		of observed message interarrival times from a 2010 Toyota Prius. [not sure where this fig should go.]}}
+		of message interarrival times observed by the authors from a 2010 Toyota Prius. }}
 		\label{fig-msgdelay}
 	\end{figure}
 	
