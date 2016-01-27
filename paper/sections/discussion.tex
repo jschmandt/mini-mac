@@ -71,9 +71,14 @@ or to open the CRC field to the application level to calculate the MAC.
 	\label{tab-taglength}
 	\vspace{8pt}
 	\begin{tabular}{c|r}%
-	\bfseries Tag Length (b) & \bfseries Time to Find Collision\\\hline \csvreader[late after line=\\]%
-		{tables/maclen_bfttb.csv}{mac_len=\mac_len,ttb=\ttb}% 
-		{\mac_len & \ttb}%
+	\bfseries Tag Length (b) & \bfseries Time to Find Collision\\\hline 
+	8 & 0.40s \\
+	16 & 6.40s \\
+	24 & 1.70m \\
+	32 & 27.30m \\
+	40 & 7.28h \\
+	48 & 4.85d \\
+	\hline
 	\end{tabular}
 	\end{table}
 	
