@@ -55,9 +55,13 @@ HMAC is very small (approximately 800~bytes).
 Mini-MAC detects spoofed messages by using a keyed HMAC.  It detects replay attacks
 by incorporating a counter and recent message history into the HMAC input.  Using message
 history also complicates a transcient attacker who may be unable to observe a sufficient
-number of recent messages.  The 128-bit keys are sufficiently long to withstand 
+number of recent messages.  
+
+The 128-bit keys are sufficiently long to withstand 
 exhaustive key-search attacks.  The 64-bit counter is sufficient to prevent counter
 rollover within the lifetime of the car.
+With $\lambda = \hbox{?}$, the adversary must learn over 30~minutes of recent
+message history.
 
 A security-enhancing feature of the CAN bus is, ironically, its slow speed of at most
 approximately 40 messages per second.  Figure~\ref{fig-msgdelay} shows a histogram of
@@ -97,8 +101,7 @@ the optimistic times given in Column~Y.  We include Column~Y simply as a
 conservative reference.
 
 For example, with a four-byte tag, the expected time for a straight-forward 
-message injection attack to succeed is approximately 27.3~mins.  For this reason
-we suggest that the message history window be set for at least 30~mins.
+message injection attack to succeed is approximately 27.3~mins.  
 
 Another potential attack is to observe bus traffic with the hopes of finding statistical
 regularities that would significantly improve the chances of success of the aforementioned attack.
