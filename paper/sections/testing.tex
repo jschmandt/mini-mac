@@ -48,13 +48,13 @@ based on an Arudiuno Uno platform and connected via an OBD-II CAN transceiver sh
 	for one key group with $n$ recipients.  Mini-MAC adds no additional bus traffic}
 	\label{tab-traffic}
 	\vspace{8pt}
-	\begin{tabular}{l|c}%
-	\bfseries Algorithm & \bfseries Add. Traffic (b) \\\hline 
+	\begin{tabular}{l|r}%
+	\bfseries Algorithm & \bfseries Additional Traffic (bits) \\\hline 
 	HMAC-MD5 (Group) & 128 \\
-	HMAC-MD5 (Pairwise) & 128*n \\
-	Lin-MAC & 128*n \\
+	HMAC-MD5 (Pairwise) & 128$n$ \\
+	Lin-MAC & 128$n$ \\
 	Mini-MAC & 0 \\
-	\hline
+	%\hline
 	\end{tabular}
 	\end{table}
 
@@ -64,27 +64,29 @@ based on an Arudiuno Uno platform and connected via an OBD-II CAN transceiver sh
 	\label{tab-overhead}
 	\vspace{8pt}
 	\begin{tabular}{l|c|c|c}%
-	\bfseries Hash & \bfseries Code Size (B) & \bfseries RAM Use (B) & \bfseries Execution Time (ms)\\\hline 
+	\bfseries Hash & \bfseries Code Size (bytes) & \bfseries RAM Use (bytes) & \bfseries Execution Time (ms)\\\hline 
 	MD5 & 835 & 5 & 0.38 \\
 	SHA-1 & 850 & 5 & 0.42 \\
-	SHA-2 256 & 766 & 5 & 0.68 \\
-	\hline
+	SHA-2 & 766 & 5 & 0.68 \\
+	%\hline
 	\end{tabular}
 	\end{table*}
 	
 	\begin{table}
 	\centering
-	\caption{Mean execution time of Mini-MAC implementations.
-	Only the MD5 implementation meets our engineering requirement of at most 25~ms per message.[ add STDs]}
+	\caption{Execution time (observed mean $\pm$ standard deviation) of Mini-MAC implementations.
+	Only the MD5 implementation meets our engineering requirement of at most 25~ms per message.}
 	\label{tab-time}
 	\vspace{8pt}
-	\begin{tabular}{ @{}l | S[table-format=2.1] | @{}c}
+%	\begin{tabular}{ @{}l | S[table-format=2.1] | @{}c}
+	\begin{tabular}{ @{}l | lrcl}
 		%\toprule
-		\hspace{2pt}\textbf{Hash} & {\textbf{Exec. Time (ms)}} & {\textbf{Std. Deviation (ms)}} \\
+%		\hspace{2pt}\textbf{Hash} &   {\textbf{Mean Time (ms)}} & {\textbf{Std. Deviation (ms)}} \\
+	\hspace{2pt}\textbf{Hash} & {\textbf{Time}} & $\mu$ & $\pm$ & $\sigma$ (ms)  \\
 		\hline 
-		\hspace{2pt}MD5 & 7.5 & 0.07 \\
-		\hspace{2pt}SHA1 & 28.0 & 0.06 \\
-		\hspace{2pt}SHA2 & 69.6 & 0.08 \\ 
+		\hspace{2pt}MD5 	&& 7.5 		& $\pm$ 	& 0.07 \\
+		\hspace{2pt}SHA-1 	&& 28.0 		& $\pm$		& 0.06 \\
+		\hspace{2pt}SHA-2 	&& 69.6 		& $\pm$		& 0.08 \\ 
 		%\bottomrule
 	\end{tabular}	
 	\end{table}

@@ -35,7 +35,7 @@ are beyond the scope of this paper.
 
 Using a counter is a simple, standard, and effective way to mitigate replay attacks.  
 
-Each ECU saves recent messages sent on the bus and XORs them into the HMAC input. 
+Each ECU saves recent messages sent on the bus and concatenates them into the HMAC input. 
 More specifically, each ECU saves a separate message history for the 
 successfully authenticated messages received for each group key.  Thus, the
 adversary cannot insert a message into any message history without 
@@ -70,7 +70,7 @@ is not.
 		\centering
 		\includegraphics[width=\columnwidth]{figures/minimac_diagram.png}
 		\caption{Mini-MAC. The Mini-MAC tag of a message $M_n$ is a truncated keyed HMAC of 
-		the XOR of $M_n$, a counter~$C$, and the most recent $\lambda$ messages.}
+		the concatenation of $M_n$, a counter~$C$, and the most recent $\lambda$ messages.}
 		\label{fig-minimac}
 	\end{figure}
 
@@ -90,24 +90,12 @@ The Mini-MAC tag is computed as
 \hbox{trunc(}s,\text{HMAC}(k,\text{Input})),
 \end{equation}
 
-%\text{MAC}_{\text{mini}} = 
-
 \noindent where HMAC is the underlying HMAC and $\hbox{trunc}(s,\cdot)$
 extracts $s$ bits from its input.  The input to HMAC is computed as
 
 \begin{equation}
-\text{Input} = M_n \oplus C \oplus (M_{n-{\lambda}} \oplus \cdots \oplus M_{n-1}) .
+\text{Input} = M_n \concat C \concat (M_{n-{\lambda}} \concat \cdots \concat M_{n-1}) .
 \end{equation}
-
-
-%\begin{equation}
-%\text{For }i=1:h\text{, MAC}_\text{hist} = \text{MAC}_{\text{full}}\oplus\text{Message}_{n-i}
-%\end{equation}
-%
-%\begin{equation}
-%\text{MAC}_{\text{mini}} = \text{MAC}_{\text{full}}(l,l+s)
-%\end{equation}
-
 
 \subsection{Implementation}
 \label{implementation}

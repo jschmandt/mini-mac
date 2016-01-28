@@ -70,15 +70,16 @@ or to open the CRC field to the application level to calculate the MAC.
 	assuming the adversary injects 40 forged messages per second.[add col for linear search]}
 	\label{tab-taglength}
 	\vspace{8pt}
-	\begin{tabular}{c|r}%
-	\bfseries Tag Length (b) & \bfseries Time to Find Collision\\\hline 
-	8 & 0.40s \\
-	16 & 6.40s \\
-	24 & 1.70m \\
-	32 & 27.30m \\
-	40 & 7.28h \\
-	48 & 4.85d \\
-	\hline
+	\begin{tabular}{c|rl}%
+	\bfseries Tag Length (bits) & \bfseries Expected time\\
+	&  {\bf to find collision}\\\hline 
+	8 & 0.40 & sec \\
+	16 & 6.40 & sec \\
+	24 & 1.70 & min \\
+	32 & 27.30 & min \\
+	40 & 7.28 & hour \\
+	48 & 4.85 & day \\
+	%\hline
 	\end{tabular}
 	\end{table}
 	

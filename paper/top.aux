@@ -42,7 +42,7 @@
 \citation{FIPS-180-4}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Mini-MAC key distribution. Each group of ECUs shares an authentication key.}}{6}}
 \newlabel{fig-key}{{2}{6}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Mini-MAC. The Mini-MAC tag of a message $M_n$ is a truncated keyed HMAC of the XOR of $M_n$, a counter\nobreakspace  {}$C$, and the most recent $\lambda $ messages.}}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Mini-MAC. The Mini-MAC tag of a message $M_n$ is a truncated keyed HMAC of the concatenation of $M_n$, a counter\nobreakspace  {}$C$, and the most recent $\lambda $ messages.}}{6}}
 \newlabel{fig-minimac}{{3}{6}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Implementation}{6}}
 \newlabel{implementation}{{6.3}{6}}
@@ -54,7 +54,7 @@
 \newlabel{methods}{{7.2}{7}}
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Additional bus traffic for various authentication mechanisms, for one key group with $n$ recipients. Mini-MAC adds no additional bus traffic}}{7}}
 \newlabel{tab-traffic}{{1}{7}}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Mean execution time of Mini-MAC implementations. Only the MD5 implementation meets our engineering requirement of at most 25\nobreakspace  {}ms per message.[ add STDs]}}{7}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Execution time (observed mean $\pm $ standard deviation) of Mini-MAC implementations. Only the MD5 implementation meets our engineering requirement of at most 25\nobreakspace  {}ms per message.}}{7}}
 \newlabel{tab-time}{{3}{7}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Mean execution time for our Mini-MAC implementations, in cycles on a 32\nobreakspace  {}kHz clock.}}{7}}
 \newlabel{fig-execution}{{4}{7}}
@@ -75,12 +75,12 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {9.1}Resynchronization}{9}}
 \newlabel{resynch}{{9.1}{9}}
 \citation{Woo-14}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces {\fontfamily  {ptm}\selectfont  Histogram of message interarrival times observed by the authors from a 2010 Toyota Prius. }}}{10}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces {\fontfamily  {ptm}\selectfont  Histogram of message interarrival times observed by the authors from 15,768 messages on a 2010 Toyota Prius. }}}{10}}
 \newlabel{fig-msgdelay}{{7}{10}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.2}Lengthening the Mini-MAC Tag}{10}}
-\newlabel{addingbits}{{9.2}{10}}
 \@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Expected time for some spoofed message to be accepted by an ECU for various tag lengths, assuming the adversary injects 40 forged messages per second.[add col for linear search]}}{10}}
 \newlabel{tab-taglength}{{4}{10}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.2}Lengthening the Mini-MAC Tag}{10}}
+\newlabel{addingbits}{{9.2}{10}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {9.3}Open Problems}{10}}
 \newlabel{open}{{9.3}{10}}
 \citation{C2X}
@@ -91,10 +91,10 @@
 \bibcite{Conte-SHA256}{Con06b}
 \bibcite{C2X}{FBZ{$^{+}$}08}
 \bibcite{Lin-MAC}{LSV12}
-\bibcite{FIPS-198-1}{{Nat}08}
 \@writefile{toc}{\contentsline {section}{\numberline {10}Conclusion}{11}}
 \newlabel{conclude}{{10}{11}}
 \@writefile{toc}{\contentsline {section}{\numberline {11}Acknowledgments}{11}}
+\bibcite{FIPS-198-1}{{Nat}08}
 \bibcite{FIPS-180-4}{{Nat}15}
 \bibcite{Peslyak}{Pes09}
 \bibcite{MD5}{Riv92}
