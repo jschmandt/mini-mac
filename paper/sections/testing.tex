@@ -26,7 +26,7 @@ We measured execution time using a counter register on the MSP430,
 whose 32~kHz clock provides timing values to approximate millisecond~(ms) accuracy. 
 As a very minor point we note that, due to a limitation in the hardware's
 support for timing measurements, 
-there may be a +/$-$0.03~ms inaccuracy in each reading due to the
+there may be a $\pm$0.03~ms inaccuracy in each reading due to the
 time it takes to read the counter.
 
 We collected statistics on message traffic from a 2010 Toyota Prius with a CAN-bus sniffer program 
@@ -79,14 +79,15 @@ based on an Arudiuno Uno platform and connected via an OBD-II CAN transceiver sh
 	\label{tab-time}
 	\vspace{8pt}
 %	\begin{tabular}{ @{}l | S[table-format=2.1] | @{}c}
-	\begin{tabular}{ @{}l | lrcl}
+	\begin{tabular}{ @{}l | rcl}
 		%\toprule
 %		\hspace{2pt}\textbf{Hash} &   {\textbf{Mean Time (ms)}} & {\textbf{Std. Deviation (ms)}} \\
-	\hspace{2pt}\textbf{Hash} & {\textbf{Time}} & $\mu$ & $\pm$ & $\sigma$ (ms)  \\
+	\hspace{2pt}\textbf{Hash} && {\textbf{Time}}&\\
+		& $\mu$ & $\pm$ & $\sigma$ (ms)  \\
 		\hline 
-		\hspace{2pt}MD5 	&& 7.5 		& $\pm$ 	& 0.07 \\
-		\hspace{2pt}SHA-1 	&& 28.0 		& $\pm$		& 0.06 \\
-		\hspace{2pt}SHA-2 	&& 69.6 		& $\pm$		& 0.08 \\ 
+		\hspace{2pt}MD5 	& 7.5 		& $\pm$ 	& 0.07 \\
+		\hspace{2pt}SHA-1 	& 28.0 		& $\pm$		& 0.06 \\
+		\hspace{2pt}SHA-2 	& 69.6 		& $\pm$		& 0.08 \\ 
 		%\bottomrule
 	\end{tabular}	
 	\end{table}
@@ -94,14 +95,15 @@ based on an Arudiuno Uno platform and connected via an OBD-II CAN transceiver sh
 	\begin{figure}
 		\centering
 		\includegraphics[width=\columnwidth]{figures/exec_cycles.png}
-		\caption{Mean execution time for our Mini-MAC implementations, in cycles on a 32~kHz clock.}
+		\caption{Mean execution time for our Mini-MAC implementations, in cycles on a 32~kHz clock,
+		from 1000 messages.}
 		\label{fig-execution}
 	\end{figure}
 	
 	\begin{figure}
 		\centering
 		\includegraphics[width=\columnwidth]{figures/ram_usage.png}
-		\caption{RAM usage for our Mini-MAC implementations.}
+		\caption{RAM usage for our Mini-MAC implementations, from 1000 messages.}
 		\label{fig-ram}
 	\end{figure}
 	

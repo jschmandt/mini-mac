@@ -47,7 +47,7 @@ finding a collision in the Mini-MAC by exhaustive search.
 Table~\ref{tab-taglength} gives the expected time for an adversary to send a forged message 
 that will be accepted by another ECU, for various tag lengths.  Here, the main limiting assumption is 
 the frequency with which messages can be sent on the CAN bus 
-(approximately 40 messages per second. [in table, change b to bits]
+(approximately 40 messages per second. 
 For example, increasing the tag from 32 to 48 bits increases this time from
 approximately 27.3~minutes to over four days.
 
@@ -64,27 +64,50 @@ or to open the CRC field to the application level to calculate the MAC.
 %% we are not first to suggest.  How do we differ?
 %% it is a bit lame to emphasize that we are optional and woo is not.
 
-	\begin{table}	
+\begin{table*}	
 	\centering
-	\caption{Expected time for some spoofed message to be accepted by an ECU for various tag lengths, 
-	assuming the adversary injects 40 forged messages per second.[add col for linear search]}
+	
+	\caption{Probability and expected time for a spoofed message to be accepted by an ECU for various tag lengths
+	for two attack scenarios.  In random guessing, the adversary guesses a tag.
+	In the hypothetical collision search, the adversary seeks a Mini-MAC collision.
+	Probability denotes the proability of success for one trial.
+	Expected time denotes the expected time for the cummulative success probability to be~0.5.
+	All calculations assume the adversary injects 40 forged messages per second.}
+	
 	\label{tab-taglength}
 	\vspace{8pt}
-	\begin{tabular}{c|rl}%
-	\bfseries Tag Length (bits) & \bfseries Expected time\\
-	&  {\bf to find collision}\\\hline 
-	8 & 0.40 & sec \\
-	16 & 6.40 & sec \\
-	24 & 1.70 & min \\
-	32 & 27.30 & min \\
-	40 & 7.28 & hour \\
-	48 & 4.85 & day \\
-	%\hline
+	\begin{tabular}{c|rrl|rl}%
+	{\bf Tag Length (bits)} & {\bf Random Guessing} &&& {\bf Collision Search} & \\
+	& {\bf Probability} & {\bf Time} & & {\bf Time} & \\\hline
+	8  && & & 0.40 & sec \\
+	16 && & & 6.40 & sec \\
+	24 && & & 1.70 & min \\
+	32 && & & 27.30 & min \\
+	40 && & & 7.28 & hour \\
+	48 && & & 4.85 & day \\
 	\end{tabular}
-	\end{table}
+	\end{table*}
+
 	
-	%% I don't know this mechanism. need to add space between number and unit in each line
-	%% headers should be done in latex directly
+%	\begin{table}	%% old
+%	\centering
+%	\caption{Expected time for some spoofed message to be accepted by an ECU for various tag lengths, 
+%	assuming the adversary injects 40 forged messages per second.[add col for linear search]}
+%	\label{tab-taglength}
+%	\vspace{8pt}
+%	\begin{tabular}{c|rl}%
+%	\bfseries Tag Length (bits) & \bfseries Expected time\\
+%	&  {\bf to find collision}\\\hline 
+%	8 & 0.40 & sec \\
+%	16 & 6.40 & sec \\
+%	24 & 1.70 & min \\
+%	32 & 27.30 & min \\
+%	40 & 7.28 & hour \\
+%	48 & 4.85 & day \\
+%	%\hline
+%	\end{tabular}
+%	\end{table}
+
 
 %\subsection{Design Alternative}
 %\label{alternatives}

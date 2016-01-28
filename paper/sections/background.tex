@@ -11,17 +11,23 @@ Electronic Control Units (ECUs) found in an automotive computer network are low-
 
 \subsection{The CAN Bus}
 The CAN bus is a simple, low-speed bus designed to network simple nodes. In an automotive environment, 
-it typically runs at 500~kbps.\footnote{kilobits per second (kbps).} As shown in Figure~\ref{fig-frame}, 
+it typically runs at 500~kbps.\footnote{kilobits per second (kbps).} 
+[need ref for CAN bus]
+
+Transmissions are organized in frames.  As shown in Figure~\ref{fig-frame}, 
 a frame contains an 11-bit identifier field and 
 a data payload, as well as some control bits. Figure~\ref{fig-frame} shows the data payload as 8~bits, but
 it can be 8 to 64~bits and is typically 64~bits. [ref?]
-The payload of up to 8~bytes is the most important element, as any MAC must fit into this frame or use a more complex multi-frame data transmission protocol that may or may not be supported on all ECUs. 
+The payload of up to 8~bytes is the most important element, 
+as any MAC must fit into this frame or use a more complex multi-frame data transmission protocol 
+that may or may not be supported on all ECUs. 
 
 We use the term ``message'' to refer to the data payload of one logical transmission.
 Any payload longer than 64~bits must be sent as a multi-frame transmission.
 
 % we need agreement on terminology.  Do we instead want to use "multi-frame message" ?
 % is there an industry convention?
+% we are avoiding the term packet (why?)
 
 Ideally, and in the case of Mini-MAC, the MAC tag
 can fit into the payload together with the data, thus not increasing bus utilization. 
@@ -30,6 +36,9 @@ approximately 61\% of messages contain at most four data bytes
 (20\% contain 4~bytes; 16\% contain 3~bytes; 17\% contain 2~bytes; and 8\% contain 1~byte).
 Approximately 35\% of messages contain a full 8~data bytes, and 4\% contain 7~bytes.
 Thus, for most messages, there are at least four bytes of space available for a MAC tag.
+
+Messages have fixed, known sizes.  The longest messages we observed were 
+status reports describing the steering wheel angle and tire speed.
 
 We observed approximately 25 messages sent per second on average (40 maximum per second).
 

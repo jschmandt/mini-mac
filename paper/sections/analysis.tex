@@ -60,8 +60,9 @@ number of recent messages.
 The 128-bit keys are sufficiently long to withstand 
 exhaustive key-search attacks.  The 64-bit counter is sufficient to prevent counter
 rollover within the lifetime of the car.
-With $\lambda = \hbox{?}$, the adversary must learn over 30~minutes of recent
-message history.
+
+%With $\lambda = \hbox{72,000}$, the adversary must learn over 30~minutes of recent
+%message history.
 
 A security-enhancing feature of the CAN bus is, ironically, its slow speed of at most
 approximately 40 messages per second.  Figure~\ref{fig-msgdelay} shows a histogram of
@@ -85,20 +86,21 @@ A downside of this attack is that it would be easy to detect such an attack invo
 many messages.
 
 Table~\ref{tab-taglength} lists for various tag lengths~$L$
-two reference times that are useful in assessing the effectiveness of this attack.
-Column~X gives the expected time to find a particular tag of length~$L$ by
-randomly guessing tags.
-Column~Y gives the expected time to find a collision\footnote{A collision is any pair of 
-different inputs that produces the same output.}
-in Mini-MAC with tag length~$L$,
-exploiting the Birthday Paradox.  
-The times are computed assuming that the enemy is limited to trying 40 tags per second.
+two reference times that are useful in assessing the effectiveness of this and other hypothetical attacks.
+The ``random guessing'' columns refer to the strategy of randomly guessing tags.
+Probability denotes the probability that one guess will be accepted as valid; this probability
+is $1/2^{L}$, where $L$ is the tag length.
+Expected time denotes the expected time for the cummulative success probability to be~0.5,
+assuming the adversary is limited to trying 40 tags per second.
+This value is the expected time for a straight-forward 
+implementation of a trial injection attack to succeed.  
 
-In Table~\ref{tab-taglength}, Column~X is the expected time for a straight-forward 
-implementation of a trial injection attack to succeed.  We do not see how an adversary
-could mount a more clever version of this, or any other, attack to achieve
-the optimistic times given in Column~Y.  We include Column~Y simply as a
-conservative reference.
+The ``collision search'' column refers to an optimistic hypothetical attack whose success is based on
+finding a Mini-MAC collision,\footnote{A collision is any pair of 
+different inputs that produces the same output.}
+exploiting the Birthday Paradox.  
+We do not see how an adversary could mount such an attack;
+we include this column simply as a conservative reference.
 
 For example, with a four-byte tag, the expected time for a straight-forward 
 message injection attack to succeed is approximately 27.3~mins.  
