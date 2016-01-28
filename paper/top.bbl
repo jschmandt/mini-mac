@@ -25,7 +25,7 @@ Brad Conte.
 
 \bibitem[Ern13]{fig1}
 Erniotti.
-\newblock Can bus frame in base format without stuffbits and electrical bus
+\newblock {CAN} bus frame in base format without stuffbits and electrical bus
   levels, 2013.
 
 \bibitem[FBZ{\etalchar{+}}08]{C2X}
@@ -71,7 +71,7 @@ Charlie Miller and Chris Valasek.
 
 \bibitem[OIOS14]{Otsuka2014}
 S.~Otsuka, T.~Ishigooka, Y.~Oishi, and K.~Sasazawa.
-\newblock Can security: Cost-effective intrusion detection for real-time
+\newblock {CAN} security: Cost-effective intrusion detection for real-time
   control systems.
 \newblock 2014.
 
@@ -120,8 +120,8 @@ Xiaoyun Wang and Hongbo Yu.
   19--35, Berlin, Heidelberg, 2005. Springer.
 
 \bibitem[WYY05]{Wang-SHA1}
-Xiaoyun Wang, YiqunLisa Yin, and Hongbo Yu.
-\newblock Finding collisions in the full sha-1.
+Xiaoyun Wang, {Yiqun Lisa} Yin, and Hongbo Yu.
+\newblock Finding collisions in the full {SHA}-1.
 \newblock In Victor Shoup, editor, {\em Advances in Cryptology – CRYPTO
   2005}, volume 3621 of {\em Lecture Notes in Computer Science}, pages 17--36.
   Springer Berlin Heidelberg, 2005.

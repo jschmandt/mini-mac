@@ -19,7 +19,7 @@ collecting for each implementation metrics from 1000 inputs of various typical s
 
 We measured code size and RAM usage at compile time using 
 the Texas Instruments Code Composer v6.
-The RAM usage is know at compile time because there is no
+The RAM usage is known at compile time because there is no
 dynamic memory allocation.
 
 We measured execution time using a counter register on the MSP430, 
@@ -31,16 +31,6 @@ time it takes to read the counter.
 
 We collected statistics on message traffic from a 2010 Toyota Prius with a CAN-bus sniffer program 
 based on an Arduino Uno platform and connected via an OBD-II CAN transceiver shield.
-
-%\subsection{Results}
-%\label{results}
-%
-%Tables~\ref{tab-traffic}, \ref{tab-overhead}, \ref{tab-time}
-%and Figures~\ref{fig-execution}, \ref{fig-code}, \ref{fig-ram}
-%summarize our results.
-%Throughout, ``B''~denotes bytes, ``b''~denotes bits, and ``ms''~denotes milliseconds.
-
-% there was an analysis par here that I moved to analysis section
 	
 	\begin{table}
 	\centering
@@ -54,7 +44,6 @@ based on an Arduino Uno platform and connected via an OBD-II CAN transceiver shi
 	HMAC-MD5 (Pairwise) & 128$n$ \\
 	Lin-MAC & 128$n$ \\
 	Mini-MAC & 0 \\
-	%\hline
 	\end{tabular}
 	\end{table}
 
@@ -68,7 +57,6 @@ based on an Arduino Uno platform and connected via an OBD-II CAN transceiver shi
 	MD5 & 835 & 5 & 0.38 \\
 	SHA-1 & 850 & 5 & 0.42 \\
 	SHA-2 & 766 & 5 & 0.68 \\
-	%\hline
 	\end{tabular}
 	\end{table*}
 	
@@ -78,17 +66,13 @@ based on an Arduino Uno platform and connected via an OBD-II CAN transceiver shi
 	Only the MD5 implementation meets our engineering requirement of at most 25~ms per message.}
 	\label{tab-time}
 	\vspace{8pt}
-%	\begin{tabular}{ @{}l | S[table-format=2.1] | @{}c}
 	\begin{tabular}{ @{}l | rcl}
-		%\toprule
-%		\hspace{2pt}\textbf{Hash} &   {\textbf{Mean Time (ms)}} & {\textbf{Std. Deviation (ms)}} \\
-	\hspace{2pt}\textbf{Hash} && {\textbf{Time}}&\\
-		& $\mu$ & $\pm$ & $\sigma$ (ms)  \\
+	\hspace{2pt}\textbf{Hash} && {\textbf{Time (ms)}}&\\
+		& $\mu$ & $\pm$ & $\sigma$   \\
 		\hline 
 		\hspace{2pt}MD5 	& 7.5 		& $\pm$ 	& 0.07 \\
 		\hspace{2pt}SHA-1 	& 28.0 		& $\pm$		& 0.06 \\
 		\hspace{2pt}SHA-2 	& 69.6 		& $\pm$		& 0.08 \\ 
-		%\bottomrule
 	\end{tabular}	
 	\end{table}
 	

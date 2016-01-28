@@ -31,8 +31,6 @@ There is no need for a dynamic group key update capability because group members
 Details about how these keys are initially set, and possibly later updated, 
 are beyond the scope of this paper.
 
-%[Keys can be updated by a security manager as needed or desired.(?)]
-
 Using a counter is a simple, standard, and effective way to mitigate replay attacks.  
 
 Each ECU saves recent messages sent on the bus and concatenates them into the HMAC input. 
@@ -42,7 +40,7 @@ adversary cannot insert a message into any message history without
 successfully forging message.
 
 There are three reasons for the message history architectural element:  
-First, it adds protection against any transient
+First, it potentially adds protection against any transient
 attacker (even one who knows the group keys) who cannot deduce enough of the 
 message history.  
 Second, it adds an additional layer of protection against replay attacks.
@@ -107,16 +105,12 @@ We recommend a 64-bit counter, which (assuming at most 40 message per second) en
 of continuous operation (32 bits would prevent counter roll-over for 20 years with four hours of driving a day).
 
 In our implementation, we used $\lambda = 5$, 
-but we recommend a higher value (say, $\lambda = 20$) to reduce the chance of a repeated state.
+but we recommend a higher value (say, $\lambda = 16$) to reduce the chance of a repeated state.
 With enough space, one could set the number of messages $\lambda$ in the message history such that
 the time to collect the history exceeds the time available to a transient attacker.
 For example, $\lambda = \hbox{72,000}$, requires the attacker to observe messages
-for over 30~minutes. 
-
-%% what is expected time to synch failure?
-%% I have no data on this. I don't have data on how frequently a CAN message fails to send and be received -- we have a similar problem to an attacker in that we don't have a good way of identifying when a message is properly received or not in practice.
-
-%Assuming continuous operation (that is every second for 20 years) at 40 messages / second, roughly 25 billion messages will be exchanged. A 35-bit counter %will cover roughly 35 billion messages, but to cover that extreme use pattern, a 64-bit counter would be the smallest "standard" size counter. However, a %32-bit counter would cover 4 hours of driving a day, every day, for 20 years. 
+for over 30~minutes, even if messages are continuously sent using one key.
+We acknowledge, however, that this choice of $\lambda$ is unreasonably large for most applications.
 
 For \textbf{HMAC-MD5},
 we adapted Peslyak's~\cite{Peslyak} implementation of MD5~\cite{MD5} for the MSP430 platform, producing a 128-bit output. 

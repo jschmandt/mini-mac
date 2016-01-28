@@ -1,6 +1,4 @@
-This is BibTeX, Version 0.99d (TeX Live 2014/W32TeX)
-Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
-The top-level auxiliary file: top.aux
+This is BibTeX, Version 0.99dThe top-level auxiliary file: top.aux
 The style file: alpha.bst
 Database file #1: mybib.bib
 Warning--string name "pub-nist" is undefined
@@ -21,49 +19,9 @@ Warning--entry type for "Conte-SHA256" isn't style-file defined
 --line 143 of file mybib.bib
 Warning--entry type for "fig1" isn't style-file defined
 --line 335 of file mybib.bib
+Warning--I didn't find a database entry for "?"
 Warning--empty publisher in FIPS-198-1
 Warning--empty publisher in FIPS-180-4
 Warning--empty journal in Otsuka2014
 Warning--can't use both author and editor fields in Wolf2006
-You've used 23 entries,
-            2543 wiz_defined-function locations,
-            701 strings with 8533 characters,
-and the built_in function-call counts, 9876 in all, are:
-= -- 931
-> -- 548
-< -- 19
-+ -- 196
-- -- 192
-* -- 719
-:= -- 1618
-add.period$ -- 69
-call.type$ -- 23
-change.case$ -- 165
-chr.to.int$ -- 22
-cite$ -- 27
-duplicate$ -- 390
-empty$ -- 698
-format.name$ -- 218
-if$ -- 2037
-int.to.chr$ -- 2
-int.to.str$ -- 0
-missing$ -- 21
-newline$ -- 114
-num.names$ -- 71
-pop$ -- 203
-preamble$ -- 1
-purify$ -- 190
-quote$ -- 0
-skip$ -- 329
-stack$ -- 0
-substring$ -- 390
-swap$ -- 81
-text.length$ -- 19
-text.prefix$ -- 8
-top$ -- 0
-type$ -- 168
-warning$ -- 4
-while$ -- 84
-width$ -- 26
-write$ -- 293
-(There were 13 warnings)
+(There were 14 warnings)

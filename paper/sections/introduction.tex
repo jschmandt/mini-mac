@@ -4,7 +4,8 @@
 At the 2015 Black Hat conference, Miller and Valasek~\cite{blackhat} gained full control of a new Jeep,
 including its engine, brakes, and steering, by exploiting vulnerabilities in its
 computer network and WiFi implementation and by rewriting firmware on a controller connected to the car's entertainment system.
-This demonstration, and other similar projects \cite{Rouf2010} \cite{Koscher-2010} \cite{Checkoway-2011} \cite{Woo-14} \cite{C2X}, 
+This demonstration, and other similar 
+projects~\cite{Rouf2010,Koscher-2010,Checkoway-2011,Woo-14,C2X}, 
 highlight the egregious state of vehicular security, including the lack of 
 authentication of messages sent on the Controller Area Network (CAN).   
 
@@ -12,7 +13,7 @@ To strengthen vehicular security in a simple and practical
 yet meaningful way---without replacing the CAN bus---we propose Mini-MAC, 
 a new variable-length Message Authentication Code (MAC)
 for the CAN bus that works with small payload sizes without delaying messages.  
-Based on the provably-secure HMAC, Mini-MAC protects against masquerade attacks.  
+Built on the provably-secure HMAC, Mini-MAC protects against masquerade attacks.  
 Mini-MAC also incorporates a counter and message history to protect against replay attacks.
 To avoid sending separate messages to different recipients, Mini-MAC applies authentication keys
 shared among groups of communicating Electronic Control Units (ECUs).

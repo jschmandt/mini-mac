@@ -7,10 +7,17 @@ We assume the reader is familiar with cryptographic hash functions as explained,
 by Stinson~\cite{Stinson} and NIST~\cite{FIPS-180-4}.
 
 \subsection{ECUs}
+\label{ecu}
+
 Electronic Control Units (ECUs) found in an automotive computer network are low-power, single-purpose devices. ECUs on the CAN bus control many components in a modern automobile, from headlights and window controls, to brakes and engine. They are not typically designed with security in mind and frequently comprise a basic CAN bus transceiver, basic message processor, and an actuator. The message processor identifies whether or not a message being broadcast is interesting to the ECU and arbitrates bus rights with the other ECUs. 
 
+% give typical chanacteristics (speed, memory)?
+
 \subsection{The CAN Bus}
-The CAN bus is a simple, low-speed bus designed to network simple nodes. In an automotive environment, 
+\label{can}
+
+The Controller Area Network (CAN) bus 
+is a simple, low-speed bus designed to network simple nodes. In an automotive environment, 
 it typically runs at 500~kbps in automobiles~\cite{canbus}.\footnote{kilobits per second (kbps).}
 
 Transmissions are organized in frames.  As shown in Figure~\ref{fig-frame}, 
@@ -18,17 +25,12 @@ a frame contains an 11-bit identifier field and
 a data payload, as well as some control bits. Figure~\ref{fig-frame} shows the data payload as 8~bits, but
 it can be 8 to 64~bits and is typically 64~bits.
 The payload of up to 8~bytes is the most important element, 
-as any MAC must fit into this frame or use a more complex multi-frame data transmission protocol 
+as any MAC tag must fit into this frame or use a more complex multi-frame data transmission protocol 
 that may or may not be supported on all ECUs. 
 %typically 64 bits is based on observed data
 
-
 We use the term ``message'' to refer to the data payload of one logical transmission.
 Any payload longer than 64~bits must be sent as a multi-frame transmission.
-
-% we need agreement on terminology.  Do we instead want to use "multi-frame message" ?
-% is there an industry convention?
-% we are avoiding the term packet (why?)
 
 Ideally, and in the case of Mini-MAC, the MAC tag
 can fit into the payload together with the data, thus not increasing bus utilization. 
@@ -43,11 +45,6 @@ status reports describing the steering wheel angle and tire speed.
 
 We observed approximately 25 messages sent per second on average (40 maximum per second).
 
-% 25 ms between msgs
-% can you describe the distribution of available space more thoroughly?
-% 35% percent of messages were the full 8 bytes. 4% were 7 bytes, 
-% and the remaining 61% that are 4B or less are 20% 4 bytes, 16% 3 bytes, 17% 2 bytes and 8% 1 byte.
-
 	\begin{figure*}
 		\centering
 		\includegraphics[width=\linewidth]{figures/can_frame.png}
@@ -57,6 +54,7 @@ We observed approximately 25 messages sent per second on average (40 maximum per
 	\end{figure*}
 
 \subsection{Bus Access}
+\label{access}
 
 To spoof or replay messages on the CAN bus, the attacker must have access to it.
 There are several ways to access the CAN bus:  (1) There is a
@@ -68,19 +66,24 @@ do so while the car is being serviced or by entering the car while it is parked.
 (3) An attacker might gain access to the CAN bus by exploiting or corrupting a peripheral
 device connected to it, such as a cellular phone, audio system, or Bluetooth
 radio.  For example, Checkoway~\cite{Checkoway-2011} gained bus access by packing 
-malware into a WMA audio file played on the car stereo. Rouf~\cite{Rouf2010} also demonstrates information leakage and message spoofing on RFID-based tire pressure monitoring systems.
+malware into a WMA audio file played on the car stereo. 
+Rouf~\cite{Rouf2010} demonstrated information leakage and message spoofing on RFID-based tire pressure monitoring systems.
 
 Despite many demonstrated security flaws, automotive 
 manufacturers have been unreasonably hesitant to acknowledge the vulnerabilities inherent to the CAN bus,
-sometimes wishfully claiming that undetected bus access is difficult. In 2013, Toyota offered this position on automotive security. ``Toyota has developed very strict and effective firewall technology against such remote and wireless services.'' ``We believe our systems are robust and secure.'' ``The presence of a laptop or other device connected to the OBD [on board diagnostics] II port would be apparent.'' These statements seem to demonstrate a failure to grasp the reality of wireless vulnerability of modern vehicles demonstrated in several notable publications.
-
-%[do you have a cite? for example,
-%a quote from a car manufacturer saying something ridiculous?]
+sometimes wishfully claiming that undetected bus access is difficult. 
+In 2013, Toyota~\cite{?} offered the following position on automotive security: 
+``Toyota has developed very strict and effective firewall technology against such remote and wireless services.'' 
+``We believe our systems are robust and secure.'' 
+``The presence of a laptop or other device connected to the OBD [on board diagnostics] II port would be apparent.'' 
+These statements demonstrate a failure to acknowledge the 
+reality of wireless vulnerability of modern vehicles demonstrated in several notable publications.
 
 \subsection{Message Authentication Codes}
 
 Given a message and optionally a key, a Message Authentication Code (MAC) computes a short string (called a tag) 
-that a recipient can use, together with the message, to verify the authenticity of the message.  The recipient 
+that a recipient can use, together with the message, to verify the authenticity of the message.  
+The recipient, who also knows the key, 
 verifies the tag by recomputing it.
 
 The Keyed-Hash Message Authentication Code (HMAC)~\cite{HMAC,FIPS-198-1} 
@@ -99,6 +102,6 @@ These strings are constant strings defined by 0x5C and 0x36, repeated until the 
 $H$ is the component hash function used. 
 The symbols $\oplus$ and $\concat$ represent exclusive-or (XOR) and concatenation, respectively.
 
-%\subsection{Car-to-X}
+
 
 

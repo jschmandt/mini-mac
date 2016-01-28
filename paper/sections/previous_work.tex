@@ -19,8 +19,6 @@ Their proposal requires a hardware redesign of CAN transceivers or rewriting a l
 Care should be taken when comparing their computation times because
 they assume a much more powerful message processor than we do. 
 
-%It fits if the ECUs use the extended ID field which as noted is not the case most of the time. Using the CRC is something we mention as well in section 9. Their proposal is different than ours because it requires rewriting a lower layer of message transmission firmware -- ours only requires that a different message be sent. This may be hard to illustrate without a netstack diagram. They specify much faster hardware in their paper than we use as well, and so the results on computation time are not comparable to ours.
-
 Zalman et al.~\cite{Zalman-14} propose a fixed-size, time-stamped MAC based on pairwise key distribution.
 Their tag overflows the CAN frame, increasing bus utilization, and as the authors acknowledge,
 delaying messages.
@@ -29,9 +27,10 @@ Xie et al.~\cite{Xie-15} propose packing multiple messages into one CAN frame us
 pairwise key distribution.   They unrealistically assume that the messages and MAC tag are short
 enough to fit into one frame.  Also, by queuing messages into batches, their system delays messages.
 
-[do we want to cite any other works on improving car security? If so, do it here.%]
+%[do we want to cite any other works on improving car security? If so, do it here.]
 
-Many automakers and parts manufacturers are now members of the Open Alliance (http://www.opensig.org), 
+Many automakers and parts manufacturers are now members of the 
+Open Alliance,\footnote{http://www.opensig.org}
 a non-profit group researching and encouraging the use of an Ethernet-based high-speed physical layer 
 for use in vehicles.  This approach would enable the use of 
 established network security mechanisms in vehicle networks.
