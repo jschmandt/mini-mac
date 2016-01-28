@@ -20,20 +20,20 @@ due to the 128-bit tag.  Similarly, the pairwise-keyed Lin-MAC generates
 two additional CAN frames per recipient ECU in each group communication.
 
 Table~\ref{tab-time} shows the mean execution time
-[add standard deviations] for each of our implementations of Mini-MAC.
+and standard deviation for each of our implementations of Mini-MAC.
 Using MD5 is much faster than using SHA-1 or SHA-2.  As shown in Table~\ref{tab-overhead},
 the overhead in time to compute Mini-MAC beyond HMAC is very little (approximately 0.38--0.68~ms).
 Similarly, Figure~\ref{fig-execution} shows the mean execution times for Mini-MAC measured
 in number of cycles on a 32~kHz clock.
 
-Importantly, Table~\ref{tab-time} shows that only our MD5 implementtion of Mini-MAC runs fast enough to satisfy our
+Importantly, Table~\ref{tab-time} shows that only our MD5 implementation of Mini-MAC runs fast enough to satisfy our
 requirement of authenticating at least 40 messages per second (approximately
 25~ms between messages).   
 While highly optimized code might run faster, on the
 basis of our timing measurements, we recommend implementing Mini-MAC using MD5.
 
 Figure~\ref{fig-ram} shows the RAM usage for our implementations of Mini-MAC.
-As shown in Table~\ref{tab-overhead}, the overehead in RAM usage to compute Mini-MAC
+As shown in Table~\ref{tab-overhead}, the overhead in RAM usage to compute Mini-MAC
 beyond HMAC is very low (about 5~bytes).
 
 Figure~\ref{fig-code} shows the code size of our Mini-MAC implementations.
@@ -54,7 +54,7 @@ HMAC is very small (approximately 800~bytes).
 
 Mini-MAC detects spoofed messages by using a keyed HMAC.  It detects replay attacks
 by incorporating a counter and recent message history into the HMAC input.  Using message
-history also complicates a transcient attacker who may be unable to observe a sufficient
+history also complicates a transient attacker who may be unable to observe a sufficient
 number of recent messages.  
 
 The 128-bit keys are sufficiently long to withstand 
@@ -66,7 +66,7 @@ rollover within the lifetime of the car.
 
 A security-enhancing feature of the CAN bus is, ironically, its slow speed of at most
 approximately 40 messages per second.  Figure~\ref{fig-msgdelay} shows a histogram of
-message interarrival times that we collected from a 2010 Toyota Prius.
+message arrival times that we collected from a 2010 Toyota Prius.
 The slow speed of the CAN bus limits the rate at which an attacker can
 inject messages into the bus.
 
@@ -90,7 +90,7 @@ two reference times that are useful in assessing the effectiveness of this and o
 The ``random guessing'' columns refer to the strategy of randomly guessing tags.
 Probability denotes the probability that one guess will be accepted as valid; this probability
 is $1/2^{L}$, where $L$ is the tag length.
-Expected time denotes the expected time for the cummulative success probability to be~0.5,
+Expected time denotes the expected time for the cumulative success probability to be~0.5,
 assuming the adversary is limited to trying 40 tags per second.
 This value is the expected time for a straight-forward 
 implementation of a trial injection attack to succeed.  
@@ -117,7 +117,7 @@ meaningfully raises the bar of vehicular security.
 	\fontfamily{ptm}\selectfont
 	\begin{figure}
 		\centering
-		\includegraphics[width=\columnwidth]{figures/pdf.png}
+		\includegraphics[width=\columnwidth]{figures/relative_histogram.png}
 		\caption{{\fontfamily{ptm}\selectfont Histogram 
 		of message interarrival times observed by the authors from 
 		15,768 messages on a 2010 Toyota Prius. }}

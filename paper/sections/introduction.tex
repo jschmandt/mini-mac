@@ -1,10 +1,10 @@
 \section{Introduction}
 \label{intro}
 
-At the 2015 Black Hat conference, Miller and Valasek~\textcolor{red}{[REF]} gained full control of a new Jeep,
+At the 2015 Black Hat conference, Miller and Valasek~\cite{blackhat} gained full control of a new Jeep,
 including its engine, brakes, and steering, by exploiting vulnerabilities in its
 computer network and WiFi implementation and by rewriting firmware on a controller connected to the car's entertainment system.
-This demonstration, and other similar projects [add refs on car insecurity], 
+This demonstration, and other similar projects \cite{Rouf2010} \cite{Koscher-2010} \cite{Checkoway-2011} \cite{Woo-14} \cite{C2X}, 
 highlight the egregious state of vehicular security, including the lack of 
 authentication of messages sent on the Controller Area Network (CAN).   
 
@@ -19,7 +19,7 @@ shared among groups of communicating Electronic Control Units (ECUs).
 It is the first proposal to authenticate messages on the CAN bus without increasing bus traffic
 or delaying messages. 
 
-Traditional authentication protocols (including digitial signatures or full-length MACs) are unsuited for the CAN bus due to
+Traditional authentication protocols (including digital signatures or full-length MACs) are unsuited for the CAN bus due to
 small packet size, limited computational power of the ECUs,
 and the need not to delay messages (e.g., by time-consuming computations or by
 increasing bus traffic).   
@@ -29,7 +29,7 @@ Furthermore, Mini-MAC is easy to implement,
 requires no fundamental change to the underlying functionality of the ECUs, and 
 requires no special hardware.
 
-Our work includes a protoype implementation of Mini-MAC and preliminary timing studies 
+Our work includes a prototype implementation of Mini-MAC and preliminary timing studies 
 of Mini-MAC for three component hash functions (MD5, SHA-1, SHA-2).  For fastest speeds, 
 we recommend using MD5.
 

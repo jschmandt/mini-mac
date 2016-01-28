@@ -41,12 +41,12 @@ successfully authenticated messages received for each group key.  Thus, the
 adversary cannot insert a message into any message history without 
 successfully forging message.
 
-There are three reasons for the message history architectual element:  
+There are three reasons for the message history architectural element:  
 First, it adds protection against any transient
 attacker (even one who knows the group keys) who cannot deduce enough of the 
 message history.  
 Second, it adds an additional layer of protection against replay attacks.
-This layer is useful if the counters need to be resychronized (see Section~\ref{resynch}).
+This layer is useful if the counters need to be resynchronized (see Section~\ref{resynch}).
 Consider what happens if a group of ECUs reset their counters and message history to
 a previously stored synchronized state.  Without message history, the network
 is potentially vulnerable to a replay attack of messages sent from a time 
@@ -111,9 +111,10 @@ but we recommend a higher value (say, $\lambda = 20$) to reduce the chance of a 
 With enough space, one could set the number of messages $\lambda$ in the message history such that
 the time to collect the history exceeds the time available to a transient attacker.
 For example, $\lambda = \hbox{72,000}$, requires the attacker to observe messages
-for over 30~minutes. [what is expected time to synch failure?]
+for over 30~minutes. 
 
 %% what is expected time to synch failure?
+%% I have no data on this. I don't have data on how frequently a CAN message fails to send and be received -- we have a similar problem to an attacker in that we don't have a good way of identifying when a message is properly received or not in practice.
 
 %Assuming continuous operation (that is every second for 20 years) at 40 messages / second, roughly 25 billion messages will be exchanged. A 35-bit counter %will cover roughly 35 billion messages, but to cover that extreme use pattern, a 64-bit counter would be the smallest "standard" size counter. However, a %32-bit counter would cover 4 hours of driving a day, every day, for 20 years. 
 

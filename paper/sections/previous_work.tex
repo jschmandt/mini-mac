@@ -8,7 +8,7 @@ delaying messages.
 
 For example, Lin and Sangiovanni~\cite{Lin-MAC} propose Lin-MAC, a keyed MAC with counter based on
 pairwise key distribution.  Encrypting the same message to $n$ different ECUs requires $n$
-messages to be sent.   Using the full HMAC-MD5 requires 128~bits to be sent per message, requring two CAN frames per message.
+messages to be sent.   Using the full HMAC-MD5 requires 128~bits to be sent per message, requiring two CAN frames per message.
 
 Other recent CAN security projects suffer from similar limitations. 
 Woo et al.~\cite{Woo-14} propose a keyed MAC based on pairwise key distribution,
@@ -27,11 +27,11 @@ delaying messages.
 
 Xie et al.~\cite{Xie-15} propose packing multiple messages into one CAN frame using a keyed MAC with 
 pairwise key distribution.   They unrealistically assume that the messages and MAC tag are short
-enough to fit into one frame.  Also, by queing messages into batches, their system delays messages.
+enough to fit into one frame.  Also, by queuing messages into batches, their system delays messages.
 
-[do we want to cite any other works on improving car security? If so, do it here.]
+[do we want to cite any other works on improving car security? If so, do it here.%]
 
-Many automakers and parts manufacturers are now members of the Open Alliance [need ref or URL], 
+Many automakers and parts manufacturers are now members of the Open Alliance (http://www.opensig.org), 
 a non-profit group researching and encouraging the use of an Ethernet-based high-speed physical layer 
 for use in vehicles.  This approach would enable the use of 
 established network security mechanisms in vehicle networks.

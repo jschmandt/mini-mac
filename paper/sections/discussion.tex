@@ -27,7 +27,7 @@ A limitation of the CAN bus is that it provides no mechanism for detecting when 
 of synchronization.  In some cases, by monitoring observable conditions on the bus, 
 an ECU might detect that another ECU is not responding to a message, which might be
 the result of a synchronization failure.  A tradeoff in our design is that, by using
-counters and message history to athenticate messages, 
+counters and message history to authenticate messages, 
 mini-MAC increases the opportunities for possible synchronization failures.
 
 %% this section is rather weak--nothing new.  No anlysis of proposal.
@@ -70,8 +70,8 @@ or to open the CRC field to the application level to calculate the MAC.
 	\caption{Probability and expected time for a spoofed message to be accepted by an ECU for various tag lengths
 	for two attack scenarios.  In random guessing, the adversary guesses a tag.
 	In the hypothetical collision search, the adversary seeks a Mini-MAC collision.
-	Probability denotes the proability of success for one trial.
-	Expected time denotes the expected time for the cummulative success probability to be~0.5.
+	Probability denotes the probability of success for one trial.
+	Expected time denotes the expected time for the cumulative success probability to be~0.5.
 	All calculations assume the adversary injects 40 forged messages per second.}
 	
 	\label{tab-taglength}
@@ -79,12 +79,12 @@ or to open the CRC field to the application level to calculate the MAC.
 	\begin{tabular}{c|rrl|rl}%
 	{\bf Tag Length (bits)} & {\bf Random Guessing} &&& {\bf Collision Search} & \\
 	& {\bf Probability} & {\bf Time} & & {\bf Time} & \\\hline
-	8  && & & 0.40 & sec \\
-	16 && & & 6.40 & sec \\
-	24 && & & 1.70 & min \\
-	32 && & & 27.30 & min \\
-	40 && & & 7.28 & hour \\
-	48 && & & 4.85 & day \\
+	8  && 3.20 & sec & 0.40 & sec \\
+	16 && 13.65 & min & 6.40 & sec \\
+	24 && 58.25 & hour & 1.70 & min \\
+	32 && 621.38 & day & 27.30 & min \\
+	40 && 435.82 & year & 7.28 & hour \\
+	48 && 111568.9 & year & 4.85 & day \\
 	\end{tabular}
 	\end{table*}
 
@@ -121,18 +121,18 @@ Our engineering decisions are driven by a desire to improve vehicular security b
 to the CAN bus, without increasing bus traffic or delaying messages, and without making any
 disruptive changes.  The egregious state of vehicular security, however, demands a radical disruptive
 redesign of vehicular computer networks carried out including security as a foundational design
-requirement. [should we cite any discussion like this from someone else?  are we the first to say so?]
+requirement~\cite{Wolf2006}. 
 
 Design ideas for a replacement network to the CAN bus include the following:  
 (1)~Use a well-established high-speed network (such as 802.3 Ethernet) on which
 standard security mechanisms (such as IPsec) can be deployed.
 (2)~Segregate nodes on the bus into task-defined groups.
-(3)~Protect access to the bus by physically separating critcal and non-critical systems.
+(3)~Protect access to the bus by physically separating critical and non-critical systems.
 In particular, it should not be physically possible for malware or faults in entertainment or 
 Bluetooth systems to affect braking, steering, or acceleration.  
 
-A separate related problem is to detect vehicular network intrusions. [ref?]  A challenge of such work is that
-there is no good reponse of what to do if an intrusion is detected other than to shut down the vehicle safely.
+A separate related problem is to detect vehicular network intrusions~\cite{Otsuka2014}. A challenge of such work is that
+there is no good response of what to do if an intrusion is detected other than to shut down the vehicle safely.
 
 The Car-to-X network~\cite{C2X} is an emerging interconnected collection of vehicles, buildings, signs, and road infrastructure 
 to reduce congestion and enable more efficient traffic control. Cars of the future will have to be able to communicate

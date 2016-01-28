@@ -1,5 +1,5 @@
 \newcommand{\etalchar}[1]{$^{#1}$}
-\begin{thebibliography}{CMK{\etalchar{+}}11}
+\begin{thebibliography}{RMM{\etalchar{+}}10}
 
 \bibitem[BCK96]{HMAC}
 Mihir Bellare, Ran Canetti, and Hugo Krawczyk.
@@ -23,11 +23,28 @@ Brad Conte.
 Brad Conte.
 \newblock Implementation of {SHA}-256 in {C}, 2006.
 
+\bibitem[Ern13]{fig1}
+Erniotti.
+\newblock Can bus frame in base format without stuffbits and electrical bus
+  levels, 2013.
+
 \bibitem[FBZ{\etalchar{+}}08]{C2X}
 Anreas Festag, Roberto Baldessari, Wenhui Zhang, Long Le, Amardeo Sarma, and
   Fukukawa Masatoshi.
 \newblock Car-2-{X} communications for safety and infotainment in {E}urope.
 \newblock {\em NEC Technical Journal}, 3(1):21--26, 2008.
+
+\bibitem[fS15]{canbus}
+International~Organization for Standards.
+\newblock Iso 11989.
+\newblock Technical report, International Organization for Standards, 2015.
+
+\bibitem[KCR{\etalchar{+}}10]{Koscher-2010}
+K.~Koscher, A.~Czeskis, F.~Roesner, S.~Patel, T.~Kohno, S.~Checkoway, D.~McCoy,
+  B.~Kantor, D.~Anderson, H.~Shacham, and S.~Savage.
+\newblock Experimental security analysis of a modern automobile.
+\newblock In {\em Proceedings of the 2010 IEEE Symposium on Security and
+  Privacy (SP)}, pages 447--462, May 2010.
 
 \bibitem[LSV12]{Lin-MAC}
 Chung-Wei Lin and A.~Sangiovanni-Vincentelli.
@@ -35,6 +52,11 @@ Chung-Wei Lin and A.~Sangiovanni-Vincentelli.
   communication protocol.
 \newblock In {\em Proceedings of the 2012 International Conference on Cyber
   Security (CyberSecurity)}, pages 1--7, Dec 2012.
+
+\bibitem[MV15]{blackhat}
+Charlie Miller and Chris Valasek.
+\newblock Remote exploitation of an unaltered passenger vehicle.
+\newblock {\em Black Hat USA}, 2015.
 
 \bibitem[{Nat}08]{FIPS-198-1}
 {National Institute of Standards and Technology}.
@@ -47,6 +69,12 @@ Chung-Wei Lin and A.~Sangiovanni-Vincentelli.
 \newblock {\em {FIPS PUB 180-4}: Secure Hash Standard}.
 \newblock August 2015.
 
+\bibitem[OIOS14]{Otsuka2014}
+S.~Otsuka, T.~Ishigooka, Y.~Oishi, and K.~Sasazawa.
+\newblock Can security: Cost-effective intrusion detection for real-time
+  control systems.
+\newblock 2014.
+
 \bibitem[Pes09]{Peslyak}
 Alexander Peslyak.
 \newblock A portable, fast, and free implementation of the {MD5} message-digest
@@ -55,6 +83,15 @@ Alexander Peslyak.
 \bibitem[Riv92]{MD5}
 Ronald Rivest.
 \newblock {IETF} {RFC} 1321: The {MD5} message-digest algorithm, April 1992.
+
+\bibitem[RMM{\etalchar{+}}10]{Rouf2010}
+Ishtiaq Rouf, Rob Miller, Hossen Mustafa, Travis Taylor, Sangho Oh, Wenyuan Xu,
+  Marco Gruteser, Wade Trappe, and Ivan Seskar.
+\newblock Security and privacy vulnerabilities of in-car wireless networks: A
+  tire pressure monitoring system case study.
+\newblock In {\em Proceedings of the 19th USENIX Conference on Security},
+  USENIX Security'10, pages 21--21, Berkeley, CA, USA, 2010. USENIX
+  Association.
 
 \bibitem[{Sti}06]{Stinson}
 {Stinson, Douglas R.}
@@ -67,6 +104,13 @@ S.~Woo, Hyo~Jin Jo, and Dong~Hoon Lee.
   protocol for in-vehicle {CAN}.
 \newblock {\em IEEE Transactions on Intelligent Transportation Systems},
   16(2):993--1006, April 2015.
+
+\bibitem[WWP06]{Wolf2006}
+Marko Wolf, Andr{\'e} Weimerskirch, and Christof Paar.
+\newblock {\em Embedded Security in Cars: Securing Current and Future
+  Automotive IT Applications}, chapter Secure In-Vehicle Communication, pages
+  95--109.
+\newblock Springer Berlin Heidelberg, Berlin, Heidelberg, 2006.
 
 \bibitem[WY05]{Wang-MD5}
 Xiaoyun Wang and Hongbo Yu.

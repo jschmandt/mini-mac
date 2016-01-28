@@ -11,16 +11,17 @@ Electronic Control Units (ECUs) found in an automotive computer network are low-
 
 \subsection{The CAN Bus}
 The CAN bus is a simple, low-speed bus designed to network simple nodes. In an automotive environment, 
-it typically runs at 500~kbps.\footnote{kilobits per second (kbps).} 
-[need ref for CAN bus]
+it typically runs at 500~kbps in automobiles~\cite{canbus}.\footnote{kilobits per second (kbps).}
 
 Transmissions are organized in frames.  As shown in Figure~\ref{fig-frame}, 
 a frame contains an 11-bit identifier field and 
 a data payload, as well as some control bits. Figure~\ref{fig-frame} shows the data payload as 8~bits, but
-it can be 8 to 64~bits and is typically 64~bits. [ref?]
+it can be 8 to 64~bits and is typically 64~bits.
 The payload of up to 8~bytes is the most important element, 
 as any MAC must fit into this frame or use a more complex multi-frame data transmission protocol 
 that may or may not be supported on all ECUs. 
+%typically 64 bits is based on observed data
+
 
 We use the term ``message'' to refer to the data payload of one logical transmission.
 Any payload longer than 64~bits must be sent as a multi-frame transmission.
@@ -50,7 +51,7 @@ We observed approximately 25 messages sent per second on average (40 maximum per
 	\begin{figure*}
 		\centering
 		\includegraphics[width=\linewidth]{figures/can_frame.png}
-		\caption{The CAN frame~\cite{?} [need to cite fig].  
+		\caption{The CAN frame~\cite{fig1}.  
 		Each transmission on the CAN bus is a structured sequence of 55--111~bits including 8--64 data~bits.}
 		\label{fig-frame}
 	\end{figure*}
@@ -66,13 +67,12 @@ access to this port by splicing into unexposed wires.
 do so while the car is being serviced or by entering the car while it is parked.
 (3) An attacker might gain access to the CAN bus by exploiting or corrupting a peripheral
 device connected to it, such as a cellular phone, audio system, or Bluetooth
-radio.  For example, Checkowa~\cite{Checkoway-2011} gained bus access by packing 
-malware into a WMA audio file played on the car stereo. [give another example
-of wireless access from drive-by attacker]
+radio.  For example, Checkoway~\cite{Checkoway-2011} gained bus access by packing 
+malware into a WMA audio file played on the car stereo. Rouf~\cite{Rouf2010} also demonstrates information leakage and message spoofing on RFID-based tire pressure monitoring systems.
 
 Despite many demonstrated security flaws, automotive 
-manufacturers have been unreasomnably hesitant to acknowledge the vulnerabilities inherent to the CAN bus,
-sometimes wishfully claiming that undetected bus access is difficult. 
+manufacturers have been unreasonably hesitant to acknowledge the vulnerabilities inherent to the CAN bus,
+sometimes wishfully claiming that undetected bus access is difficult. In 2013, Toyota offered this position on automotive security. ``Toyota has developed very strict and effective firewall technology against such remote and wireless services.'' ``We believe our systems are robust and secure.'' ``The presence of a laptop or other device connected to the OBD [on board diagnostics] II port would be apparent.'' These statements seem to demonstrate a failure to grasp the reality of wireless vulnerability of modern vehicles demonstrated in several notable publications.
 
 %[do you have a cite? for example,
 %a quote from a car manufacturer saying something ridiculous?]

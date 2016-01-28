@@ -24,14 +24,14 @@ This project aims to defend against Type~2 and Type~3 adversaries.   Our techniq
 a Type~1 adversary, who can spoof any message. 
 
 Motivation of the attacker includes criminal mischief (e.g., crashing car, destroying property) and theft.  
-For example, spoofing messages on the CAN bus can unlock doors, disable brakes, and accerate the car.
+For example, spoofing messages on the CAN bus can unlock doors, disable brakes, and accelerate the car.
 Goals of the attacker include spoofing or replaying messages on the CAN bus that will be accepted by an ECU
 as valid.
 
 We assume the attacker posses complete knowledge of the CAN bus and ECUs, including all protocols, message IDs, and formats.
 We assume the attacker has substantial computing power, reliable access to the CAN bus, and is able to 
 monitor and inject messages on the bus.  We assume, however, that the adversary cannot inject more than 40 messages
-per minute without detection.
+per second without detection.
 
 We assume the ECUs are trustworthy and that the adversary cannot break standard cryptographic functions 
 including encryption and hash functions.
