@@ -118,12 +118,12 @@ Despite known collision attacks on MD5~\cite{Wang-MD5}, we consider
 MD5 for Mini-MAC for its very fast speed.  
 
 For \textbf{HMAC-SHA-1},
-we adapted Conte's~\cite{Conte-SHA1} SHA-1~\cite{FIPS-180-4} implementation for the MSP430 platform, producing a 160-bit output. 
+we adapted Conte's~\cite{Conte-SHA1}\footnote{\url{http://bradconte.com/sha1_c}} SHA-1~\cite{FIPS-180-4} implementation for the MSP430 platform, producing a 160-bit output. 
 As for MD5, despite known security vulnerabilities in SHA-1 \cite{Wang-SHA1}, 
 we consider SHA1 as a potential candidate.
 
 For \textbf{HMAC-SHA-2},
-we also adapted Conte's~\cite{Conte-SHA256} SHA-2-256 implementation for the MSP430 platform, producing a 256-bit output. 
+we also adapted Conte's~\cite{Conte-SHA256}\footnote{\url{http://bradconte.com/sha256_c}} SHA-2-256 implementation for the MSP430 platform, producing a 256-bit output. 
 A member of the SHA-2 family of hash functions, SHA-2 is still in use and is recommended by NIST as a cryptographic hash function, 
 though SHA-3 will soon replace it\cite{FIPS-180-4}. We did not use SHA-3 because we did not find an implementation of it
 for the MSP430.  Throughout, we shall refer to SHA-2-256 as SHA-2.

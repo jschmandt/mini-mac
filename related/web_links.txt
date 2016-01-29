@@ -1,0 +1,11 @@
+Peslyak MD5 Implementation:
+http://openwall.info/wiki/people/solar/software/public-domain-source-code/md5
+
+Conte SHA-1 Implementation
+http://bradconte.com/sha1_c
+
+Conte SHA-2 Implementation
+http://bradconte.com/sha256_c
+
+BBC Article with Toyota quotes
+http://www.bbc.co.uk/news/technology-23443215

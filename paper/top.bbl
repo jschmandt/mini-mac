@@ -4,9 +4,9 @@
 \bibitem[BCK96]{HMAC}
 Mihir Bellare, Ran Canetti, and Hugo Krawczyk.
 \newblock Keying hash functions for message authentication.
-\newblock In {\em Proceedings of the 16th Annual International Cryptology
-  Conference on Advances in Cryptology}, CRYPTO '96, pages 1--15, London, UK,
-  UK, 1996. Springer-Verlag.
+\newblock In Neal Koblitz, editor, {\em Proceedings of the 16th Annual
+  International Cryptology Conference on Advances in Cryptology}, volume 1109
+  of {\em LNCS}, pages 1--15, London, UK, UK, 1996. Springer-Verlag.
 
 \bibitem[CMK{\etalchar{+}}11]{Checkoway-2011}
 Stephen Checkoway, Damon McCoy, Brian Kantor, Danny Anderson, Hovav Shacham,
@@ -45,6 +45,10 @@ K.~Koscher, A.~Czeskis, F.~Roesner, S.~Patel, T.~Kohno, S.~Checkoway, D.~McCoy,
 \newblock Experimental security analysis of a modern automobile.
 \newblock In {\em Proceedings of the 2010 IEEE Symposium on Security and
   Privacy (SP)}, pages 447--462, May 2010.
+
+\bibitem[Kle13]{bbc_toyota}
+Zoe Kleinman.
+\newblock Car hackers use laptop to control standard car, 2013.
 
 \bibitem[LSV12]{Lin-MAC}
 Chung-Wei Lin and A.~Sangiovanni-Vincentelli.
@@ -115,16 +119,17 @@ Marko Wolf, Andr{\'e} Weimerskirch, and Christof Paar.
 \bibitem[WY05]{Wang-MD5}
 Xiaoyun Wang and Hongbo Yu.
 \newblock How to break {MD5} and other hash functions.
-\newblock In {\em Proceedings of the 24th Annual International Conference on
-  Theory and Applications of Cryptographic Techniques}, EUROCRYPT '05, pages
-  19--35, Berlin, Heidelberg, 2005. Springer.
+\newblock In Ronald Cramer, editor, {\em Proceedings of the 24th Annual
+  International Conference on Theory and Applications of Cryptographic
+  Techniques}, volume 3494 of {\em LNCS}, pages 19--35, Berlin, Heidelberg,
+  2005. Springer.
 
 \bibitem[WYY05]{Wang-SHA1}
 Xiaoyun Wang, {Yiqun Lisa} Yin, and Hongbo Yu.
 \newblock Finding collisions in the full {SHA}-1.
 \newblock In Victor Shoup, editor, {\em Advances in Cryptology – CRYPTO
-  2005}, volume 3621 of {\em Lecture Notes in Computer Science}, pages 17--36.
-  Springer Berlin Heidelberg, 2005.
+  2005}, volume 3621 of {\em LNCS}, pages 17--36. Springer Berlin Heidelberg,
+  2005.
 
 \bibitem[XLL{\etalchar{+}}15]{Xie-15}
 Yong Xie, Liangjiao Liu, Renfa Li, Jianqiang Hu, Yong Han, and Xin Peng.
