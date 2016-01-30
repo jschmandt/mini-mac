@@ -29,8 +29,8 @@ Brad Conte.
 Erniotti.
 \newblock {CAN} bus frame in base format without stuffbits and electrical bus
   levels, 2013.
-\newblock
-  https://commons.wikimedia.org/wiki/File:CAN-Bus-frame\_in\_base\_format\_without\_stuffbits.png.
+\newblock https://commons.wikimedia.org/wiki/File:
+  CAN-Bus-frame\_in\_base\_format\_without\_ stuffbits.png.
 
 \bibitem[FBZ{\etalchar{+}}08]{C2X}
 Anreas Festag, Roberto Baldessari, Wenhui Zhang, Long Le, Amardeo Sarma, and
@@ -88,8 +88,8 @@ S.~Otsuka, T.~Ishigooka, Y.~Oishi, and K.~Sasazawa.
 Alexander Peslyak.
 \newblock A portable, fast, and free implementation of the {MD5} message-digest
   algorithm ({RFC} 1321), 2009.
-\newblock
-  http://openwall.info/wiki/people/solar/software/public-domain-source-code/md5.
+\newblock http://openwall.info/wiki/people/solar/
+  software/public-domain-source-code/md5.
 
 \bibitem[Riv92]{MD5}
 Ronald Rivest.

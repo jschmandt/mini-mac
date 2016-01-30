@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.2.6)  29 JAN 2016 20:36
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.2.6)  29 JAN 2016 20:46
 entering extended mode
 **C:/Users/Alan/Documents/GitHub/mini-mac/paper/top.tex
 (C:/Users/Alan/Documents/GitHub/mini-mac/paper/top.tex
@@ -573,35 +573,19 @@ Package: booktabs 2005/04/14 v1.61803 publication quality tables
 \@lastruleclass=\count165
 \@thisrulewidth=\dimen179
 )
-! Undefined control sequence.
-<recently read> \p 
-                   
-l.16 \p
-       
-? 
-
-! LaTeX Error: Missing \begin{document}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.18 a
-      gestyle{plain}
-? 
 (C:\Users\Alan\Documents\GitHub\mini-mac\paper\top.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -640,127 +624,66 @@ Dictionary: translator-basic-dictionary, Language: English
 File: siunitx-abbreviations.cfg 2015/10/15 v2.6m siunitx: Abbreviated units
 )
 \c__siunitx_mathsf_int=\count173
-LaTeX Font Info:    Try loading font information for U+stmry on input line 22.
+LaTeX Font Info:    Try loading font information for U+stmry on input line 20.
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\stmaryrd\ustmry.fd")
 \c__siunitx_mathtt_int=\count174
- [1
-
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
-
-]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 37.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 35.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 37.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 35.
 
 (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/abstract.tex)
 (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/introduction.tex
-
-LaTeX Warning: Citation `blackhat' on page 2 undefined on input line 4.
-
-
-LaTeX Warning: Citation `Rouf2010' on page 2 undefined on input line 8.
-
-
-LaTeX Warning: Citation `Koscher-2010' on page 2 undefined on input line 8.
-
-
-LaTeX Warning: Citation `Checkoway-2011' on page 2 undefined on input line 8.
-
-
-LaTeX Warning: Citation `Woo-14' on page 2 undefined on input line 8.
-
-
-LaTeX Warning: Citation `C2X' on page 2 undefined on input line 8.
-
-
 Underfull \hbox (badness 1590) in paragraph at lines 4--11
 \OT1/cmr/m/n/10 At the 2015 Black Hat con-fer-ence, Miller and
  []
 
-[2
+
+Underfull \hbox (badness 1077) in paragraph at lines 4--11
+\OT1/cmr/m/n/10 WiFi im-ple-men-ta-tion and by rewrit-ing firmware
+ []
+
+[1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
+
 
 ]
 Underfull \hbox (badness 2245) in paragraph at lines 25--29
 []\OT1/cmr/m/n/10 Traditional au-then-ti-ca-tion pro-to-cols (in-clud-ing
  []
 
-
-LaTeX Warning: Citation `Lin-MAC' on page 3 undefined on input line 30.
-
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 42.
 ) (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/background.tex
-
-LaTeX Warning: Citation `Stinson' on page 3 undefined on input line 7.
-
-
-LaTeX Warning: Citation `FIPS-180-4' on page 3 undefined on input line 7.
-
-
-LaTeX Warning: Citation `canbus' on page 3 undefined on input line 21.
-
-[3] <figures/can_frame.png, id=21, 2007.5pt x 506.89375pt>
+[2] <figures/can_frame.png, id=17, 2007.5pt x 506.89375pt>
 File: figures/can_frame.png Graphic file (type png)
 
 <use figures/can_frame.png>
 Package pdftex.def Info: figures/can_frame.png used on input line 50.
 (pdftex.def)             Requested size: 469.0pt x 118.42393pt.
 
+Underfull \vbox (badness 1584) has occurred while \output is active []
 
-LaTeX Warning: Citation `fig1' on page 4 undefined on input line 52.
-
-
-LaTeX Warning: Citation `fig1' on page 4 undefined on input line 52.
-
-
-LaTeX Warning: Citation `Checkoway-2011' on page 4 undefined on input line 68.
-
-
-LaTeX Warning: Citation `Rouf2010' on page 4 undefined on input line 70.
-
-
-LaTeX Warning: Citation `bbc_toyota' on page 4 undefined on input line 75.
-
-
-LaTeX Warning: Citation `HMAC' on page 4 undefined on input line 89.
-
-
-LaTeX Warning: Citation `FIPS-198-1' on page 4 undefined on input line 89.
-
-) (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/problem_statement.tex
-) (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/previous_work.tex
-
-LaTeX Warning: Citation `Lin-MAC' on page 4 undefined on input line 9.
-
-[4]
-
-LaTeX Warning: Citation `Woo-14' on page 5 undefined on input line 14.
-
-
-LaTeX Warning: Citation `Zalman-14' on page 5 undefined on input line 22.
-
-
-LaTeX Warning: Citation `Xie-15' on page 5 undefined on input line 26.
-
-) (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/adversaries.tex
-[5 <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/can_frame.png>]
+)
+(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/problem_statement.tex)
+(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/previous_work.tex
+[3]) (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/adversaries.tex
+[4 <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/can_frame.png>]
 Underfull \hbox (badness 1931) in paragraph at lines 39--42
 []\OT1/cmr/m/n/10 This work does not ad-dress Denial-of-Service
  []
 
-) (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/mini-mac.tex [6]
-<figures/key_distribution.png, id=35, 637.63219pt x 240.14719pt>
+) (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/mini-mac.tex [5]
+<figures/key_distribution.png, id=32, 637.63219pt x 240.14719pt>
 File: figures/key_distribution.png Graphic file (type png)
 
 <use figures/key_distribution.png>
 Package pdftex.def Info: figures/key_distribution.png used on input line 59.
 (pdftex.def)             Requested size: 229.5pt x 86.43459pt.
 
-<figures/minimac_diagram.png, id=36, 620.3175pt x 550.30594pt>
+<figures/minimac_diagram.png, id=33, 620.3175pt x 550.30594pt>
 File: figures/minimac_diagram.png Graphic file (type png)
 
 <use figures/minimac_diagram.png>
@@ -777,107 +700,94 @@ Underfull \hbox (badness 5726) in paragraph at lines 91--93
  []
 
 
-LaTeX Warning: Citation `Peslyak' on page 7 undefined on input line 112.
+Underfull \hbox (badness 10000) in paragraph at lines 116--120
+[]\OT1/cmr/m/n/10 For \OT1/cmr/bx/n/10 HMAC-SHA-1\OT1/cmr/m/n/10 , we adapted
+ []
 
 
-LaTeX Warning: Citation `MD5' on page 7 undefined on input line 112.
+Underfull \hbox (badness 10000) in paragraph at lines 116--120
+\OT1/cmr/m/n/10 Conte's [Con06a] SHA-1 [Nat15] im-ple-men-ta-
+ []
 
-
-LaTeX Warning: Citation `Wang-MD5' on page 7 undefined on input line 113.
-
-
-LaTeX Warning: Citation `Conte-SHA1' on page 7 undefined on input line 117.
-
-
-LaTeX Warning: Citation `FIPS-180-4' on page 7 undefined on input line 117.
-
-
-LaTeX Warning: Citation `Wang-SHA1' on page 7 undefined on input line 118.
-
-
-LaTeX Warning: Citation `Conte-SHA256' on page 7 undefined on input line 124.
-
-
-LaTeX Warning: Citation `FIPS-180-4' on page 7 undefined on input line 126.
-
-[7 <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/key_distribution.png>
+[6 <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/key_distribution.png>
  <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/minimac_diagram.png>]
-Underfull \vbox (badness 5022) has occurred while \output is active []
+Underfull \hbox (badness 10000) in paragraph at lines 123--128
+[]\OT1/cmr/m/n/10 For \OT1/cmr/bx/n/10 HMAC-SHA-2\OT1/cmr/m/n/10 , we also adap
+ted
+ []
 
-)
-(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/testing.tex [8]
+
+Underfull \hbox (badness 10000) in paragraph at lines 123--128
+\OT1/cmr/m/n/10 Conte's [Con06b] SHA-2-256 im-ple-men-ta-tion
+ []
+
+
+Underfull \hbox (badness 1859) in paragraph at lines 123--128
+\OT1/cmr/m/n/10 for the MSP430 plat-form, pro-duc-ing a 256-bit
+ []
+
+) (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/testing.tex [7]
 Overfull \hbox (19.39394pt too wide) in paragraph at lines 41--48
  [][] 
  []
 
-<figures/exec_cycles.png, id=48, 578.16pt x 433.62pt>
+<figures/exec_cycles.png, id=45, 578.16pt x 433.62pt>
 File: figures/exec_cycles.png Graphic file (type png)
 
 <use figures/exec_cycles.png>
 Package pdftex.def Info: figures/exec_cycles.png used on input line 81.
 (pdftex.def)             Requested size: 229.5pt x 172.12163pt.
 
-<figures/ram_usage.png, id=49, 578.16pt x 433.62pt>
+<figures/ram_usage.png, id=46, 578.16pt x 433.62pt>
 File: figures/ram_usage.png Graphic file (type png)
 
 <use figures/ram_usage.png>
 Package pdftex.def Info: figures/ram_usage.png used on input line 89.
 (pdftex.def)             Requested size: 229.5pt x 172.12163pt.
 
-<figures/code_size.png, id=50, 578.16pt x 433.62pt>
+<figures/code_size.png, id=47, 578.16pt x 433.62pt>
 File: figures/code_size.png Graphic file (type png)
 
 <use figures/code_size.png>
 Package pdftex.def Info: figures/code_size.png used on input line 96.
 (pdftex.def)             Requested size: 229.5pt x 172.12163pt.
 )
-(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/analysis.tex [9 <C:/Use
-rs/Alan/Documents/GitHub/mini-mac/paper/figures/exec_cycles.png (PNG copy)> <C:
-/Users/Alan/Documents/GitHub/mini-mac/paper/figures/ram_usage.png (PNG copy)>]
+(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/analysis.tex
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [8 <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/exec_cycles.png (PNG
+ copy)> <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/ram_usage.png (P
+NG copy)>]
 LaTeX Font Info:    Try loading font information for OT1+ptm on input line 52.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
-<figures/relative_histogram.png, id=54, 578.16pt x 433.62pt>
+<figures/relative_histogram.png, id=51, 578.16pt x 433.62pt>
 File: figures/relative_histogram.png Graphic file (type png)
 
 <use figures/relative_histogram.png>
 Package pdftex.def Info: figures/relative_histogram.png used on input line 55.
 (pdftex.def)             Requested size: 229.5pt x 172.12163pt.
- [10 <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/code_size.png (PNG 
-copy)>]
-Underfull \vbox (badness 2503) has occurred while \output is active []
+ [9 <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/code_size.png (PNG c
+opy)>]
+Underfull \vbox (badness 1281) has occurred while \output is active []
 
- [11 <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/relative_histogram.
+ [10 <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/relative_histogram.
 png (PNG copy)>]) (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/discu
 ssion.tex
 Underfull \hbox (badness 1097) in paragraph at lines 13--16
 \OT1/ptm/m/n/10 Our mini-MAC pro-posal re-quires the ECUs to have
  []
 
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 42.
-
-LaTeX Warning: Citation `Woo-14' on page 12 undefined on input line 42.
-
-
-LaTeX Warning: Citation `Wolf2006' on page 12 undefined on input line 65.
-
-[12]
+[11]
 Underfull \hbox (badness 2884) in paragraph at lines 76--82
 []\OT1/ptm/m/n/10 Additional ideas, sug-gested by Phatak,[] in-clude:
  []
 
-
-LaTeX Warning: Citation `Otsuka2014' on page 13 undefined on input line 83.
-
-
-LaTeX Warning: Citation `C2X' on page 13 undefined on input line 86.
-
 ) (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/conclusion.tex)
 (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/acknowledgments.tex)
-[13] (C:\Users\Alan\Documents\GitHub\mini-mac\paper\top.bbl
+[12] (C:\Users\Alan\Documents\GitHub\mini-mac\paper\top.bbl
 Underfull \hbox (badness 3098) in paragraph at lines 5--10
 []\OT1/ptm/m/n/10 Mihir Bel-lare, Ran Canetti, and Hugo
  []
@@ -923,13 +833,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 29--34
  []
 
 
-Overfull \hbox (16.41586pt too wide) in paragraph at lines 29--34
-\OT1/ptm/m/n/10 https://commons.wikimedia.org/wiki/File:CAN-
+Underfull \hbox (badness 10000) in paragraph at lines 29--34
+\OT1/ptm/m/n/10 https://commons.wikimedia.org/wiki/File:
  []
 
 
-Overfull \hbox (18.75635pt too wide) in paragraph at lines 29--34
-\OT1/ptm/m/n/10 Bus-frame[]in[]base[]format[]without[]stuffbits.png. 
+Underfull \hbox (badness 10000) in paragraph at lines 29--34
+\OT1/ptm/m/n/10 CAN-Bus-frame[]in[]base[]format[]without[]
  []
 
 
@@ -973,11 +883,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 88--93
  []
 
 
-Overfull \hbox (42.7554pt too wide) in paragraph at lines 88--93
-\OT1/ptm/m/n/10 http://openwall.info/wiki/people/solar/software/public-
+Underfull \hbox (badness 10000) in paragraph at lines 88--93
+\OT1/ptm/m/n/10 http://openwall.info/wiki/people/solar/
  []
 
-[14
+[13
 
 ]
 Underfull \hbox (badness 2065) in paragraph at lines 113--118
@@ -1017,45 +927,36 @@ Underfull \hbox (badness 3861) in paragraph at lines 149--154
 \OT1/ptm/m/it/10 toma-tion Con-fer-ence (DAC), 2014 51st
  []
 
-) [15
-
-] (C:\Users\Alan\Documents\GitHub\mini-mac\paper\top.aux)
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+) [14] (C:\Users\Alan\Documents\GitHub\mini-mac\paper\top.aux) ) 
 Here is how much of TeX's memory you used:
- 15311 strings out of 493921
- 305489 string characters out of 3144880
- 313357 words of memory out of 3000000
- 18412 multiletter control sequences out of 15000+200000
- 18969 words of font info for 60 fonts, out of 3000000 for 9000
+ 15307 strings out of 493921
+ 305448 string characters out of 3144880
+ 313553 words of memory out of 3000000
+ 18410 multiletter control sequences out of 15000+200000
+ 17343 words of font info for 58 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  40i,9n,46p,10421b,494s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Progra
-m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program 
-Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Fi
-les (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Program Fi
-les (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Program Fil
-es (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files
- (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files (x
-86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (x86)
-/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files (x86)/Mi
-KTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files (x86)/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x86)/MiKTeX 2.
-9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fo
-nts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/
-type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/ty
-pe1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1
-/public/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/u
-rw/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/ut
-mr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on top.pdf (15 pages, 872252 bytes).
+{C:/Program Fil
+es (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program Files (x86)/MiK
+TeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files (x86)/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files (x86)/MiKTeX 
+2.9/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Program Files (x86)/MiKTeX 
+2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Program Files (x86)/MiKTeX 2
+.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files (x86)/MiKTeX 2.9
+/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts
+/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/ty
+pe1/public/amsfonts/cm/cmr17.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1
+/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/pub
+lic/amsfonts/cm/cmr7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/
+amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsf
+onts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfon
+ts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/
+cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.p
+fb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on top.pdf (14 pages, 864273 bytes).
 PDF statistics:
- 135 PDF objects out of 1000 (max. 8388607)
+ 128 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  36 words of extra memory for PDF output out of 10000 (max. 10000000)
 
