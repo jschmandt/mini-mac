@@ -71,7 +71,14 @@ standard security mechanisms (such as IPsec) can be deployed.
 (3)~Protect access to the bus by physically separating critical and non-critical systems.
 In particular, it should not be physically possible for malware or faults in entertainment or 
 Bluetooth systems to affect braking, steering, or acceleration. 
-(4) Physically protect the ECUs. 
+(4)~Physically protect the ECUs. 
+
+Additional ideas, suggested by Phatak,\footnote{Private correspondence with Dhananjay Phatak.} 
+include:
+(5)~Physically secure the bus to prevent any access, except through
+a read-only diagnostic port.
+(6)~At pseudorandom time intervals, pseudorandomly change the ECU ID numbers, 
+based on a key shared by all ECUs used only for this purpose.
 
 A separate related problem is to detect vehicular network intrusions~\cite{Otsuka2014}. A challenge of such work is that
 there is no good response of what to do if an intrusion is detected other than to shut down the vehicle safely.

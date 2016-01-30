@@ -5,6 +5,8 @@ Mini-MAC is a group-keyed lightweight variable-length truncated HMAC that
 depends on a counter and on recent message history.  It does not increase
 bus traffic or delay messages.  We explain Mini-MAC in three layers
 of abstraction: architecture, design, and  implementation.
+We also describe an enhanced message history option
+and comment on key distribution.
 
 \subsection{Architecture}
 \label{arch}
@@ -28,8 +30,6 @@ Mini-MAC uses long-term shared group keys instead of pairwise keys.  For example
 2, 3, and 4 share the group key~$k_3$.
 Group key distribution is possible because, at system design, the designer knows which ECUs communicate with which others. 
 There is no need for a dynamic group key update capability because group membership will never change.
-Details about how these keys are initially set, and possibly later updated, 
-are beyond the scope of this paper.
 
 Using a counter is a simple, standard, and effective way to mitigate replay attacks.  
 
@@ -106,11 +106,7 @@ of continuous operation (32 bits would prevent counter roll-over for 20 years wi
 
 In our implementation, we used $\lambda = 5$, 
 but we recommend a higher value (say, $\lambda = 16$) to reduce the chance of a repeated state.
-With enough space, one could set the number of messages $\lambda$ in the message history such that
-the time to collect the history exceeds the time available to a transient attacker.
-For example, $\lambda = \hbox{72,000}$, requires the attacker to observe messages
-for over 30~minutes, even if messages are continuously sent using one key.
-We acknowledge, however, that this choice of $\lambda$ is unreasonably large for most applications.
+See section~\ref{history} for an enhanced message history feature.
 
 For \textbf{HMAC-MD5},
 we adapted Peslyak's~\cite{Peslyak} implementation of MD5~\cite{MD5} for the MSP430 platform, producing a 128-bit output. 
@@ -118,12 +114,62 @@ Despite known collision attacks on MD5~\cite{Wang-MD5}, we consider
 MD5 for Mini-MAC for its very fast speed.  
 
 For \textbf{HMAC-SHA-1},
-we adapted Conte's~\cite{Conte-SHA1}\footnote{\url{http://bradconte.com/sha1_c}} SHA-1~\cite{FIPS-180-4} implementation for the MSP430 platform, producing a 160-bit output. 
+we adapted Conte's~\cite{Conte-SHA1} SHA-1~\cite{FIPS-180-4} implementation for the MSP430 platform, producing a 160-bit output. 
 As for MD5, despite known security vulnerabilities in SHA-1 \cite{Wang-SHA1}, 
 we consider SHA1 as a potential candidate.
 
+%\footnote{\url{http://bradconte.com/sha1_c}}
+
 For \textbf{HMAC-SHA-2},
-we also adapted Conte's~\cite{Conte-SHA256}\footnote{\url{http://bradconte.com/sha256_c}} SHA-2-256 implementation for the MSP430 platform, producing a 256-bit output. 
+we also adapted Conte's~\cite{Conte-SHA256} SHA-2-256 implementation for the MSP430 platform, producing a 256-bit output. 
 A member of the SHA-2 family of hash functions, SHA-2 is still in use and is recommended by NIST as a cryptographic hash function, 
 though SHA-3 will soon replace it\cite{FIPS-180-4}. We did not use SHA-3 because we did not find an implementation of it
 for the MSP430.  Throughout, we shall refer to SHA-2-256 as SHA-2.
+
+%\footnote{\url{http://bradconte.com/sha256_c}}
+
+\subsection{Enhanced Message History}
+\label{history}
+
+By creating a message history by sampling from a long enough (e.g., 30~min) stream of messages, 
+no transcient attacker will have enough time to observe the entire sample.
+Powerfully, this strategy defeats all transcient attackers, even if they know the group keys.
+For example, this strategy defeats an attacker who learns the group keys by compromising
+the key distribution process or by physically probing the ECUs, but who does not modify
+the car.
+
+There are many possible choices for realizing this strategy.  For example,
+one might generate a cryptographic hash chain of all messages ever sent.  Alternatively, for
+greater speed, one might use a faster non-cryptographic combining function (e.g., CRC).  
+Another option would be to compute a hash chain from a limited sample of the stream.
+
+Given the limited power of the ECUs, 
+we recommend that the message history be defined as two samples from the recent stream of valid messages
+received under the given group key.  
+The first sample comprises the most recent $\lambda/2$ messages taken over a specified 
+recent section of the stream.  For example, one might sample every 10,000th message.  
+The section length should be chosen to exceed the time available to a transcient attacker.
+For example, at most 72,000 messages can be sent in 30~minutes,
+even if messages are continuously sent using only one key.
+
+The second sample comprises the most recent $\lambda/2$ 
+messages from this stream.  
+This sample helps ensure changed state after a resynchronization (see Section~\ref{resynch}).
+
+\subsection{Key Establishment}
+\label{key}
+
+We recommend that group keys be established as follows.  Each ECU should generate its own key material,
+which should never leave the ECU, except possibly in encrypted form.  Neither the ECU manufacturer, car manufacturer, 
+nor car dealer should ever learn any keying material.  The security manager (perhaps a dealer) should be capable of initiating
+a process for key establishment or rekeying.
+
+To establish a group key, each group member should generate a key share of the same length as the group key.
+Using a key-encrypting-key (KEK) shared by all ECUs in the group and used only for this purpose, 
+each member sends its share to the other group members.  Each member computes the group key as the
+XOR of the shares.  In the absense of public-key cryptography, we recommend that this KEK be
+loaded into the ECUs during car manufacturing, using a trusted process that prevents anyone from
+learning the KEK.
+
+
+

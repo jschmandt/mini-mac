@@ -11,13 +11,12 @@ and variants prevent message replay attacks; however,
 standard MACs are unsuitable for use on the CAN bus because of small payload sizes. 
 Restrictions of the CAN bus, including the need not to delay messages,  
 severely limit how well this network can be protected.
-%Do we need to clarify  why the CAN bus is vulnerable here?
-%I don't think time-seeding has an impact on the suitability of a MAC for the CAN bus
 
 Mini-MAC is based on a counter-seeded keyed HMAC, augmented with message history and truncated to fit available message space. 
 It causes no increase in bus traffic and incurs a very small performance penalty relative to the provably secure HMAC. 
 It is the first proposal to combine these two tenets for vehicle networks. 
-Even though the CAN bus cannot be properly secured against a dedicated attacker, 
+The message history feature protects against all transcient attackers, even if they know the keys.
+Though the CAN bus cannot be properly secured against a dedicated attacker, 
 Mini-MAC meaningfully raises the bar of vehicular security, enhancing the safety of drivers and
 others.
 

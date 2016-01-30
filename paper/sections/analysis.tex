@@ -87,8 +87,9 @@ The 128-bit keys are sufficiently long to withstand
 exhaustive key-search attacks.  The 64-bit counter is sufficient to prevent counter
 rollover within the lifetime of the car.
 
-%With $\lambda = \hbox{72,000}$, the adversary must learn over 30~minutes of recent
-%message history.
+With the enhanced message history feature, the adversary must learn a sample of
+messages taken from a specified period of recent message history.  This period can be set
+(e.g., 30~mins) to exceed the amount of time available for any transcient attacker.
 
 A security-enhancing feature of the CAN bus is, ironically, its slow speed of at most
 approximately 40 messages per second.  Figure~\ref{fig-msgdelay} shows a histogram of

@@ -18,15 +18,19 @@ Stephen Checkoway, Damon McCoy, Brian Kantor, Danny Anderson, Hovav Shacham,
 \bibitem[Con06a]{Conte-SHA1}
 Brad Conte.
 \newblock Implementation of {SHA}-1 in {C}, 2006.
+\newblock http://bradconte.com/sha1\_c.
 
 \bibitem[Con06b]{Conte-SHA256}
 Brad Conte.
 \newblock Implementation of {SHA}-256 in {C}, 2006.
+\newblock http://bradconte.com/sha256\_c.
 
 \bibitem[Ern13]{fig1}
 Erniotti.
 \newblock {CAN} bus frame in base format without stuffbits and electrical bus
   levels, 2013.
+\newblock
+  https://commons.wikimedia.org/wiki/File:CAN-Bus-frame\_in\_base\_format\_without\_stuffbits.png.
 
 \bibitem[FBZ{\etalchar{+}}08]{C2X}
 Anreas Festag, Roberto Baldessari, Wenhui Zhang, Long Le, Amardeo Sarma, and
@@ -49,6 +53,7 @@ K.~Koscher, A.~Czeskis, F.~Roesner, S.~Patel, T.~Kohno, S.~Checkoway, D.~McCoy,
 \bibitem[Kle13]{bbc_toyota}
 Zoe Kleinman.
 \newblock Car hackers use laptop to control standard car, 2013.
+\newblock http://www.bbc.co.uk/news/technology-23443215.
 
 \bibitem[LSV12]{Lin-MAC}
 Chung-Wei Lin and A.~Sangiovanni-Vincentelli.
@@ -83,6 +88,8 @@ S.~Otsuka, T.~Ishigooka, Y.~Oishi, and K.~Sasazawa.
 Alexander Peslyak.
 \newblock A portable, fast, and free implementation of the {MD5} message-digest
   algorithm ({RFC} 1321), 2009.
+\newblock
+  http://openwall.info/wiki/people/solar/software/public-domain-source-code/md5.
 
 \bibitem[Riv92]{MD5}
 Ronald Rivest.
