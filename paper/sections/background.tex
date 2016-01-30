@@ -6,6 +6,14 @@ The experienced reader may wish to skip to Section~\ref{problem}.
 We assume the reader is familiar with cryptographic hash functions as explained, for example, 
 by Stinson~\cite{Stinson} and NIST~\cite{FIPS-180-4}.
 
+	\begin{figure*}
+		\centering
+		\includegraphics[width=\linewidth]{figures/can_frame.png}
+		\caption{The CAN frame~\cite{fig1}.  
+		Each transmission on the CAN bus is a structured sequence of 55--111~bits including 8--64 data~bits.}
+		\label{fig-frame}
+	\end{figure*}
+
 \subsection{ECUs}
 \label{ecu}
 
@@ -44,14 +52,6 @@ Messages have fixed, known sizes.  The longest messages we observed were
 status reports describing the steering wheel angle and tire speed.
 
 We observed approximately 25 messages sent per second on average (40 maximum per second).
-
-	\begin{figure*}
-		\centering
-		\includegraphics[width=\linewidth]{figures/can_frame.png}
-		\caption{The CAN frame~\cite{fig1}.  
-		Each transmission on the CAN bus is a structured sequence of 55--111~bits including 8--64 data~bits.}
-		\label{fig-frame}
-	\end{figure*}
 
 \subsection{Bus Access}
 \label{access}

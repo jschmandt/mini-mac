@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.2.6)  29 JAN 2016 20:59
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.2.6)  30 JAN 2016 10:46
 entering extended mode
 **C:/Users/Alan/Documents/GitHub/mini-mac/paper/top.tex
 (C:/Users/Alan/Documents/GitHub/mini-mac/paper/top.tex
@@ -657,20 +657,18 @@ Underfull \hbox (badness 2245) in paragraph at lines 25--29
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 42.
 ) (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/background.tex
-[2] <figures/can_frame.png, id=17, 2007.5pt x 506.89375pt>
+<figures/can_frame.png, id=14, 2007.5pt x 506.89375pt>
 File: figures/can_frame.png Graphic file (type png)
 
 <use figures/can_frame.png>
-Package pdftex.def Info: figures/can_frame.png used on input line 50.
+Package pdftex.def Info: figures/can_frame.png used on input line 11.
 (pdftex.def)             Requested size: 469.0pt x 118.42393pt.
+ [2] [3 <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/can_frame.png>])
 
-Underfull \vbox (badness 1584) has occurred while \output is active []
-
-)
 (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/problem_statement.tex)
-(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/previous_work.tex
-[3]) (C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/adversaries.tex
-[4 <C:/Users/Alan/Documents/GitHub/mini-mac/paper/figures/can_frame.png>]
+(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/previous_work.tex)
+(C:\Users\Alan\Documents\GitHub\mini-mac\paper\sections/adversaries.tex
+[4]
 Underfull \hbox (badness 1931) in paragraph at lines 39--42
 []\OT1/cmr/m/n/10 This work does not ad-dress Denial-of-Service
  []
@@ -954,7 +952,7 @@ onts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfon
 ts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/
 cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.p
 fb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on top.pdf (14 pages, 864273 bytes).
+Output written on top.pdf (14 pages, 864255 bytes).
 PDF statistics:
  128 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
