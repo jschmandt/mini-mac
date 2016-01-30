@@ -44,12 +44,13 @@ Because a MAC detects transmission errors (in fact, better than does a simpler C
 a CRC in addition to a MAC.  
 
 Increasing the tag length greatly increases the time required for an adversary to forge a valid tag by
-finding a collision in the Mini-MAC by exhaustive search.  
+finding a valid Mini-MAC tag by exhaustive search.  
 Table~\ref{tab-taglength} gives the expected time for an adversary to send a forged message 
-that will be accepted by another ECU, for various tag lengths.  Here, the main limiting assumption is 
-the frequency with which messages can be sent on the CAN bus. 
+that will be accepted by another ECU, for various tag lengths.  
 For example, increasing the tag from 8 to 32~bits increases this time from
 approximately 3.2~seconds to over 621~days.
+Here, the main limiting assumption is 
+the frequency with which messages can be sent on the CAN bus. 
 
 To implement this strategy one could modify the lower-level code in the CAN network stack, 
 either to perform the MAC calculation there 

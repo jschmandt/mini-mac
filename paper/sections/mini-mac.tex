@@ -37,7 +37,7 @@ Each ECU saves recent messages sent on the bus and concatenates them into the HM
 More specifically, each ECU saves a separate message history for the 
 successfully authenticated messages received for each group key.  Thus, the
 adversary cannot insert a message into any message history without 
-successfully forging message.
+successfully forging a message.
 
 There are three reasons for the message history architectural element:  
 First, it potentially adds protection against any transient
@@ -106,7 +106,7 @@ of continuous operation (32 bits would prevent counter roll-over for 20 years wi
 
 In our implementation, we used $\lambda = 5$, 
 but we recommend a higher value (say, $\lambda = 16$) to reduce the chance of a repeated state.
-See section~\ref{history} for an enhanced message history feature.
+See Section~\ref{history} for an enhanced message history feature.
 
 For \textbf{HMAC-MD5},
 we adapted Peslyak's~\cite{Peslyak} implementation of MD5~\cite{MD5} for the MSP430 platform, producing a 128-bit output. 
