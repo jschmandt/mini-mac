@@ -21,7 +21,7 @@ to the CAN bus.  A Type~3 adversary might be a criminal who has gained temporary
 another nearby car.  For a Type~3 attacker, we assume the adversary's access to the CAN bus is limited to minutes, not hours.  
 The differences among these attackers are what keys they know and for how long they have access to the CAN bus.
 This project aims to defend against Type~2 and Type~3 adversaries.   Our techniques do not protect against 
-a Type~1 adversary, who can spoof any message. 
+a Type~1 adversary, who can spoof any message to any member of any group to which he holds the key. 
 
 Motivation of the attacker includes criminal mischief (e.g., crashing car, destroying property) and theft.  
 For example, spoofing messages on the CAN bus can unlock doors, disable brakes, and accelerate the car.
@@ -38,7 +38,12 @@ including encryption and hash functions.
 
 This work does not address Denial-of-Service (DOS) attacks aimed at preventing a driver from using her vehicle.  
 For example, our techniques do not prevent an attacker from flooding the CAN bus with messages.  There are many
-simple physical DOS attacks, such as slashing a tire, cutting wiring, or draining fuel.
+simple physical DOS attacks, such as slashing a tire, cutting wiring, or draining fuel, yet
+a DOS attack on the CAN bus while the vehicle is operating could be dangerous 
+(e.g., losing control on high-speed turn).  Guarding against DOS attacks is difficult and would require fundamental
+changes to the CAN bus.\footnote{Another potential DOS attack is to radiate the vehicle with an electro-magnetic pulse.
+Doing so might be useful to law enforcement in extreme circumstances to stop certain dangerous high-speed criminals, 
+if the pulse could be directed in a controlled, focused, and well-targeted manner.}
 
 Although we assume the adversary has complete knowledge of the target technology, in practice the adversary must
 deal with the straightforward yet cumbersome task of learning this technology, which may include new ECUs and message formats.

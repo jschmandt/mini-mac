@@ -29,7 +29,7 @@ an ECU might detect that another ECU is not responding to a message, which might
 the result of a synchronization failure.  A tradeoff in our design is that, by using
 counters and message history to authenticate messages, 
 mini-MAC increases the opportunities for possible synchronization failures,
-and this opportunity increasds with larger values of~$\lambda$.
+and this opportunity increases with larger values of~$\lambda$.
 
 We do not know the typical frequency of synchronization failures,
 and we did not observe any.
@@ -49,8 +49,9 @@ Table~\ref{tab-taglength} gives the expected time for an adversary to send a for
 that will be accepted by another ECU, for various tag lengths.  
 For example, increasing the tag from 8 to 32~bits increases this time from
 approximately 3.2~seconds to over 621~days.
-Here, the main limiting assumption is 
-the frequency with which messages can be sent on the CAN bus. 
+
+%Here, the main limiting assumption is 
+%the frequency with which messages can be sent on the CAN bus. 
 
 To implement this strategy one could modify the lower-level code in the CAN network stack, 
 either to perform the MAC calculation there 

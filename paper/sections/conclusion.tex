@@ -3,14 +3,25 @@
 
 We propose Mini-MAC, the first variable-length message authentication
 protocol for the CAN bus that adds no bus traffic overhead, 
-allowing it to be used in vehicular systems with time-sensitive messages.  The truncated keyed HMAC protects against
-message injection by adversaries who do not know the ECU keys.  The counter and message history protect
-against replay attacks.  
-Message history also protects against all transcient attackers, even if they know the authentication keys.
+allowing it to be used in vehicular systems with time-sensitive messages.  
+The truncated keyed HMAC protects against
+message injection by adversaries who do not know the ECU keys.  
+The counter and message history protect against replay attacks.  
+Message history also protects against all transient attackers, even if they know the authentication keys.
 
 Limited message size, the need not to delay messages, the limited computational power of the ECUs,
-and the relative ease of gaining access to the bus 
-severely restrict how well the CAN bus can be protected.  Mini-MAC meaningfully raises the bar on vehicular security,
+and the relative ease of gaining access to the bus severely restrict how well the CAN bus can be protected.  
+Mini-MAC meaningfully raises the bar on vehicular security,
 approaching (we conjecture) the limits of what is possible for authentication strength in this highly
 constrained environment.
+
+Objects and systems in the emerging Internet of Things and Car-to-X network
+will face similar authentication challenges to those faced by 
+vehicular ECUs.  We hope, for example, that the designers of toaster ovens will not
+separately create ad-hoc security mechanisms for networked communications with
+the refrigerator, home electrical system, home owner, and toaster manufacturer.
+Instead, networked objects of the future need to be built with 
+control units that can execute resilient general-purpose standard cryptographic 
+functions and protocols suitable for the Internet of Things.  We hope that some
+of the ideas from Mini-MAC will be helpful toward that objective.
 

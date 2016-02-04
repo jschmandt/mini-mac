@@ -35,8 +35,8 @@ Using a counter is a simple, standard, and effective way to mitigate replay atta
 
 Each ECU saves recent messages sent on the bus and concatenates them into the HMAC input. 
 More specifically, each ECU saves a separate message history for the 
-successfully authenticated messages received for each group key.  Thus, the
-adversary cannot insert a message into any message history without 
+successfully authenticated messages received for each group key.  
+Thus, the adversary cannot insert a message into any message history without 
 successfully forging a message.
 
 There are three reasons for the message history architectural element:  
@@ -99,7 +99,8 @@ extracts $s$ bits from its input.  The input to HMAC is computed as
 \label{implementation}
 
 We implemented Mini-MAC using three different component hash functions (MD5, SHA-1, and SHA-2) to compare the resulting running times.  
-Each group key is 128~bits.  The $\hbox{trunc}(s,\cdot)$ function extracts the first $s$ bits of its input.
+Each group key is 128~bits.  The $\hbox{trunc}(s,\cdot)$ function extracts 
+the $s$ most significant bits of its input.
 
 We recommend a 64-bit counter, which (assuming at most 40 message per second) ensures no repeated counter state for 20 years
 of continuous operation (32 bits would prevent counter roll-over for 20 years with four hours of driving a day).
@@ -131,12 +132,15 @@ for the MSP430.  Throughout, we shall refer to SHA-2-256 as SHA-2.
 \subsection{Enhanced Message History}
 \label{history}
 
-By creating a message history by sampling from a long enough (e.g., 30~min) stream of messages, 
-no transcient attacker will have enough time to observe the entire sample.
-Powerfully, this strategy defeats all transcient attackers, even if they know the group keys.
+An enhancement of the message history feature increases security following resynchronization
+(see Section~\ref{resynch}) by ensuring that much older messages are incorporated.
+
+By creating a message history sampling from a long enough (e.g., 30~min) stream of messages, 
+no transient attacker will have enough time to observe the entire sample.
+Powerfully, this strategy defeats all transient attackers, even if they know the group keys.
 For example, this strategy defeats an attacker who learns the group keys by compromising
-the key distribution process or by physically probing the ECUs, but who does not modify
-the car.
+the key distribution process or by physically probing the ECUs, but who cannot
+observe bus traffic for a long time.
 
 There are many possible choices for realizing this strategy.  For example,
 one might generate a cryptographic hash chain of all messages ever sent.  Alternatively, for
@@ -144,17 +148,19 @@ greater speed, one might use a faster non-cryptographic combining function (e.g.
 Another option would be to compute a hash chain from a limited sample of the stream.
 
 Given the limited power of the ECUs, 
-we recommend that the message history be defined as two samples from the recent stream of valid messages
-received under the given group key.  
-The first sample comprises the most recent $\lambda/2$ messages taken over a specified 
-recent section of the stream.  For example, one might sample every 10,000th message.  
-The section length should be chosen to exceed the time available to a transcient attacker.
+we recommend that the message history be defined in two parts from the recent stream of valid messages
+received under the given group key: one sparse, one consecutive.  
+The first part comprises a spare sample of $\lambda/2$ messages selected 
+according to a prescribed pattern in a first-in, first-out queue, 
+over a specified section of the stream.  
+For example, one might sample every 10,000th message.  
+The section length should be chosen to exceed the time available to a transient attacker.
 For example, at most 72,000 messages can be sent in 30~minutes,
 even if messages are continuously sent using only one key.
 
-The second sample comprises the most recent $\lambda/2$ 
-messages from this stream.  
-This sample helps ensure changed state after a resynchronization (see Section~\ref{resynch}).
+The second part comprises the most recent $\lambda/2$ 
+messages from the stream of valid messages received under the given group key.
+This consecutive sample helps ensure changed state after a resynchronization.
 
 \subsection{Key Establishment}
 \label{key}
