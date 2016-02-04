@@ -2,7 +2,8 @@
 \label{conclude}
 
 We propose Mini-MAC, the first variable-length message authentication
-protocol for the CAN bus that adds no bus traffic overhead, 
+protocol for the CAN bus that neither increases the number of messages sent
+nor delays any message,
 allowing it to be used in vehicular systems with time-sensitive messages.  
 The truncated keyed HMAC protects against
 message injection by adversaries who do not know the ECU keys.  
@@ -24,4 +25,6 @@ Instead, networked objects of the future need to be built with
 control units that can execute resilient general-purpose standard cryptographic 
 functions and protocols suitable for the Internet of Things.  We hope that some
 of the ideas from Mini-MAC will be helpful toward that objective.
+
+%adds no bus traffic overhead, (vague)
 

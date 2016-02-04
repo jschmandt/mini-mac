@@ -100,7 +100,8 @@ extracts $s$ bits from its input.  The input to HMAC is computed as
 
 We implemented Mini-MAC using three different component hash functions (MD5, SHA-1, and SHA-2) to compare the resulting running times.  
 Each group key is 128~bits.  The $\hbox{trunc}(s,\cdot)$ function extracts 
-the $s$ most significant bits of its input.
+the $s$ most significant bits of its input, which is the way recommended by NIST
+for truncating a hash tag~\cite{nist107}.
 
 We recommend a 64-bit counter, which (assuming at most 40 message per second) ensures no repeated counter state for 20 years
 of continuous operation (32 bits would prevent counter roll-over for 20 years with four hours of driving a day).

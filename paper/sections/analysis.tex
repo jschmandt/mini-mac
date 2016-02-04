@@ -107,6 +107,15 @@ to which groups it belongs.  We consider this limitation an acceptable design tr
 given that Mini-MAC does not increase bus utilization and the compromise of any critical
 ECU is a devastating security failure.
 
+Mini-MAC does not authenticate messages with long 8-byte payloads.  This limitation is 
+an intentional tradeoff to ensure that Mini-MAC does not delay any message. The only 8-byte
+messages that we observed were status reports.  
+It may be possible to reduce the length of such status data slightly 
+by deleting some of the low-order data bits.
+
+Because all messaage types have fixed, known message lengths, the adversary cannot 
+force arbitrary messages to have artificially long 8-byte payloads.
+
 One potential attack is for the adversary to inject messages into the bus with the hopes
 of trying a tag that verifies correctly.  We shall call this attack the ``trial injection attack.''
 A downside of this attack is that it would be easy to detect such an attack involving

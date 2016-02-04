@@ -30,12 +30,12 @@ It typically runs at 500~kbps in automobiles~\cite{canbus}.\footnote{kilobits pe
 
 Transmissions are organized in frames.  As shown in Figure~\ref{fig-frame}, 
 a frame contains an 11-bit identifier field and 
-a data payload, as well as some control bits. Figure~\ref{fig-frame} shows the data payload as 8~bits, but
-it can be 8 to 64~bits and is typically 64~bits.
+a data payload, as well as some control bits. Figure~\ref{fig-frame} 
+shows the allocated data payload space as 8~bits, but
+it can be 8 to 64~bits and (based on our observations) is typically 64~bits.
 The payload of up to 8~bytes is the most important element, 
 as any MAC tag must fit into this frame or use a more complex multi-frame data transmission protocol 
 that may or may not be supported on all ECUs. 
-%typically 64 bits is based on observed data
 
 We use the term ``message'' to refer to the data payload of one logical transmission.
 Any payload longer than 64~bits must be sent as a multi-frame transmission.
@@ -46,10 +46,16 @@ In test data captured by the authors from a 2010 Toyota Prius,
 approximately 61\% of messages contain at most four data bytes
 (20\% contain 4~bytes; 16\% contain 3~bytes; 17\% contain 2~bytes; and 8\% contain 1~byte).
 Approximately 35\% of messages contain a full 8~data bytes, and 4\% contain 7~bytes.
-Thus, for most messages, there are at least four bytes of space available for a MAC tag.
+
+Thus, for most message, there are at least four bytes of space available for a MAC tag.
+Inserting a tag in the unused allocated payload space does not
+increase the number of messages sent,
+delay any message, 
+or increase the number of bits transmitted.
 
 Messages have fixed, known sizes.  The longest messages we observed were 
 status reports describing the steering wheel angle and tire speed.
+For these long messages with 8-byte payloads,  Mini-MAC will not add a tag. 
 
 We observed approximately 25 messages sent per second on average (40 maximum per second).
 
@@ -86,7 +92,7 @@ that a recipient can use, together with the message, to verify the authenticity 
 The recipient, who also knows the key, 
 verifies the tag by recomputing it.
 
-The Keyed-Hash Message Authentication Code (HMAC)~\cite{HMAC,FIPS-198-1} 
+The Keyed-Hash Message Authentication Code (HMAC)~\cite{HMAC,FIPS-198-1,rfc2104,nist107} 
 is a well-known MAC construction that keys an underlying component hash function.  
 Breaking it is as hard as breaking the component hash function.
 
