@@ -47,6 +47,8 @@ approximately 61\% of messages contain at most four data bytes
 (20\% contain 4~bytes; 16\% contain 3~bytes; 17\% contain 2~bytes; and 8\% contain 1~byte).
 Approximately 35\% of messages contain a full 8~data bytes, and 4\% contain 7~bytes.
 
+Our test data was captured from a 12.27 minute test drive around a parking lot on the UMBC campus. The drive featured many typical characteristics of a normal drive such as turns, gear changes, reverse driving, and switching on and off various instruments and tools such as the headlights, blinkers, and locks. This drive provided 15768 messages.
+
 Thus, for most message, there are at least four bytes of space available for a MAC tag.
 Inserting a tag in the unused allocated payload space does not
 increase the number of messages sent,
@@ -85,6 +87,8 @@ In 2013, Toyota~\cite{bbc_toyota} offered the following position on automotive s
 ``The presence of a laptop or other device connected to the OBD [on board diagnostics] II port would be apparent.'' 
 These statements demonstrate a failure to acknowledge the 
 reality of wireless vulnerability of modern vehicles demonstrated in several notable publications.
+
+More recently, insurance companies have begun issuing OBD-II devices which track and report driving statistics via cellular modems in order to offer more competitive rates to customers. The Snapshot tool from Progressive\footnote{www.progressive.com/auto/snapshot/} and the Drivewise tool from Allstate\footnote{www.allstate.com/drive-wise.aspx} are just two examples of these dongles. Foster et al.~\cite{Foster15} showed that these devices can be hacked to gain remote access to the CAN bus.
 
 \subsection{Message Authentication Codes}
 

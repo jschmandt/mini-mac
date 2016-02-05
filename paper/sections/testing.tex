@@ -22,8 +22,7 @@ the Texas Instruments Code Composer v6.
 The RAM usage is known at compile time because there is no
 dynamic memory allocation.
 
-We measured execution time using a counter register on the MSP430, 
-whose 32~kHz clock provides timing values to approximate millisecond~(ms) accuracy. 
+We measured execution time using a counter register on the MSP430 running at 8 MHz. The 32 kHz external clock on the test board provides timing values to approximate millisecond~(ms) accuracy.
 As a very minor point we note that, due to a limitation in the hardware's
 support for timing measurements, 
 there may be a $\pm$0.03~ms inaccuracy in each reading due to the
