@@ -33,8 +33,12 @@ requires no fundamental change to the underlying functionality of the ECUs, and
 requires no special hardware.
 
 Our work includes a prototype implementation of Mini-MAC and preliminary timing studies 
-of Mini-MAC for three component hash functions (MD5, SHA-1, SHA-2).  For fastest speeds, 
-we recommend using MD5.
+of Mini-MAC for three component hash functions (MD5, SHA-1, SHA-2).  
+In comparison with a straight-forward HMAC, our Mini-MAC implementations show on average
+a mean code size increase of 5.99\% and 
+a mean execution time increase of only 2.58\%.
+For fastest speeds, we recommend using mini-MAC-MD5, for which our implementation 
+running on an 8~MHz processor takes on average 7.5~ms to compute a tag.
 
 Our contributions include:
 \begin{itemize}
@@ -49,8 +53,6 @@ even if they know the keys.
 
 \item Experimental demonstration of Mini-Mac, including execution times of Mini-MAC 
 with each our three HMAC implementations using the MD5, SHA-1, and SHA-2 hash functions. 
-In comparison with a straight-forward HMAC, our Mini-MAC implementations showed on average
-a mean code size increase of 5.99\% and 
-a mean execution time increase of only 2.58\%.
+On average our implementation of Mini-MAC-MD5 takes 7.5~ms to compute a tag.
 
 \end{itemize}
