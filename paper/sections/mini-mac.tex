@@ -17,7 +17,8 @@ Four core architectural elements characterize Mini-MAC:
 (3)~A counter to mitigate replay attacks.
 (4)~Message history to defeat transient attackers, 
 to mitigate replay attacks after counter resynchronization, 
-and to serve as ``salt'' against possible unknown precomputation attacks.
+and to serve as ``salt'' against possible hypothetical precomputation attacks 
+(even though we know of none).
 Elements (1) and (2) trade authentication strength for performance;  see
 Section~\ref{security} for a discussion of this tradeoff.
 
@@ -51,7 +52,7 @@ is potentially vulnerable to a replay attack of messages sent from a time
 the reset counter state was previously used.  With message history, it is extremely
 likely that the unfolding message history will rapidly differ.
 Third, the history adds an unpredictable ``salt'' that might mitigate some possible
-precomputation attacks.  Whereas counter values are predicable, message history
+hypothetical precomputation attacks.  Whereas counter values are predicable, message history
 is not.
 
 	\begin{figure}
@@ -106,7 +107,7 @@ for truncating a hash tag~\cite{nist107}.
 We recommend a 64-bit counter, which (assuming at most 40 message per second) ensures no repeated counter state for 20 years
 of continuous operation (32 bits would prevent counter roll-over for 20 years with four hours of driving a day).
 
-In our implementation, we used $\lambda = 5$, 
+In our implementation, we artibrarily used $\lambda = 5$, 
 but we recommend a higher value (say, $\lambda = 16$) to reduce the chance of a repeated state.
 See Section~\ref{history} for an enhanced message history feature.
 

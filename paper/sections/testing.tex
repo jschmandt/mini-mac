@@ -14,22 +14,26 @@ to evaluate the performance suitability of Mini-MAC for authenticating messages 
 \subsection{Methods}
 \label{methods}
 
-For each implementation we measured code size, memory usage, execution time, and bus utilization,
+For each implementation we measured code size, memory usage, execution time, 
+and bus traffic (number of messages and bits sent),
 collecting for each implementation metrics from 1000 inputs of various typical sizes (1~byte, 2~bytes, 4~bytes).  
 
 We measured code size and RAM usage at compile time using 
-the Texas Instruments Code Composer v6.
+the Texas Instruments Code Composer~v6.
 The RAM usage is known at compile time because there is no
 dynamic memory allocation.
 
-We measured execution time using a counter register on the MSP430 running at 8 MHz. The 32 kHz external clock on the test board provides timing values to approximate millisecond~(ms) accuracy.
+Running the MSP430 at 8~MHz,
+we measured execution time using one of its counter registers.
+The 32~kHz external clock on the test board provided timing values to approximate millisecond~(ms) accuracy.
 As a very minor point we note that, due to a limitation in the hardware's
 support for timing measurements, 
 there may be a $\pm$0.03~ms inaccuracy in each reading due to the
 time it takes to read the counter.
 
 We collected statistics on message traffic from a 2010 Toyota Prius with a CAN-bus sniffer program 
-based on an Arduino Uno platform and connected via an OBD-II CAN transceiver shield.
+based on an Arduino Uno platform and connected via an OBD-II CAN transceiver shield
+(see Section~\ref{background}).
 	
 	\begin{table}
 	\centering
@@ -50,7 +54,7 @@ based on an Arduino Uno platform and connected via an OBD-II CAN transceiver shi
 \begin{table}	
 	\centering	
 	\caption{Additional code size and mean additional time to compute Mini-MAC implementations over HMAC.
-	For each implementation, the additional RAM usage is 5~bytes.}
+	For each implementation, the additional RAM usage is 5~bytes plus message history.}
 	\label{tab-overhead}
 	\vspace{8pt}
 	\begin{tabular}{l|c|c}
@@ -82,14 +86,14 @@ based on an Arduino Uno platform and connected via an OBD-II CAN transceiver shi
 		\centering
 		\includegraphics[width=\columnwidth]{figures/exec_cycles.png}
 		\caption{Mean execution time for our Mini-MAC implementations, in cycles on a 32~kHz clock,
-		from 1000 messages.}
+		from 1000 messages.  The observed standard deviations were small.}
 		\label{fig-execution}
 	\end{figure}
 	
 	\begin{figure}
 		\centering
 		\includegraphics[width=\columnwidth]{figures/ram_usage.png}
-		\caption{RAM usage for our Mini-MAC implementations, from 1000 messages.}
+		\caption{RAM usage for our Mini-MAC implementations, from 1000 messages with $\lambda=5$.}
 		\label{fig-ram}
 	\end{figure}
 	

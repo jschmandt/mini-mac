@@ -41,15 +41,16 @@ Our contributions include:
 
 \item Mini-MAC, an authentication protocol suitable for vehicular systems, including the CAN bus, 
 that require short message sizes and no message delays.
-
-\item Mini-MAC meaningfully raises the bar on authentication strength for the CAN bus, protecting against
+Mini-MAC meaningfully raises the bar on authentication strength for the CAN bus, protecting against
 masquerade and replay attacks.
 
-\item Mini-MAC protects against all transient attackers, even if they know the keys.
+\item Mini-MAC's use of message history protects against all transient attackers, 
+even if they know the keys.
 
-\item Experimental demonstration of Mini-Mac, including execution times for our three HMAC
-implementations using the MD5, SHA-1, and SHA-2 hash functions.
+\item Experimental demonstration of Mini-Mac, including execution times of Mini-MAC 
+with each our three HMAC implementations using the MD5, SHA-1, and SHA-2 hash functions. 
+In comparison with a straight-forward HMAC, our Mini-MAC implementations showed
+a mean code size increase of 5.99\% and 
+a mean execution time increase of only 2.58\%.
 
 \end{itemize}
-
-Our testing showed a mean code size increase of 5.99\% and a mean execution time increase of only 2.58\% over the standard HMAC protocol in testing across three hash functions.

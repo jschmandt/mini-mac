@@ -1,7 +1,8 @@
-\begin{abstract} % 210 words
+\begin{abstract} % 217 words
 
 We propose Mini-MAC, a new message authentication protocol that works in 
-existing automotive computer networks without delaying any message. 
+existing automotive computer networks without 
+delaying any message or increasing network traffic. 
 
 Deployed in many vehicles, the CAN bus is a low-speed network connecting electronic control units,
 including those that control critical functionality such as braking and acceleration.  
@@ -10,7 +11,7 @@ including wireless access.
 Traditionally,  Message Authentication Codes (MACs) help authenticate the sender of a message, 
 and variants prevent message replay attacks; however, 
 standard MACs are unsuitable for use on the CAN bus because of small payload sizes. 
-Restrictions of the CAN bus, including the need not to delay messages,  
+Restrictions of the CAN bus, including the need not to delay messages or increase bus traffic,  
 severely limit how well this network can be protected.
 
 Mini-MAC is based on a counter-seeded keyed-Hash MAC (HMAC), 
@@ -24,5 +25,3 @@ Mini-MAC meaningfully raises the bar of vehicular security,
 enhancing the safety of drivers and others.
 
 \end{abstract}
-
-%without adding any bus overhead. (vague)

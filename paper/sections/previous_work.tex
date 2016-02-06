@@ -2,7 +2,7 @@
 \label{previous}
 
 Previous proposals to add authentication to the CAN bus violate the engineering constraints described
-in Section~\ref{problem}, increasing bus utilization and delaying messages.  For example, pairwise
+in Section~\ref{problem}, increasing bus traffic and delaying messages.  For example, pairwise
 key distribution among the ECUs and data that overflow CAN frame boundaries cause additional messages to be sent,
 delaying messages.
 
@@ -20,7 +20,7 @@ Care should be taken when comparing their computation times because
 they assume a much more powerful message processor than we do. 
 
 Zalman et al.~\cite{Zalman-14} propose a fixed-size, time-stamped MAC based on pairwise key distribution.
-Their tag overflows the CAN frame, increasing bus utilization, and as the authors acknowledge,
+Their tag overflows the CAN frame, increasing bus traffic, and as the authors acknowledge,
 delaying messages.
 
 Xie et al.~\cite{Xie-15} propose packing multiple messages into one CAN frame using a keyed MAC with 

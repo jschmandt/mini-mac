@@ -24,7 +24,7 @@ and standard deviation for each of our implementations of Mini-MAC.
 Using MD5 is much faster than using SHA-1 or SHA-2.  As shown in Table~\ref{tab-overhead},
 the overhead in time to compute Mini-MAC beyond HMAC is very little (approximately 0.38--0.68~ms).
 Similarly, Figure~\ref{fig-execution} shows the mean observed execution times for Mini-MAC measured
-in number of cycles on a 32~kHz clock.
+in number of cycles on a 32~kHz clock.[*to edit - cycles to seconds*]
 
 Importantly, Table~\ref{tab-time} shows that only our 
 MD5 implementation of Mini-MAC runs fast enough to satisfy our
@@ -104,7 +104,7 @@ and observe if the receiving ECU accepted the message.
 Limitations imposed by Mini-MAC include its use of group keys and truncated HMAC tags.  
 Using group keys means that a single compromised ECU learns all of the keys
 to which groups it belongs.  We consider this limitation an acceptable design tradeoff
-given that Mini-MAC does not increase bus utilization and the compromise of any critical
+given that Mini-MAC does not increase bus traffic and the compromise of any critical
 ECU is a devastating security failure.
 
 Mini-MAC does not authenticate messages with long 8-byte payloads.  This limitation is 
@@ -114,7 +114,7 @@ with no apparent effect on any ECU.
 It may be possible to reduce the length of such status data slightly 
 by deleting some of the low-order data bits.
 
-Because all messaage types have fixed, known message lengths, the adversary cannot 
+Because all message types have fixed, known message lengths, the adversary cannot 
 force arbitrary messages to have artificially long 8-byte payloads.
 
 One potential attack is for the adversary to inject messages into the bus with the hopes

@@ -40,14 +40,18 @@ that may or may not be supported on all ECUs.
 We use the term ``message'' to refer to the data payload of one logical transmission.
 Any payload longer than 64~bits must be sent as a multi-frame transmission.
 
+To learn more about the characteristics of messages transmitted on the CAN bus, 
+the authors captured 15,768 messages from a 2010 Toyota Prius during a 12.27 minute test drive 
+around a parking lot on our university campus. 
+The drive featured turns, gear changes, reverse driving, and switching on and off 
+various instruments and tools including headlights, blinkers, and locks. 
+
 Ideally, and in the case of Mini-MAC, the MAC tag
-can fit into the payload together with the data, thus not increasing bus utilization. 
-In test data captured by the authors from a 2010 Toyota Prius, 
+can fit into the payload together with the data, thus not increasing bus traffic. 
+In our test data, 
 approximately 61\% of messages contain at most four data bytes
 (20\% contain 4~bytes; 16\% contain 3~bytes; 17\% contain 2~bytes; and 8\% contain 1~byte).
 Approximately 35\% of messages contain a full 8~data bytes, and 4\% contain 7~bytes.
-
-Our test data was captured from a 12.27 minute test drive around a parking lot on the UMBC campus. The drive featured many typical characteristics of a normal drive such as turns, gear changes, reverse driving, and switching on and off various instruments and tools such as the headlights, blinkers, and locks. This drive provided 15768 messages.
 
 Thus, for most message, there are at least four bytes of space available for a MAC tag.
 Inserting a tag in the unused allocated payload space does not
@@ -88,7 +92,13 @@ In 2013, Toyota~\cite{bbc_toyota} offered the following position on automotive s
 These statements demonstrate a failure to acknowledge the 
 reality of wireless vulnerability of modern vehicles demonstrated in several notable publications.
 
-More recently, insurance companies have begun issuing OBD-II devices which track and report driving statistics via cellular modems in order to offer more competitive rates to customers. The Snapshot tool from Progressive\footnote{www.progressive.com/auto/snapshot/} and the Drivewise tool from Allstate\footnote{www.allstate.com/drive-wise.aspx} are just two examples of these dongles. Foster et al.~\cite{Foster15} showed that these devices can be hacked to gain remote access to the CAN bus.
+More recently, insurance companies have begun issuing OBD-II devices 
+that track and report driving statistics via cellular modems,
+as part of a program to offer more competitive rates to customers. 
+The Snapshot tool from Progressive\footnote{www.progressive.com/auto/snapshot/} 
+and the Drivewise tool from Allstate\footnote{www.allstate.com/drive-wise.aspx} 
+are two examples of these dongles. Foster et al.~\cite{Foster15} 
+gained remote access to the CAN bus by hacking these devices.
 
 \subsection{Message Authentication Codes}
 
