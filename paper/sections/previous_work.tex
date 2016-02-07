@@ -27,6 +27,15 @@ Xie et al.~\cite{Xie-15} propose packing multiple messages into one CAN frame us
 pairwise key distribution.   They unrealistically assume that the messages and MAC tag are short
 enough to fit into one frame.  Also, by queuing messages into batches, their system delays messages.
 
+Schmandt first worked on the problem in spring 2015 as a research project for Sherman's CMSC-652 cryptology class at UMBC.
+Unknown to us until very recently, independently, Bravo et al.~\cite{MIT2015} carried out a similar effort 
+for Rivest's 6.857 computer and network security class at MIT.  Both projects use HMACs, but in different ways.
+The MIT project, assuming lossless channels, initializes each channel with a precomputed HMAC chain.
+Using a software CAN bus simulator, they show that their scheme increases message latency by
+approximately a factor of~3, and increases bus traffic.  By contrast, our method does not increase
+bus traffic and does not increase message latency, and our use of message history protects against transient
+attackers who know the keys.
+
 %[do we want to cite any other works on improving car security? If so, do it here.]
 
 Many automakers and parts manufacturers are now members of the 
@@ -34,4 +43,5 @@ Open Alliance,\footnote{http://www.opensig.org}
 a non-profit group researching and encouraging the use of an Ethernet-based high-speed physical layer 
 for use in vehicles.  This approach would enable the use of 
 established network security mechanisms in vehicle networks.
+
 
