@@ -33,6 +33,11 @@ requirement of authenticating at least 40 messages per second (approximately
 While highly optimized code will likely run faster, on the
 basis of our timing measurements, we recommend implementing Mini-MAC using MD5.
 
+On average our implementation of Mini-MAC-MD5 takes 7.5~ms to compute a tag.  
+For at least some messages, this time will be masked by the time the sending
+ECU waits for access to the CAN bus.  In 7.5~ms, a car travelling 70~mph
+will move about 23.5~cm.
+
 Figure~\ref{fig-ram} shows the RAM usage for our implementations of Mini-MAC.
 As shown in Table~\ref{tab-overhead}, the overhead in RAM usage to compute Mini-MAC
 beyond HMAC is very low (5~bytes).

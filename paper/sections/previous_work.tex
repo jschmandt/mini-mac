@@ -28,7 +28,7 @@ pairwise key distribution.   They unrealistically assume that the messages and M
 enough to fit into one frame.  Also, by queuing messages into batches, their system delays messages.
 
 Schmandt first worked on the problem in spring 2015 as a research project for Sherman's CMSC-652 cryptology class at UMBC.
-Unknown to us until very recently, independently, Bravo et al.~\cite{MIT2015} carried out a similar effort 
+Unknown to us until recently, independently, Bravo et al.~\cite{MIT2015} carried out a similar effort 
 for Rivest's 6.857 computer and network security class at MIT.  Both projects use HMACs, but in different ways.
 The MIT project, assuming lossless channels, initializes each channel with a precomputed HMAC chain.
 Using a software CAN bus simulator, they show that their scheme increases message latency by
