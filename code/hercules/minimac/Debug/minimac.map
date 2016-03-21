@@ -1,0 +1,270 @@
+******************************************************************************
+                  TI ARM Linker PC v15.12.1                    
+******************************************************************************
+>> Linked Mon Mar 21 02:42:10 2016
+
+OUTPUT FILE NAME:   <minimac.out>
+ENTRY POINT SYMBOL: "_c_int00"  address: 000011c4
+
+
+MEMORY CONFIGURATION
+
+         name            origin    length      used     unused   attr    fill
+----------------------  --------  ---------  --------  --------  ----  --------
+  RAM                   00000020   ffffffe0  00001e49  ffffe197  RWIX
+
+
+SEGMENT ALLOCATION MAP
+
+run origin  load origin   length   init length attrs members
+----------  ----------- ---------- ----------- ----- -------
+00000020    00000020    00001368   00001368    r-x
+  00000020    00000020    00001368   00001368    r-x .text
+00001388    00001388    00000968   00000000    rw-
+  00001388    00001388    00000160   00000000    rw- .data
+  000014e8    000014e8    00000005   00000000    rw- .bss
+  000014f0    000014f0    00000800   00000000    rw- .stack
+00001cf0    00001cf0    0000017c   0000017c    r--
+  00001cf0    00001cf0    0000017c   0000017c    r-- .cinit
+
+
+SECTION ALLOCATION MAP
+
+ output                                  attributes/
+section   page    origin      length       input sections
+--------  ----  ----------  ----------   ----------------
+.text      0    00000020    00001368     
+                  00000020    000008a8     sha256.obj (.text)
+                  000008c8    00000774     main.obj (.text)
+                  0000103c    0000009c     rtsv7R4_T_be_v3D16_eabi.lib : memcpy_t2.obj (.text)
+                  000010d8    0000007a                                 : memset_t2.obj (.text)
+                  00001152    00000002                                 : mpu_init.obj (.text)
+                  00001154    00000070                                 : autoinit.obj (.text)
+                  000011c4    00000070                                 : boot.obj (.text)
+                  00001234    0000006a                                 : copy_decompress_rle.obj (.text)
+                  0000129e    00000002                                 : startup.obj (.text)
+                  000012a0    00000050                                 : exit.obj (.text)
+                  000012f0    0000004c                                 : cpy_tbl.obj (.text)
+                  0000133c    00000018                                 : args_main.obj (.text)
+                  00001354    00000014                                 : _lock.obj (.text)
+                  00001368    0000000e                                 : copy_decompress_none.obj (.text:decompress:none)
+                  00001376    00000006                                 : copy_decompress_rle.obj (.text:decompress:rle24)
+                  0000137c    00000004                                 : pre_init.obj (.text)
+                  00001380    00000008     main.obj (.tramp.main.1)
+
+.data      0    00001388    00000160     UNINITIALIZED
+                  00001388    00000100     sha256.obj (.data:k)
+                  00001488    00000028     main.obj (.data:messages)
+                  000014b0    00000020     main.obj (.data:key)
+                  000014d0    0000000c     rtsv7R4_T_be_v3D16_eabi.lib : exit.obj (.data:$O1$$)
+                  000014dc    00000008                                 : _lock.obj (.data:$O1$$)
+                  000014e4    00000004                                 : stkdepth_vars.obj (.data)
+
+.bss       0    000014e8    00000005     UNINITIALIZED
+                  000014e8    00000004     (.common:message_counter)
+                  000014ec    00000001     (.common:rollover_counter)
+
+.cinit     0    00001cf0    0000017c     
+                  00001cf0    00000158     (.cinit..data.load) [load image, compression = rle]
+                  00001e48    00000009     (.cinit..bss.load) [load image, compression = rle]
+                  00001e51    00000003     --HOLE-- [fill = 0]
+                  00001e54    00000008     (__TI_handler_table)
+                  00001e5c    00000010     (__TI_cinit_table)
+
+.init_array 
+*          0    00000020    00000000     UNINITIALIZED
+
+.stack     0    000014f0    00000800     UNINITIALIZED
+                  000014f0    00000800     --HOLE--
+
+MODULE SUMMARY
+
+       Module                     code   ro data   rw data
+       ------                     ----   -------   -------
+    .\
+       sha256.obj                 2216   0         256    
+       main.obj                   1916   0         77     
+    +--+--------------------------+------+---------+---------+
+       Total:                     4132   0         333    
+                                                          
+    C:/ti/ccsv6/tools/compiler/ti-cgt-arm_15.12.1.LTS/lib/rtsv7R4_T_be_v3D16_eabi.lib
+       memcpy_t2.obj              156    0         0      
+       memset_t2.obj              122    0         0      
+       autoinit.obj               112    0         0      
+       boot.obj                   112    0         0      
+       copy_decompress_rle.obj    112    0         0      
+       exit.obj                   80     0         12     
+       cpy_tbl.obj                76     0         0      
+       _lock.obj                  20     0         8      
+       args_main.obj              24     0         0      
+       copy_decompress_none.obj   14     0         0      
+       pre_init.obj               4      0         0      
+       stkdepth_vars.obj          0      0         4      
+       mpu_init.obj               2      0         0      
+       startup.obj                2      0         0      
+    +--+--------------------------+------+---------+---------+
+       Total:                     836    0         24     
+                                                          
+       Stack:                     0      0         2048   
+       Linker Generated:          0      377       0      
+    +--+--------------------------+------+---------+---------+
+       Grand Total:               4968   377       2405   
+
+
+LINKER GENERATED COPY TABLES
+
+__TI_cinit_table @ 00001e5c records: 2, size/record: 8, table size: 16
+	.data: load addr=00001cf0, load size=00000158 bytes, run addr=00001388, run size=00000160 bytes, compression=rle
+	.bss: load addr=00001e48, load size=00000009 bytes, run addr=000014e8, run size=00000005 bytes, compression=rle
+
+
+LINKER GENERATED HANDLER TABLE
+
+__TI_handler_table @ 00001e54 records: 2, size/record: 4, table size: 8
+	index: 0, handler: __TI_decompress_rle24
+	index: 1, handler: __TI_decompress_none
+
+VENEERS
+
+callee name               veneer name
+   callee addr  veneer addr  call addr  call info
+--------------  -----------  ---------  ----------------
+main                      $Ven$TA$L$PI$$main
+   000008c8     00001380     0000134c   rtsv7R4_T_be_v3D16_eabi.lib : args_main.obj (.text)
+
+[1 trampolines]
+[1 trampoline calls]
+
+
+GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
+
+address   name                           
+-------   ----                           
+000012a1  C$$EXIT                        
+UNDEFED   SHT$$INIT_ARRAY$$Base          
+UNDEFED   SHT$$INIT_ARRAY$$Limit         
+00001cf0  __STACK_END                    
+00000800  __STACK_SIZE                   
+00001e5c  __TI_CINIT_Base                
+00001e6c  __TI_CINIT_Limit               
+00001e54  __TI_Handler_Table_Base        
+00001e5c  __TI_Handler_Table_Limit       
+00001155  __TI_auto_init                 
+000014d0  __TI_cleanup_ptr               
+00001369  __TI_decompress_none           
+00001377  __TI_decompress_rle24          
+000014d4  __TI_dtors_ptr                 
+000014d8  __TI_enable_exit_profile_output
+ffffffff  __TI_pprof_out_hndl            
+ffffffff  __TI_prof_data_size            
+ffffffff  __TI_prof_data_start           
+00001cf0  __TI_static_base__             
+000010d9  __aeabi_memclr                 
+000010d9  __aeabi_memclr4                
+000010d9  __aeabi_memclr8                
+0000103d  __aeabi_memcpy                 
+0000103d  __aeabi_memcpy4                
+0000103d  __aeabi_memcpy8                
+000010db  __aeabi_memset                 
+000010db  __aeabi_memset4                
+000010db  __aeabi_memset8                
+ffffffff  __binit__                      
+ffffffff  __c_args__                     
+00001153  __mpu_init                     
+000014f0  __stack                        
+0000133d  _args_main                     
+000011c4  _c_int00                       
+000014dc  _lock                          
+00001363  _nop                           
+0000135b  _register_lock                 
+00001355  _register_unlock               
+0000129f  _system_post_cinit             
+0000137d  _system_pre_init               
+000014e0  _unlock                        
+000012a5  abort                          
+ffffffff  binit                          
+000012f1  copy_in                        
+000012ad  exit                           
+000009ac  hmac                           
+00001388  k                              
+000014b0  key                            
+000008c8  main                           
+000014e4  main_func_sp                   
+0000103d  memcpy                         
+000010e1  memset                         
+000014e8  message_counter                
+00001488  messages                       
+00000be8  minimac                        
+000014ec  rollover_counter               
+00000564  sha256_final                   
+000003f0  sha256_init                    
+00000020  sha256_transform               
+00000484  sha256_update                  
+
+
+GLOBAL SYMBOLS: SORTED BY Symbol Address 
+
+address   name                           
+-------   ----                           
+00000020  sha256_transform               
+000003f0  sha256_init                    
+00000484  sha256_update                  
+00000564  sha256_final                   
+00000800  __STACK_SIZE                   
+000008c8  main                           
+000009ac  hmac                           
+00000be8  minimac                        
+0000103d  __aeabi_memcpy                 
+0000103d  __aeabi_memcpy4                
+0000103d  __aeabi_memcpy8                
+0000103d  memcpy                         
+000010d9  __aeabi_memclr                 
+000010d9  __aeabi_memclr4                
+000010d9  __aeabi_memclr8                
+000010db  __aeabi_memset                 
+000010db  __aeabi_memset4                
+000010db  __aeabi_memset8                
+000010e1  memset                         
+00001153  __mpu_init                     
+00001155  __TI_auto_init                 
+000011c4  _c_int00                       
+0000129f  _system_post_cinit             
+000012a1  C$$EXIT                        
+000012a5  abort                          
+000012ad  exit                           
+000012f1  copy_in                        
+0000133d  _args_main                     
+00001355  _register_unlock               
+0000135b  _register_lock                 
+00001363  _nop                           
+00001369  __TI_decompress_none           
+00001377  __TI_decompress_rle24          
+0000137d  _system_pre_init               
+00001388  k                              
+00001488  messages                       
+000014b0  key                            
+000014d0  __TI_cleanup_ptr               
+000014d4  __TI_dtors_ptr                 
+000014d8  __TI_enable_exit_profile_output
+000014dc  _lock                          
+000014e0  _unlock                        
+000014e4  main_func_sp                   
+000014e8  message_counter                
+000014ec  rollover_counter               
+000014f0  __stack                        
+00001cf0  __STACK_END                    
+00001cf0  __TI_static_base__             
+00001e54  __TI_Handler_Table_Base        
+00001e5c  __TI_CINIT_Base                
+00001e5c  __TI_Handler_Table_Limit       
+00001e6c  __TI_CINIT_Limit               
+ffffffff  __TI_pprof_out_hndl            
+ffffffff  __TI_prof_data_size            
+ffffffff  __TI_prof_data_start           
+ffffffff  __binit__                      
+ffffffff  __c_args__                     
+ffffffff  binit                          
+UNDEFED   SHT$$INIT_ARRAY$$Base          
+UNDEFED   SHT$$INIT_ARRAY$$Limit         
+
+[60 symbols]
