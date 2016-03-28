@@ -10,10 +10,25 @@ GEN_OPTS__FLAG :=
 GEN_CMDS__FLAG := 
 
 ORDERED_OBJS += \
-"./main.obj" \
-"./md5.obj" \
-"./sha1.obj" \
-"./sha256.obj" \
+"./source/can.obj" \
+"./source/dabort.obj" \
+"./source/esm.obj" \
+"./source/notification.obj" \
+"./source/pinmux.obj" \
+"./source/sys_core.obj" \
+"./source/sys_dma.obj" \
+"./source/sys_intvecs.obj" \
+"./source/sys_main.obj" \
+"./source/sys_mpu.obj" \
+"./source/sys_pcr.obj" \
+"./source/sys_phantom.obj" \
+"./source/sys_pmm.obj" \
+"./source/sys_pmu.obj" \
+"./source/sys_selftest.obj" \
+"./source/sys_startup.obj" \
+"./source/sys_vim.obj" \
+"./source/system.obj" \
+"../source/sys_link.cmd" \
 $(GEN_CMDS__FLAG) \
 -l"rtsv7R4_T_be_v3D16_eabi.lib" \
 
@@ -24,8 +39,8 @@ RMDIR := RMDIR /S/Q
 
 # All of the sources participating in the build are defined here
 -include sources.mk
--include subdir_vars.mk
--include subdir_rules.mk
+-include source/subdir_vars.mk
+-include source/subdir_rules.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
@@ -119,40 +134,41 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXE_OUTPUTS += \
-minimac.out \
+CAN_test2.out \
 
 EXE_OUTPUTS__QUOTED += \
-"minimac.out" \
+"CAN_test2.out" \
 
 BIN_OUTPUTS += \
-minimac.hex \
+CAN_test2.hex \
 
 BIN_OUTPUTS__QUOTED += \
-"minimac.hex" \
+"CAN_test2.hex" \
 
 
 # All Target
-all: minimac.out
+all: CAN_test2.out
 
 # Tool invocations
-minimac.out: $(OBJS) $(GEN_CMDS)
+CAN_test2.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: ARM Linker'
-	"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/bin/armcl" -mv7R4 --code_state=32 --float_support=VFPv3D16 -g --display_error_number --diag_wrap=off --diag_warning=225 --enum_type=packed --abi=eabi -z -m"minimac.map" --heap_size=0x800 --stack_size=0x800 -i"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/lib" -i"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="minimac_linkInfo.xml" --rom_model --be32 -o "minimac.out" $(ORDERED_OBJS)
+	"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/bin/armcl" -mv7R4 --code_state=32 --float_support=VFPv3D16 -g --diag_wrap=off --diag_warning=225 --display_error_number --enum_type=packed --abi=eabi -z -m"CAN_test2.map" --stack_size=0x800 --heap_size=0x800 -i"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/lib" -i"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include" --reread_libs --display_error_number --warn_sections --diag_wrap=off --xml_link_info="CAN_test2_linkInfo.xml" --rom_model --be32 -o "CAN_test2.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-minimac.hex: $(EXE_OUTPUTS)
+CAN_test2.hex: $(EXE_OUTPUTS)
 	@echo 'Invoking: ARM Hex Utility'
-	"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/bin/armhex"  -o "minimac.hex" $(EXE_OUTPUTS__QUOTED)
+	"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/bin/armhex"  -o "CAN_test2.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)$(BIN_OUTPUTS__QUOTED)
-	-$(RM) "main.pp" "md5.pp" "sha1.pp" "sha256.pp" 
-	-$(RM) "main.obj" "md5.obj" "sha1.obj" "sha256.obj" 
+	-$(RM) "source\can.pp" "source\esm.pp" "source\notification.pp" "source\pinmux.pp" "source\sys_dma.pp" "source\sys_main.pp" "source\sys_pcr.pp" "source\sys_phantom.pp" "source\sys_pmm.pp" "source\sys_selftest.pp" "source\sys_startup.pp" "source\sys_vim.pp" "source\system.pp" 
+	-$(RM) "source\can.obj" "source\dabort.obj" "source\esm.obj" "source\notification.obj" "source\pinmux.obj" "source\sys_core.obj" "source\sys_dma.obj" "source\sys_intvecs.obj" "source\sys_main.obj" "source\sys_mpu.obj" "source\sys_pcr.obj" "source\sys_phantom.obj" "source\sys_pmm.obj" "source\sys_pmu.obj" "source\sys_selftest.obj" "source\sys_startup.obj" "source\sys_vim.obj" "source\system.obj" 
+	-$(RM) "source\dabort.pp" "source\sys_core.pp" "source\sys_intvecs.pp" "source\sys_mpu.pp" "source\sys_pmu.pp" 
 	-@echo 'Finished clean'
 	-@echo ' '
 
