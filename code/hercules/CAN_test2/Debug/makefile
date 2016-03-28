@@ -15,6 +15,7 @@ ORDERED_OBJS += \
 "./source/esm.obj" \
 "./source/notification.obj" \
 "./source/pinmux.obj" \
+"./source/sha256.obj" \
 "./source/sys_core.obj" \
 "./source/sys_dma.obj" \
 "./source/sys_intvecs.obj" \
@@ -153,7 +154,7 @@ all: CAN_test2.out
 CAN_test2.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: ARM Linker'
-	"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/bin/armcl" -mv7R4 --code_state=32 --float_support=VFPv3D16 -g --diag_wrap=off --diag_warning=225 --display_error_number --enum_type=packed --abi=eabi -z -m"CAN_test2.map" --stack_size=0x800 --heap_size=0x800 -i"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/lib" -i"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include" --reread_libs --display_error_number --warn_sections --diag_wrap=off --xml_link_info="CAN_test2_linkInfo.xml" --rom_model --be32 -o "CAN_test2.out" $(ORDERED_OBJS)
+	"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/bin/armcl" -mv7R4 --code_state=32 --float_support=VFPv3D16 -g --display_error_number --diag_wrap=off --diag_warning=225 --enum_type=packed --abi=eabi -z -m"CAN_test2.map" --heap_size=0x800 --stack_size=0x800 -i"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/lib" -i"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="CAN_test2_linkInfo.xml" --rom_model --be32 -o "CAN_test2.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -166,8 +167,8 @@ CAN_test2.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)$(BIN_OUTPUTS__QUOTED)
-	-$(RM) "source\can.pp" "source\esm.pp" "source\notification.pp" "source\pinmux.pp" "source\sys_dma.pp" "source\sys_main.pp" "source\sys_pcr.pp" "source\sys_phantom.pp" "source\sys_pmm.pp" "source\sys_selftest.pp" "source\sys_startup.pp" "source\sys_vim.pp" "source\system.pp" 
-	-$(RM) "source\can.obj" "source\dabort.obj" "source\esm.obj" "source\notification.obj" "source\pinmux.obj" "source\sys_core.obj" "source\sys_dma.obj" "source\sys_intvecs.obj" "source\sys_main.obj" "source\sys_mpu.obj" "source\sys_pcr.obj" "source\sys_phantom.obj" "source\sys_pmm.obj" "source\sys_pmu.obj" "source\sys_selftest.obj" "source\sys_startup.obj" "source\sys_vim.obj" "source\system.obj" 
+	-$(RM) "source\can.pp" "source\esm.pp" "source\notification.pp" "source\pinmux.pp" "source\sha256.pp" "source\sys_dma.pp" "source\sys_main.pp" "source\sys_pcr.pp" "source\sys_phantom.pp" "source\sys_pmm.pp" "source\sys_selftest.pp" "source\sys_startup.pp" "source\sys_vim.pp" "source\system.pp" 
+	-$(RM) "source\can.obj" "source\dabort.obj" "source\esm.obj" "source\notification.obj" "source\pinmux.obj" "source\sha256.obj" "source\sys_core.obj" "source\sys_dma.obj" "source\sys_intvecs.obj" "source\sys_main.obj" "source\sys_mpu.obj" "source\sys_pcr.obj" "source\sys_phantom.obj" "source\sys_pmm.obj" "source\sys_pmu.obj" "source\sys_selftest.obj" "source\sys_startup.obj" "source\sys_vim.obj" "source\system.obj" 
 	-$(RM) "source\dabort.pp" "source\sys_core.pp" "source\sys_intvecs.pp" "source\sys_mpu.pp" "source\sys_pmu.pp" 
 	-@echo 'Finished clean'
 	-@echo ' '
