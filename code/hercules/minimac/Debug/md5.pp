@@ -1,11 +1,11 @@
 # FIXED
 
 md5.obj: ../md5.c
-md5.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.7/include/string.h
-md5.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.7/include/linkage.h
+md5.obj: G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/string.h
+md5.obj: G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/linkage.h
 md5.obj: ../md5.h
 
 ../md5.c: 
-C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.7/include/string.h: 
-C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.7/include/linkage.h: 
+G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/string.h: 
+G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/linkage.h: 
 ../md5.h: 

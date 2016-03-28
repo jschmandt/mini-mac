@@ -2,22 +2,22 @@
 
 main.obj: ../main.c
 main.obj: ../minimac.h
-main.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.7/include/stdio.h
-main.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.7/include/linkage.h
-main.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.7/include/stdarg.h
-main.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.7/include/stdint.h
-main.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.7/include/string.h
+main.obj: G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/stdio.h
+main.obj: G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/linkage.h
+main.obj: G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/stdarg.h
+main.obj: G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/stdint.h
+main.obj: G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/string.h
 main.obj: ../sha256.h
-main.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.7/include/stdio.h
-main.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.7/include/string.h
+main.obj: G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/stdio.h
+main.obj: G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/string.h
 
 ../main.c: 
 ../minimac.h: 
-C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.7/include/stdio.h: 
-C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.7/include/linkage.h: 
-C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.7/include/stdarg.h: 
-C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.7/include/stdint.h: 
-C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.7/include/string.h: 
+G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/stdio.h: 
+G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/linkage.h: 
+G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/stdarg.h: 
+G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/stdint.h: 
+G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/string.h: 
 ../sha256.h: 
-C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.7/include/stdio.h: 
-C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.7/include/string.h: 
+G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/stdio.h: 
+G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/string.h: 
