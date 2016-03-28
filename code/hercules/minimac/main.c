@@ -74,7 +74,7 @@ int main(void) {
    			//TA0CTL = TASSEL_1 + MC_0;
    			//start = TA0R;
    			//TA0CTL = TASSEL_1 + MC_2;
-    	    hmac(key, messages[k], mac);
+    	    hmac(key, message, mac);
     	    minimac(mac,4,message,authed_message);
     		// finish timekeeping
    			//finish = TA0R;
@@ -125,7 +125,7 @@ void hmac(const unsigned char *key, unsigned char *message_ts, unsigned char *ma
 	// 4B from message + 4*8=32B from recent hist + 4*8=32B from periodic hist + 8B from counter
 	unsigned int concat_len = 76;
 
-	unsigned char concat_input[concat_len] = { 0 };
+	unsigned char concat_input[concat_len];
 	
 	// replace 4 with messages size
 	for (i = 0; i < 4; i++){
