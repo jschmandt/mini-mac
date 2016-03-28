@@ -4,15 +4,19 @@
 // look at for mem de-allocation issues
 
     // CAN messages are 64-bit, and we assume that they only use 4B of 8B available
-    unsigned char messages[5][8] = {{ 0xB5, 0x00, 0xB4, 0xC2, 0x00, 0x00, 0x00, 0x00}, { 0xC4, 0x00, 0xB4, 0xC2, 0x00, 0x00, 0x00, 0x00}, { 0xD3, 0x00, 0xB4, 0xC2, 0x00, 0x00, 0x00, 0x00},{ 0xE2, 0x00, 0xB4, 0xC2, 0x00, 0x00, 0x00, 0x00},{ 0xF1, 0x00, 0xB4, 0xC2, 0x00, 0x00, 0x00, 0x00}};
+    unsigned char message[4] = {0xB5, 0x00, 0xB4, 0xC2};
+	
+	unsigned char hist_recent[8][4] = {{ 0xB5, 0x00, 0xB4, 0xC2}, { 0xC4, 0x00, 0xB4, 0xC2}, { 0xD3, 0x00, 0xB4, 0xC2},{ 0xE2, 0x00, 0xB4, 0xC2},{ 0xF1, 0x00, 0xB4, 0xC2}, { 0xB5, 0x00, 0xB4, 0xC2}, { 0xC4, 0x00, 0xB4, 0xC2}, { 0xD3, 0x00, 0xB4, 0xC2},{ 0xE2, 0x00, 0xB4, 0xC2},{ 0xF1, 0x00, 0xB4, 0xC2}};
 
+	unsigned char hist_periodic[8][4] = {{ 0xB5, 0x00, 0xB4, 0xC2}, { 0xC4, 0x00, 0xB4, 0xC2}, { 0xD3, 0x00, 0xB4, 0xC2},{ 0xE2, 0x00, 0xB4, 0xC2},{ 0xF1, 0x00, 0xB4, 0xC2}, { 0xB5, 0x00, 0xB4, 0xC2}, { 0xC4, 0x00, 0xB4, 0xC2}, { 0xD3, 0x00, 0xB4, 0xC2},{ 0xE2, 0x00, 0xB4, 0xC2},{ 0xF1, 0x00, 0xB4, 0xC2}};	
+	
     unsigned char key[32] = { 0xAA, 0xBB, 0xCC, 0xDD, 0x00, 0x01, 0x02, 0x03,
     0xAA, 0xBB, 0xCC, 0xDD, 0x00, 0x01, 0x02, 0x03,
     0xAA, 0xBB, 0xCC, 0xDD, 0x00, 0x01, 0x02, 0x03,
     0xAA, 0xBB, 0xCC, 0xDD, 0x00, 0x01, 0x02, 0x03};
 
-unsigned long message_counter;
-unsigned char rollover_counter;
+	// is long 64b on this platform?
+	unsigned long counter;
 
 /*
  * main.c
@@ -36,8 +40,7 @@ int main(void) {
 	//P1DIR |= BIT0;                            // P1.0 set as output
     //P1OUT ^= BIT0;
 
-    message_counter = 0;
-    rollover_counter = 0;
+    counter = 0;
 
     unsigned int i;
 
@@ -72,7 +75,7 @@ int main(void) {
    			//start = TA0R;
    			//TA0CTL = TASSEL_1 + MC_2;
     	    hmac(key, messages[k], mac);
-    	    minimac(mac,4,messages[k],authed_message);
+    	    minimac(mac,4,message,authed_message);
     		// finish timekeeping
    			//finish = TA0R;
    			//TA0CTL = TASSEL_1 + MC_0 + TACLR;
@@ -98,7 +101,7 @@ int main(void) {
 }
 
 
-void hmac(const unsigned char *key, unsigned char *message, unsigned char *mac)
+void hmac(const unsigned char *key, unsigned char *message_ts, unsigned char *mac)
 {
 	unsigned char k_ipad[65];
 	unsigned char k_opad[65];
@@ -109,6 +112,7 @@ void hmac(const unsigned char *key, unsigned char *message, unsigned char *mac)
 	memcpy( k_opad, key, 32);
 
 	int i;
+	int j;
 	for (i = 0; i < 64; i++)
 	{
 		k_ipad[i] ^= 0x36;
@@ -117,20 +121,48 @@ void hmac(const unsigned char *key, unsigned char *message, unsigned char *mac)
 
 	//bcUartSend(k_ipad, 64);
 	//bcUartSend(k_opad, 64);
+	
+	// 4B from message + 4*8=32B from recent hist + 4*8=32B from periodic hist + 8B from counter
+	unsigned int concat_len = 76;
 
-	unsigned char msgxctr[64] = { 0 };
-	msgxctr[0] = message[0] ^ (message_counter & 0xF000);
-	msgxctr[1] = message[1] ^ ((message_counter & 0x0F00) << 8);
-	msgxctr[2] = message[2] ^ ((message_counter & 0x00F0) << 8);
-	msgxctr[3] = message[3] ^ ((message_counter & 0x000F) << 8);
-
-    for (i = 1; i < 16; i++){
-        msgxctr[4*i] = msgxctr[0];
-        msgxctr[(4*i)+1] = msgxctr[1];
-        msgxctr[(4*i)+2] = msgxctr[2];
-        msgxctr[(4*i)+3] = msgxctr[3];
-    }
-    //bcUartSend(msgxctr, 64);
+	unsigned char concat_input[concat_len] = { 0 };
+	
+	// replace 4 with messages size
+	for (i = 0; i < 4; i++){
+		concat_input[i] = message_ts[i];
+	}
+	
+	unsigned int hist_recent_offset = 4;
+	
+	// replace 8 with num msgs in recent hist
+	// replace 4 with hist message len
+	for (i = 0; i < 8; i++){
+		for (j = 0; j < 4; j++){
+			concat_input[hist_recent_offset+(i*4)+j] = hist_recent[i][j];
+		}
+	}
+	
+	unsigned int hist_periodic_offset = 36;
+	
+	// replace 8 with num msgs in periodic hist
+	// replace 4 with hist message len
+	for (i = 0; i < 8; i++){
+		for (j = 0; j < 4; j++){
+			concat_input[hist_periodic_offset+(i*4)+j] = hist_periodic[i][j];
+		}
+	}
+	
+	unsigned int counter_offset = 68;
+	
+	//roll this up when you know it works
+	concat_input[counter_offset] = (counter >> 56) & 0xFF;
+	concat_input[counter_offset+1] = (counter >> 48) & 0xFF;
+	concat_input[counter_offset+2] = (counter >> 40) & 0xFF;
+	concat_input[counter_offset+3] = (counter >> 32) & 0xFF;
+	concat_input[counter_offset+4] = (counter >> 24) & 0xFF;
+	concat_input[counter_offset+5] = (counter >> 16) & 0xFF;
+	concat_input[counter_offset+6] = (counter >> 8) & 0xFF;
+	concat_input[counter_offset+7] = counter & 0xFF;
 
 	#ifdef HMAC_MD5
 	/*
@@ -186,7 +218,7 @@ void hmac(const unsigned char *key, unsigned char *message, unsigned char *mac)
 	// Hash one
 	sha256_init(&ctx1);
 	sha256_update(&ctx1,k_ipad,64);
-	sha256_update(&ctx1,msgxctr,64);
+	sha256_update(&ctx1,concat_input,concat_len);
 	sha256_final(&ctx1,digest1);
 
 	//bcUartSend(digest1, 32);
@@ -197,13 +229,15 @@ void hmac(const unsigned char *key, unsigned char *message, unsigned char *mac)
 	sha256_final(&ctx2,mac);
 #endif
 
-	message_counter++;
+	counter++;
 	//bcUartSend(message, 8);
 }
 
 void minimac(unsigned char *mac, unsigned int space, unsigned char *message, unsigned char *authed_message)
 {
 
+
+// MD5 / SHA1 are outdated
 #ifdef HMAC_MD5
 	unsigned char mmac_full[16];
 	unsigned int k;
@@ -305,53 +339,14 @@ void minimac(unsigned char *mac, unsigned int space, unsigned char *message, uns
 #endif
 
 #ifdef HMAC_SHA256
-		unsigned char mmac_full[32];
-		unsigned int k;
 
-		// messages are 64b, but the last 32b are zeros
-		// use the first 4B of past 5 messages to increase confusion on the message
-		for (k = 0; k < 32; k++) {
-			mmac_full[k] = mac[k] ^ messages[0][k/4];
-		}
-		for (k = 0; k < 32; k++) {
-			mmac_full[k] = mmac_full[k] ^ messages[1][k/4];
-		}
-		for (k = 0; k < 32; k++) {
-			mmac_full[k] = mmac_full[k] ^ messages[2][k/4];
-		}
-		for (k = 0; k < 32; k++) {
-			mmac_full[k] = mmac_full[k] ^ messages[3][k/4];
-		}
-		for (k = 0; k < 32; k++) {
-			mmac_full[k] = mmac_full[k] ^ messages[4][k/4];
-		}
-		//bcUartSend(mmac_full, 32);
-
-		// use counter to select start index of mmac
-		unsigned int s = rollover_counter % 256;
-
-		// determine which byte to start in
-		unsigned int byte = (unsigned int) s / 8;
-
-		// determine which bit to start with
-		unsigned int shift = s % 8;
-
-		//char mmac_final[8] = 0;
-		if (space == 4){
-			char mmac_part[4] = { 0 };
-
-			if (s > 224) { // getting the mmac part will rollover the full mac
-				unsigned int b1 = (byte + 1) % 256;
-				mmac_part[0] = (mmac_full[byte] << shift) + (mmac_full[b1] >> (8-shift));
-				mmac_part[1] = (mmac_full[b1] << shift) + (mmac_full[b1+1] >> (8-shift));
-				mmac_part[2] = (mmac_full[b1+1] << shift) + (mmac_full[b1+2] >> (8-shift));
-				mmac_part[3] = (mmac_full[b1+2] << shift) + (mmac_full[b1+3] >> (8-shift));
-			} else {
-				mmac_part[0] = (mmac_full[byte] << shift) + (mmac_full[byte+1] >> (8-shift));
-				mmac_part[1] = (mmac_full[byte+1] << shift) + (mmac_full[byte+2] >> (8-shift));
-				mmac_part[2] = (mmac_full[byte+2] << shift) + (mmac_full[byte+3] >> (8-shift));
-				mmac_part[3] = (mmac_full[byte+3] << shift) + (mmac_full[byte+4] >> (8-shift));
-			}
+		char mmac_part[4] = { 0 };
+		// roll it up, account for var len
+		mmac_part[0] = mac[28];
+		mmac_part[1] = mac[29];
+		mmac_part[2] = mac[30];
+		mmac_part[3] = mac[31];
+			
 #endif
 
 		//bcUartSend(mmac_part, 4);
@@ -363,8 +358,7 @@ void minimac(unsigned char *mac, unsigned int space, unsigned char *message, uns
 		authed_message[7] = mmac_part[3];
 		//bcUartSend(authed_message, 8);
 
-	}
-	rollover_counter++;
+	
 }
 
 
