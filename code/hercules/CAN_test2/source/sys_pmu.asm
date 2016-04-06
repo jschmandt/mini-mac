@@ -81,6 +81,9 @@ _pmuInit_
     .endasmfunc
 
 
+
+
+
 ;-------------------------------------------------------------------------------
 ; Enable Counters Global [Cycle, Event [0..2]]
 ; Note: It will reset all counters

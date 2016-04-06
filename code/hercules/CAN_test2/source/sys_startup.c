@@ -629,6 +629,9 @@ void _c_int00(void)
     /* initialize copy table */
     __TI_auto_init();
 /* USER CODE BEGIN (75) */
+    //asm(" mov r0, #0x03D0");
+    //asm(" msr cpsr, r0");
+
 /* USER CODE END */
     
     /* call the application */

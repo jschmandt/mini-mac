@@ -43,6 +43,9 @@
 /* USER CODE BEGIN (1) */
 #include "can.h"
 #include "minimac.h"
+#include "sys_pmu.h"
+
+#define f_HCLK (float) 160.0 // f in [MHz] -- make sure this is right
 
 /* Include ESM header file - types, definitions and function declarations for system driver */
 #include "esm.h"
@@ -62,6 +65,12 @@ unsigned char key[32] = { 0xAA, 0xBB, 0xCC, 0xDD, 0x00, 0x01, 0x02, 0x03,
 0xAA, 0xBB, 0xCC, 0xDD, 0x00, 0x01, 0x02, 0x03,
 0xAA, 0xBB, 0xCC, 0xDD, 0x00, 0x01, 0x02, 0x03,
 0xAA, 0xBB, 0xCC, 0xDD, 0x00, 0x01, 0x02, 0x03};
+
+volatile unsigned int loop_count_prep, loop_count_prep_max=1000;
+volatile unsigned int loop_count, loop_count_max=1000;
+volatile unsigned long cycles_PMU_start, cycles_PMU_end, cycles_PMU_measure, cycles_PMU_comp, cycles_PMU_code;
+volatile float time_PMU_code;
+
 
 uint64 counter = 0;
 
@@ -85,6 +94,11 @@ void main(void)
     /* initialize can 1 and 2   */
     canInit(); /* can1 -> can2 */
 
+    // measurement init
+    _pmuInit_();
+    _pmuEnableCountersGlobal_();
+    _pmuSetCountEvent_(pmuCOUNTER0, PMU_CYCLE_COUNT);
+
     counter = 0;
 #ifdef HMAC_SHA256
     unsigned char mac[32];
@@ -103,8 +117,41 @@ void main(void)
 	message[2] = 0xB4;
 	message[3] = 0xC2;
 
-    hmac(key, message, mac);
-    minimac(mac,4,message,authed_message);
+
+	// run the code to get everything intialized
+	for (loop_count_prep=0;loop_count_prep<loop_count_prep_max;++loop_count_prep)
+	{
+		hmac(key, message, mac);
+		minimac(mac,4,message,authed_message);
+	}
+
+	_pmuResetCounters_();
+	_pmuStartCounters_(pmuCOUNTER0);
+	cycles_PMU_start = _pmuGetEventCount_(pmuCOUNTER0);
+
+	// run the actual code
+	hmac(key, message, mac);
+	minimac(mac,4,message,authed_message);
+
+	// take measurements
+	_pmuStopCounters_(pmuCOUNTER0);
+	cycles_PMU_end = _pmuGetEventCount_(pmuCOUNTER0);
+	cycles_PMU_measure = cycles_PMU_end - cycles_PMU_start;
+	_pmuResetCounters_();
+
+	// take another instant measurement for compensation
+	_pmuStartCounters_(pmuCOUNTER0);
+	cycles_PMU_start = _pmuGetEventCount_(pmuCOUNTER0);
+	_pmuStopCounters_(pmuCOUNTER0);
+	cycles_PMU_end = _pmuGetEventCount_(pmuCOUNTER0);
+
+	// compensate
+	cycles_PMU_comp = cycles_PMU_end - cycles_PMU_start;
+
+	// get the execution time
+	cycles_PMU_code = cycles_PMU_measure - cycles_PMU_comp;
+	time_PMU_code = cycles_PMU_code / (f_HCLK); // time_code [us], f_HCLK [MHz]
+	//time_PMU_code = cycles_PMU_code / (f_HCLK * loop_Count_max); //
 
     /* transmit on can1 */
     canTransmit(canREG1, canMESSAGE_BOX1, authed_message);
