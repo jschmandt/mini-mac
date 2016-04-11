@@ -52,10 +52,24 @@
  *                                                  SDOCM00114423	 Add new enum TI_Fee_DeviceType.
  *                                                                   Add new variable TI_Fee_MaxSectors and 
  *                                                                   prototype TI_FeeInternal_PopulateStructures. 
+ * 01.18.00		  12Oct2015    Vishwanath Reddy     SDOCM00119455    Update version history.
+ *                                                                   Update ti_fee_util.c file for the
+ *                                                                   bugfix "If morethan one data set is config-
+ *                                                                   ured, then a valid block may get invalidated if
+ *                                                                   multiple valid blocks are present in FEE memory. 
+ * 01.18.01		  17Nov2015    Vishwanath Reddy     SDOCM00120161    Update version history.
+ *                                                                   In TI_FeeInternal_FeeManager, do not change the 
+ *                                                                   state to IDLE,after completing the copy operation. 
+ * 01.18.02		  05Feb2016    Vishwanath Reddy     SDOCM00121158    Update version history.
+ *                                                                   Add a call of TI_FeeInternal_PollFlashStatus()
+ *                                                                   before reading data from FEE bank in
+ *                                                                   TI_FeeInternal_UpdateBlockOffsetArray(),
+ *                                                                   TI_Fee_WriteAsync(),TI_Fee_WriteSync(),
+ *                                                                   TI_Fee_ReadSync(), TI_Fee_Read()   
  *********************************************************************************************************************/
 
 /*
-* Copyright (C) 2009-2015 Texas Instruments Incorporated - www.ti.com  
+* Copyright (C) 2009-2016 Texas Instruments Incorporated - www.ti.com  
 * 
 * 
 *  Redistribution and use in source and binary forms, with or without 
@@ -106,7 +120,7 @@
 #define TI_FEE_MINOR_VERSION    0U
 #define TI_FEE_PATCH_VERSION    2U
 #define TI_FEE_SW_MAJOR_VERSION 1U
-#define TI_FEE_SW_MINOR_VERSION 17U
+#define TI_FEE_SW_MINOR_VERSION 18U
 #define TI_FEE_SW_PATCH_VERSION 2U
 
 #define TI_FEE_VIRTUAL_SECTOR_VERSION 1U

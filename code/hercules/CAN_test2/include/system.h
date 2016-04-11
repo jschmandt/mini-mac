@@ -1,7 +1,7 @@
 /** @file system.h
 *   @brief System Driver Header File
-*   @date 28.Aug.2015
-*   @version 04.05.01
+*   @date 02-Mar-2016
+*   @version 04.05.02
 *   
 *   This file contains:
 *   - Definitions
@@ -11,7 +11,7 @@
 */
 
 /* 
-* Copyright (C) 2009-2015 Texas Instruments Incorporated - www.ti.com 
+* Copyright (C) 2009-2016 Texas Instruments Incorporated - www.ti.com 
 * 
 * 
 *  Redistribution and use in source and binary forms, with or without 
@@ -337,7 +337,7 @@ typedef struct system_config_reg
                                     | (uint32)((uint32)0x1FU << 24U) \
                                     | (uint32)0x00000000U \
                                     | (uint32)((uint32)(6U - 1U)<< 16U)\
-                                    | (uint32)((uint32)(120U - 1U)<< 8U) )
+                                    | (uint32)(0x7700U))
                                     
 #define SYS_PLLCTL1_CONFIGVALUE_2   (((SYS_PLLCTL1_CONFIGVALUE_1) & 0xE0FFFFFFU) | (uint32)((uint32)(1U - 1U) << 24U))
                                     
@@ -380,7 +380,7 @@ typedef struct system_config_reg
 #define SYS2_PLLCTL3_CONFIGVALUE_1  ( (uint32)((uint32)(2U - 1U) << 29U)\
                                     | (uint32)((uint32)0x1FU << 24U) \
                                     | (uint32)((uint32)(6U - 1U)<< 16U) \
-                                    | (uint32)((uint32)(120U - 1U) << 8U) )
+                                    | (uint32)(0x7700U))
                                     
 #define SYS2_PLLCTL3_CONFIGVALUE_2  (((SYS2_PLLCTL3_CONFIGVALUE_1) & 0xE0FFFFFFU) | (uint32)((uint32)(1U - 1U) << 24U))
 #define SYS2_STCCLKDIV_CONFIGVALUE  0U

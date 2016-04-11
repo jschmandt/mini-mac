@@ -1,14 +1,14 @@
 /** @file sys_selftest.c
 *   @brief Selftest Source File
-*   @date 28.Aug.2015
-*   @version 04.05.01
+*   @date 02-Mar-2016
+*   @version 04.05.02
 *
 *   This file contains:
 *   - Selftest API's
 */
 
 /* 
-* Copyright (C) 2009-2015 Texas Instruments Incorporated - www.ti.com 
+* Copyright (C) 2009-2016 Texas Instruments Incorporated - www.ti.com 
 * 
 * 
 *  Redistribution and use in source and binary forms, with or without 

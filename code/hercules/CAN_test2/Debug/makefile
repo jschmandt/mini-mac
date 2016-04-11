@@ -15,6 +15,8 @@ ORDERED_OBJS += \
 "./source/esm.obj" \
 "./source/notification.obj" \
 "./source/pinmux.obj" \
+"./source/rti.obj" \
+"./source/sci.obj" \
 "./source/sha256.obj" \
 "./source/sys_core.obj" \
 "./source/sys_dma.obj" \
@@ -167,8 +169,8 @@ CAN_test2.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)$(BIN_OUTPUTS__QUOTED)
-	-$(RM) "source\can.pp" "source\esm.pp" "source\notification.pp" "source\pinmux.pp" "source\sha256.pp" "source\sys_dma.pp" "source\sys_main.pp" "source\sys_pcr.pp" "source\sys_phantom.pp" "source\sys_pmm.pp" "source\sys_selftest.pp" "source\sys_startup.pp" "source\sys_vim.pp" "source\system.pp" 
-	-$(RM) "source\can.obj" "source\dabort.obj" "source\esm.obj" "source\notification.obj" "source\pinmux.obj" "source\sha256.obj" "source\sys_core.obj" "source\sys_dma.obj" "source\sys_intvecs.obj" "source\sys_main.obj" "source\sys_mpu.obj" "source\sys_pcr.obj" "source\sys_phantom.obj" "source\sys_pmm.obj" "source\sys_pmu.obj" "source\sys_selftest.obj" "source\sys_startup.obj" "source\sys_vim.obj" "source\system.obj" 
+	-$(RM) "source\can.pp" "source\esm.pp" "source\notification.pp" "source\pinmux.pp" "source\rti.pp" "source\sci.pp" "source\sha256.pp" "source\sys_dma.pp" "source\sys_main.pp" "source\sys_pcr.pp" "source\sys_phantom.pp" "source\sys_pmm.pp" "source\sys_selftest.pp" "source\sys_startup.pp" "source\sys_vim.pp" "source\system.pp" 
+	-$(RM) "source\can.obj" "source\dabort.obj" "source\esm.obj" "source\notification.obj" "source\pinmux.obj" "source\rti.obj" "source\sci.obj" "source\sha256.obj" "source\sys_core.obj" "source\sys_dma.obj" "source\sys_intvecs.obj" "source\sys_main.obj" "source\sys_mpu.obj" "source\sys_pcr.obj" "source\sys_phantom.obj" "source\sys_pmm.obj" "source\sys_pmu.obj" "source\sys_selftest.obj" "source\sys_startup.obj" "source\sys_vim.obj" "source\system.obj" 
 	-$(RM) "source\dabort.pp" "source\sys_core.pp" "source\sys_intvecs.pp" "source\sys_mpu.pp" "source\sys_pmu.pp" 
 	-@echo 'Finished clean'
 	-@echo ' '

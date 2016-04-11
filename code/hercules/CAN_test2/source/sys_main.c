@@ -1,5 +1,14 @@
+/** @file sys_main.c 
+*   @brief Application main file
+*   @date 02-Mar-2016
+*   @version 04.05.02
+*
+*   This file contains an empty main function,
+*   which can be used for the application.
+*/
+
 /* 
-* Copyright (C) 2009-2015 Texas Instruments Incorporated - www.ti.com
+* Copyright (C) 2009-2016 Texas Instruments Incorporated - www.ti.com 
 * 
 * 
 *  Redistribution and use in source and binary forms, with or without 
@@ -23,29 +32,32 @@
 *  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
 *  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
 *  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
-*  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT
+*  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
 *  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-*  DATA, OR PROFITS; OR BUSINESS INTERRUPTION HOWEVER CAUSED AND ON ANY
+*  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
 *  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
-*  INCLUDING NEGLIGENCE OR OTHERWISE ARISING IN ANY WAY OUT OF THE USE
+*  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
 *  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
 */
 
+
 /* USER CODE BEGIN (0) */
+#include "can.h"
+#include "minimac.h"
+#include "sys_pmu.h"
+
+//#include "rti.h"
+#include "sci.h"
 /* USER CODE END */
 
 /* Include Files */
 
 #include "sys_common.h"
-#include "system.h"
 
 /* USER CODE BEGIN (1) */
-#include "can.h"
-#include "minimac.h"
-#include "sys_pmu.h"
 
-#define f_HCLK (float) 160.0 // f in [MHz] -- make sure this is right
+#define f_HCLK (float) 160.0 // f in [MHz]
 
 /* Include ESM header file - types, definitions and function declarations for system driver */
 #include "esm.h"
@@ -69,35 +81,45 @@ unsigned char key[32] = { 0xAA, 0xBB, 0xCC, 0xDD, 0x00, 0x01, 0x02, 0x03,
 volatile unsigned int loop_count_prep, loop_count_prep_max=1000;
 volatile unsigned int loop_count, loop_count_max=1000;
 volatile unsigned long cycles_PMU_start, cycles_PMU_end, cycles_PMU_measure, cycles_PMU_comp, cycles_PMU_code;
+volatile unsigned long cycles_RTI_start, cycles_RTI_end, cycles_RTI_measure, cycles_RTI_comp, cycles_RTI_code;
 volatile float time_PMU_code;
-
+volatile float time_RTI_code;
 
 uint64 counter = 0;
 
 uint32 checkPackets(uint8 *src_packet,uint8 *dst_packet,uint32 psize);
 /* USER CODE END */
 
-
 /** @fn void main(void)
 *   @brief Application main function
+*   @note This function is empty by default.
 *
+*   This function is called after startup.
+*   The user can use this function to implement the application.
 */
 
 /* USER CODE BEGIN (2) */
 /* USER CODE END */
-
 
 void main(void)
 {
 /* USER CODE BEGIN (3) */
 
     /* initialize can 1 and 2   */
-    canInit(); /* can1 -> can2 */
+    //canInit(); /* can1 -> can2 */
+
+    //_enable_IRQ();
+    //sciInit();
 
     // measurement init
+
+
     _pmuInit_();
     _pmuEnableCountersGlobal_();
-    _pmuSetCountEvent_(pmuCOUNTER0, PMU_CYCLE_COUNT);
+    _pmuSetCountEvent_(pmuCOUNTER1, PMU_CYCLE_COUNT);
+
+    //rtiInit();
+
 
     counter = 0;
 #ifdef HMAC_SHA256
@@ -125,25 +147,54 @@ void main(void)
 		minimac(mac,4,message,authed_message);
 	}
 
+
+	while (1){
+
+
 	_pmuResetCounters_();
-	_pmuStartCounters_(pmuCOUNTER0);
-	cycles_PMU_start = _pmuGetEventCount_(pmuCOUNTER0);
+	_pmuStartCounters_(pmuCOUNTER1);
+	cycles_PMU_start = _pmuGetEventCount_(pmuCOUNTER1);
+	float cycles_test = _pmuGetCycleCount_();
+
+	/**
+	rtiResetCounter(rtiCOUNTER_BLOCK0);
+	rtiStartCounter(rtiCOUNTER_BLOCK0);
+	cycles_RTI_start =rtiGetCurrentTick(rtiCOMPARE0);
+	**/
 
 	// run the actual code
 	hmac(key, message, mac);
 	minimac(mac,4,message,authed_message);
 
 	// take measurements
-	_pmuStopCounters_(pmuCOUNTER0);
-	cycles_PMU_end = _pmuGetEventCount_(pmuCOUNTER0);
+	_pmuStopCounters_(pmuCOUNTER1);
+	cycles_PMU_end = _pmuGetEventCount_(pmuCOUNTER1);
 	cycles_PMU_measure = cycles_PMU_end - cycles_PMU_start;
 	_pmuResetCounters_();
 
+
+	/**
+	rtiStopCounter(rtiCOUNTER_BLOCK0);
+	cycles_RTI_end = rtiGetCurrentTick(rtiCOMPARE0);
+	cycles_RTI_measure = cycles_RTI_end - cycles_RTI_start;
+
+	rtiStartCounter(rtiCOUNTER_BLOCK0);
+	cycles_RTI_start =rtiGetCurrentTick(rtiCOMPARE0);
+	cycles_RTI_end = rtiGetCurrentTick(rtiCOMPARE0);
+	cycles_RTI_comp = cycles_RTI_end - cycles_RTI_start;
+
+	cycles_RTI_code = cycles_RTI_measure - cycles_RTI_comp;
+	cycles_RTI_code = cycles_RTI_code * 4; // factor 2*2 to compensate counting of every 2nd VCLK
+	time_RTI_code = cycles_RTI_code / (f_HCLK); // time_code [us], f_HCLK [MHz]
+	**/
+
 	// take another instant measurement for compensation
-	_pmuStartCounters_(pmuCOUNTER0);
-	cycles_PMU_start = _pmuGetEventCount_(pmuCOUNTER0);
-	_pmuStopCounters_(pmuCOUNTER0);
-	cycles_PMU_end = _pmuGetEventCount_(pmuCOUNTER0);
+
+	_pmuStartCounters_(pmuCOUNTER1);
+	cycles_PMU_start = _pmuGetEventCount_(pmuCOUNTER1);
+	_pmuStopCounters_(pmuCOUNTER1);
+	cycles_PMU_end = _pmuGetEventCount_(pmuCOUNTER1);
+
 
 	// compensate
 	cycles_PMU_comp = cycles_PMU_end - cycles_PMU_start;
@@ -153,29 +204,38 @@ void main(void)
 	time_PMU_code = cycles_PMU_code / (f_HCLK); // time_code [us], f_HCLK [MHz]
 	//time_PMU_code = cycles_PMU_code / (f_HCLK * loop_Count_max); //
 
+	//char time[64];
+	//sprintf(time, "%f", time_PMU_code);
+	//sciSend(scilinREG, 64, time);
+
     /* transmit on can1 */
-    canTransmit(canREG1, canMESSAGE_BOX1, authed_message);
+//    canTransmit(canREG1, canMESSAGE_BOX1, authed_message);
 
     /*... wait until message receive on can2 */
-    while(!canIsRxMessageArrived(canREG2, canMESSAGE_BOX1));
-    canGetData(canREG2, canMESSAGE_BOX1, rx_data);  /* receive on can2  */
+//    while(!canIsRxMessageArrived(canREG2, canMESSAGE_BOX1));
+//    canGetData(canREG2, canMESSAGE_BOX1, rx_data);  /* receive on can2  */
 
     /* check received data patterns */
-    error = checkPackets(&authed_message[0],&rx_data[0],8);
-    if (error == 0) {
+//    error = checkPackets(&authed_message[0],&rx_data[0],8);
+//    if (error == 0) {
 
-    	rec_msg[0] = rx_data[0];
-    	rec_msg[1] = rx_data[1];
-    	rec_msg[2] = rx_data[2];
-    	rec_msg[3] = rx_data[3];
+//    	rec_msg[0] = rx_data[0];
+//    	rec_msg[1] = rx_data[1];
+//    	rec_msg[2] = rx_data[2];
+//    	rec_msg[3] = rx_data[3];
 
-    	hmac(key, rec_msg, rec_mac);
-    	minimac(rec_mac,4,rec_msg,rec_auth_msg);
-    	uint32 auth_error = checkPackets(&authed_message[0],&rec_auth_msg[0],8);
-    	if (auth_error == 0){
-    		counter++;
-    	}
-    }
+//    	hmac(key, rec_msg, rec_mac);
+//    	minimac(rec_mac,4,rec_msg,rec_auth_msg);
+//    	uint32 auth_error = checkPackets(&authed_message[0],&rec_auth_msg[0],8);
+//    	if (auth_error == 0){
+//    		counter++;
+//    	}
+//    }
+
+	counter++;
+	int k = 0;
+    for (k = 0; k < 5000; k++);
+	}
 
 
     /* ... run forever */

@@ -1,14 +1,14 @@
 /** @file hal_stdtypes.h
 *   @brief HALCoGen standard types header File
-*   @date 28.Aug.2015
-*   @version 04.05.01
+*   @date 02-Mar-2016
+*   @version 04.05.02
 *   
 *   This file contains:
 *   - Type and Global definitions which are relevant for all drivers.
 */
 
 /* 
-* Copyright (C) 2009-2015 Texas Instruments Incorporated - www.ti.com 
+* Copyright (C) 2009-2016 Texas Instruments Incorporated - www.ti.com 
 * 
 * 
 *  Redistribution and use in source and binary forms, with or without 
@@ -130,21 +130,21 @@ typedef struct
 /*****************************************************************************/
 #ifndef STATUSTYPEDEFINED
   #define STATUSTYPEDEFINED
-  #define E_OK     0x00
+  #define E_OK     0x00U
 
   typedef unsigned char StatusType;
 #endif
 
 #ifndef E_NOT_OK
-#define E_NOT_OK   0x01
+#define E_NOT_OK   0x01U
 #endif
 
 #ifndef STD_ON
-#define STD_ON     0x01
+#define STD_ON     0x01U
 #endif
 
 #ifndef STD_OFF
-#define STD_OFF    0x00
+#define STD_OFF    0x00U
 #endif
 
 
@@ -187,7 +187,7 @@ typedef struct
 /* Description:  Void pointer to 0                                           */
 /*****************************************************************************/
 #ifndef NULL_PTR
-#define NULL_PTR ((void *)0x0)
+#define NULL_PTR ((void *)0x0U)
 #endif
 
 /* USER CODE BEGIN (1) */

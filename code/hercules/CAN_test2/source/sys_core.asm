@@ -1,7 +1,7 @@
 ;-------------------------------------------------------------------------------
 ; sys_core.asm
 ;
-; Copyright (C) 2009-2015 Texas Instruments Incorporated - www.ti.com
+; Copyright (C) 2009-2016 Texas Instruments Incorporated - www.ti.com
 ;
 ;
 ;  Redistribution and use in source and binary forms, with or without
@@ -217,13 +217,11 @@ _gotoCPUIdle_
 
 _coreEnableVfp_
 
-        stmfd sp!, {r0}
         mrc   p15,     #0x00,      r0,       c1, c0, #0x02
         orr   r0,      r0,         #0xF00000
         mcr   p15,     #0x00,      r0,       c1, c0, #0x02
         mov   r0,      #0x40000000
         fmxr  fpexc,   r0
-        ldmfd sp!, {r0}
         bx    lr
 
     .endasmfunc
@@ -239,11 +237,9 @@ _coreEnableVfp_
 
 _coreEnableEventBusExport_
 
-        stmfd sp!, {r0}
         mrc   p15, #0x00, r0,         c9, c12, #0x00
         orr   r0,  r0,    #0x10
         mcr   p15, #0x00, r0,         c9, c12, #0x00
-        ldmfd sp!, {r0}
         bx    lr
 
     .endasmfunc
@@ -261,11 +257,9 @@ _coreEnableEventBusExport_
 
 _coreDisableEventBusExport_
 
-        stmfd sp!, {r0}
         mrc   p15, #0x00, r0,         c9, c12, #0x00
         bic   r0,  r0,    #0x10
         mcr   p15, #0x00, r0,         c9, c12, #0x00
-        ldmfd sp!, {r0}
         bx    lr
 
     .endasmfunc
@@ -282,11 +276,9 @@ _coreDisableEventBusExport_
 
 _coreEnableRamEcc_
 
-        stmfd sp!, {r0}
         mrc   p15, #0x00, r0,         c1, c0,  #0x01
         orr   r0,  r0,    #0x0C000000
         mcr   p15, #0x00, r0,         c1, c0,  #0x01
-        ldmfd sp!, {r0}
         bx    lr
 
     .endasmfunc
@@ -303,11 +295,9 @@ _coreEnableRamEcc_
 
 _coreDisableRamEcc_
 
-        stmfd sp!, {r0}
         mrc   p15, #0x00, r0,         c1, c0,  #0x01
         bic   r0,  r0,    #0x0C000000
         mcr   p15, #0x00, r0,         c1, c0,  #0x01
-        ldmfd sp!, {r0}
         bx    lr
 
     .endasmfunc
@@ -324,12 +314,10 @@ _coreDisableRamEcc_
 
 _coreEnableFlashEcc_
 
-        stmfd sp!, {r0}
         mrc   p15, #0x00, r0,         c1, c0,  #0x01
         orr   r0,  r0,    #0x02000000
         dmb
         mcr   p15, #0x00, r0,         c1, c0,  #0x01
-        ldmfd sp!, {r0}
         bx    lr
 
     .endasmfunc
@@ -346,11 +334,9 @@ _coreEnableFlashEcc_
 
 _coreDisableFlashEcc_
 
-        stmfd sp!, {r0}
         mrc   p15, #0x00, r0,         c1, c0,  #0x01
         bic   r0,  r0,    #0x02000000
         mcr   p15, #0x00, r0,         c1, c0,  #0x01
-        ldmfd sp!, {r0}
         bx    lr
 
     .endasmfunc
@@ -367,11 +353,9 @@ _coreDisableFlashEcc_
 
 _coreEnableIrqVicOffset_
 
-        stmfd sp!, {r0}
         mrc   p15, #0, r0,         c1, c0,  #0
         orr   r0,  r0,    #0x01000000
         mcr   p15, #0, r0,         c1, c0,  #0
-        ldmfd sp!, {r0}
         bx    lr
 
     .endasmfunc
@@ -405,10 +389,8 @@ _coreGetDataFault_
 
 _coreClearDataFault_
 
-        stmfd sp!, {r0}
         mov   r0,  #0
         mcr   p15, #0, r0, c5, c0,  #0
-        ldmfd sp!, {r0}
         bx    lr
 
     .endasmfunc
@@ -442,10 +424,8 @@ _coreGetInstructionFault_
 
 _coreClearInstructionFault_
 
-        stmfd sp!, {r0}
         mov   r0,  #0
         mcr   p15, #0, r0, c5, c0, #1
-        ldmfd sp!, {r0}
         bx    lr
 
     .endasmfunc
@@ -479,10 +459,8 @@ _coreGetDataFaultAddress_
 
 _coreClearDataFaultAddress_
 
-        stmfd sp!, {r0}
         mov   r0,  #0
         mcr   p15, #0, r0, c6, c0,  #0
-        ldmfd sp!, {r0}
         bx    lr
 
     .endasmfunc
@@ -516,10 +494,8 @@ _coreGetInstructionFaultAddress_
 
 _coreClearInstructionFaultAddress_
 
-        stmfd sp!, {r0}
         mov   r0,  #0
         mcr   p15, #0, r0, c6, c0, #2
-        ldmfd sp!, {r0}
         bx    lr
 
     .endasmfunc
@@ -553,10 +529,8 @@ _coreGetAuxiliaryDataFault_
 
 _coreClearAuxiliaryDataFault_
 
-        stmfd sp!, {r0}
         mov   r0,  #0
         mcr   p15, #0, r0, c5, c1, #0
-        ldmfd sp!, {r0}
         bx    lr
 
     .endasmfunc
@@ -589,10 +563,8 @@ _coreGetAuxiliaryInstructionFault_
 
 _coreClearAuxiliaryInstructionFault_
 
-        stmfd sp!, {r0}
         mov   r0,  #0
         mrc   p15, #0, r0, c5, c1, #1
-        ldmfd sp!, {r0}
         bx    lr
 
     .endasmfunc
@@ -720,11 +692,9 @@ VIM_INTREQ        .word 0xFFFFFE20
 
 _errata_CORTEXR4_57_
 
-        push {r0}
         mrc p15, #0, r0, c15, c0, #0 ; Read Secondary Auxiliary Control Register
         orr r0, r0, #0x10000         ; Set BIT 16 (Set DOOFMACS)
         mcr p15, #0, r0, c15, c0, #0 ; Write Secondary Auxiliary Control Register
-        pop {r0}
         bx lr
     .endasmfunc
 
@@ -743,12 +713,10 @@ _errata_CORTEXR4_57_
 
 _errata_CORTEXR4_66_
 
-        push {r0}
         mrc p15, #0, r0, c1, c0, #1 ; Read Auxiliary Control register
           orr r0, r0, #0x80           ; Set BIT 7 (Disable out-of-order completion
                                     ; for divide instructions.)
            mcr p15, #0, r0, c1, c0, #1 ; Write Auxiliary Control register
-        pop {r0}
         bx lr
     .endasmfunc
 ;-------------------------------------------------------------------------------

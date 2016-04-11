@@ -38,6 +38,20 @@ source/pinmux.obj: ../source/pinmux.c $(GEN_OPTS) $(GEN_HDRS)
 	@echo 'Finished building: $<'
 	@echo ' '
 
+source/rti.obj: ../source/rti.c $(GEN_OPTS) $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: ARM Compiler'
+	"G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/bin/armcl" -mv7R4 --code_state=32 --float_support=VFPv3D16 --include_path="G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include" --include_path="C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_test2/include" -g --display_error_number --diag_wrap=off --diag_warning=225 --enum_type=packed --abi=eabi --preproc_with_compile --preproc_dependency="source/rti.pp" --obj_directory="source" $(GEN_OPTS__FLAG) "$<"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+source/sci.obj: ../source/sci.c $(GEN_OPTS) $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: ARM Compiler'
+	"G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/bin/armcl" -mv7R4 --code_state=32 --float_support=VFPv3D16 --include_path="G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include" --include_path="C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_test2/include" -g --display_error_number --diag_wrap=off --diag_warning=225 --enum_type=packed --abi=eabi --preproc_with_compile --preproc_dependency="source/sci.pp" --obj_directory="source" $(GEN_OPTS__FLAG) "$<"
+	@echo 'Finished building: $<'
+	@echo ' '
+
 source/sha256.obj: ../source/sha256.c $(GEN_OPTS) $(GEN_HDRS)
 	@echo 'Building file: $<'
 	@echo 'Invoking: ARM Compiler'

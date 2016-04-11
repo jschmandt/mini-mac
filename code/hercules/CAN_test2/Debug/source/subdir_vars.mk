@@ -18,6 +18,8 @@ C_SRCS += \
 ../source/esm.c \
 ../source/notification.c \
 ../source/pinmux.c \
+../source/rti.c \
+../source/sci.c \
 ../source/sha256.c \
 ../source/sys_dma.c \
 ../source/sys_main.c \
@@ -35,6 +37,8 @@ OBJS += \
 ./source/esm.obj \
 ./source/notification.obj \
 ./source/pinmux.obj \
+./source/rti.obj \
+./source/sci.obj \
 ./source/sha256.obj \
 ./source/sys_core.obj \
 ./source/sys_dma.obj \
@@ -62,6 +66,8 @@ C_DEPS += \
 ./source/esm.pp \
 ./source/notification.pp \
 ./source/pinmux.pp \
+./source/rti.pp \
+./source/sci.pp \
 ./source/sha256.pp \
 ./source/sys_dma.pp \
 ./source/sys_main.pp \
@@ -78,6 +84,8 @@ C_DEPS__QUOTED += \
 "source\esm.pp" \
 "source\notification.pp" \
 "source\pinmux.pp" \
+"source\rti.pp" \
+"source\sci.pp" \
 "source\sha256.pp" \
 "source\sys_dma.pp" \
 "source\sys_main.pp" \
@@ -95,6 +103,8 @@ OBJS__QUOTED += \
 "source\esm.obj" \
 "source\notification.obj" \
 "source\pinmux.obj" \
+"source\rti.obj" \
+"source\sci.obj" \
 "source\sha256.obj" \
 "source\sys_core.obj" \
 "source\sys_dma.obj" \
@@ -122,6 +132,8 @@ C_SRCS__QUOTED += \
 "../source/esm.c" \
 "../source/notification.c" \
 "../source/pinmux.c" \
+"../source/rti.c" \
+"../source/sci.c" \
 "../source/sha256.c" \
 "../source/sys_dma.c" \
 "../source/sys_main.c" \

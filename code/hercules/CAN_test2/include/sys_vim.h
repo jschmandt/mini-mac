@@ -1,7 +1,7 @@
 /** @file sys_vim.h
 *   @brief Vectored Interrupt Module Header File
-*   @date 28.Aug.2015
-*   @version 04.05.01
+*   @date 02-Mar-2016
+*   @version 04.05.02
 *   
 *   This file contains:
 *   - VIM Type Definitions
@@ -11,7 +11,7 @@
 */
 
 /* 
-* Copyright (C) 2009-2015 Texas Instruments Incorporated - www.ti.com  
+* Copyright (C) 2009-2016 Texas Instruments Incorporated - www.ti.com  
 * 
 * 
 *  Redistribution and use in source and binary forms, with or without 
@@ -90,6 +90,7 @@ typedef enum systemInterrupt
 
 extern void esmHighInterrupt(void);
 extern void phantomInterrupt(void);
+extern void linHighLevelInterrupt(void);
 
 /* USER CODE BEGIN (3) */
 /* USER CODE END */
@@ -267,7 +268,7 @@ typedef struct vim_config_reg
                                     | (uint32)((uint32)0U << 10U)\
                                     | (uint32)((uint32)0U << 11U)\
                                     | (uint32)((uint32)0U << 12U)\
-                                    | (uint32)((uint32)0U << 13U)\
+                                    | (uint32)((uint32)1U << 13U)\
                                     | (uint32)((uint32)0U << 14U)\
                                     | (uint32)((uint32)0U << 15U)\
                                     | (uint32)((uint32)0U << 16U)\
