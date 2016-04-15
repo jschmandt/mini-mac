@@ -55,7 +55,7 @@ approximately 3.2~seconds to over 621~days.
 
 To implement this strategy one could modify the lower-level code in the CAN network stack, 
 either to perform the MAC calculation there 
-or to open the CRC field to the application level to calculate the MAC.
+or to open the CRC field to the application level to calculate the MAC. \red{In many systems, the CRC calculation is done in hardware. In such cases, new standardized CAN hardware would be required to use these two extra bytes.}
 
 \subsection{Open Problems}
 \label{open}

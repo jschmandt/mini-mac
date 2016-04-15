@@ -34,7 +34,7 @@ There is no need for a dynamic group key update capability because group members
 
 Using a counter is a simple, standard, and effective way to mitigate replay attacks.  
 
-Each ECU saves recent messages sent on the bus and concatenates them into the HMAC input. 
+Each ECU saves recent messages sent on the bus \red{(only for each key group to which the ECU belongs)} and concatenates them into the HMAC input. 
 More specifically, each ECU saves a separate message history for the 
 successfully authenticated messages received for each group key.  
 Thus, the adversary cannot insert a message into any message history without 
@@ -110,6 +110,8 @@ of continuous operation (32 bits would prevent counter roll-over for 20 years wi
 In our implementation, we artibrarily used $\lambda = 5$, 
 but we recommend a higher value (say, $\lambda = 16$) to reduce the chance of a repeated state.
 See Section~\ref{history} for an enhanced message history feature.
+
+\red{It may be necessary to instruct all ECUs to delay sending messages upon start up for a small period of time to prevent fast-booting devices from sending messages before all members of the key group are able to receive the message and maintain synchronization.}
 
 For \textbf{HMAC-MD5},
 we adapted Peslyak's~\cite{Peslyak} implementation of MD5~\cite{MD5} for the MSP430 platform, producing a 128-bit output. 
