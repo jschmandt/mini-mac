@@ -20,8 +20,11 @@ by Stinson~\cite{Stinson} and NIST~\cite{FIPS-180-4}.
 
 Electronic Control Units (ECUs) found in an automotive computer network are low-power, single-purpose devices. ECUs on the CAN bus control many components in a modern automobile, from headlights and window controls, to brakes and engine. They are not typically designed with security in mind and frequently comprise a basic CAN bus transceiver, basic message processor, and an actuator. The message processor identifies whether or not a message being broadcast is interesting to the ECU and arbitrates bus rights with the other ECUs. 
 
-\red{Mini-MAC requires write access to nonvolatile memory for full functional operation. Without access to nonvolatile storage, Mini-MAC will still function without full long-term history or stored counters. In this mode, Mini-MAC will still work to authenticate messages, but is less secure than with state-saving capability. Many new ECUs, such as those featuring the TI Hercules series of devices, meet this requirement.}
+Mini-MAC requires write access to nonvolatile memory for full functional operation including its message-history feature.
+Without nonvolatile storage, Mini-MAC still functions, albeit less securely without stored counters or long-term history. 
+Many new ECUs, such as those featuring the TI Hercules series of devices, satisfy Mini-MAC's nonvolatile memory requirements.
 
+% can they generate keys?
 % give typical chanacteristics (speed, memory)?
 
 \subsection{The CAN Bus}
@@ -69,7 +72,11 @@ For these long messages with 8-byte payloads,  Mini-MAC will not add a tag.
 
 We observed approximately 25 messages sent per second on average (40 maximum per second).
 
-\red{Some vehicles use higher-level protocols on top of the CAN protocol to transmit larger messages than CAN can support. Mini-MAC will not break or interfere with these protocols in any way, but we do recommend that any higher-level protocol implement its own message authentication protocol.}
+Some vehicles use higher-level protocols on top of the 
+CAN protocol to transmit longer messages than CAN can support. 
+Mini-MAC will not interfere with these protocols, 
+though we recommend that any higher-level 
+protocol implement its own message authentication protocol.
 
 \subsection{Bus Access}
 \label{access}

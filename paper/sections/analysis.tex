@@ -115,8 +115,9 @@ ECU is a devastating security failure.
 Mini-MAC does not authenticate messages with long 8-byte payloads.  This limitation is 
 an intentional tradeoff to ensure that Mini-MAC does not delay any message. 
 The only 8-byte messages that we observed seemed to be status reports
-with no apparent effect on any ECU, \red{but we acknowledge that some dangerous 8-byte messages may exist that we did not observe.}
-It may be possible to reduce the length of such status data slightly 
+with no apparent effect on any ECU, 
+but we acknowledge that some dangerous 8-byte messages may exist that we did not observe.
+It may be possible to reduce the length of status data slightly 
 by deleting some of the low-order data bits.
 
 Because all message types have fixed, known message lengths, the adversary cannot 

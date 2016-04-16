@@ -37,7 +37,8 @@ and we did not observe any.
 \subsection{Lengthening the Mini-MAC Tag}
 \label{addingbits}
 
-Optionally, it is possible to lengthen the Mini-MAC tag by 
+Optionally, in some contexts, it may be 
+possible to lengthen the Mini-MAC tag by 
 using the two bytes of space allocated for the CRC field in the CAM frame (see Figure~\ref{fig-frame}),
 as suggested by Woo et al.~\cite{Woo-14} in a related proposal.
 Because a MAC detects transmission errors (in fact, better than does a simpler CRC), there is no need for
@@ -55,7 +56,9 @@ approximately 3.2~seconds to over 621~days.
 
 To implement this strategy one could modify the lower-level code in the CAN network stack, 
 either to perform the MAC calculation there 
-or to open the CRC field to the application level to calculate the MAC. \red{In many systems, the CRC calculation is done in hardware. In such cases, new standardized CAN hardware would be required to use these two extra bytes.}
+or to open the CRC field to the application level to calculate the MAC. 
+In many systems, the CRC calculation is performed in hardware;
+in such cases, new standardized CAN hardware would be required to repurpose the two CRC bytes.
 
 \subsection{Open Problems}
 \label{open}

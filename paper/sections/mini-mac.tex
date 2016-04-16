@@ -34,7 +34,9 @@ There is no need for a dynamic group key update capability because group members
 
 Using a counter is a simple, standard, and effective way to mitigate replay attacks.  
 
-Each ECU saves recent messages sent on the bus \red{(only for each key group to which the ECU belongs)} and concatenates them into the HMAC input. 
+Each ECU saves recent messages sent on the bus
+(only for each key group to which the ECU belongs)
+and concatenates them into the HMAC input. 
 More specifically, each ECU saves a separate message history for the 
 successfully authenticated messages received for each group key.  
 Thus, the adversary cannot insert a message into any message history without 
@@ -111,7 +113,9 @@ In our implementation, we artibrarily used $\lambda = 5$,
 but we recommend a higher value (say, $\lambda = 16$) to reduce the chance of a repeated state.
 See Section~\ref{history} for an enhanced message history feature.
 
-\red{It may be necessary to instruct all ECUs to delay sending messages upon start up for a small period of time to prevent fast-booting devices from sending messages before all members of the key group are able to receive the message and maintain synchronization.}
+It may be necessary to instruct all ECUs upon start up to delay sending messages 
+for a small period of time, to prevent fast-booting devices from sending messages 
+before all members of the key group are able to receive the message and maintain synchronization.
 
 For \textbf{HMAC-MD5},
 we adapted Peslyak's~\cite{Peslyak} implementation of MD5~\cite{MD5} for the MSP430 platform, producing a 128-bit output. 
@@ -169,7 +173,13 @@ This consecutive sample helps ensure changed state after a resynchronization.
 \subsection{Key Establishment}
 \label{key}
 
-We recommend that group keys be established as follows.  Each ECU should generate its own key material,
+We briefly sketch a method for establishing the keys required by Mini-MAC.  Key management
+is a vital and challenging task for vehicular security.  Currently, the CAN bus has no
+provision for any cryptogrpahic keys.
+
+If the ECUs are capable of generating their own keys, 
+we recommend that group keys be established as follows.  
+Each ECU should generate its own key material,
 which should never leave the ECU, except possibly in encrypted form.  Neither the ECU manufacturer, car manufacturer, 
 nor car dealer should ever learn any keying material.  The security manager (perhaps a dealer) should be capable of initiating
 a process for key establishment or rekeying.
@@ -180,6 +190,23 @@ each member sends its share to the other group members.  Each member computes th
 XOR of the shares.  In the absense of public-key cryptography, we recommend that this KEK be
 loaded into the ECUs during car manufacturing, using a trusted process that prevents anyone from
 learning the KEK.
+
+If the ECUs are incapable of generating their own keys, the following alternative procedure can
+be used.  To facilitate the management of trust in establishing and updating keys, we recommend using a
+hierarchy of keys, comprising key-group master keys, key-group KEKs, and ECU keys.
+The manufacturer generates the master keys and loads them onto the ECUs.  
+The car owner also possesses the master keys, which are
+protected in a physical container (e.g., USB stick).  Using the master keys, 
+and with the help of a trusted tool, the car owner can
+change key-group KEKs via the OBD port, encrypting each new KEK with the corresponding master key
+and loading it onto the appropriate ECUs.  By giving the security manager temporary KEKs, 
+the car owner can grant temporary key management rights to the security manager.  In doing
+so, the security manager can update the ECU keys and keyshares and perform maintenance
+as needed.
+
+Key management is a critical process that is potentially vulnerable to anyone with 
+access to the ECUs or keying material.  In our suggested method, unencrypted keying material is never
+transmitted on the CAN bus.
 
 
 
