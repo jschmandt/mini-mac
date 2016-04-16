@@ -113,7 +113,7 @@ In our implementation, we artibrarily used $\lambda = 5$,
 but we recommend a higher value (say, $\lambda = 16$) to reduce the chance of a repeated state.
 See Section~\ref{history} for an enhanced message history feature.
 
-It may be necessary to instruct all ECUs upon start up to delay sending messages 
+It may be necessary to instruct all ECUs upon start-up to delay sending messages 
 for a small period of time, to prevent fast-booting devices from sending messages 
 before all members of the key group are able to receive the message and maintain synchronization.
 
@@ -175,7 +175,7 @@ This consecutive sample helps ensure changed state after a resynchronization.
 
 We briefly sketch a method for establishing the keys required by Mini-MAC.  Key management
 is a vital and challenging task for vehicular security.  Currently, the CAN bus has no
-provision for any cryptogrpahic keys.
+provision for any cryptographic keys.
 
 If the ECUs are capable of generating their own keys, 
 we recommend that group keys be established as follows.  
@@ -183,6 +183,9 @@ Each ECU should generate its own key material,
 which should never leave the ECU, except possibly in encrypted form.  Neither the ECU manufacturer, car manufacturer, 
 nor car dealer should ever learn any keying material.  The security manager (perhaps a dealer) should be capable of initiating
 a process for key establishment or rekeying.
+
+Adding a Trusted Platform Module (TPM) to each ECU would provide a capability to
+generate and store keys more securely.
 
 To establish a group key, each group member should generate a key share of the same length as the group key.
 Using a key-encrypting-key (KEK) shared by all ECUs in the group and used only for this purpose, 

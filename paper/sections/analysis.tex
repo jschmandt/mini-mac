@@ -110,7 +110,7 @@ Limitations imposed by Mini-MAC include its use of group keys and truncated HMAC
 Using group keys means that a single compromised ECU learns all of the keys
 to which groups it belongs.  We consider this limitation an acceptable design tradeoff
 given that Mini-MAC does not increase bus traffic and the compromise of any critical
-ECU is a devastating security failure.
+ECU is a devastating security failure, reguardless.
 
 Mini-MAC does not authenticate messages with long 8-byte payloads.  This limitation is 
 an intentional tradeoff to ensure that Mini-MAC does not delay any message. 
