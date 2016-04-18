@@ -45,9 +45,11 @@
 /* USER CODE BEGIN (0) */
 #include "can.h"
 #include "minimac.h"
-#include "sys_pmu.h"
 
+#include "gio.h"
+//#include "sys_pmu.h"
 //#include "rti.h"
+
 #include "sci.h"
 /* USER CODE END */
 
@@ -113,12 +115,15 @@ void main(void)
 
     // measurement init
 
-
+	/**
     _pmuInit_();
     _pmuEnableCountersGlobal_();
     _pmuSetCountEvent_(pmuCOUNTER1, PMU_CYCLE_COUNT);
+	**/
 
     //rtiInit();
+
+	gioInit();
 
 
     counter = 0;
@@ -126,6 +131,16 @@ void main(void)
     unsigned char mac[32];
     unsigned char rec_mac[32];
     //unsigned char mac_len = 32;
+#endif
+
+#ifdef HMAC_SHA1
+    unsigned char mac[20];
+    unsigned char rec_mac[20];
+#endif
+
+#ifdef HMAC_MD5
+    unsigned char mac[16];
+    unsigned char rec_mac[16];
 #endif
 
     unsigned char message[4];
@@ -148,13 +163,12 @@ void main(void)
 	}
 
 
-	while (1){
-
-
+	/**
 	_pmuResetCounters_();
 	_pmuStartCounters_(pmuCOUNTER1);
 	cycles_PMU_start = _pmuGetEventCount_(pmuCOUNTER1);
 	float cycles_test = _pmuGetCycleCount_();
+	**/
 
 	/**
 	rtiResetCounter(rtiCOUNTER_BLOCK0);
@@ -162,16 +176,32 @@ void main(void)
 	cycles_RTI_start =rtiGetCurrentTick(rtiCOMPARE0);
 	**/
 
+	while(1){
+
+	// gio Pin Toggle shows exec of sha-256 takes roughly 380us
+	// sha-1 takes roughly 340us
+	// md5 takes roughly 100us
+	gioSetBit(gioPORTA, 0, 1);
+
+	int m = 0;
+	for (m = 0; m<1000; m++) {
+
 	// run the actual code
 	hmac(key, message, mac);
 	minimac(mac,4,message,authed_message);
 
+	counter++;
+	}
+
+	gioSetBit(gioPORTA, 0, 0);
+
 	// take measurements
+	/**
 	_pmuStopCounters_(pmuCOUNTER1);
 	cycles_PMU_end = _pmuGetEventCount_(pmuCOUNTER1);
 	cycles_PMU_measure = cycles_PMU_end - cycles_PMU_start;
 	_pmuResetCounters_();
-
+	**/
 
 	/**
 	rtiStopCounter(rtiCOUNTER_BLOCK0);
@@ -189,19 +219,19 @@ void main(void)
 	**/
 
 	// take another instant measurement for compensation
-
+	/**
 	_pmuStartCounters_(pmuCOUNTER1);
 	cycles_PMU_start = _pmuGetEventCount_(pmuCOUNTER1);
 	_pmuStopCounters_(pmuCOUNTER1);
 	cycles_PMU_end = _pmuGetEventCount_(pmuCOUNTER1);
-
+	**/
 
 	// compensate
-	cycles_PMU_comp = cycles_PMU_end - cycles_PMU_start;
+	//cycles_PMU_comp = cycles_PMU_end - cycles_PMU_start;
 
 	// get the execution time
-	cycles_PMU_code = cycles_PMU_measure - cycles_PMU_comp;
-	time_PMU_code = cycles_PMU_code / (f_HCLK); // time_code [us], f_HCLK [MHz]
+	//cycles_PMU_code = cycles_PMU_measure - cycles_PMU_comp;
+	//time_PMU_code = cycles_PMU_code / (f_HCLK); // time_code [us], f_HCLK [MHz]
 	//time_PMU_code = cycles_PMU_code / (f_HCLK * loop_Count_max); //
 
 	//char time[64];
@@ -233,13 +263,8 @@ void main(void)
 //    }
 
 	counter++;
-	int k = 0;
-    for (k = 0; k < 5000; k++);
+
 	}
-
-
-    /* ... run forever */
-    while(1);
 
 /* USER CODE END */
 }
@@ -349,6 +374,39 @@ void hmac(const unsigned char *key, unsigned char *message_ts, unsigned char *ma
 	sha256_final(&ctx2,mac);
 #endif
 
+
+#ifdef HMAC_SHA1
+	unsigned char digest1[20] = { 0 };
+	SHA1_CTX ctx1, ctx2;
+
+	// Hash one
+	sha1_init(&ctx1);
+	sha1_update(&ctx1,k_ipad,64);
+	sha1_update(&ctx1,concat_input,concat_len);
+	sha1_final(&ctx1,digest1);
+
+	sha1_init(&ctx2);
+	sha1_update(&ctx2,k_opad,64);
+	sha1_update(&ctx2,digest1,20);
+	sha1_final(&ctx2,mac);
+#endif
+
+#ifdef HMAC_MD5
+	MD5_CTX ctx_1;
+	MD5_CTX ctx_2;
+	unsigned char digest1[16];
+
+	MD5_Init(&ctx_1);
+	MD5_Update(&ctx_1, k_ipad, 64);
+	MD5_Update(&ctx_1, concat_input, concat_len);
+	MD5_Final(digest1, &ctx_1);
+
+	MD5_Init(&ctx_2);
+	MD5_Update(&ctx_2, k_opad, 64);
+	MD5_Update(&ctx_2, digest1, 16);
+	MD5_Final(mac, &ctx_2);
+#endif
+
 	// incrementing counter in main since we're sending/checking in the same device
 	//counter++;
 	//bcUartSend(message, 8);
@@ -366,6 +424,25 @@ void minimac(unsigned char *mac, unsigned int space, unsigned char *message, uns
 		mmac_part[2] = mac[30];
 		mmac_part[3] = mac[31];
 
+#endif
+
+#ifdef HMAC_SHA1
+
+		char mmac_part[4] = { 0 };
+		// roll it up, account for var len
+		mmac_part[0] = mac[16];
+		mmac_part[1] = mac[17];
+		mmac_part[2] = mac[18];
+		mmac_part[3] = mac[19];
+
+#endif
+
+#ifdef HMAC_MD5
+		char mmac_part[4] = { 0 };
+		mmac_part[0] = mac[12];
+		mmac_part[1] = mac[13];
+		mmac_part[2] = mac[14];
+		mmac_part[3] = mac[15];
 #endif
 
 		//bcUartSend(mmac_part, 4);

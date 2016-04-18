@@ -1,45 +1,41 @@
 # FIXED
 
 source/sys_main.obj: ../source/sys_main.c
-source/sys_main.obj: C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_test2/include/can.h
-source/sys_main.obj: C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_test2/include/reg_can.h
-source/sys_main.obj: C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_test2/include/sys_common.h
-source/sys_main.obj: C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_test2/include/hal_stdtypes.h
-source/sys_main.obj: G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/stdint.h
-source/sys_main.obj: G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/stdbool.h
-source/sys_main.obj: C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_test2/include/minimac.h
-source/sys_main.obj: G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/stdio.h
-source/sys_main.obj: G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/linkage.h
-source/sys_main.obj: G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/stdarg.h
-source/sys_main.obj: G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/string.h
-source/sys_main.obj: C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_test2/include/sha256.h
-source/sys_main.obj: G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/stdio.h
-source/sys_main.obj: G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/string.h
-source/sys_main.obj: C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_test2/include/sys_pmu.h
-source/sys_main.obj: C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_test2/include/sci.h
-source/sys_main.obj: C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_test2/include/reg_sci.h
-source/sys_main.obj: C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_test2/include/reg_gio.h
-source/sys_main.obj: C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_test2/include/esm.h
-source/sys_main.obj: C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_test2/include/reg_esm.h
+source/sys_main.obj: C:/Users/Jack/Desktop/mini-mac/code/hercules/CAN_test2/include/can.h
+source/sys_main.obj: C:/Users/Jack/Desktop/mini-mac/code/hercules/CAN_test2/include/reg_can.h
+source/sys_main.obj: C:/Users/Jack/Desktop/mini-mac/code/hercules/CAN_test2/include/sys_common.h
+source/sys_main.obj: C:/Users/Jack/Desktop/mini-mac/code/hercules/CAN_test2/include/hal_stdtypes.h
+source/sys_main.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/stdint.h
+source/sys_main.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/stdbool.h
+source/sys_main.obj: C:/Users/Jack/Desktop/mini-mac/code/hercules/CAN_test2/include/minimac.h
+source/sys_main.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/stdio.h
+source/sys_main.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/linkage.h
+source/sys_main.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/stdarg.h
+source/sys_main.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/string.h
+source/sys_main.obj: C:/Users/Jack/Desktop/mini-mac/code/hercules/CAN_test2/include/md5.h
+source/sys_main.obj: C:/Users/Jack/Desktop/mini-mac/code/hercules/CAN_test2/include/gio.h
+source/sys_main.obj: C:/Users/Jack/Desktop/mini-mac/code/hercules/CAN_test2/include/reg_gio.h
+source/sys_main.obj: C:/Users/Jack/Desktop/mini-mac/code/hercules/CAN_test2/include/sci.h
+source/sys_main.obj: C:/Users/Jack/Desktop/mini-mac/code/hercules/CAN_test2/include/reg_sci.h
+source/sys_main.obj: C:/Users/Jack/Desktop/mini-mac/code/hercules/CAN_test2/include/esm.h
+source/sys_main.obj: C:/Users/Jack/Desktop/mini-mac/code/hercules/CAN_test2/include/reg_esm.h
 
 ../source/sys_main.c: 
-C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_test2/include/can.h: 
-C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_test2/include/reg_can.h: 
-C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_test2/include/sys_common.h: 
-C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_test2/include/hal_stdtypes.h: 
-G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/stdint.h: 
-G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/stdbool.h: 
-C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_test2/include/minimac.h: 
-G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/stdio.h: 
-G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/linkage.h: 
-G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/stdarg.h: 
-G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/string.h: 
-C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_test2/include/sha256.h: 
-G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/stdio.h: 
-G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/string.h: 
-C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_test2/include/sys_pmu.h: 
-C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_test2/include/sci.h: 
-C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_test2/include/reg_sci.h: 
-C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_test2/include/reg_gio.h: 
-C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_test2/include/esm.h: 
-C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_test2/include/reg_esm.h: 
+C:/Users/Jack/Desktop/mini-mac/code/hercules/CAN_test2/include/can.h: 
+C:/Users/Jack/Desktop/mini-mac/code/hercules/CAN_test2/include/reg_can.h: 
+C:/Users/Jack/Desktop/mini-mac/code/hercules/CAN_test2/include/sys_common.h: 
+C:/Users/Jack/Desktop/mini-mac/code/hercules/CAN_test2/include/hal_stdtypes.h: 
+C:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/stdint.h: 
+C:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/stdbool.h: 
+C:/Users/Jack/Desktop/mini-mac/code/hercules/CAN_test2/include/minimac.h: 
+C:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/stdio.h: 
+C:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/linkage.h: 
+C:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/stdarg.h: 
+C:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/string.h: 
+C:/Users/Jack/Desktop/mini-mac/code/hercules/CAN_test2/include/md5.h: 
+C:/Users/Jack/Desktop/mini-mac/code/hercules/CAN_test2/include/gio.h: 
+C:/Users/Jack/Desktop/mini-mac/code/hercules/CAN_test2/include/reg_gio.h: 
+C:/Users/Jack/Desktop/mini-mac/code/hercules/CAN_test2/include/sci.h: 
+C:/Users/Jack/Desktop/mini-mac/code/hercules/CAN_test2/include/reg_sci.h: 
+C:/Users/Jack/Desktop/mini-mac/code/hercules/CAN_test2/include/esm.h: 
+C:/Users/Jack/Desktop/mini-mac/code/hercules/CAN_test2/include/reg_esm.h: 

@@ -16,10 +16,13 @@ ASM_SRCS += \
 C_SRCS += \
 ../source/can.c \
 ../source/esm.c \
+../source/gio.c \
+../source/md5.c \
 ../source/notification.c \
 ../source/pinmux.c \
 ../source/rti.c \
 ../source/sci.c \
+../source/sha1.c \
 ../source/sha256.c \
 ../source/sys_dma.c \
 ../source/sys_main.c \
@@ -35,10 +38,13 @@ OBJS += \
 ./source/can.obj \
 ./source/dabort.obj \
 ./source/esm.obj \
+./source/gio.obj \
+./source/md5.obj \
 ./source/notification.obj \
 ./source/pinmux.obj \
 ./source/rti.obj \
 ./source/sci.obj \
+./source/sha1.obj \
 ./source/sha256.obj \
 ./source/sys_core.obj \
 ./source/sys_dma.obj \
@@ -64,10 +70,13 @@ ASM_DEPS += \
 C_DEPS += \
 ./source/can.pp \
 ./source/esm.pp \
+./source/gio.pp \
+./source/md5.pp \
 ./source/notification.pp \
 ./source/pinmux.pp \
 ./source/rti.pp \
 ./source/sci.pp \
+./source/sha1.pp \
 ./source/sha256.pp \
 ./source/sys_dma.pp \
 ./source/sys_main.pp \
@@ -82,10 +91,13 @@ C_DEPS += \
 C_DEPS__QUOTED += \
 "source\can.pp" \
 "source\esm.pp" \
+"source\gio.pp" \
+"source\md5.pp" \
 "source\notification.pp" \
 "source\pinmux.pp" \
 "source\rti.pp" \
 "source\sci.pp" \
+"source\sha1.pp" \
 "source\sha256.pp" \
 "source\sys_dma.pp" \
 "source\sys_main.pp" \
@@ -101,10 +113,13 @@ OBJS__QUOTED += \
 "source\can.obj" \
 "source\dabort.obj" \
 "source\esm.obj" \
+"source\gio.obj" \
+"source\md5.obj" \
 "source\notification.obj" \
 "source\pinmux.obj" \
 "source\rti.obj" \
 "source\sci.obj" \
+"source\sha1.obj" \
 "source\sha256.obj" \
 "source\sys_core.obj" \
 "source\sys_dma.obj" \
@@ -130,10 +145,13 @@ ASM_DEPS__QUOTED += \
 C_SRCS__QUOTED += \
 "../source/can.c" \
 "../source/esm.c" \
+"../source/gio.c" \
+"../source/md5.c" \
 "../source/notification.c" \
 "../source/pinmux.c" \
 "../source/rti.c" \
 "../source/sci.c" \
+"../source/sha1.c" \
 "../source/sha256.c" \
 "../source/sys_dma.c" \
 "../source/sys_main.c" \

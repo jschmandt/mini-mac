@@ -1,9 +1,4 @@
-/*
- * sha256.h
- *
- *  Created on: Sep 14, 2015
- *      Author: jschmandt
- */
+
 
 #ifndef SHA256_H_
 #define SHA256_H_

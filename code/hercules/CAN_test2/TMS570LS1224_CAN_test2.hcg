@@ -198,15 +198,16 @@
         <NAME>rti.h</NAME>
       </HDRRTI>
       <SRCRTI>
-        <NAME>rti.c</NAME>
-      </SRCRTI>
+        </SRCRTI>
       <HDRGIO_R>
         <NAME>reg_gio.h</NAME>
       </HDRGIO_R>
       <HDRGIO>
         <NAME>gio.h</NAME>
       </HDRGIO>
-      <SRCGIO/>
+      <SRCGIO>
+        <NAME>gio.c</NAME>
+      </SRCGIO>
       <HDRSCI_R>
         <NAME>reg_sci.h</NAME>
       </HDRSCI_R>
@@ -396,7 +397,7 @@
         <PATH>include\rti.h</PATH>
       </HDRRTI>
       <SRCRTI>
-        <PATH>source\rti.c</PATH>
+        <PATH></PATH>
       </SRCRTI>
     </FILENAMES>
   </RTI>
@@ -409,7 +410,7 @@
         <PATH>include\gio.h</PATH>
       </HDRGIO>
       <SRCGIO>
-        <PATH/>
+        <PATH>source\gio.c</PATH>
       </SRCGIO>
     </FILENAMES>
   </GIO>
