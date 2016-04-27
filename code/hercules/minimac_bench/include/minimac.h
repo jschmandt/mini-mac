@@ -12,7 +12,7 @@
 #define HMAC_MD5
 #include "md5.h"
 
-//#define MEASURE_MM
+#define MEASURE_MM
 
 //#define HMAC_SHA1
 //#include "sha1.h"

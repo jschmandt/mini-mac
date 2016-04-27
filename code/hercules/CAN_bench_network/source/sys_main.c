@@ -43,6 +43,8 @@
 
 
 /* USER CODE BEGIN (0) */
+// change code to use interrupt-driven CAN
+
 #include "can.h"
 #include "minimac.h"
 
@@ -70,22 +72,16 @@
 uint8  rx_data[8] = {0};
 uint32 error = 0;
 
+unsigned char hist_recent[8][4] = {{ 0x00, 0x00, 0x00, 0x00}, { 0x00, 0x00, 0x00, 0x00}, { 0x00, 0x00, 0x00, 0x00},{ 0x00, 0x00, 0x00, 0x00},{ 0x00, 0x00, 0x00, 0x00}, { 0x00, 0x00, 0x00, 0x00}, { 0x00, 0x00, 0x00, 0x00}, { 0x00, 0x00, 0x00, 0x00}};
+unsigned char hist_periodic[8][4] = {{ 0x00, 0x00, 0x00, 0x00}, { 0x00, 0x00, 0x00, 0x00}, { 0x00, 0x00, 0x00, 0x00},{ 0x00, 0x00, 0x00, 0x00},{ 0x00, 0x00, 0x00, 0x00}, { 0x00, 0x00, 0x00, 0x00}, { 0x00, 0x00, 0x00, 0x00}, { 0x00, 0x00, 0x00, 0x00}};
+unsigned int messages[4][4] = {{0x11, 0x11, 0x11, 0x11}, {0x22, 0x22, 0x22, 0x22}, {0x33, 0x33, 0x33, 0x33}, {0x44, 0x44, 0x44, 0x44}};
 
-
-unsigned char hist_recent[8][4] = {{ 0xB5, 0x00, 0xB4, 0xC2}, { 0xC4, 0x00, 0xB4, 0xC2}, { 0xD3, 0x00, 0xB4, 0xC2},{ 0xE2, 0x00, 0xB4, 0xC2},{ 0xF1, 0x00, 0xB4, 0xC2}, { 0xB5, 0x00, 0xB4, 0xC2}, { 0xC4, 0x00, 0xB4, 0xC2}, { 0xD3, 0x00, 0xB4, 0xC2}};
-unsigned char hist_periodic[8][4] = {{ 0xB5, 0x00, 0xB4, 0xC2}, { 0xC4, 0x00, 0xB4, 0xC2}, { 0xD3, 0x00, 0xB4, 0xC2},{ 0xE2, 0x00, 0xB4, 0xC2},{ 0xF1, 0x00, 0xB4, 0xC2}, { 0xB5, 0x00, 0xB4, 0xC2}, { 0xC4, 0x00, 0xB4, 0xC2}, { 0xD3, 0x00, 0xB4, 0xC2}};
+uint16 period = 100;
 
 unsigned char key[32] = { 0xAA, 0xBB, 0xCC, 0xDD, 0x00, 0x01, 0x02, 0x03,
 0xAA, 0xBB, 0xCC, 0xDD, 0x00, 0x01, 0x02, 0x03,
 0xAA, 0xBB, 0xCC, 0xDD, 0x00, 0x01, 0x02, 0x03,
 0xAA, 0xBB, 0xCC, 0xDD, 0x00, 0x01, 0x02, 0x03};
-
-volatile unsigned int loop_count_prep, loop_count_prep_max=1000;
-volatile unsigned int loop_count, loop_count_max=1000;
-volatile unsigned long cycles_PMU_start, cycles_PMU_end, cycles_PMU_measure, cycles_PMU_comp, cycles_PMU_code;
-volatile unsigned long cycles_RTI_start, cycles_RTI_end, cycles_RTI_measure, cycles_RTI_comp, cycles_RTI_code;
-volatile float time_PMU_code;
-volatile float time_RTI_code;
 
 uint64 counter = 0;
 
@@ -108,21 +104,10 @@ void main(void)
 /* USER CODE BEGIN (3) */
 
     /* initialize can 1 and 2   */
-    //canInit(); /* can1 -> can2 */
+    canInit(); /* can1 -> can2 */
 
-    //_enable_IRQ();
-    //sciInit();
-
-    // measurement init
-
-	/**
-    _pmuInit_();
-    _pmuEnableCountersGlobal_();
-    _pmuSetCountEvent_(pmuCOUNTER1, PMU_CYCLE_COUNT);
-	**/
-
-    //rtiInit();
-	gioInit();
+    _enable_IRQ();
+    sciInit();
 
 
     counter = 0;
@@ -148,114 +133,43 @@ void main(void)
     unsigned char authed_message[8];
     unsigned char rec_auth_msg[8];
 
-	message[0] = 0xB5;
-	message[1] = 0x00;
-	message[2] = 0xB4;
-	message[3] = 0xC2;
-
-
-	// run the code to get everything intialized
-	for (loop_count_prep=0;loop_count_prep<loop_count_prep_max;++loop_count_prep)
-	{
-		hmac(key, message, mac);
-		minimac(mac,4,message,authed_message);
-	}
-
-
-	/**
-	_pmuResetCounters_();
-	_pmuStartCounters_(pmuCOUNTER1);
-	cycles_PMU_start = _pmuGetEventCount_(pmuCOUNTER1);
-	float cycles_test = _pmuGetCycleCount_();
-	**/
-
-	/**
-	rtiResetCounter(rtiCOUNTER_BLOCK0);
-	rtiStartCounter(rtiCOUNTER_BLOCK0);
-	cycles_RTI_start =rtiGetCurrentTick(rtiCOMPARE0);
-	**/
-
 	while(1){
 
-	// gio Pin Toggle shows exec of sha-256 takes roughly 380us
-	// sha-1 takes roughly 340us
-	// md5 takes roughly 100us
-#ifdef MEASURE_MM
-	gioSetBit(gioPORTA, 0, 1);
-#endif
+// if ECU_MASTER, pick a message to send at random and wait for responses
+#ifdef ECU_MASTER
+		uint16 which_message = int(rand() % 4);
+		message = messages[which_message];
 
-	// run the actual code
-	hmac(key, message, mac);
-	minimac(mac,4,message,authed_message);
+		hmac(key, message, mac);
+		minimac(mac,4,message,authed_message);
 
-#ifdef MEASURE_MM
-	gioSetBit(gioPORTA, 0, 0);
-#endif
+	    /* transmit on can1 */
+		canTransmit(canREG1, canMESSAGE_BOX1, authed_message);
 
-	// take measurements
-	/**
-	_pmuStopCounters_(pmuCOUNTER1);
-	cycles_PMU_end = _pmuGetEventCount_(pmuCOUNTER1);
-	cycles_PMU_measure = cycles_PMU_end - cycles_PMU_start;
-	_pmuResetCounters_();
-	**/
+		// switch can1 to RX mode
 
-	/**
-	rtiStopCounter(rtiCOUNTER_BLOCK0);
-	cycles_RTI_end = rtiGetCurrentTick(rtiCOMPARE0);
-	cycles_RTI_measure = cycles_RTI_end - cycles_RTI_start;
+		// wait for message response from however many slave nodes there should be
 
-	rtiStartCounter(rtiCOUNTER_BLOCK0);
-	cycles_RTI_start =rtiGetCurrentTick(rtiCOMPARE0);
-	cycles_RTI_end = rtiGetCurrentTick(rtiCOMPARE0);
-	cycles_RTI_comp = cycles_RTI_end - cycles_RTI_start;
+		// send random message again
+#endif //ECU_MASTER
 
-	cycles_RTI_code = cycles_RTI_measure - cycles_RTI_comp;
-	cycles_RTI_code = cycles_RTI_code * 4; // factor 2*2 to compensate counting of every 2nd VCLK
-	time_RTI_code = cycles_RTI_code / (f_HCLK); // time_code [us], f_HCLK [MHz]
-	**/
+// if ECU_SLAVE, wait for a message and respond to it
+#ifdef ECU_SLAVE
 
-	// take another instant measurement for compensation
-#ifdef MEASURE_MM
-	// not sure that this is even detectable on our scopes
-	gioSetBit(gioPORTA, 0, 1);
-	gioSetBit(gioPORTA, 0, 0);
-#endif
+#endif //ECU_SLAVE
 
-	/**
-	_pmuStartCounters_(pmuCOUNTER1);
-	cycles_PMU_start = _pmuGetEventCount_(pmuCOUNTER1);
-	_pmuStopCounters_(pmuCOUNTER1);
-	cycles_PMU_end = _pmuGetEventCount_(pmuCOUNTER1);
-	**/
+// if ECU_PERIODIC, send the same message over and over again periodicially
+#ifdef ECU_PERIODIC
 
-	// compensate
-	//cycles_PMU_comp = cycles_PMU_end - cycles_PMU_start;
+#endif //ECU_PERIODIC
 
-	// get the execution time
-	//cycles_PMU_code = cycles_PMU_measure - cycles_PMU_comp;
-	//time_PMU_code = cycles_PMU_code / (f_HCLK); // time_code [us], f_HCLK [MHz]
-	//time_PMU_code = cycles_PMU_code / (f_HCLK * loop_Count_max); //
 
-	//char time[64];
-	//sprintf(time, "%f", time_PMU_code);
-	//sciSend(scilinREG, 64, time);
-
-    /* transmit on can1 */
-	//canTransmit(canREG1, canMESSAGE_BOX1, authed_message);
 
     /*... wait until message receive on can2 */
 	//while(!canIsRxMessageArrived(canREG2, canMESSAGE_BOX1));
 	//canGetData(canREG2, canMESSAGE_BOX1, rx_data);  /* receive on can2  */
 
-    /* check received data patterns */
-	//error = checkPackets(&authed_message[0],&rx_data[0],8);
-	//if (error == 0) {
 
-//    	rec_msg[0] = rx_data[0];
-//    	rec_msg[1] = rx_data[1];
-//    	rec_msg[2] = rx_data[2];
-//    	rec_msg[3] = rx_data[3];
 
 //    	hmac(key, rec_msg, rec_mac);
 //    	minimac(rec_mac,4,rec_msg,rec_auth_msg);

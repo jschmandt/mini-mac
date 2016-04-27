@@ -43,7 +43,6 @@
 
 
 /* USER CODE BEGIN (0) */
-#include "can.h"
 #include "minimac.h"
 
 #include "gio.h"
@@ -64,14 +63,6 @@
 /* Include ESM header file - types, definitions and function declarations for system driver */
 #include "esm.h"
 
-//#define  D_SIZE 9
-
-//uint8  tx_data[D_SIZE]  = {'H','E','R','C','U','L','E','S','\0'};
-uint8  rx_data[8] = {0};
-uint32 error = 0;
-
-
-
 unsigned char hist_recent[8][4] = {{ 0xB5, 0x00, 0xB4, 0xC2}, { 0xC4, 0x00, 0xB4, 0xC2}, { 0xD3, 0x00, 0xB4, 0xC2},{ 0xE2, 0x00, 0xB4, 0xC2},{ 0xF1, 0x00, 0xB4, 0xC2}, { 0xB5, 0x00, 0xB4, 0xC2}, { 0xC4, 0x00, 0xB4, 0xC2}, { 0xD3, 0x00, 0xB4, 0xC2}};
 unsigned char hist_periodic[8][4] = {{ 0xB5, 0x00, 0xB4, 0xC2}, { 0xC4, 0x00, 0xB4, 0xC2}, { 0xD3, 0x00, 0xB4, 0xC2},{ 0xE2, 0x00, 0xB4, 0xC2},{ 0xF1, 0x00, 0xB4, 0xC2}, { 0xB5, 0x00, 0xB4, 0xC2}, { 0xC4, 0x00, 0xB4, 0xC2}, { 0xD3, 0x00, 0xB4, 0xC2}};
 
@@ -89,7 +80,6 @@ volatile float time_RTI_code;
 
 uint64 counter = 0;
 
-uint32 checkPackets(uint8 *src_packet,uint8 *dst_packet,uint32 psize);
 /* USER CODE END */
 
 /** @fn void main(void)
@@ -106,9 +96,6 @@ uint32 checkPackets(uint8 *src_packet,uint8 *dst_packet,uint32 psize);
 void main(void)
 {
 /* USER CODE BEGIN (3) */
-
-    /* initialize can 1 and 2   */
-    //canInit(); /* can1 -> can2 */
 
     //_enable_IRQ();
     //sciInit();
@@ -128,25 +115,21 @@ void main(void)
     counter = 0;
 #ifdef HMAC_SHA256
     unsigned char mac[32];
-    unsigned char rec_mac[32];
-    //unsigned char mac_len = 32;
 #endif
 
 #ifdef HMAC_SHA1
     unsigned char mac[20];
-    unsigned char rec_mac[20];
 #endif
 
 #ifdef HMAC_MD5
     unsigned char mac[16];
-    unsigned char rec_mac[16];
 #endif
 
     unsigned char message[4];
-	unsigned char rec_msg[4];
+
 
     unsigned char authed_message[8];
-    unsigned char rec_auth_msg[8];
+
 
 	message[0] = 0xB5;
 	message[1] = 0x00;
@@ -237,34 +220,6 @@ void main(void)
 	//time_PMU_code = cycles_PMU_code / (f_HCLK); // time_code [us], f_HCLK [MHz]
 	//time_PMU_code = cycles_PMU_code / (f_HCLK * loop_Count_max); //
 
-	//char time[64];
-	//sprintf(time, "%f", time_PMU_code);
-	//sciSend(scilinREG, 64, time);
-
-    /* transmit on can1 */
-	//canTransmit(canREG1, canMESSAGE_BOX1, authed_message);
-
-    /*... wait until message receive on can2 */
-	//while(!canIsRxMessageArrived(canREG2, canMESSAGE_BOX1));
-	//canGetData(canREG2, canMESSAGE_BOX1, rx_data);  /* receive on can2  */
-
-    /* check received data patterns */
-	//error = checkPackets(&authed_message[0],&rx_data[0],8);
-	//if (error == 0) {
-
-//    	rec_msg[0] = rx_data[0];
-//    	rec_msg[1] = rx_data[1];
-//    	rec_msg[2] = rx_data[2];
-//    	rec_msg[3] = rx_data[3];
-
-//    	hmac(key, rec_msg, rec_mac);
-//    	minimac(rec_mac,4,rec_msg,rec_auth_msg);
-//    	uint32 auth_error = checkPackets(&authed_message[0],&rec_auth_msg[0],8);
-//    	if (auth_error == 0){
-//    		counter++;
-//    	}
-//    }
-
 	counter++;
 
 	}
@@ -273,24 +228,6 @@ void main(void)
 }
 
 /* USER CODE BEGIN (4) */
-/** @fn checkPackets(uint8 *src_packet,uint8 *dst_packet,uint32 psize)
-*   @brief check two buffers and report error
-*
-*/
-uint32 checkPackets(uint8 *src_packet,uint8 *dst_packet,uint32 psize)
-{
-   uint32 err=0;
-   uint32 cnt=psize;
-
-   while(cnt--)
-   {
-     if((*src_packet++) != (*dst_packet++))
-     {
-        err++;           /*  data error  */
-     }
-   }
-   return (err);
-}
 
 void hmac(const unsigned char *key, unsigned char *message_ts, unsigned char *mac)
 {
