@@ -25,7 +25,8 @@
 //unsigned char *hmac(const unsigned char *key, unsigned char *message);
 //unsigned char *minimac(unsigned char *mac, unsigned int space, unsigned char *message);
 
-void hmac(const unsigned char *key, unsigned char *message, unsigned char *mac);
-void minimac(unsigned char *mac, unsigned int space, unsigned char *message, unsigned char *authed_message);
+void hmac(const unsigned char *key, unsigned char *message_ts, unsigned char *mac);
+void trim(unsigned char *mac, unsigned int space, unsigned char *message, unsigned char *authed_message);
+void init_minimac();
 
 #endif

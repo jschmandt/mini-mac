@@ -56,6 +56,8 @@
 #include "sys_dma.h"
 
 /* USER CODE BEGIN (0) */
+extern uint8 *rx_ptr;
+
 /* USER CODE END */
 #pragma WEAK(esmGroup1Notification)
 void esmGroup1Notification(uint32 channel)
@@ -118,6 +120,29 @@ void canMessageNotification(canBASE_t *node, uint32 messageBox)
 {
 /*  enter user code between the USER CODE BEGIN and USER CODE END. */
 /* USER CODE BEGIN (15) */
+
+    /* node 1 - transfer request */
+    //if(node==canREG1)
+    //{
+      //tx_done=1; /* confirm transfer request */
+    //}
+
+    /* node 2 - receive complete */
+    //if(node==canREG2)
+    //{
+    //while(!canIsRxMessageArrived(canREG2, canMESSAGE_BOX1));
+    //canGetData(canREG2, canMESSAGE_BOX1, rx_ptr); /* copy to RAM */
+    //rx_ptr +=8;
+    //}
+
+	while(!canIsRxMessageArrived(node, messageBox));
+	canGetData(node, messageBox, rx_ptr); /* copy to RAM */
+
+	// run mini-mac
+	// put mini-mac code in own .c
+
+	rx_ptr +=8;
+
 /* USER CODE END */
 }
 

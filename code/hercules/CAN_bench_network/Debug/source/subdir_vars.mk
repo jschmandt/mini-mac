@@ -18,6 +18,7 @@ C_SRCS += \
 ../source/esm.c \
 ../source/gio.c \
 ../source/md5.c \
+../source/minimac.c \
 ../source/notification.c \
 ../source/pinmux.c \
 ../source/rti.c \
@@ -40,6 +41,7 @@ OBJS += \
 ./source/esm.obj \
 ./source/gio.obj \
 ./source/md5.obj \
+./source/minimac.obj \
 ./source/notification.obj \
 ./source/pinmux.obj \
 ./source/rti.obj \
@@ -72,6 +74,7 @@ C_DEPS += \
 ./source/esm.pp \
 ./source/gio.pp \
 ./source/md5.pp \
+./source/minimac.pp \
 ./source/notification.pp \
 ./source/pinmux.pp \
 ./source/rti.pp \
@@ -93,6 +96,7 @@ C_DEPS__QUOTED += \
 "source\esm.pp" \
 "source\gio.pp" \
 "source\md5.pp" \
+"source\minimac.pp" \
 "source\notification.pp" \
 "source\pinmux.pp" \
 "source\rti.pp" \
@@ -115,6 +119,7 @@ OBJS__QUOTED += \
 "source\esm.obj" \
 "source\gio.obj" \
 "source\md5.obj" \
+"source\minimac.obj" \
 "source\notification.obj" \
 "source\pinmux.obj" \
 "source\rti.obj" \
@@ -147,6 +152,7 @@ C_SRCS__QUOTED += \
 "../source/esm.c" \
 "../source/gio.c" \
 "../source/md5.c" \
+"../source/minimac.c" \
 "../source/notification.c" \
 "../source/pinmux.c" \
 "../source/rti.c" \
