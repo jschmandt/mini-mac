@@ -76,10 +76,7 @@ unsigned char messages[4][4] = {{0x11, 0x11, 0x11, 0x11}, {0x22, 0x22, 0x22, 0x2
 
 uint16 period;
 
-unsigned char key[32] = { 0xAA, 0xBB, 0xCC, 0xDD, 0x00, 0x01, 0x02, 0x03,
-0xAA, 0xBB, 0xCC, 0xDD, 0x00, 0x01, 0x02, 0x03,
-0xAA, 0xBB, 0xCC, 0xDD, 0x00, 0x01, 0x02, 0x03,
-0xAA, 0xBB, 0xCC, 0xDD, 0x00, 0x01, 0x02, 0x03};
+
 
 uint32 checkPackets(uint8 *src_packet,uint8 *dst_packet,uint32 psize);
 /* USER CODE END */
@@ -138,16 +135,17 @@ void main(void)
 		message[2] = messages[which_message][2];
 		message[3] = messages[which_message][3];
 
-		hmac(key, message, mac);
-		trim(mac,4,message,authed_message);
+		hmac(message, mac);
+		tag(mac,4,message,authed_message);
 
 	    /* transmit on can1 */
-		canTransmit(canREG1, canMESSAGE_BOX1, authed_message);
-
-		// switch can1 to RX mode
+		unsigned char tx_success = canTransmit(canREG1, canMESSAGE_BOX1, authed_message);
+		if (tx_success)
+			counter++;
 
 		// wait for message response from however many slave nodes there should be
 
+		// wait for some interval
 		// send random message again
 #endif //ECU_MASTER
 

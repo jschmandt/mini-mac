@@ -135,15 +135,46 @@ void canMessageNotification(canBASE_t *node, uint32 messageBox)
     //rx_ptr +=8;
     //}
 
-	while(!canIsRxMessageArrived(node, messageBox));
-	canGetData(node, messageBox, rx_ptr); /* copy to RAM */
+	// tx
+	if (messageBox == canMESSAGE_BOX1){
+		tx_done = 1; // define tx_done somewhere
+	}
 
-	// run mini-mac
-	// put mini-mac code in own .c
 
-	rx_ptr +=8;
+	// rx
+	if (messageBox == canMESSAGE_BOX2){
+		unsigned char rec_frame[8] = { 0 };
+		unsigned char rec_msg[4] = { 0 };
+		unsigned char check_frame[8] = { 0 };
 
-/* USER CODE END */
+		while(!canIsRxMessageArrived(node, messageBox));
+		canGetData(node, messageBox, rec_frame); /* copy to RAM */
+
+		rec_msg[0] = rec_frame[0];
+		rec_msg[1] = rec_frame[1];
+		rec_msg[2] = rec_frame[2];
+		rec_msg[3] = rec_frame[3];
+
+#ifdef HMAC_SHA256
+		unsigned char rec_mac[32];
+#endif
+
+#ifdef HMAC_SHA1
+		unsigned char rec_mac[20];
+#endif
+
+#ifdef HMAC_MD5
+		unsigned char rec_mac[16];
+#endif
+
+		// run mini-mac
+		hmac(rec_msg, rec_mac);
+		tag(rec_mac, 4, rec_msg, check_frame);
+
+		// check auth
+		check_auth(rec_frame, check_frame);
+	}
+	/* USER CODE END */
 }
 
 /* USER CODE BEGIN (16) */

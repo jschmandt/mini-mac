@@ -10,32 +10,47 @@
 
 unsigned char hist_recent[8][4] = {{ 0x00, 0x00, 0x00, 0x00}, { 0x00, 0x00, 0x00, 0x00}, { 0x00, 0x00, 0x00, 0x00},{ 0x00, 0x00, 0x00, 0x00},{ 0x00, 0x00, 0x00, 0x00}, { 0x00, 0x00, 0x00, 0x00}, { 0x00, 0x00, 0x00, 0x00}, { 0x00, 0x00, 0x00, 0x00}};
 unsigned char hist_periodic[8][4] = {{ 0x00, 0x00, 0x00, 0x00}, { 0x00, 0x00, 0x00, 0x00}, { 0x00, 0x00, 0x00, 0x00},{ 0x00, 0x00, 0x00, 0x00},{ 0x00, 0x00, 0x00, 0x00}, { 0x00, 0x00, 0x00, 0x00}, { 0x00, 0x00, 0x00, 0x00}, { 0x00, 0x00, 0x00, 0x00}};
+unsigned char key[32] = { 0xAA, 0xBB, 0xCC, 0xDD, 0x00, 0x01, 0x02, 0x03,
+0xAA, 0xBB, 0xCC, 0xDD, 0x00, 0x01, 0x02, 0x03,
+0xAA, 0xBB, 0xCC, 0xDD, 0x00, 0x01, 0x02, 0x03,
+0xAA, 0xBB, 0xCC, 0xDD, 0x00, 0x01, 0x02, 0x03};
+
 
 uint64 counter;
+uint32 auth_error_count;
+unsigned char hr_pointer, hp_pointer;
 
 void init_minimac()
 {
 	counter = 0;
+	auth_error_count = 0;
+	hr_pointer = 0;
+	hp_pointer = 0;
 }
 
 
-// need a function that takes in a received message and responds with a valid / nonvalid signal, and updats counter + history as appropriate
-// need a function to update history when a valid message is detected
+// this function just exists so you can stick a breakpoint in it - may have more functionality later
+void auth_error(){
+	auth_error_count++;
+}
 
-// returns 0 if auth fails, 1 if auth passes
-unsigned char checkAuth(unsigned char *message_rx){
 
-	/**
-	if (valid) {
-		update_history;
-		update_counter;
-		return 1;
-	} else {
-		return 0;
+void checkAuth(unsigned char *rec_frame, unsigned char *check_frame){
+	int c = 0;
+	unsigned char auth_fail = 0;
+	for (c = 0; c < 8; c++) {
+		if (rec_frame[i] != check_frame[i]){
+			auth_fail = 1;
+			break;
+		}
 	}
-	**/
 
-	return 0;
+	if (auth_fail == 0) {
+		update_history;
+		counter++;
+	} else {
+		auth_error();
+	}
 }
 
 // call before updating counter
@@ -46,10 +61,23 @@ void update_history(unsigned char *message_rx){
 	}
 	update_recent;
 	 */
+
+	if (counter % period == 0) {
+		hist_periodic[hp_pointer][0] = message_rx[0];
+		hist_periodic[hp_pointer][1] = message_rx[1];
+		hist_periodic[hp_pointer][2] = message_rx[2];
+		hist_periodic[hp_pointer][3] = message_rx[3];
+		hp_pointer = (hp_pointer++) % 8;
+	}
+	hist_recent[hr_pointer][0] = message_rx[0];
+	hist_recent[hr_pointer][1] = message_rx[1];
+	hist_recent[hr_pointer][2] = message_rx[2];
+	hist_recent[hr_pointer][3] = message_rx[3];
+	hr_pointer = (hr_pointer++) % 8;
 }
 
 // slightly modified HMAC that salts input with history + counter
-void hmac(const unsigned char *key, unsigned char *message_ts, unsigned char *mac)
+void hmac(unsigned char *message_ts, unsigned char *mac)
 {
 	unsigned char k_ipad[65];
 	unsigned char k_opad[65];
@@ -172,7 +200,7 @@ void hmac(const unsigned char *key, unsigned char *message_ts, unsigned char *ma
 	//bcUartSend(message, 8);
 }
 
-void trim(unsigned char *mac, unsigned int space, unsigned char *message, unsigned char *authed_message)
+void tag(unsigned char *mac, unsigned int space, unsigned char *message, unsigned char *authed_message)
 {
 
 #ifdef HMAC_SHA256
