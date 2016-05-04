@@ -55,8 +55,11 @@
 #include "sci.h"
 #include "sys_dma.h"
 
+
 /* USER CODE BEGIN (0) */
+#include "minimac.h"
 extern uint8 *rx_ptr;
+uint8 tx_done;
 
 /* USER CODE END */
 #pragma WEAK(esmGroup1Notification)
@@ -136,6 +139,7 @@ void canMessageNotification(canBASE_t *node, uint32 messageBox)
     //}
 
 	// tx
+	tx_done = 0;
 	if (messageBox == canMESSAGE_BOX1){
 		tx_done = 1; // define tx_done somewhere
 	}
@@ -172,8 +176,55 @@ void canMessageNotification(canBASE_t *node, uint32 messageBox)
 		tag(rec_mac, 4, rec_msg, check_frame);
 
 		// check auth
-		check_auth(rec_frame, check_frame);
+		uint32 authed = checkAuth(rec_frame, check_frame);
+
+#ifdef ECU_SLAVE
+
+		extern unsigned char messages[4][4];
+		uint32 response_success_counter = 0;
+
+		if (authed){
+			unsigned char response[4];
+
+			if (rec_msg[0] == messages[0][0]) {
+				response[0] = messages[1][0];
+				response[1] = messages[1][1];
+				response[2] = messages[1][2];
+				response[3] = messages[1][3];
+			} else if (rec_msg[0] == messages[1][0]) {
+				response[0] = messages[2][0];
+				response[1] = messages[2][1];
+				response[2] = messages[2][2];
+				response[3] = messages[2][3];
+			} else if (rec_msg[0] == messages[2][0]) {
+				response[0] = messages[3][0];
+				response[1] = messages[3][1];
+				response[2] = messages[3][2];
+				response[3] = messages[3][3];
+			} else if (rec_msg[0] == messages[3][0]) {
+				response[0] = messages[0][0];
+				response[1] = messages[0][1];
+				response[2] = messages[0][2];
+				response[3] = messages[0][3];
+			}
+
+			unsigned char authed_response[4];
+
+			hmac(response, rec_mac);
+			tag(rec_mac,4,response,authed_response);
+
+			// give message ID "15"
+			uint32 new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x20000000U | (uint32)((uint32)((uint32)15U & (uint32)0x000007FFU) << (uint32)18U);
+			canUpdateID(canREG1, canMESSAGE_BOX1, new_arb_val);
+
+		    /* transmit on can1 */
+			unsigned char tx_success = canTransmit(canREG1, canMESSAGE_BOX1, authed_response);
+			if (tx_success)
+				response_success_counter++;
+		}
+#endif //ECU_SLAVE
 	}
+
 	/* USER CODE END */
 }
 

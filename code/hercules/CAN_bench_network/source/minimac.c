@@ -19,6 +19,9 @@ unsigned char key[32] = { 0xAA, 0xBB, 0xCC, 0xDD, 0x00, 0x01, 0x02, 0x03,
 uint64 counter;
 uint32 auth_error_count;
 unsigned char hr_pointer, hp_pointer;
+uint16 period;
+
+void update_history(unsigned char *messager_rx);
 
 void init_minimac()
 {
@@ -26,6 +29,7 @@ void init_minimac()
 	auth_error_count = 0;
 	hr_pointer = 0;
 	hp_pointer = 0;
+	period = 64;
 }
 
 
@@ -35,21 +39,23 @@ void auth_error(){
 }
 
 
-void checkAuth(unsigned char *rec_frame, unsigned char *check_frame){
+uint32 checkAuth(unsigned char *rec_frame, unsigned char *check_frame){
 	int c = 0;
 	unsigned char auth_fail = 0;
 	for (c = 0; c < 8; c++) {
-		if (rec_frame[i] != check_frame[i]){
+		if (rec_frame[c] != check_frame[c]){
 			auth_fail = 1;
 			break;
 		}
 	}
 
 	if (auth_fail == 0) {
-		update_history;
+		update_history(rec_frame);
 		counter++;
+		return 1U;
 	} else {
 		auth_error();
+		return 0U;
 	}
 }
 
@@ -62,12 +68,13 @@ void update_history(unsigned char *message_rx){
 	update_recent;
 	 */
 
-	if (counter % period == 0) {
+	if (counter == period) {
 		hist_periodic[hp_pointer][0] = message_rx[0];
 		hist_periodic[hp_pointer][1] = message_rx[1];
 		hist_periodic[hp_pointer][2] = message_rx[2];
 		hist_periodic[hp_pointer][3] = message_rx[3];
 		hp_pointer = (hp_pointer++) % 8;
+		period = 0;
 	}
 	hist_recent[hr_pointer][0] = message_rx[0];
 	hist_recent[hr_pointer][1] = message_rx[1];

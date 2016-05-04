@@ -75,6 +75,7 @@ uint32 error = 0;
 unsigned char messages[4][4] = {{0x11, 0x11, 0x11, 0x11}, {0x22, 0x22, 0x22, 0x22}, {0x33, 0x33, 0x33, 0x33}, {0x44, 0x44, 0x44, 0x44}};
 
 uint16 period;
+uint32 tx_success_counter;
 
 
 
@@ -104,25 +105,26 @@ void main(void)
 
 #ifdef HMAC_SHA256
     unsigned char mac[32];
-    unsigned char rec_mac[32];
+    //unsigned char rec_mac[32];
     //unsigned char mac_len = 32;
 #endif
 
 #ifdef HMAC_SHA1
     unsigned char mac[20];
-    unsigned char rec_mac[20];
+    //unsigned char rec_mac[20];
 #endif
 
 #ifdef HMAC_MD5
     unsigned char mac[16];
-    unsigned char rec_mac[16];
+    //unsigned char rec_mac[16];
 #endif
 
+#ifdef ECU_MASTER
     unsigned char message[4];
-	unsigned char rec_msg[4];
-
     unsigned char authed_message[8];
-    unsigned char rec_auth_msg[8];
+#endif // ECU_MASTER
+
+    tx_success_counter = 0;
 
 	while(1){
 
@@ -138,10 +140,14 @@ void main(void)
 		hmac(message, mac);
 		tag(mac,4,message,authed_message);
 
+		// give message ID "10"
+		uint32 new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x20000000U | (uint32)((uint32)((uint32)10U & (uint32)0x000007FFU) << (uint32)18U);
+		canUpdateID(canREG1, canMESSAGE_BOX1, new_arb_val);
+
 	    /* transmit on can1 */
 		unsigned char tx_success = canTransmit(canREG1, canMESSAGE_BOX1, authed_message);
 		if (tx_success)
-			counter++;
+			tx_success_counter++;
 
 		// wait for message response from however many slave nodes there should be
 

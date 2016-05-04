@@ -36,6 +36,13 @@ source/notification.obj: C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_benc
 source/notification.obj: C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_network/include/reg_sci.h
 source/notification.obj: C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_network/include/sys_dma.h
 source/notification.obj: C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_network/include/reg_dma.h
+source/notification.obj: C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_network/include/minimac.h
+source/notification.obj: G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/stdio.h
+source/notification.obj: G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/stdarg.h
+source/notification.obj: G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/string.h
+source/notification.obj: C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_network/include/sha256.h
+source/notification.obj: G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/stdio.h
+source/notification.obj: G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/string.h
 
 ../source/notification.c: 
 C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_network/include/esm.h: 
@@ -73,3 +80,10 @@ C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_network/include/sci.h:
 C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_network/include/reg_sci.h: 
 C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_network/include/sys_dma.h: 
 C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_network/include/reg_dma.h: 
+C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_network/include/minimac.h: 
+G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/stdio.h: 
+G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/stdarg.h: 
+G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/string.h: 
+C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_network/include/sha256.h: 
+G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/stdio.h: 
+G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/string.h: 
