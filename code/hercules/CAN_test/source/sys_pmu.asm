@@ -1,7 +1,7 @@
 ;-------------------------------------------------------------------------------
 ; sys_pmu.asm
 ;
-; Copyright (C) 2009-2015 Texas Instruments Incorporated - www.ti.com
+; Copyright (C) 2009-2016 Texas Instruments Incorporated - www.ti.com
 ;
 ;
 ;  Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,6 @@
 
 _pmuInit_
 
-        stmfd sp!, {r0}
         ; set control register
         mrc   p15, #0, r0, c9, c12, #0
         orr   r0,  r0, #(1 << 4) + 6 + 1
@@ -75,7 +74,6 @@ _pmuInit_
         mcr   p15, #0, r0, c9, c12, #5 ; select counter
         mov   r0,  #0x11
         mcr   p15, #0, r0, c9, c13, #1 ; select event
-        ldmfd sp!, {r0}
         bx    lr
 
     .endasmfunc
@@ -93,11 +91,9 @@ _pmuInit_
 
 _pmuEnableCountersGlobal_
 
-        stmfd sp!, {r0}
         mrc   p15, #0, r0, c9, c12, #0
         orr   r0,  r0, #7
         mcr   p15, #0, r0, c9, c12, #0
-        ldmfd sp!, {r0}
         bx    lr
 
     .endasmfunc
@@ -113,11 +109,9 @@ _pmuEnableCountersGlobal_
 
 _pmuDisableCountersGlobal_
 
-        stmfd sp!, {r0}
         mrc   p15, #0, r0, c9, c12, #0
         bic   r0,  r0, #1
         mcr   p15, #0, r0, c9, c12, #0
-        ldmfd sp!, {r0}
         bx    lr
 
     .endasmfunc
@@ -133,11 +127,9 @@ _pmuDisableCountersGlobal_
 
 _pmuResetCycleCounter_
 
-        stmfd sp!, {r0}
         mrc   p15, #0, r0, c9, c12, #0
         orr   r0,  r0, #4
         mcr   p15, #0, r0, c9, c12, #0
-        ldmfd sp!, {r0}
         bx    lr
 
     .endasmfunc
@@ -153,11 +145,9 @@ _pmuResetCycleCounter_
 
 _pmuResetEventCounters_
 
-        stmfd sp!, {r0}
         mrc   p15, #0, r0, c9, c12, #0
         orr   r0,  r0, #2
         mcr   p15, #0, r0, c9, c12, #0
-        ldmfd sp!, {r0}
         bx    lr
 
     .endasmfunc
@@ -173,11 +163,9 @@ _pmuResetEventCounters_
 
 _pmuResetCounters_
 
-        stmfd sp!, {r0}
         mrc   p15, #0, r0, c9, c12, #0
         orr   r0,  r0, #6
         mcr   p15, #0, r0, c9, c12, #0
-        ldmfd sp!, {r0}
         bx    lr
 
     .endasmfunc

@@ -45,14 +45,7 @@
 /* USER CODE BEGIN (0) */
 // change code to use interrupt-driven CAN
 
-#include "can.h"
-#include "minimac.h"
-#include "stdlib.h"
-#include "gio.h"
-//#include "sys_pmu.h"
-//#include "rti.h"
 
-#include "sci.h"
 /* USER CODE END */
 
 /* Include Files */
@@ -60,6 +53,15 @@
 #include "sys_common.h"
 
 /* USER CODE BEGIN (1) */
+#include "sys_core.h"
+#include "can.h"
+#include "minimac.h"
+#include "stdlib.h"
+#include "gio.h"
+//#include "sys_pmu.h"
+//#include "rti.h"
+
+//#include "sci.h"
 
 //#define f_HCLK (float) 160.0 // f in [MHz]
 
@@ -76,8 +78,7 @@ unsigned char messages[4][4] = {{0x11, 0x11, 0x11, 0x11}, {0x22, 0x22, 0x22, 0x2
 
 uint16 period;
 uint32 tx_success_counter;
-
-
+uint8 tx_done;
 
 uint32 checkPackets(uint8 *src_packet,uint8 *dst_packet,uint32 psize);
 /* USER CODE END */
@@ -97,11 +98,17 @@ void main(void)
 {
 /* USER CODE BEGIN (3) */
 
+    _enable_interrupt_();
+
     /* initialize can 1 and 2   */
     canInit(); /* can1 -> can2 */
 
-    _enable_IRQ();
-    sciInit();
+    /** - enabling error interrupts */
+    canEnableErrorNotification(canREG1);
+	canEnableErrorNotification(canREG2);
+
+    //_enable_IRQ();
+    //sciInit();
 
 #ifdef HMAC_SHA256
     unsigned char mac[32];
@@ -146,8 +153,12 @@ void main(void)
 
 	    /* transmit on can1 */
 		unsigned char tx_success = canTransmit(canREG1, canMESSAGE_BOX1, authed_message);
+//	    while(tx_done == 0){};                 /* ... wait until transmit request is through        */
+//	    tx_done=0;
 		if (tx_success)
 			tx_success_counter++;
+
+		while(1);
 
 		// wait for message response from however many slave nodes there should be
 

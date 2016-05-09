@@ -1,7 +1,7 @@
 /** @file system.c 
 *   @brief System Driver Source File
-*   @date 28.Aug.2015
-*   @version 04.05.01
+*   @date 02-Mar-2016
+*   @version 04.05.02
 *
 *   This file contains:
 *   - API Functions
@@ -10,7 +10,7 @@
 */
 
 /* 
-* Copyright (C) 2009-2015 Texas Instruments Incorporated - www.ti.com 
+* Copyright (C) 2009-2016 Texas Instruments Incorporated - www.ti.com 
 * 
 * 
 *  Redistribution and use in source and binary forms, with or without 
@@ -104,7 +104,7 @@ void setupPLL(void)
                         |  (uint32)((uint32)0x1FU << 24U) 
                         |  (uint32)0x00000000U 
                         |  (uint32)((uint32)(6U - 1U)<< 16U) 
-                        |  (uint32)((uint32)(120U - 1U)<< 8U);
+                        |  (uint32)(0x7700U);
 
     /**   - Setup pll control register 2
     *     - Setup spreading rate
@@ -128,7 +128,7 @@ void setupPLL(void)
     systemREG2->PLLCTL3 = (uint32)((uint32)(2U - 1U) << 29U)
                         | (uint32)((uint32)0x1FU << 24U) 
                         | (uint32)((uint32)(6U - 1U)<< 16U) 
-                        | (uint32)((uint32)(120U - 1U) << 8U);
+                        | (uint32)(0x7700U);
 
 	/** - Enable PLL(s) to start up or Lock */
     systemREG1->CSDIS = 0x00000000U	

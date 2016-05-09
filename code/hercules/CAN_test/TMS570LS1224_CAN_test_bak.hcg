@@ -3,11 +3,11 @@
   <DEVICE>
     <family>TMS570LS12x</family>
     <device>TMS570LS1224PGE</device>
-    <dilfile>TMS570LS1224_CAN_test2.dil</dilfile>
+    <dilfile>TMS570LS1224_CAN_test.dil</dilfile>
     <tools>ti</tools>
   </DEVICE>
   <VERSION>
-    <version>04.05.02</version>
+    <version>04.05.01</version>
   </VERSION>
   <HET1>
     <FILENAME>
@@ -197,24 +197,21 @@
       <HDRRTI>
         <NAME>rti.h</NAME>
       </HDRRTI>
-      <SRCRTI>
-        </SRCRTI>
+      <SRCRTI/>
       <HDRGIO_R>
         <NAME>reg_gio.h</NAME>
       </HDRGIO_R>
       <HDRGIO>
         <NAME>gio.h</NAME>
       </HDRGIO>
-      <SRCGIO>
-        </SRCGIO>
+      <SRCGIO/>
       <HDRSCI_R>
         <NAME>reg_sci.h</NAME>
       </HDRSCI_R>
       <HDRSCI>
         <NAME>sci.h</NAME>
       </HDRSCI>
-      <SRCSCI>
-        </SRCSCI>
+      <SRCSCI/>
       <HDRLIN_R>
         <NAME>reg_lin.h</NAME>
       </HDRLIN_R>
@@ -395,7 +392,7 @@
         <PATH>include\rti.h</PATH>
       </HDRRTI>
       <SRCRTI>
-        <PATH></PATH>
+        <PATH/>
       </SRCRTI>
     </FILENAMES>
   </RTI>
@@ -408,7 +405,7 @@
         <PATH>include\gio.h</PATH>
       </HDRGIO>
       <SRCGIO>
-        <PATH></PATH>
+        <PATH/>
       </SRCGIO>
     </FILENAMES>
   </GIO>
@@ -421,7 +418,7 @@
         <PATH>include\sci.h</PATH>
       </HDRSCI>
       <SRCSCI>
-        <PATH></PATH>
+        <PATH/>
       </SRCSCI>
     </FILENAMES>
   </SCI>

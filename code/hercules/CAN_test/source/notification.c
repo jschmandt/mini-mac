@@ -1,7 +1,7 @@
 /** @file notification.c 
 *   @brief User Notification Definition File
-*   @date 28.Aug.2015
-*   @version 04.05.01
+*   @date 02-Mar-2016
+*   @version 04.05.02
 *
 *   This file  defines  empty  notification  routines to avoid
 *   linker errors, Driver expects user to define the notification. 
@@ -12,7 +12,7 @@
 */
 
 /* 
-* Copyright (C) 2009-2015 Texas Instruments Incorporated - www.ti.com 
+* Copyright (C) 2009-2016 Texas Instruments Incorporated - www.ti.com 
 * 
 * 
 *  Redistribution and use in source and binary forms, with or without 
@@ -111,13 +111,27 @@ void canStatusChangeNotification(canBASE_t *node, uint32 notification)
 /* USER CODE END */
 }
 
-//#pragma WEAK(canMessageNotification)
-//void canMessageNotification(canBASE_t *node, uint32 messageBox)
-//{
+#pragma WEAK(canMessageNotification)
+void canMessageNotification(canBASE_t *node, uint32 messageBox)  
+{
 /*  enter user code between the USER CODE BEGIN and USER CODE END. */
 /* USER CODE BEGIN (15) */
-///* USER CODE END */
-//}
+    /* node 1 - transfer request */
+	uint8 tx_done = 0;
+	if(node==canREG1)
+	{
+		tx_done=1; /* confirm transfer request */
+	}
+
+    /* node 2 - receive complete */
+	unsigned char rec_frame[8] = { 0 };
+    if(node==canREG2)
+    {
+    	while(!canIsRxMessageArrived(canREG2, canMESSAGE_BOX1));
+    	canGetData(canREG2, canMESSAGE_BOX1, rec_frame);
+    }
+/* USER CODE END */
+}
 
 /* USER CODE BEGIN (16) */
 ///* USER CODE END */

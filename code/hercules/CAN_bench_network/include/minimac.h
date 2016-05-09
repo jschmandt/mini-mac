@@ -9,12 +9,12 @@
  * Only use one of these HMACs at a time
  **********************/
 
+#define ECU_MASTER
+//#define ECU_SLAVE
+//#define ECU_PERIODIC
+
 //#define HMAC_MD5
 //#include "md5.h"
-
-//#define ECU_MASTER
-#define ECU_SLAVE
-//#define ECU_PERIODIC
 
 //#define HMAC_SHA1
 //#include "sha1.h"

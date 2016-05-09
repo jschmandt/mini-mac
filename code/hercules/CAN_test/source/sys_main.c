@@ -1,14 +1,14 @@
 /** @file sys_main.c 
 *   @brief Application main file
-*   @date 28.Aug.2015
-*   @version 04.05.01
+*   @date 02-Mar-2016
+*   @version 04.05.02
 *
 *   This file contains an empty main function,
 *   which can be used for the application.
 */
 
 /* 
-* Copyright (C) 2009-2015 Texas Instruments Incorporated - www.ti.com 
+* Copyright (C) 2009-2016 Texas Instruments Incorporated - www.ti.com 
 * 
 * 
 *  Redistribution and use in source and binary forms, with or without 
@@ -140,22 +140,22 @@ void dumpSomeData()
 
 /* can interrupt notification */
 /* Note-You need to remove canMessageNotification from notification.c to avoid redefinition */
-void canMessageNotification(canBASE_t *node, uint32 messageBox)
-{
+//void canMessageNotification(canBASE_t *node, uint32 messageBox)
+//{
      /* node 1 - transfer request */
-     if(node==canREG1)
-     {
-       tx_done=1; /* confirm transfer request */
-     }
+//     if(node==canREG1)
+ //    {
+ //      tx_done=1; /* confirm transfer request */
+   //  }
 
      /* node 2 - receive complete */
-     if(node==canREG2)
-     {
-      while(!canIsRxMessageArrived(canREG2, canMESSAGE_BOX1));
-      canGetData(canREG2, canMESSAGE_BOX1, rx_ptr); /* copy to RAM */
-      rx_ptr +=8;
-     }
+    // if(node==canREG2)
+    // {
+    //  while(!canIsRxMessageArrived(canREG2, canMESSAGE_BOX1));
+    //  canGetData(canREG2, canMESSAGE_BOX1, rx_ptr); /* copy to RAM */
+    //  rx_ptr +=8;
+    // }
 
     /* Note: since only message box 1 is used on both nodes we dont check it here.*/
-}
+//}
 /* USER CODE END */

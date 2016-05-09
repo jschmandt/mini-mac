@@ -1,7 +1,7 @@
 ;-------------------------------------------------------------------------------
 ; sys_mpu.asm
 ;
-; Copyright (C) 2009-2015 Texas Instruments Incorporated - www.ti.com
+; Copyright (C) 2009-2016 Texas Instruments Incorporated - www.ti.com
 ;
 ;
 ;  Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,6 @@
     .asmfunc
 
 _mpuInit_
-        stmfd sp!, {r0}
         ; Disable mpu
         mrc   p15, #0, r0, c1, c0, #0
         bic   r0,  r0, #1
@@ -192,7 +191,6 @@ _mpuInit_
         dsb
         mcr   p15, #0, r0, c1, c0, #0
         isb
-        ldmfd sp!, {r0}
         bx    lr
 
 r1Base  .word 0x00000000
@@ -222,13 +220,11 @@ r12Base  .word 0x20000000
 
 _mpuEnable_
 
-        stmfd sp!, {r0}
         mrc   p15, #0, r0, c1, c0, #0
         orr   r0,  r0, #1
         dsb
         mcr   p15, #0, r0, c1, c0, #0
         isb
-        ldmfd sp!, {r0}
         bx    lr
 
     .endasmfunc
@@ -245,13 +241,11 @@ _mpuEnable_
 
 _mpuDisable_
 
-        stmfd sp!, {r0}
         mrc   p15, #0, r0, c1, c0, #0
         bic   r0,  r0, #1
         dsb
         mcr   p15, #0, r0, c1, c0, #0
         isb
-        ldmfd sp!, {r0}
         bx    lr
 
     .endasmfunc
@@ -268,11 +262,9 @@ _mpuDisable_
 
 _mpuEnableBackgroundRegion_
 
-        stmfd sp!, {r0}
         mrc   p15, #0, r0,      c1, c0, #0
         orr   r0,  r0, #0x20000
         mcr   p15, #0, r0,      c1, c0, #0
-        ldmfd sp!, {r0}
         bx    lr
 
     .endasmfunc
@@ -289,11 +281,9 @@ _mpuEnableBackgroundRegion_
 
 _mpuDisableBackgroundRegion_
 
-        stmfd sp!, {r0}
         mrc   p15, #0, r0,      c1, c0, #0
         bic   r0,  r0, #0x20000
         mcr   p15, #0, r0,      c1, c0, #0
-        ldmfd sp!, {r0}
         bx    lr
 
     .endasmfunc

@@ -609,6 +609,7 @@ void sciDisableNotification(sciBASE_t *sci, uint32 flags)
 /* Requirements : HL_SR247 */
 void scilinGetConfigValue(sci_config_reg_t *config_reg, config_value_type_t type)
 {
+	/**
 	if (type == InitialValue)
 	{
 		config_reg->CONFIG_GCR0      = SCILIN_GCR0_CONFIGVALUE;
@@ -624,8 +625,8 @@ void scilinGetConfigValue(sci_config_reg_t *config_reg, config_value_type_t type
 		config_reg->CONFIG_PIO8      = SCILIN_PIO8_CONFIGVALUE;	
 	}
 	else
-	{
-	/*SAFETYMCUSW 134 S MR:12.2 <APPROVED> "LDRA Tool issue" */
+	{ **/
+	/*SAFETYMCUSW 134 S MR:12.2 <APPROVED> "LDRA Tool issue" */ /**
 		config_reg->CONFIG_GCR0      = scilinREG->GCR0;
 		config_reg->CONFIG_GCR1      = scilinREG->GCR1; 
 		config_reg->CONFIG_SETINT    = scilinREG->SETINT; 
@@ -637,7 +638,7 @@ void scilinGetConfigValue(sci_config_reg_t *config_reg, config_value_type_t type
 		config_reg->CONFIG_PIO6      = scilinREG->PIO6; 
 		config_reg->CONFIG_PIO7	     = scilinREG->PIO7;	 
 		config_reg->CONFIG_PIO8      = scilinREG->PIO8; 
-	}
+	} **/
 }
 
 /* USER CODE BEGIN (37) */

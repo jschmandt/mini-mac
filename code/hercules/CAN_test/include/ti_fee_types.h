@@ -20,10 +20,13 @@
  * 01.12.00		  13Dec2013    Vishwanath Reddy     SDOCM00105412    MISRA C fixes.
  * 01.15.00		  06Jun2014    Vishwanath Reddy 	                 Support for Conqueror.
  * 01.16.00		  15Jul2014    Vishwanath Reddy 	SDOCM00112141    Remove  MISRA warnings.
+ * 01.18.00		  12Oct2015    Vishwanath Reddy     SDOCM00119455    Update version history.
+ * 01.18.01		  17Nov2015    Vishwanath Reddy     SDOCM00120161    Update version history.
+ * 01.18.02		  05Feb2016    Vishwanath Reddy     SDOCM00121158    Update version history.
  *********************************************************************************************************************/
 
 /*
-* Copyright (C) 2009-2015 Texas Instruments Incorporated - www.ti.com  
+* Copyright (C) 2009-2016 Texas Instruments Incorporated - www.ti.com  
 * 
 * 
 *  Redistribution and use in source and binary forms, with or without 

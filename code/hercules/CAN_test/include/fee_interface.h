@@ -32,10 +32,12 @@
  *                                                                    TI_FEE_VIRTUALSECTOR_SIZE, 
  *                                                                    TI_FEE_PHYSICALSECTOR_SIZE, 
  *                                                                    TI_FEE_GENERATE_DEVICEANDVIRTUALSECTORSTRUC. 
+ * 01.23.00		  12Oct2015     Vishwanath Reddy     SDOCM00119455    Update version history.
+ * 01.23.01		  17Nov2015     Vishwanath Reddy     SDOCM00120161    Updated version history.
  *********************************************************************************************************************/
    
 /*
-* Copyright (C) 2009-2015 Texas Instruments Incorporated - www.ti.com  
+* Copyright (C) 2009-2016 Texas Instruments Incorporated - www.ti.com  
 * 
 * 
 *  Redistribution and use in source and binary forms, with or without 
