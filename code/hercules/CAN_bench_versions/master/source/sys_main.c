@@ -41,10 +41,36 @@
 *
 */
 
-
 /* USER CODE BEGIN (0) */
-// change code to use interrupt-driven CAN
 
+/**
+
+CAN message box IDs
+
+x101 0001 0000 0001
+x102 0001 0000 0010
+x103 0001 0000 0011
+
+x201 0010 0000 0001
+x202 0010 0000 0010
+x203 0010 0000 0011
+
+x301 0011 0000 0001
+x302 0011 0000 0010
+x303 0011 0000 0011
+
+x401 0100 0000 0001
+x402 0100 0000 0010
+x403 0100 0000 0011
+
+x501 0101 0000 0001
+x502 0101 0000 0010
+x503 0101 0000 0011
+
+*/
+
+// use this if you wan to auth messages with minimac
+//#define USE_AUTH
 
 /* USER CODE END */
 
@@ -61,7 +87,7 @@
 //#include "sys_pmu.h"
 //#include "rti.h"
 
-//#include "sci.h"
+#include "sci.h"
 
 //#define f_HCLK (float) 160.0 // f in [MHz]
 
@@ -78,9 +104,10 @@ unsigned char messages[4][4] = {{0x11, 0x11, 0x11, 0x11}, {0x22, 0x22, 0x22, 0x2
 
 uint16 period;
 uint32 tx_success_counter;
-uint8 tx_done;
+uint8 tx_success;
 
 uint32 checkPackets(uint8 *src_packet,uint8 *dst_packet,uint32 psize);
+
 /* USER CODE END */
 
 /** @fn void main(void)
@@ -102,6 +129,9 @@ void main(void)
 
     gioInit();
 
+    _enable_IRQ();
+    sciInit();
+
     /* initialize can 1 and 2   */
     canInit(); /* can1 -> can2 */
 
@@ -109,94 +139,135 @@ void main(void)
     canEnableErrorNotification(canREG1);
 	canEnableErrorNotification(canREG2);
 
-    //_enable_IRQ();
-    //sciInit();
+	setup_message_boxes();
 
-#ifdef HMAC_SHA256
-    unsigned char mac[32];
-    //unsigned char rec_mac[32];
-    //unsigned char mac_len = 32;
-#endif
-
-#ifdef HMAC_SHA1
-    unsigned char mac[20];
-    //unsigned char rec_mac[20];
-#endif
-
-#ifdef HMAC_MD5
-    unsigned char mac[16];
-    //unsigned char rec_mac[16];
-#endif
-
-#ifdef ECU_MASTER
-    unsigned char message[4];
-    unsigned char authed_message[8];
-#endif // ECU_MASTER
-
-    tx_success_counter = 0;
-	// give message ID "10"
-	uint32 new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x20000000U | (uint32)((uint32)((uint32)10U & (uint32)0x000007FFU) << (uint32)18U);
-	canUpdateID(canREG1, canMESSAGE_BOX1, new_arb_val);
-
-	//new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)10U & (uint32)0x000007FFU) << (uint32)18U);
-	//canUpdateID(canREG2, canMESSAGE_BOX1, new_arb_val);
+	sciSend(scilinREG, 26, (unsigned char *)"\r\nMaster initialized\r\n");
 
 	while(1){
-
-// if ECU_MASTER, pick a message to send at random and wait for responses
-#ifdef ECU_MASTER
-		unsigned char which_message = (rand() % 4);
-
-		message[0] = messages[which_message][0];
-		message[1] = messages[which_message][1];
-		message[2] = messages[which_message][2];
-		message[3] = messages[which_message][3];
-
-		hmac(message, mac);
-		tag(mac,4,message,authed_message);
-
-	    /* transmit on can1 */
-		unsigned char tx_success = canTransmit(canREG1, canMESSAGE_BOX1, authed_message);
-//	    while(tx_done == 0){};                 /* ... wait until transmit request is through        */
-//	    tx_done=0;
-		if (tx_success==1){
-			tx_success_counter++;
-			gioSetBit(gioPORTB, 1, 1);
-		}
-
+		master_start();
 
 		//while(!canIsRxMessageArrived(canREG2, canMESSAGE_BOX1));
 		//gioSetBit(gioPORTB,2,1);
-		while(1);
+		//while(1);
 
 		// wait for message response from however many slave nodes there should be
 
 		// wait for some interval
 		// send random message again
-#endif //ECU_MASTER
+
+		/*... wait until message receive on can2 */
+		//while(!canIsRxMessageArrived(canREG2, canMESSAGE_BOX1));
+		//canGetData(canREG2, canMESSAGE_BOX1, rx_data);  /* receive on can2  */
 
 
 
-    /*... wait until message receive on can2 */
-	//while(!canIsRxMessageArrived(canREG2, canMESSAGE_BOX1));
-	//canGetData(canREG2, canMESSAGE_BOX1, rx_data);  /* receive on can2  */
-
-
-
-//    	hmac(key, rec_msg, rec_mac);
-//    	minimac(rec_mac,4,rec_msg,rec_auth_msg);
-//    	uint32 auth_error = checkPackets(&authed_message[0],&rec_auth_msg[0],8);
-//    	if (auth_error == 0){
-//    		counter++;
-//    	}
-//    }
-
+		//hmac(key, rec_msg, rec_mac);
+		//minimac(rec_mac,4,rec_msg,rec_auth_msg);
+		//uint32 auth_error = checkPackets(&authed_message[0],&rec_auth_msg[0],8);
+		//if (auth_error == 0){
+		//	counter++;
 	}
 
 /* USER CODE END */
 }
 
+void master_start()
+{
+#ifdef USE_AUTH
+
+#ifdef HMAC_SHA256
+    unsigned char mac[32];
+#endif
+
+#ifdef HMAC_SHA1
+    unsigned char mac[20];
+#endif
+
+#ifdef HMAC_MD5
+    unsigned char mac[16];
+#endif
+
+    unsigned char authed_message[8];
+
+#endif //USE_AUTH
+
+	unsigned char message[4];
+
+    tx_success_counter = 0;
+    tx_success = 0;
+
+	unsigned char which_message = (rand() % 4);
+
+	message[0] = messages[which_message][0];
+	message[1] = messages[which_message][1];
+	message[2] = messages[which_message][2];
+	message[3] = messages[which_message][3];
+
+	gioSetBit(gioPORTB, 1, 0);
+
+#ifdef USE_AUTH
+	init_minimac();
+	hmac(message, mac);
+	tag(mac,4,message,authed_message);
+	tx_success = canTransmit(canREG1, canMESSAGE_BOX1, authed_message);
+#endif //USE_AUTH
+
+#ifndef USE_AUTH
+	tx_success = canTransmit(canREG1, canMESSAGE_BOX1, message);
+#endif //USE_AUTH
+
+	if (tx_success==1){
+		tx_success_counter++;
+		gioSetBit(gioPORTB, 1, 1);
+		sciSend(scilinREG, 27, (unsigned char *)"Master transmit success\r\n");
+	} else {
+		sciSend(scilinREG, 24, (unsigned char *)"Master transmit fail\r\n");
+	}
+}
+
+void update_ack_list(uint8 ID){
+
+	/**
+	 *  update_list
+	 *
+	 *  if (all nodes ack)
+	 *  	master_start
+	 */
+}
+
+void setup_message_boxes()
+{
+    // ID=10, DIR=TX
+	uint32 new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x20000000U | (uint32)((uint32)((uint32)10U & (uint32)0x000007FFU) << (uint32)18U);
+	canUpdateID(canREG1, canMESSAGE_BOX1, new_arb_val);
+
+	// ID=101, DIR=RX
+	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)101U & (uint32)0x000007FFU) << (uint32)18U);
+	canUpdateID(canREG1, canMESSAGE_BOX2, new_arb_val);
+
+	// ID=102, DIR=RX
+	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)102U & (uint32)0x000007FFU) << (uint32)18U);
+	canUpdateID(canREG1, canMESSAGE_BOX3, new_arb_val);
+
+	// ID=201, DIR=RX
+	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)201U & (uint32)0x000007FFU) << (uint32)18U);
+	canUpdateID(canREG1, canMESSAGE_BOX2, new_arb_val);
+
+	// ID=202, DIR=RX
+	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)202U & (uint32)0x000007FFU) << (uint32)18U);
+	canUpdateID(canREG1, canMESSAGE_BOX3, new_arb_val);
+
+	// ID=301, DIR=RX
+	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)301U & (uint32)0x000007FFU) << (uint32)18U);
+	canUpdateID(canREG1, canMESSAGE_BOX2, new_arb_val);
+
+	// ID=302, DIR=RX
+	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)302U & (uint32)0x000007FFU) << (uint32)18U);
+	canUpdateID(canREG1, canMESSAGE_BOX3, new_arb_val);
+}
+
 /* USER CODE BEGIN (4) */
+
 /** @fn checkPackets(uint8 *src_packet,uint8 *dst_packet,uint32 psize)
 *   @brief check two buffers and report error
 *

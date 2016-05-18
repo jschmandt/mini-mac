@@ -19,6 +19,8 @@ source/sys_main.obj: G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/st
 source/sys_main.obj: G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/stdlib.h
 source/sys_main.obj: C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_versions/master/include/gio.h
 source/sys_main.obj: C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_versions/master/include/reg_gio.h
+source/sys_main.obj: C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_versions/master/include/sci.h
+source/sys_main.obj: C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_versions/master/include/reg_sci.h
 source/sys_main.obj: C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_versions/master/include/esm.h
 source/sys_main.obj: C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_versions/master/include/reg_esm.h
 
@@ -41,5 +43,7 @@ G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/string.h:
 G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/stdlib.h: 
 C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_versions/master/include/gio.h: 
 C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_versions/master/include/reg_gio.h: 
+C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_versions/master/include/sci.h: 
+C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_versions/master/include/reg_sci.h: 
 C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_versions/master/include/esm.h: 
 C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_versions/master/include/reg_esm.h: 

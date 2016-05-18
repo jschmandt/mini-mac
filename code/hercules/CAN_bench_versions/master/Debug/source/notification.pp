@@ -32,6 +32,8 @@ source/notification.obj: G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/includ
 source/notification.obj: C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_versions/master/include/htu.h
 source/notification.obj: C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_versions/master/include/reg_htu.h
 source/notification.obj: C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_versions/master/include/gio.h
+source/notification.obj: C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_versions/master/include/sci.h
+source/notification.obj: C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_versions/master/include/reg_sci.h
 source/notification.obj: C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_versions/master/include/sys_dma.h
 source/notification.obj: C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_versions/master/include/reg_dma.h
 source/notification.obj: C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_versions/master/include/minimac.h
@@ -74,6 +76,8 @@ G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include/linkage.h:
 C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_versions/master/include/htu.h: 
 C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_versions/master/include/reg_htu.h: 
 C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_versions/master/include/gio.h: 
+C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_versions/master/include/sci.h: 
+C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_versions/master/include/reg_sci.h: 
 C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_versions/master/include/sys_dma.h: 
 C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_versions/master/include/reg_dma.h: 
 C:/Users/Jackson/Desktop/minimac/code/hercules/CAN_bench_versions/master/include/minimac.h: 
