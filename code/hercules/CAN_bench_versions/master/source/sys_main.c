@@ -41,6 +41,7 @@
 *
 */
 
+
 /* USER CODE BEGIN (0) */
 
 /**
@@ -171,6 +172,8 @@ void main(void)
 /* USER CODE END */
 }
 
+/* USER CODE BEGIN (4) */
+
 void master_start()
 {
 #ifdef USE_AUTH
@@ -237,36 +240,34 @@ void update_ack_list(uint8 ID){
 
 void setup_message_boxes()
 {
-    // ID=10, DIR=TX
-	uint32 new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x20000000U | (uint32)((uint32)((uint32)10U & (uint32)0x000007FFU) << (uint32)18U);
+    // ID=101, DIR=TX
+	uint32 new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x20000000U | (uint32)((uint32)((uint32)101U & (uint32)0x000007FFU) << (uint32)18U);
 	canUpdateID(canREG1, canMESSAGE_BOX1, new_arb_val);
-
-	// ID=101, DIR=RX
-	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)101U & (uint32)0x000007FFU) << (uint32)18U);
-	canUpdateID(canREG1, canMESSAGE_BOX2, new_arb_val);
 
 	// ID=102, DIR=RX
 	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)102U & (uint32)0x000007FFU) << (uint32)18U);
+	canUpdateID(canREG1, canMESSAGE_BOX2, new_arb_val);
+
+	// ID=103, DIR=RX
+	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)103U & (uint32)0x000007FFU) << (uint32)18U);
 	canUpdateID(canREG1, canMESSAGE_BOX3, new_arb_val);
 
 	// ID=201, DIR=RX
 	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)201U & (uint32)0x000007FFU) << (uint32)18U);
-	canUpdateID(canREG1, canMESSAGE_BOX2, new_arb_val);
+	canUpdateID(canREG1, canMESSAGE_BOX4, new_arb_val);
 
 	// ID=202, DIR=RX
 	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)202U & (uint32)0x000007FFU) << (uint32)18U);
-	canUpdateID(canREG1, canMESSAGE_BOX3, new_arb_val);
+	canUpdateID(canREG1, canMESSAGE_BOX5, new_arb_val);
 
 	// ID=301, DIR=RX
 	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)301U & (uint32)0x000007FFU) << (uint32)18U);
-	canUpdateID(canREG1, canMESSAGE_BOX2, new_arb_val);
+	canUpdateID(canREG1, canMESSAGE_BOX6, new_arb_val);
 
 	// ID=302, DIR=RX
 	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)302U & (uint32)0x000007FFU) << (uint32)18U);
-	canUpdateID(canREG1, canMESSAGE_BOX3, new_arb_val);
+	canUpdateID(canREG1, canMESSAGE_BOX7, new_arb_val);
 }
-
-/* USER CODE BEGIN (4) */
 
 /** @fn checkPackets(uint8 *src_packet,uint8 *dst_packet,uint32 psize)
 *   @brief check two buffers and report error

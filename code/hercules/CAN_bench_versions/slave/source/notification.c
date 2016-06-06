@@ -135,22 +135,25 @@ void canMessageNotification(canBASE_t *node, uint32 messageBox)
     //}
 
 	// tx
-	uint8 tx_done = 0;
+	/**uint8 tx_done = 0;
 	if (messageBox == canMESSAGE_BOX1){
 		tx_done = 1; // define tx_done somewhere
-	}
+	}**/
 
 
 	//gioSetBit(gioPORTB, 1, 1);
-	uint8 which_node = 0;
+	/**uint8 which_node = 0;
 	if (node==canREG1){
 		which_node = 1;
 	} else {
 		which_node = 2;
-	}
+	}**/
 
 	// rx
-	if (messageBox == canMESSAGE_BOX1){
+
+	uint32 rxID = canGetID(node, messageBox);
+	unsigned char id = (uint8) (rxID >> 18U); //& 0x000007FFU)
+	if (id == ((unsigned char) 101U)){ // rx'ed val from master
 		gioSetBit(gioPORTB, 1, 1);
 		unsigned char rec_frame[8] = { 0 };
 		unsigned char rec_msg[4] = { 0 };
@@ -163,6 +166,8 @@ void canMessageNotification(canBASE_t *node, uint32 messageBox)
 		rec_msg[1] = rec_frame[1];
 		rec_msg[2] = rec_frame[2];
 		rec_msg[3] = rec_frame[3];
+
+#ifdef USE_AUTH
 
 #ifdef HMAC_SHA256
 		unsigned char rec_mac[32];
@@ -182,50 +187,98 @@ void canMessageNotification(canBASE_t *node, uint32 messageBox)
 
 		// check auth
 		uint32 authed = checkAuth(rec_frame, check_frame);
-
-
-#ifdef ECU_SLAVE
+#endif //USE_AUTH
 
 		extern unsigned char messages[4][4];
 		uint32 response_success_counter = 0;
 
+		unsigned char response[4];
+
+		if (rec_msg[0] == messages[0][0]) {
+			response[0] = messages[1][0];
+			response[1] = messages[1][1];
+			response[2] = messages[1][2];
+			response[3] = messages[1][3];
+		} else if (rec_msg[0] == messages[1][0]) {
+			response[0] = messages[2][0];
+			response[1] = messages[2][1];
+			response[2] = messages[2][2];
+			response[3] = messages[2][3];
+		} else if (rec_msg[0] == messages[2][0]) {
+			response[0] = messages[3][0];
+			response[1] = messages[3][1];
+			response[2] = messages[3][2];
+			response[3] = messages[3][3];
+		} else if (rec_msg[0] == messages[3][0]) {
+			response[0] = messages[0][0];
+			response[1] = messages[0][1];
+			response[2] = messages[0][2];
+			response[3] = messages[0][3];
+		}
+
+#ifdef USE_AUTH
+
 		if (authed){
 			gioSetBit(gioPORTB, 2, 1);
-			unsigned char response[4];
-
-			if (rec_msg[0] == messages[0][0]) {
-				response[0] = messages[1][0];
-				response[1] = messages[1][1];
-				response[2] = messages[1][2];
-				response[3] = messages[1][3];
-			} else if (rec_msg[0] == messages[1][0]) {
-				response[0] = messages[2][0];
-				response[1] = messages[2][1];
-				response[2] = messages[2][2];
-				response[3] = messages[2][3];
-			} else if (rec_msg[0] == messages[2][0]) {
-				response[0] = messages[3][0];
-				response[1] = messages[3][1];
-				response[2] = messages[3][2];
-				response[3] = messages[3][3];
-			} else if (rec_msg[0] == messages[3][0]) {
-				response[0] = messages[0][0];
-				response[1] = messages[0][1];
-				response[2] = messages[0][2];
-				response[3] = messages[0][3];
-			}
 
 			unsigned char authed_response[4];
 
 			hmac(response, rec_mac);
 			tag(rec_mac,4,response,authed_response);
 
+			response = authed_response;
+
 		    /* transmit on can1 */
-			unsigned char tx_success = canTransmit(canREG1, canMESSAGE_BOX2, authed_response);
-			if (tx_success)
-				response_success_counter++;
+			//unsigned char tx_success = canTransmit(canREG1, canMESSAGE_BOX2, authed_response);
+			//if (tx_success)
+				//response_success_counter++;
 		}
-#endif //ECU_SLAVE
+#endif //USE_AUTH
+
+#ifdef SLAVE_1
+	    /* transmit on can1 */
+		unsigned char tx_success = canTransmit(canREG1, canMESSAGE_BOX4, response); // use ID 201 for now
+		while (tx_success == 0){
+			tx_success = canTransmit(canREG1, canMESSAGE_BOX4, response);
+		}
+		gioSetBit(gioPORTB, 2, 1);
+		response_success_counter++;
+#endif //SLAVE_1
+
+#ifdef SLAVE_2
+	    /* transmit on can1 */
+		unsigned char tx_success = canTransmit(canREG1, canMESSAGE_BOX7, response); // use ID 301 for now
+		while (tx_success == 0){
+			tx_success = canTransmit(canREG1, canMESSAGE_BOX7, response);
+		}
+		gioSetBit(gioPORTB, 2, 1);
+		response_success_counter++;
+#endif //SLAVE_2
+
+
+
+	}else{ // rx'ed value from another node -- if you're using AUTH you have to run the auth and update counter
+#ifdef USE_AUTH
+
+#ifdef HMAC_SHA256
+		unsigned char rec_mac[32];
+#endif
+
+#ifdef HMAC_SHA1
+		unsigned char rec_mac[20];
+#endif
+
+#ifdef HMAC_MD5
+		unsigned char rec_mac[16];
+#endif
+
+		// run mini-mac
+		hmac(rec_msg, rec_mac);
+		tag(rec_mac, 4, rec_msg, check_frame);
+
+		// check auth
+		uint32 authed = checkAuth(rec_frame, check_frame);
+#endif //USE_AUTH
 	}
 
 	/* USER CODE END */

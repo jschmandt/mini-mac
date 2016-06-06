@@ -9,6 +9,12 @@
  * Only use one of these HMACs at a time
  **********************/
 
+//#define USE_AUTH
+
+//#define SLAVE_1
+#define SLAVE_2
+
+
 //#define ECU_MASTER
 #define ECU_SLAVE
 //#define ECU_PERIODIC
@@ -26,6 +32,7 @@
 //unsigned char *hmac(const unsigned char *key, unsigned char *message);
 //unsigned char *minimac(unsigned char *mac, unsigned int space, unsigned char *message);
 
+void setup_message_boxes();
 void hmac(unsigned char *message_ts, unsigned char *mac);
 void tag(unsigned char *mac, unsigned int space, unsigned char *message, unsigned char *authed_message);
 void init_minimac();

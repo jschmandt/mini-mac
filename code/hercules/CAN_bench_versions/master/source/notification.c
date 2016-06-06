@@ -144,21 +144,54 @@ void canMessageNotification(canBASE_t *node, uint32 messageBox)
 			gioSetBit(gioPORTB, 2, 1);
 		} else // notification on response from master message
 		{
+
+			unsigned char rec_frame[8] = { 0 };
 			while(!canIsRxMessageArrived(node, messageBox));
 			canGetData(node, messageBox, rec_frame); /* copy to RAM */
 
 			// this block is just here to that you can debug whether or not you're receiving ACKs from every node you should
 			uint32 rxID = canGetID(node, messageBox);
-			unsigned char id = (uint8) (rxID & 0x000007FFU);
+			unsigned char id = (uint8) (rxID >> 18U); //& 0x000007FFU)
+
+			//unsigned char *id_str = "000";
+
+			//strcpy(id_str, "201");
+
 			unsigned char *uart_msg_prefix = "received ack msg from ID ";
 			unsigned char *uart_msg_suffix = "\r\n";
-			unsigned char uart_msg[30] = { 0 };
+			unsigned char uart_msg[32] = { 0 };
 			strcpy(uart_msg, uart_msg_prefix);
-			strcat(uart_msg, id);
-			strcat(uart_msg, uart_msg_suffix);
-			sciSend(scilinREG, 30, uart_msg);
+			//strcpy(uart_msg+25, id_str);
+			//strcpy(uart_msg+28, uart_msg_suffix);
 
-			unsigned char rec_frame[8] = { 0 };
+
+			if (id == ((unsigned char) 101U)){
+				strcat(uart_msg, "101");
+			} else if (id == ((unsigned char) 102U)){
+				strcat(uart_msg, "102");
+			} else if (id == ((unsigned char) 103U)){
+				strcat(uart_msg, "103");
+			} else if (id == ((unsigned char) 201U)){
+				strcat(uart_msg, "201");
+			} else if (id == ((unsigned char) 202U)){
+				strcat(uart_msg, "202");
+			} else if (id == ((unsigned char) 203U)){
+				strcat(uart_msg, "203");
+			} else if (id == ((unsigned char) 301U)){
+				strcat(uart_msg, "301");
+			} else if (id == ((unsigned char) 302U)){
+				strcat(uart_msg, "302");
+			} else if (id == ((unsigned char) 303U)){
+				strcat(uart_msg, "303");
+			} else {
+				strcat(uart_msg, "000");
+			}
+
+			//strcat(uart_msg, id_str);
+			strcat(uart_msg, uart_msg_suffix);
+			sciSend(scilinREG, 32, uart_msg);
+
+
 			unsigned char rec_msg[4] = { 0 };
 			rec_msg[0] = rec_frame[0];
 			rec_msg[1] = rec_frame[1];

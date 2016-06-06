@@ -4,7 +4,7 @@
 
 SHELL = cmd.exe
 
-CG_TOOL_ROOT := G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS
+CG_TOOL_ROOT := C:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS
 
 GEN_OPTS__FLAG := 
 GEN_CMDS__FLAG := 
@@ -160,13 +160,13 @@ all: slave.out
 slave.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: ARM Linker'
-	"G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/bin/armcl" -mv7R4 --code_state=32 --float_support=VFPv3D16 -g --display_error_number --diag_wrap=off --diag_warning=225 --enum_type=packed --abi=eabi -z -m"slave.map" --heap_size=0x800 --stack_size=0x800 -i"G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/lib" -i"G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="slave_linkInfo.xml" --rom_model --be32 -o "slave.out" $(ORDERED_OBJS)
+	"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/bin/armcl" -mv7R4 --code_state=32 --float_support=VFPv3D16 -g --display_error_number --diag_wrap=off --diag_warning=225 --enum_type=packed --abi=eabi -z -m"slave.map" --heap_size=0x800 --stack_size=0x800 -i"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/lib" -i"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="slave_linkInfo.xml" --rom_model --be32 -o "slave.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 slave.hex: $(EXE_OUTPUTS)
 	@echo 'Invoking: ARM Hex Utility'
-	"G:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/bin/armhex"  -o "slave.hex" $(EXE_OUTPUTS__QUOTED)
+	"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_16.3.0.STS/bin/armhex"  -o "slave.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $@'
 	@echo ' '
 

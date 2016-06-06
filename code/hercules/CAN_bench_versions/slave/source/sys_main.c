@@ -112,6 +112,8 @@ void main(void)
     //_enable_IRQ();
     //sciInit();
 
+#ifdef USE_AUTH
+
 #ifdef HMAC_SHA256
     unsigned char mac[32];
     //unsigned char rec_mac[32];
@@ -128,22 +130,15 @@ void main(void)
     //unsigned char rec_mac[16];
 #endif
 
+#endif //USE_AUTH
+
     tx_success_counter = 0;
 
-#ifdef ECU_SLAVE
-		// give message box 1 ID "10", set rx
-		uint32 new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)10U & (uint32)0x000007FFU) << (uint32)18U);
-		canUpdateID(canREG1, canMESSAGE_BOX1, new_arb_val);
-
-		// give message box 2 ID "11", set tx
-		new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x20000000U | (uint32)((uint32)((uint32)11U & (uint32)0x000007FFU) << (uint32)18U);
-		canUpdateID(canREG1, canMESSAGE_BOX2, new_arb_val);
-#endif //ECU_SLAVE
+    setup_message_boxes();
 
 	while(1){
 
 // if ECU_SLAVE, wait for a message and respond to it
-#ifdef ECU_SLAVE
 
 		/**
 		if (canIsRxMessageArrived(canREG1, canMESSAGE_BOX1)){
@@ -164,7 +159,7 @@ void main(void)
 		//while (!canIsRxMessageArrived(canREG1, canMESSAGE_BOX1));
 		//gioSetBit(gioPORTB,1,1);
 		//while(1);
-#endif //ECU_SLAVE
+
 
 
     /*... wait until message receive on can2 */
@@ -187,6 +182,74 @@ void main(void)
 }
 
 /* USER CODE BEGIN (4) */
+
+void setup_message_boxes(){
+	// give message box 1 ID "101", set rx
+	uint32 new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)101U & (uint32)0x000007FFU) << (uint32)18U);
+	canUpdateID(canREG1, canMESSAGE_BOX1, new_arb_val);
+
+	// give ID "102", set rx
+	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)102U & (uint32)0x000007FFU) << (uint32)18U);
+	canUpdateID(canREG1, canMESSAGE_BOX2, new_arb_val);
+
+	// give ID "103", set rx
+	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)103U & (uint32)0x000007FFU) << (uint32)18U);
+	canUpdateID(canREG1, canMESSAGE_BOX3, new_arb_val);
+
+#ifdef SLAVE_1 // for now slave board 1 uses 1 transceiver, mbox 201
+	// give ID "201", set tx
+	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x20000000U | (uint32)((uint32)((uint32)201U & (uint32)0x000007FFU) << (uint32)18U);
+	canUpdateID(canREG1, canMESSAGE_BOX4, new_arb_val);
+
+	// give ID "202", set rx
+	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)202U & (uint32)0x000007FFU) << (uint32)18U);
+	canUpdateID(canREG1, canMESSAGE_BOX5, new_arb_val);
+
+	// give ID "203", set rx
+	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)203U & (uint32)0x000007FFU) << (uint32)18U);
+	canUpdateID(canREG1, canMESSAGE_BOX6, new_arb_val);
+
+	// give ID "301", set rx
+	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)301U & (uint32)0x000007FFU) << (uint32)18U);
+	canUpdateID(canREG1, canMESSAGE_BOX7, new_arb_val);
+
+	// give ID "302", set rx
+	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)302U & (uint32)0x000007FFU) << (uint32)18U);
+	canUpdateID(canREG1, canMESSAGE_BOX8, new_arb_val);
+
+	// give ID "303", set rx
+	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)303U & (uint32)0x000007FFU) << (uint32)18U);
+	canUpdateID(canREG1, canMESSAGE_BOX9, new_arb_val);
+#endif //SLAVE_1
+
+#ifdef SLAVE_2
+	// give ID "201", set rx
+	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)201U & (uint32)0x000007FFU) << (uint32)18U);
+	canUpdateID(canREG1, canMESSAGE_BOX4, new_arb_val);
+
+	// give ID "202", set rx
+	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)202U & (uint32)0x000007FFU) << (uint32)18U);
+	canUpdateID(canREG1, canMESSAGE_BOX5, new_arb_val);
+
+	// give ID "203", set rx
+	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)203U & (uint32)0x000007FFU) << (uint32)18U);
+	canUpdateID(canREG1, canMESSAGE_BOX6, new_arb_val);
+
+	// give ID "301", set tx
+	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x20000000U | (uint32)((uint32)((uint32)301U & (uint32)0x000007FFU) << (uint32)18U);
+	canUpdateID(canREG1, canMESSAGE_BOX7, new_arb_val);
+
+	// give ID "302", set rx
+	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)302U & (uint32)0x000007FFU) << (uint32)18U);
+	canUpdateID(canREG1, canMESSAGE_BOX8, new_arb_val);
+
+	// give ID "303", set rx
+	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)303U & (uint32)0x000007FFU) << (uint32)18U);
+	canUpdateID(canREG1, canMESSAGE_BOX9, new_arb_val);
+#endif //SLAVE_2
+}
+
+
 /** @fn checkPackets(uint8 *src_packet,uint8 *dst_packet,uint32 psize)
 *   @brief check two buffers and report error
 *
