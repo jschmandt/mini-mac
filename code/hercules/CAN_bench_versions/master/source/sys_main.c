@@ -99,6 +99,8 @@ uint8  rx_data[8][8] = {0};
 uint8 *rx_ptr = &rx_data[0][0];
 uint32 error = 0;
 
+uint16 acks = 0;
+
 //unsigned char hist_recent[8][4] = {{ 0x00, 0x00, 0x00, 0x00}, { 0x00, 0x00, 0x00, 0x00}, { 0x00, 0x00, 0x00, 0x00},{ 0x00, 0x00, 0x00, 0x00},{ 0x00, 0x00, 0x00, 0x00}, { 0x00, 0x00, 0x00, 0x00}, { 0x00, 0x00, 0x00, 0x00}, { 0x00, 0x00, 0x00, 0x00}};
 //unsigned char hist_periodic[8][4] = {{ 0x00, 0x00, 0x00, 0x00}, { 0x00, 0x00, 0x00, 0x00}, { 0x00, 0x00, 0x00, 0x00},{ 0x00, 0x00, 0x00, 0x00},{ 0x00, 0x00, 0x00, 0x00}, { 0x00, 0x00, 0x00, 0x00}, { 0x00, 0x00, 0x00, 0x00}, { 0x00, 0x00, 0x00, 0x00}};
 unsigned char messages[4][4] = {{0x11, 0x11, 0x11, 0x11}, {0x22, 0x22, 0x22, 0x22}, {0x33, 0x33, 0x33, 0x33}, {0x44, 0x44, 0x44, 0x44}};
@@ -142,7 +144,18 @@ void main(void)
 
 	setup_message_boxes();
 
+#ifdef USE_AUTH
+	init_minimac();
+#endif
+
 	sciSend(scilinREG, 26, (unsigned char *)"\r\nMaster initialized\r\n");
+
+	// B1  B2  B3  B4  B5  1
+	// 111 011 011 111 111 1
+	// xEDFF
+
+	acks = 0x0;
+
 
 	while(1){
 		master_start();
@@ -199,7 +212,8 @@ void master_start()
     tx_success_counter = 0;
     tx_success = 0;
 
-	unsigned char which_message = (rand() % 4);
+	//unsigned char which_message = (rand() % 4);
+    unsigned char which_message = 3;
 
 	message[0] = messages[which_message][0];
 	message[1] = messages[which_message][1];
@@ -208,11 +222,15 @@ void master_start()
 
 	gioSetBit(gioPORTB, 1, 0);
 
+	acks = 0;
+
 #ifdef USE_AUTH
-	init_minimac();
 	hmac(message, mac);
 	tag(mac,4,message,authed_message);
 	tx_success = canTransmit(canREG1, canMESSAGE_BOX1, authed_message);
+	sciSend(scilinREG, 34, (unsigned char *) "attempting to xmit authed message ");
+	sciSend(scilinREG, 8, authed_message);
+	sciSend(scilinREG, 4, "\r\n");
 #endif //USE_AUTH
 
 #ifndef USE_AUTH
@@ -223,19 +241,44 @@ void master_start()
 		tx_success_counter++;
 		gioSetBit(gioPORTB, 1, 1);
 		sciSend(scilinREG, 27, (unsigned char *)"Master transmit success\r\n");
+		update_counter();
+		update_history(message);
 	} else {
 		sciSend(scilinREG, 24, (unsigned char *)"Master transmit fail\r\n");
 	}
 }
 
+// updates the list of nodes that have ACKed
 void update_ack_list(uint8 ID){
 
-	/**
-	 *  update_list
-	 *
-	 *  if (all nodes ack)
-	 *  	master_start
-	 */
+	//sciSend(scilinREG, 17, (unsigned char *)"Updating ACKs\r\n");
+
+	// 101: 100 000 000 000 000 0	0x8000
+	// 102: 010 000 000 000 000 0	0x4000
+	// 103: 001 000 000 000 000 0	0x2000
+	// 201: 000 100 000 000 000 0	0x1000
+	// 202: 000 010 000 000 000 0	0x0800
+	// 203: 000 001 000 000 000 0	0x0400
+	// 301: 000 000 100 000 000 0	0x0200
+	// 302: 000 000 010 000 000 0	0x0100
+	// 303: 000 000 001 000 000 0	0x0080
+	// 401: 000 000 000 100 000 0	0x0040
+	// 402: 000 000 000 010 000 0	0x0020
+	// 403: 000 000 000 001 000 0	0x0010
+	// 501: 000 000 000 000 100 0	0x0008
+	// 502: 000 000 000 000 010 0	0x0004
+	// 503: 000 000 000 000 001 0	0x0002
+
+	// expecting ACKs from two nodes
+	if (ID == ((unsigned char) 201U)){
+		acks |= 0x1000;
+	} else if (ID == ((unsigned char) 301U)){
+		acks |= 0x0200;
+	}
+
+	if (acks == 0x1200){
+		sciSend(scilinREG, 21, (unsigned char *)"All ACKs received\r\n");
+	}
 }
 
 void setup_message_boxes()

@@ -192,7 +192,7 @@ void canMessageNotification(canBASE_t *node, uint32 messageBox)
 		extern unsigned char messages[4][4];
 		uint32 response_success_counter = 0;
 
-		unsigned char response[4];
+		unsigned char response[4] = { 0 };
 
 		if (rec_msg[0] == messages[0][0]) {
 			response[0] = messages[1][0];
@@ -214,27 +214,68 @@ void canMessageNotification(canBASE_t *node, uint32 messageBox)
 			response[1] = messages[0][1];
 			response[2] = messages[0][2];
 			response[3] = messages[0][3];
+		} else {
+			response[0] = 0xA;
+			response[1] = 0xB;
+			response[2] = 0xC;
+			response[3] = 0xD;
 		}
 
 #ifdef USE_AUTH
 
 		if (authed){
+			update_counter();
+			update_history(rec_msg);
+
 			gioSetBit(gioPORTB, 2, 1);
 
-			unsigned char authed_response[4];
+			unsigned char authed_response[8];
 
 			hmac(response, rec_mac);
 			tag(rec_mac,4,response,authed_response);
 
-			response = authed_response;
 
-		    /* transmit on can1 */
-			//unsigned char tx_success = canTransmit(canREG1, canMESSAGE_BOX2, authed_response);
-			//if (tx_success)
-				//response_success_counter++;
+
+#ifdef SLAVE_1
+		// check if new message has been seen
+
+	    /* transmit on can1 */
+	    unsigned char tx_success = canTransmit(canREG1, canMESSAGE_BOX4, authed_response); // use ID 201 for now
+		while (tx_success == 0){
+			tx_success = canTransmit(canREG1, canMESSAGE_BOX4, response);
+		}
+		//above -> tx will have succeeded to get to here
+		update_counter();
+		update_history(response);
+		gioSetBit(gioPORTB, 2, 1);
+		response_success_counter++;
+#endif //SLAVE_1
+
+#ifdef SLAVE_2
+		// maybe this is an ECU that takes longer to gather it's response
+		// think about how to deal with concurrent message send.. that may just be a problem this protocol has
+		// alternatively, if the node gets an RX interrupt, MAC vals should update, the RX control flow just
+		// needs to let the TX flow about that
+		int lazy_wait = 0;
+		for (lazy_wait = 0; lazy_wait < 160000000; lazy_wait++); // wait ~1s
+
+		// check if new message has been seen
+
+	    /* transmit on can1 */
+		unsigned char tx_success = canTransmit(canREG1, canMESSAGE_BOX7, authed_response); // use ID 301 for now
+		while (tx_success == 0){
+			tx_success = canTransmit(canREG1, canMESSAGE_BOX7, response);
+		}
+		//above -> tx will have succeeded to get to here
+		update_counter();
+		update_history(response);
+		gioSetBit(gioPORTB, 2, 1);
+		response_success_counter++;
+#endif //SLAVE_2
 		}
 #endif //USE_AUTH
 
+#ifndef USE_AUTH
 #ifdef SLAVE_1
 	    /* transmit on can1 */
 		unsigned char tx_success = canTransmit(canREG1, canMESSAGE_BOX4, response); // use ID 201 for now
@@ -254,10 +295,15 @@ void canMessageNotification(canBASE_t *node, uint32 messageBox)
 		gioSetBit(gioPORTB, 2, 1);
 		response_success_counter++;
 #endif //SLAVE_2
+#endif // not USE_AUTH
 
 
 
 	}else{ // rx'ed value from another node -- if you're using AUTH you have to run the auth and update counter
+		unsigned char rec_frame[8] = { 0 };
+		unsigned char rec_msg[4] = { 0 };
+		unsigned char check_frame[8] = { 0 };
+
 #ifdef USE_AUTH
 
 #ifdef HMAC_SHA256

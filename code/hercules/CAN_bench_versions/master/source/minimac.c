@@ -32,30 +32,33 @@ void init_minimac()
 	period = 64;
 }
 
+void update_counter(){
+	counter++;
+}
+
 
 // this function just exists so you can stick a breakpoint in it - may have more functionality later
 void auth_error(){
 	auth_error_count++;
 }
 
-
+// called when this node receives a message -- checks the auth with current counter and hist
 uint32 checkAuth(unsigned char *rec_frame, unsigned char *check_frame){
 	int c = 0;
 	unsigned char auth_fail = 0;
 	for (c = 0; c < 8; c++) {
 		if (rec_frame[c] != check_frame[c]){
 			auth_fail = 1;
-			break;
 		}
 	}
 
 	if (auth_fail == 0) {
-		update_history(rec_frame);
-		counter++;
-		return 1U;
+		//update_history(rec_frame);
+		//counter++;
+		return 1;
 	} else {
 		auth_error();
-		return 0U;
+		return 0;
 	}
 }
 

@@ -38,6 +38,9 @@ void auth_error(){
 	auth_error_count++;
 }
 
+void update_counter(){
+	counter++;
+}
 
 uint32 checkAuth(unsigned char *rec_frame, unsigned char *check_frame){
 	int c = 0;
@@ -50,8 +53,8 @@ uint32 checkAuth(unsigned char *rec_frame, unsigned char *check_frame){
 	}
 
 	if (auth_fail == 0) {
-		update_history(rec_frame);
-		counter++;
+		//update_history(rec_frame);
+		//counter++;
 		return 1U;
 	} else {
 		auth_error();

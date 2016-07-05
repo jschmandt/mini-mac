@@ -9,7 +9,7 @@
  * Only use one of these HMACs at a time
  **********************/
 
-//#define USE_AUTH
+#define USE_AUTH
 
 //#define SLAVE_1
 #define SLAVE_2

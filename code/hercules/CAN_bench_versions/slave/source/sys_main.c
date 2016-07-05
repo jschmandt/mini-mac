@@ -113,7 +113,7 @@ void main(void)
     //sciInit();
 
 #ifdef USE_AUTH
-
+/**
 #ifdef HMAC_SHA256
     unsigned char mac[32];
     //unsigned char rec_mac[32];
@@ -129,6 +129,7 @@ void main(void)
     unsigned char mac[16];
     //unsigned char rec_mac[16];
 #endif
+**/
 
 #endif //USE_AUTH
 

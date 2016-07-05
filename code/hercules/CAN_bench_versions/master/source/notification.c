@@ -157,9 +157,9 @@ void canMessageNotification(canBASE_t *node, uint32 messageBox)
 
 			//strcpy(id_str, "201");
 
-			unsigned char *uart_msg_prefix = "received ack msg from ID ";
-			unsigned char *uart_msg_suffix = "\r\n";
-			unsigned char uart_msg[32] = { 0 };
+			char *uart_msg_prefix = "received ack msg from ID ";
+			char *uart_msg_suffix = "\r\n";
+			char uart_msg[32] = { 0 };
 			strcpy(uart_msg, uart_msg_prefix);
 			//strcpy(uart_msg+25, id_str);
 			//strcpy(uart_msg+28, uart_msg_suffix);
@@ -213,6 +213,7 @@ void canMessageNotification(canBASE_t *node, uint32 messageBox)
 			unsigned char rec_mac[16];
 #endif
 
+
 		// run mini-mac
 			hmac(rec_msg, rec_mac);
 			tag(rec_mac, 4, rec_msg, check_frame);
@@ -221,13 +222,18 @@ void canMessageNotification(canBASE_t *node, uint32 messageBox)
 			uint32 authed = checkAuth(rec_frame, check_frame);
 
 			if (authed==1){
-				// do something
+				update_ack_list(id);
+				update_counter();
+				update_history();
 			}
+
+
 
 #endif //USE_AUTH
 
 #ifndef USE_AUTH
 			// do something
+			update_ack_list(id);
 #endif //USE_AUTH
 
 		}
