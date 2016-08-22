@@ -37,5 +37,7 @@ void hmac(unsigned char *message_ts, unsigned char *mac);
 void tag(unsigned char *mac, unsigned int space, unsigned char *message, unsigned char *authed_message);
 void init_minimac();
 uint32 checkAuth(unsigned char *rec_frame, unsigned char *check_frame);
+void update_counter();
+void update_history(unsigned char *message_rx);
 
 #endif

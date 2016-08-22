@@ -56,6 +56,7 @@
 
 /* USER CODE BEGIN (0) */
 #include "minimac.h"
+#include "sci.h"
 
 /* USER CODE END */
 #pragma WEAK(esmGroup1Notification)
@@ -120,6 +121,7 @@ void canMessageNotification(canBASE_t *node, uint32 messageBox)
 /*  enter user code between the USER CODE BEGIN and USER CODE END. */
 /* USER CODE BEGIN (15) */
 
+
     /* node 1 - transfer request */
     //if(node==canREG1)
     //{
@@ -151,9 +153,26 @@ void canMessageNotification(canBASE_t *node, uint32 messageBox)
 
 	// rx
 
+#ifdef SLAVE_1
+	unsigned char target_rx_id = 101U;
+	unsigned char my_id = 201U;
+#endif
+
+#ifdef SLAVE_2
+	unsigned char target_rx_id = 201U;
+	unsigned char my_id = 211U;
+#endif
+
 	uint32 rxID = canGetID(node, messageBox);
 	unsigned char id = (uint8) (rxID >> 18U); //& 0x000007FFU)
-	if (id == ((unsigned char) 101U)){ // rx'ed val from master
+
+	sciSend(scilinREG, 1, my_id);
+	sciSend(scilinREG, 10, ": rx from ");
+	sciSend(scilinREG, 1, id);
+	sciSend(scilinREG, 2, "\n");
+
+	//if (id == ((unsigned char) 101U)){ // rx'ed val from master
+	if (id == target_rx_id){
 		gioSetBit(gioPORTB, 1, 1);
 		unsigned char rec_frame[8] = { 0 };
 		unsigned char rec_msg[4] = { 0 };
@@ -226,6 +245,8 @@ void canMessageNotification(canBASE_t *node, uint32 messageBox)
 		if (authed){
 			update_counter();
 			update_history(rec_msg);
+			sciSend(scilinREG, 1, my_id);
+			sciSend(scilinREG, 11, "rx authed\n");
 
 			gioSetBit(gioPORTB, 2, 1);
 
@@ -235,11 +256,34 @@ void canMessageNotification(canBASE_t *node, uint32 messageBox)
 			tag(rec_mac,4,response,authed_response);
 
 
+#ifdef SLAVE_1
+		    /* transmit on can1 */
+		    unsigned char tx_success = canTransmit(canREG1, canMESSAGE_BOX4, authed_response); // use ID 201 for now
+			while (tx_success == 0){
+				tx_success = canTransmit(canREG1, canMESSAGE_BOX4, authed_response);
+			}
+#endif
 
+#ifdef SLAVE_2
+		    unsigned char tx_success = canTransmit(canREG1, canMESSAGE_BOX7, authed_response); // use ID 201 for now
+			while (tx_success == 0){
+				tx_success = canTransmit(canREG1, canMESSAGE_BOX7, authed_response);
+			}
+#endif
+			//above -> tx will have succeeded to get to here
+			update_counter();
+			update_history(response);
+			gioSetBit(gioPORTB, 2, 1);
+			response_success_counter++;
+			//serial print (my_id: tx)
+			sciSend(scilinREG, 1, my_id);
+			sciSend(scilinREG, 6, ": tx\n");
+
+			/**
 #ifdef SLAVE_1
 		// check if new message has been seen
 
-	    /* transmit on can1 */
+
 	    unsigned char tx_success = canTransmit(canREG1, canMESSAGE_BOX4, authed_response); // use ID 201 for now
 		while (tx_success == 0){
 			tx_success = canTransmit(canREG1, canMESSAGE_BOX4, response);
@@ -261,7 +305,7 @@ void canMessageNotification(canBASE_t *node, uint32 messageBox)
 
 		// check if new message has been seen
 
-	    /* transmit on can1 */
+
 		unsigned char tx_success = canTransmit(canREG1, canMESSAGE_BOX7, authed_response); // use ID 301 for now
 		while (tx_success == 0){
 			tx_success = canTransmit(canREG1, canMESSAGE_BOX7, response);
@@ -272,6 +316,10 @@ void canMessageNotification(canBASE_t *node, uint32 messageBox)
 		gioSetBit(gioPORTB, 2, 1);
 		response_success_counter++;
 #endif //SLAVE_2
+		**/
+		} else {
+			sciSend(scilinREG, 1, my_id);
+			sciSend(scilinREG, 15, "rx not authed\n");
 		}
 #endif //USE_AUTH
 
@@ -304,6 +352,14 @@ void canMessageNotification(canBASE_t *node, uint32 messageBox)
 		unsigned char rec_msg[4] = { 0 };
 		unsigned char check_frame[8] = { 0 };
 
+		while(!canIsRxMessageArrived(node, messageBox));
+		canGetData(node, messageBox, rec_frame); /* copy to RAM */
+
+		rec_msg[0] = rec_frame[0];
+		rec_msg[1] = rec_frame[1];
+		rec_msg[2] = rec_frame[2];
+		rec_msg[3] = rec_frame[3];
+
 #ifdef USE_AUTH
 
 #ifdef HMAC_SHA256
@@ -324,6 +380,15 @@ void canMessageNotification(canBASE_t *node, uint32 messageBox)
 
 		// check auth
 		uint32 authed = checkAuth(rec_frame, check_frame);
+		if (authed){
+			update_counter();
+			update_history(rec_msg);
+			sciSend(scilinREG, 1, my_id);
+			sciSend(scilinREG, 11, "rx authed\n");
+		} else {
+			sciSend(scilinREG, 1, my_id);
+			sciSend(scilinREG, 15, "rx not authed\n");
+		}
 #endif //USE_AUTH
 	}
 

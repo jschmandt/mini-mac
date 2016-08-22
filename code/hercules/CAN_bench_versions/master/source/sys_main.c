@@ -157,7 +157,7 @@ void main(void)
 	acks = 0x0;
 
 
-	while(1){
+	//while(1){
 		master_start();
 
 		//while(!canIsRxMessageArrived(canREG2, canMESSAGE_BOX1));
@@ -180,7 +180,7 @@ void main(void)
 		//uint32 auth_error = checkPackets(&authed_message[0],&rec_auth_msg[0],8);
 		//if (auth_error == 0){
 		//	counter++;
-	}
+	//}
 
 /* USER CODE END */
 }
@@ -303,12 +303,12 @@ void setup_message_boxes()
 	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)202U & (uint32)0x000007FFU) << (uint32)18U);
 	canUpdateID(canREG1, canMESSAGE_BOX5, new_arb_val);
 
-	// ID=301, DIR=RX
-	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)301U & (uint32)0x000007FFU) << (uint32)18U);
+	// ID=211, DIR=RX
+	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)211U & (uint32)0x000007FFU) << (uint32)18U);
 	canUpdateID(canREG1, canMESSAGE_BOX6, new_arb_val);
 
-	// ID=302, DIR=RX
-	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)302U & (uint32)0x000007FFU) << (uint32)18U);
+	// ID=212, DIR=RX
+	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)212U & (uint32)0x000007FFU) << (uint32)18U);
 	canUpdateID(canREG1, canMESSAGE_BOX7, new_arb_val);
 }
 

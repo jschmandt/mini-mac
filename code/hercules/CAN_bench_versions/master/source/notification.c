@@ -157,7 +157,7 @@ void canMessageNotification(canBASE_t *node, uint32 messageBox)
 
 			//strcpy(id_str, "201");
 
-			char *uart_msg_prefix = "received ack msg from ID ";
+			char *uart_msg_prefix = "received msg from ID ";
 			char *uart_msg_suffix = "\r\n";
 			char uart_msg[32] = { 0 };
 			strcpy(uart_msg, uart_msg_prefix);
@@ -177,12 +177,12 @@ void canMessageNotification(canBASE_t *node, uint32 messageBox)
 				strcat(uart_msg, "202");
 			} else if (id == ((unsigned char) 203U)){
 				strcat(uart_msg, "203");
-			} else if (id == ((unsigned char) 301U)){
-				strcat(uart_msg, "301");
-			} else if (id == ((unsigned char) 302U)){
-				strcat(uart_msg, "302");
-			} else if (id == ((unsigned char) 303U)){
-				strcat(uart_msg, "303");
+			} else if (id == ((unsigned char) 211U)){
+				strcat(uart_msg, "211");
+			} else if (id == ((unsigned char) 212U)){
+				strcat(uart_msg, "212");
+			} else if (id == ((unsigned char) 213U)){
+				strcat(uart_msg, "213");
 			} else {
 				strcat(uart_msg, "000");
 			}
@@ -222,9 +222,12 @@ void canMessageNotification(canBASE_t *node, uint32 messageBox)
 			uint32 authed = checkAuth(rec_frame, check_frame);
 
 			if (authed==1){
-				update_ack_list(id);
+				sciSend(scilinREG, 11, "rx authed\n");
+				//update_ack_list(id);
 				update_counter();
-				update_history();
+				update_history(rec_msg);
+			} else {
+				sciSend(scilinREG, 14, "rx not authed\n");
 			}
 
 

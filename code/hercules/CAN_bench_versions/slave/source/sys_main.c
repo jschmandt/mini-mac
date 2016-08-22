@@ -61,7 +61,7 @@
 //#include "sys_pmu.h"
 //#include "rti.h"
 
-//#include "sci.h"
+#include "sci.h"
 
 //#define f_HCLK (float) 160.0 // f in [MHz]
 
@@ -101,6 +101,9 @@ void main(void)
     _enable_interrupt_();
 
     gioInit();
+
+    _enable_IRQ();
+    sciInit();
 
     /* initialize can 1 and 2   */
     canInit(); /* can1 -> can2 */
@@ -210,16 +213,16 @@ void setup_message_boxes(){
 	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)203U & (uint32)0x000007FFU) << (uint32)18U);
 	canUpdateID(canREG1, canMESSAGE_BOX6, new_arb_val);
 
-	// give ID "301", set rx
-	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)301U & (uint32)0x000007FFU) << (uint32)18U);
+	// give ID "211", set rx
+	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)211U & (uint32)0x000007FFU) << (uint32)18U);
 	canUpdateID(canREG1, canMESSAGE_BOX7, new_arb_val);
 
-	// give ID "302", set rx
-	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)302U & (uint32)0x000007FFU) << (uint32)18U);
+	// give ID "212", set rx
+	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)212U & (uint32)0x000007FFU) << (uint32)18U);
 	canUpdateID(canREG1, canMESSAGE_BOX8, new_arb_val);
 
-	// give ID "303", set rx
-	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)303U & (uint32)0x000007FFU) << (uint32)18U);
+	// give ID "213", set rx
+	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)213U & (uint32)0x000007FFU) << (uint32)18U);
 	canUpdateID(canREG1, canMESSAGE_BOX9, new_arb_val);
 #endif //SLAVE_1
 
@@ -236,16 +239,16 @@ void setup_message_boxes(){
 	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)203U & (uint32)0x000007FFU) << (uint32)18U);
 	canUpdateID(canREG1, canMESSAGE_BOX6, new_arb_val);
 
-	// give ID "301", set tx
-	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x20000000U | (uint32)((uint32)((uint32)301U & (uint32)0x000007FFU) << (uint32)18U);
+	// give ID "211", set tx
+	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x20000000U | (uint32)((uint32)((uint32)211U & (uint32)0x000007FFU) << (uint32)18U);
 	canUpdateID(canREG1, canMESSAGE_BOX7, new_arb_val);
 
-	// give ID "302", set rx
-	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)302U & (uint32)0x000007FFU) << (uint32)18U);
+	// give ID "212", set rx
+	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)212U & (uint32)0x000007FFU) << (uint32)18U);
 	canUpdateID(canREG1, canMESSAGE_BOX8, new_arb_val);
 
-	// give ID "303", set rx
-	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)303U & (uint32)0x000007FFU) << (uint32)18U);
+	// give ID "213", set rx
+	new_arb_val = (uint32)0x80000000U | (uint32)0x00000000U | (uint32)0x00000000U | (uint32)((uint32)((uint32)213U & (uint32)0x000007FFU) << (uint32)18U);
 	canUpdateID(canREG1, canMESSAGE_BOX9, new_arb_val);
 #endif //SLAVE_2
 }
