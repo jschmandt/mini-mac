@@ -60,6 +60,9 @@ or to open the CRC field to the application level to calculate the MAC.
 In many systems, the CRC calculation is performed in hardware;
 in such cases, new standardized CAN hardware would be required to repurpose the two CRC bytes.
 
+Another possible opportunity for lengthening the Mini-MAC tag is to repurpose undocumented
+proprietary counters that exist in many CAN messages.
+
 \subsection{Open Problems}
 \label{open}
 
@@ -85,7 +88,9 @@ Bluetooth systems to affect braking, steering, or acceleration.
 Additional ideas, suggested by Phatak,\footnote{Private correspondence with Dhananjay Phatak.} 
 include:
 (5)~Physically secure the bus to prevent any access, except through
-a read-only diagnostic port.
+a read-only diagnostic port.  Federal law, however, mandates a read-write ODBII interface
+for emissions testing, and securing the bus physically would be a great challenge
+given that it runs throughout the vehicle.
 (6)~At pseudorandom time intervals, pseudorandomly change the ECU ID numbers, 
 based on a key shared by all ECUs used only for this purpose.
 

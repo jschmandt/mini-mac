@@ -10,7 +10,7 @@ by Stinson~\cite{Stinson} and NIST~\cite{FIPS-180-4}.
 	\begin{figure*}
 		\centering
 		\includegraphics[width=\linewidth]{figures/can_frame.png}
-		\caption{The CAN frame~\cite{fig1}.  
+		\caption{The standard CAN frame~\cite{fig1}.  
 		Each transmission on the CAN bus is a structured sequence of 55--111~bits including 8--64 data~bits.}
 		\label{fig-frame}
 	\end{figure*}
@@ -35,8 +35,10 @@ is a simple, low-speed bus designed to network simple nodes.
 It typically runs at 500~kbps in automobiles~\cite{canbus}.\footnote{kilobits per second (kbps).}
 
 Transmissions are organized in frames.  As shown in Figure~\ref{fig-frame}, 
-a frame contains an 11-bit identifier field and 
-a data payload, as well as some control bits. Figure~\ref{fig-frame} 
+a standard frame contains an 11-bit identifier field and 
+a data payload, as well as some control bits.\footnote{An extended ID frame can
+include a 29-bit identifier.}
+Figure~\ref{fig-frame} 
 shows the allocated data payload space as 8~bits, but
 it can be 8 to 64~bits and (based on our observations) is typically 64~bits.
 The payload of up to 8~bytes is the most important element, 
@@ -59,16 +61,21 @@ approximately 61\% of messages contain at most four data bytes
 (20\% contain 4~bytes; 16\% contain 3~bytes; 17\% contain 2~bytes; and 8\% contain 1~byte).
 Approximately 35\% of messages contain a full 8~data bytes, and 4\% contain 7~bytes.
 
-Thus, for most message, there are at least four bytes of space available for a MAC tag.
+Thus, for most messages we observed, there are at least four bytes of space available for a MAC tag.
 Inserting a tag in the unused allocated payload space does not
 increase the number of messages sent,
-delay any message, 
-or increase the number of bits transmitted.
+delay any message,  or increase the number of bits transmitted.
 
 Messages have fixed, known sizes.  The longest messages we witnessed
 seemed to be status reports describing the steering wheel angle and tire speed,
 with no apparent observable effect on any ECU.
 For these long messages with 8-byte payloads,  Mini-MAC will not add a tag. 
+
+We recognize that other cars might yield different data, and they may have a higher percent of
+messages that use eight bytes of data.  For example, messages for
+self-parking in the Prius contain eight bytes of data, and these messages are
+important because they control steering. Also, we did not observe any diagnostic messages,
+but they are important, widely used by mechanics, and contain eight bytes of data.
 
 We observed approximately 25 messages sent per second on average (40 maximum per second).
 
