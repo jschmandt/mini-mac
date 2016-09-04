@@ -112,11 +112,13 @@ to which groups it belongs.  We consider this limitation an acceptable design tr
 given that Mini-MAC does not increase bus traffic and the compromise of any critical
 ECU is a devastating security failure, regardless.
 
-Mini-MAC does not authenticate messages with long 8-byte payloads.  This limitation is 
+Mini-MAC does not authenticate messages with long 8-byte payloads.  
+This serious limitation is 
 an intentional tradeoff to ensure that Mini-MAC does not delay any message. 
 The only 8-byte messages that we observed seemed to be status reports
 with no apparent effect on any ECU, 
-but we acknowledge that some dangerous 8-byte messages may exist that we did not observe.
+but we acknowledge that some dangerous 8-byte messages may exist 
+that we did not observe (see section~\ref{can}).
 It may be possible to reduce the length of status data slightly 
 by deleting some of the low-order data bits.
 

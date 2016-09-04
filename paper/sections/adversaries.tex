@@ -9,18 +9,26 @@ We consider three classes of adversaries:
 	(\textit{Strongest adversary}): A permanent entity on the CAN bus with a valid key for the MAC it wishes to generate.
 	
 	\item [Type 2]
-	(\textit{Strong adversary}): A permanent entity on the CAN bus without a valid key for the MAC it wishes to generate.
+	(\textit{Stronger adversary}): A transient entity on the CAN bus with a valid key for the MAC it wishes to generate.
 	
 	\item [Type 3]
+	(\textit{Strong adversary}): A permanent entity on the CAN bus without a valid key for the MAC it wishes to generate.
+	
+	\item [Type 4]
 	(\textit{Weak adversary}): A transient entity on the CAN bus without a valid key for the MAC it wishes to generate.
 	
 \end{description}
 
-For example, a Type~1 adversary might be a compromised ECU on the CAN bus.  A Type~2 adversary might be a malicious piece of hardware attached
-to the CAN bus.  A Type~3 adversary might be a criminal who has gained temporary access to the CAN bus, perhaps via a wireless channel from
-another nearby car.  For a Type~3 attacker, we assume the adversary's access to the CAN bus is limited to minutes, not hours.  
+For example, a Type~1 adversary might be a compromised ECU on the CAN bus.  
+A Type~2 adversary might be an attacker who was able to learn the authentication keys by
+exploiting weak key management or through temporary access to an ECU.
+A Type~3 adversary might be a malicious piece of hardware attached
+to the CAN bus.  
+A Type~4 adversary might be a criminal who has gained temporary access to the CAN bus, perhaps via a wireless channel from
+another nearby car.  For a Type~2 and Type~4 attacker, we assume the adversary's access to the CAN bus is limited to minutes, not hours.  
 The differences among these attackers are what keys they know and for how long they have access to the CAN bus.
-This project aims to defend against Type~2 and Type~3 adversaries.   Our techniques do not protect against 
+
+This project aims to defend against Type~2, Type~3, and Type~4 adversaries.   Our techniques do not protect against 
 a Type~1 adversary, who can spoof any message to any member of any group to which he holds the key. 
 
 Motivation of the attacker includes criminal mischief (e.g., crashing car, destroying property) and theft.  

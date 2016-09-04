@@ -17,9 +17,10 @@ Mini-MAC is an authentication component that can be an important part of a large
 to enhance vehicular security.
 
 Built on the provably-secure HMAC, Mini-MAC protects against masquerade attacks.  
-Mini-MAC also incorporates a counter and message history to protect against replay attacks;
-the message history feature protects against all transient attackers (attackers
-who can access the CAN bus only for a limited period of time).
+Mini-MAC also incorporates a counter and message history to protect against replay attacks.
+A message history feature protects against all transient attackers (attackers
+who can access the CAN bus only for a limited period of time),
+even if they know the authentication keys.
 To avoid sending separate messages to different recipients, Mini-MAC applies authentication keys
 shared among groups of communicating Electronic Control Units (ECUs).
 It is the first proposal to authenticate messages on the CAN bus without increasing bus traffic
